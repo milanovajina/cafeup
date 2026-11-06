@@ -1255,8 +1255,18 @@ let table='4';
 /* orders already sent from this table; kept for 8 hours or until the bill is paid */
 let sent=[];
 const SENT_KEY='cafeup_sent';
-function saveSent(){try{localStorage.setItem(SENT_KEY,JSON.stringify({table,at:Date.now(),sent}))}catch(e){}}
-function loadSent(){try{const d=JSON.parse(localStorage.getItem(SENT_KEY)||'null');if(d&&d.table===table&&Date.now()-d.at<8*3600e3)sent=d.sent||[];}catch(e){}}
+let hashTable=null; /* table number from the QR link (#table-N), if any */
+function saveSent(){try{localStorage.setItem(SENT_KEY,JSON.stringify({table,at:Date.now(),sent,cart,pm}))}catch(e){}}
+function loadSent(){try{
+  const d=JSON.parse(localStorage.getItem(SENT_KEY)||'null');
+  if(!d||Date.now()-d.at>8*3600e3)return;
+  if(hashTable&&d.table!==hashTable)return;        /* a different table's QR: start fresh */
+  if(!hashTable&&d.table)table=d.table;            /* opened without a table number: keep the saved one */
+  sent=d.sent||[];
+  Object.entries(d.cart||{}).forEach(([id,q])=>{if(MENU.some(m=>m.id===id)&&q>0)cart[id]=q});
+  if(d.pm)pm=d.pm;
+  document.getElementById('table').value=table;
+}catch(e){}}
 const sentItems=()=>{const a={};sent.forEach(o=>Object.entries(o.items).forEach(([id,q])=>a[id]=(a[id]||0)+q));return a};
 const sentTotal=()=>sent.reduce((s,o)=>s+o.total,0);
 let closedBill=0;
@@ -1363,7 +1373,7 @@ document.getElementById('list').addEventListener('click',e=>{
   const b=e.target.closest('button[data-id]');if(!b)return;
   const id=b.dataset.id;cart[id]=(cart[id]||0)+(+b.dataset.d);if(cart[id]<=0)delete cart[id];
   if(+b.dataset.d>0)track('add_dish',{dish:MENU.find(m=>m.id===id).vi,lang});
-  b.closest('.it').outerHTML=itemHTML(MENU.find(m=>m.id===id));renderBar();
+  b.closest('.it').outerHTML=itemHTML(MENU.find(m=>m.id===id));renderBar();saveSent();
 });
 document.getElementById('cats').addEventListener('click',e=>{
   const b=e.target.closest('button[data-cat]');if(!b)return;
@@ -1376,7 +1386,7 @@ document.getElementById('openCart').addEventListener('click',()=>{renderSheet();
 document.getElementById('closeSheet').addEventListener('click',()=>bg.hidden=true);
 bg.addEventListener('click',e=>{if(e.target===bg)bg.hidden=true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')bg.hidden=true});
-document.getElementById('table').addEventListener('input',e=>{table=e.target.value.replace(/\D/g,'');renderChip();renderSheet()});
+document.getElementById('table').addEventListener('input',e=>{table=e.target.value.replace(/\D/g,'');renderChip();renderSheet();saveSent()});
 document.getElementById('note').addEventListener('input',()=>renderSheet());
 document.getElementById('sendTg').addEventListener('click',()=>{copyOrder();track('order_sent',{channel:'telegram',items:count(),total:total(),pay:pm==='cash'?'cash':'vietqr',table:table||'-',lang});document.getElementById('sendHint').textContent=T('hint_tg');setTimeout(commitOrder,400)});
 document.getElementById('sendZl').addEventListener('click',()=>{copyOrder();track('order_sent',{channel:'zalo',items:count(),total:total(),pay:pm==='cash'?'cash':'vietqr',table:table||'-',lang});document.getElementById('sendHint').textContent=T('hint_zl');setTimeout(commitOrder,400)});
@@ -1388,7 +1398,7 @@ document.getElementById('callW').addEventListener('click',()=>{thanks.hidden=tru
 document.getElementById('skins').addEventListener('click',e=>{const b=e.target.closest('button[data-skin]');if(!b)return;
   const k=b.dataset.skin; if(k)document.documentElement.dataset.skin=k; else delete document.documentElement.dataset.skin;
   document.querySelectorAll('#skins button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
-document.getElementById('paym').addEventListener('click',e=>{const b=e.target.closest('button[data-pm]');if(!b)return;pm=b.dataset.pm;renderSheet()});
+document.getElementById('paym').addEventListener('click',e=>{const b=e.target.closest('button[data-pm]');if(!b)return;pm=b.dataset.pm;renderSheet();saveSent()});
 const wbg=document.getElementById('waiterBg');
 document.getElementById('callW').addEventListener('click',()=>{renderWaiter();wbg.hidden=false;document.getElementById('closeWaiter').focus()});
 document.getElementById('closeWaiter').addEventListener('click',()=>wbg.hidden=true);
@@ -1415,7 +1425,7 @@ document.getElementById('billBtn2').addEventListener('click',()=>{hbg.hidden=tru
 function closeTable(){
   closedBill=billTotal();
   track('table_closed',{total:closedBill,pay:pm==='cash'?'cash':'vietqr',table:table||'-'});
-  sent=[];saveSent();renderBar();
+  sent=[];Object.keys(cart).forEach(k=>delete cart[k]);saveSent();renderList();renderBar();
   document.getElementById('wHint').textContent=T('bill_sent');
   thanks.hidden=false;thanks.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
@@ -1439,10 +1449,10 @@ document.querySelector('#menuApp .lang').addEventListener('click',e=>{const b=e.
 
 window.addEventListener('hashchange',()=>{if(ON!==/^#(menu|table-\d{1,4})$/.test(location.hash))location.reload()});
 if(!ON)return;
-setTimeout(()=>{loadSent();renderBar();loadCounter()},0);
+setTimeout(()=>{loadSent();renderList();renderBar();renderChip();loadCounter()},0);
 /* table from #table-N, language from storage or phone */
 (function(){
-  const m=(location.hash||'').match(/^#table-(\d{1,4})$/);if(m)table=m[1];
+  const m=(location.hash||'').match(/^#table-(\d{1,4})$/);if(m){table=m[1];hashTable=m[1];}
   document.getElementById('table').value=table;
   let l=null;try{l=localStorage.getItem('menu_lang')}catch(e){}
   if(!l){const n=(navigator.language||'').slice(0,2);l=n==='vi'?'vi':n==='ru'?'ru':'en'}
