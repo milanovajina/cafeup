@@ -418,6 +418,19 @@ body.has-ostrip #menuApp .toast{bottom:calc(150px + env(safe-area-inset-bottom,0
 #menuApp .it.so{opacity:.6}
 #menuApp .it.so .ph{filter:grayscale(1)}
 #menuApp .sold{font-size:12px;font-weight:800;letter-spacing:.02em;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:5px 10px;white-space:nowrap}
+.decks{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+.deck{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-2xl);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.deck img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;border-bottom:1px solid var(--line);background:var(--line)}
+.dk-body{padding:22px;display:flex;flex-direction:column;gap:10px}
+.dk-body h3{font-size:24px}
+.dk-sub{color:var(--muted)}
+.dk-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.dk-links .btn{padding:11px 16px;font-size:14px}
+.dk-size{color:var(--muted);font-size:13px}
+@media (max-width:760px){.decks{grid-template-columns:1fr}}
+.vtog{display:inline-flex;margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px}
+.vtog button{border:0;background:none;border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px;color:var(--muted)}
+.vtog button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 </style>
 </head>
 <body>
@@ -429,6 +442,7 @@ body.has-ostrip #menuApp .toast{bottom:calc(150px + env(safe-area-inset-bottom,0
     <a href="#demo" data-t="nav_demo"></a>
     <a href="#calc" data-t="nav_calc"></a>
     <a href="#price" data-t="nav_price"></a>
+    <a href="#decks" data-t="nav_decks"></a>
     <a href="#about" data-t="nav_about"></a>
     <a href="#contact" data-t="nav_contact"></a>
   </nav>
@@ -595,15 +609,16 @@ body.has-ostrip #menuApp .toast{bottom:calc(150px + env(safe-area-inset-bottom,0
     <div class="sec-head">
       <h2 data-t="price_h"></h2>
       <p data-t="price_p"></p>
+      <div class="vtog" id="vtog" role="group"><button data-variant="coffee" data-t="v_coffee"></button><button data-variant="cafe" data-t="v_cafe" aria-pressed="true"></button></div>
     </div>
     <div class="prices">
       <div class="plan main">
         <div class="pt" data-t="pk_tag"></div>
-        <h3 data-t="pk_name"></h3>
-        <div class="pr"><b class="money" data-v="3900000"></b><span data-t="once"></span></div>
+        <h3 data-t="pk_name" data-tc="pk_name_c"></h3>
+        <div class="pr"><b class="money" data-v="3900000" data-coffee="2900000"></b><span data-t="once"></span></div>
         <span class="time" data-t="pk_time"></span>
         <ul>
-          <li data-t="pk_1"></li><li data-t="pk_2"></li><li data-t="pk_3"></li>
+          <li data-t="pk_1" data-tc="pk_1_c"></li><li data-t="pk_2"></li><li data-t="pk_3"></li>
           <li data-t="pk_4"></li><li data-t="pk_5"></li><li data-t="pk_6"></li><li data-t="pk_7"></li><li data-t="pk_8"></li>
         </ul>
         <p class="compare" data-t="compare"></p>
@@ -612,20 +627,53 @@ body.has-ostrip #menuApp .toast{bottom:calc(150px + env(safe-area-inset-bottom,0
         <div class="plan">
           <div class="pt" data-t="sp_tag"></div>
           <h3 data-t="sp_name"></h3>
-          <div class="pr"><b class="money" data-v="390000"></b><span data-t="month"></span></div>
-          <ul><li data-t="sp_1"></li><li data-t="sp_2"></li><li data-t="sp_3"></li><li data-t="sp_4"></li><li data-t="sp_5"></li></ul>
+          <div class="pr"><b class="money" data-v="390000" data-coffee="290000"></b><span data-t="month"></span></div>
+          <ul><li data-t="sp_1" data-tc="sp_1_c"></li><li data-t="sp_2"></li><li data-t="sp_3"></li><li data-t="sp_4"></li><li data-t="sp_5"></li></ul>
         </div>
         <div class="plan">
           <div class="pt" data-t="ad_tag"></div>
           <ul class="addons">
-            <li><span data-t="ad_5"></span><span class="money" data-v="390000"></span></li>
-            <li><span data-t="ad_4"></span><span class="money" data-v="399000"></span></li>
+            <li><span data-t="ad_5"></span><span class="money" data-v="390000" data-coffee="290000"></span></li>
+            <li><span data-t="ad_4"></span><span class="money" data-v="390000"></span></li>
             <li><span data-t="ad_1"></span><span class="money" data-v="800000"></span></li>
             <li><span data-t="ad_2"></span><span class="money" data-v="500000"></span></li>
             <li><span data-t="ad_3"></span><span class="money" data-v="300000"></span></li>
           </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="decks">
+    <div class="sec-head">
+      <h2 data-t="dk_h"></h2>
+      <p data-t="dk_p"></p>
+    </div>
+    <div class="decks">
+      <article class="deck">
+        <img data-cover="cafe" src="img/deck_cafe_vi.jpg" alt="" width="640" height="360" loading="lazy">
+        <div class="dk-body">
+          <h3 data-t="dk_cafe"></h3>
+          <p class="dk-sub" data-t="dk_cafe_p"></p>
+          <div class="dk-links">
+            <a class="btn ghost" href="pdf/CafeUp_Cafe_VI.pdf" target="_blank" rel="noopener">Tiếng Việt · PDF</a>
+            <a class="btn ghost" href="pdf/CafeUp_Cafe_RU.pdf" target="_blank" rel="noopener">Русский · PDF</a>
+          </div>
+          <small class="dk-size" data-t="dk_size"></small>
+        </div>
+      </article>
+      <article class="deck">
+        <img data-cover="coffee" src="img/deck_coffee_vi.jpg" alt="" width="640" height="360" loading="lazy">
+        <div class="dk-body">
+          <h3 data-t="dk_coffee"></h3>
+          <p class="dk-sub" data-t="dk_coffee_p"></p>
+          <div class="dk-links">
+            <a class="btn ghost" href="pdf/CafeUp_Coffee_VI.pdf" target="_blank" rel="noopener">Tiếng Việt · PDF</a>
+            <a class="btn ghost" href="pdf/CafeUp_Coffee_RU.pdf" target="_blank" rel="noopener">Русский · PDF</a>
+          </div>
+          <small class="dk-size" data-t="dk_size"></small>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -695,6 +743,19 @@ about_p:["Tôi giúp quán có thêm khách: khách du lịch tìm thấy quán 
 about_1:["<b>Google Maps.</b> Hoàn thiện hồ sơ quán: ảnh, mô tả, giờ mở cửa, danh mục. Đặt mã QR trên bàn để khách để lại đánh giá.","<b>Google Maps.</b> I set up your profile with photos, description, hours and categories, and put review QR codes on your tables.","<b>Google Maps.</b> Оформляю карточку: фото, описание, часы, категории. Ставлю на столы QR, по которому гости оставляют отзывы."],
 about_2:["<b>Thực đơn và gọi món.</b> Thực đơn 3 ngôn ngữ, đơn hàng về Zalo hoặc Telegram bằng tiếng Việt cho nhân viên.","<b>Menu and orders.</b> A menu in three languages, with orders reaching your staff in Vietnamese on Zalo or Telegram.","<b>Меню и заказы.</b> Меню на трёх языках, заказы приходят персоналу в Zalo или Telegram на вьетнамском."],
 about_cta:["Nhắn cho Jane →","Message Jane →","Написать Jane →"],
+v_coffee:["Quán cà phê","Coffee shop","Кофейня"],
+v_cafe:["Quán ăn / nhà hàng","Café / restaurant","Кафе / ресторан"],
+pk_name_c:["Quán cà phê trọn gói","Coffee Shop Ready","Кофейня под ключ"],
+pk_1_c:["Thực đơn QR tiếng Việt, Anh, Nga, tối đa 30 món","QR menu in Vietnamese, English and Russian, up to 30 items","QR-меню на вьетнамском, английском и русском, до 30 позиций"],
+sp_1_c:["<span><b>Đã gồm:</b> tự đổi giá và đánh dấu «hết món» trên điện thoại, một phút sau khách đã thấy (mua riêng 290.000 ₫)</span>","<span><b>Included:</b> change prices and mark dishes “sold out” yourself from your phone, guests see it within a minute (290,000 ₫ on its own)</span>","<span><b>Включено:</b> стоп-лист и цены — сами, с телефона, через минуту изменения видят все гости (отдельно 290 000 ₫)</span>"],
+nav_decks:["Thuyết trình","Presentations","Презентации"],
+dk_h:["Bài thuyết trình CafeUp","CafeUp presentations","Презентации CafeUp"],
+dk_p:["Mọi thứ về CafeUp trong 12 trang: vấn đề, ví dụ, giá. Mở trên điện thoại hoặc gửi cho đối tác.","Everything about CafeUp in 12 slides: the problem, examples and prices. Open it on your phone or send it to a partner.","Всё о CafeUp на 12 слайдах: проблема, примеры, цены. Откройте на телефоне или перешлите партнёру."],
+dk_cafe:["Cho quán ăn và nhà hàng","For cafés and restaurants","Для кафе и ресторанов"],
+dk_cafe_p:["Gói trọn gói 3.900.000 ₫ · duy trì 390.000 ₫/tháng","Package 3,900,000 ₫ · care plan 390,000 ₫ a month","Пакет 3 900 000 ₫ · поддержка 390 000 ₫ в месяц"],
+dk_coffee:["Cho quán cà phê","For coffee shops","Для кофеен"],
+dk_coffee_p:["Gói trọn gói 2.900.000 ₫ · duy trì 290.000 ₫/tháng","Package 2,900,000 ₫ · care plan 290,000 ₫ a month","Пакет 2 900 000 ₫ · поддержка 290 000 ₫ в месяц"],
+dk_size:["PDF · khoảng 3 MB mỗi tệp","PDF · about 3 MB each","PDF · около 3 МБ каждый"],
 nav_contact:["Liên hệ","Contact","Связаться"],
 hero_eyebrow:["Cho quán ở Nha Trang và Phú Quốc","For cafés in Nha Trang and Phu Quoc","Для кафе в Нячанге и на Фукуоке"],
 hero_h1a:["Khách du lịch đứng trước cửa quán bạn.","A tourist stops at your door.","Турист стоит у вашей двери."],
@@ -802,7 +863,7 @@ a1:["Không. Mọi thứ chạy trên điện thoại: đơn về Zalo hoặc Te
 q2:["Hồ sơ Google Maps thuộc về ai?","Who owns the Google Maps profile?","Кому принадлежит карточка в Google Maps?"],
 a2:["Thuộc về bạn. Chúng tôi chỉ được thêm làm người quản lý, bạn có thể gỡ bất cứ lúc nào.","You do. We're added as a manager and you can remove us at any time.","Вам. Нас добавляют менеджером, и вы можете удалить нас в любой момент."],
 q3:["Nếu tôi đổi giá hoặc món thì sao?","What if I change prices or dishes?","Что если поменялись цены или блюда?"],
-a3:["Có gói duy trì: bạn tự đổi giá và đánh dấu món hết trong một bảng đơn giản trên điện thoại, món mới chúng tôi thêm trong ngày. Không có gói: tự quản lý thực đơn 390.000 ₫ một lần, hoặc 50.000 ₫ mỗi lần chúng tôi sửa.","With the care plan you change prices and mark sold-out dishes yourself in a simple sheet on your phone, and we add new dishes the same day. Without it: self-service menu for 390,000 ₫ one-time, or 50,000 ₫ per edit done by us.","С поддержкой вы сами меняете цены и ставите блюда в стоп-лист в простой таблице с телефона, а новые блюда мы добавляем в тот же день. Без поддержки — самостоятельное управление меню за 390 000 ₫ разово или 50 000 ₫ за каждую нашу правку."],
+a3:["Có gói duy trì: bạn tự đổi giá và đánh dấu món hết trong một bảng đơn giản trên điện thoại, món mới chúng tôi thêm trong ngày. Không có gói: tự quản lý thực đơn trả một lần (390.000 ₫ cho quán ăn, 290.000 ₫ cho quán cà phê), hoặc 50.000 ₫ mỗi lần chúng tôi sửa.","With the care plan you change prices and mark sold-out dishes yourself in a simple sheet on your phone, and we add new dishes the same day. Without it: self-service menu as a one-time fee (390,000 ₫ for cafés, 290,000 ₫ for coffee shops), or 50,000 ₫ per edit done by us.","С поддержкой вы сами меняете цены и ставите блюда в стоп-лист в простой таблице с телефона, а новые блюда мы добавляем в тот же день. Без поддержки — самостоятельное управление меню разово (390 000 ₫ для кафе, 290 000 ₫ для кофейни) или 50 000 ₫ за каждую нашу правку."],
 q4:["Khách dùng app dịch là đủ rồi?","Aren't translator apps enough?","Разве туристам не хватает переводчика?"],
 a4:["Camera dịch làm sai tên món, bạn đã thấy ở trên. Thực đơn tốt giải thích món ăn, không chỉ dịch từng chữ.","Translator cameras get dish names wrong, as you saw above. A good menu explains the dish instead of translating word by word.","Камера переводчика путает названия блюд — вы видели выше. Хорошее меню объясняет блюдо, а не переводит слова."],
 q5:["Thực đơn của tôi có hơn 50 món?","My menu has more than 50 items?","У меня больше 50 позиций?"],
@@ -1032,12 +1093,20 @@ document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',(
 }));
 
 /* ---- language ---- */
+let priceVariant='cafe';
+function applyVariant(){
+  document.querySelectorAll('#vtog button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.variant===priceVariant));
+  document.querySelectorAll('[data-tc]').forEach(el=>{el.innerHTML=T(priceVariant==='coffee'?el.dataset.tc:el.dataset.t)});
+  document.querySelectorAll('.money').forEach(el=>{el.textContent=fmt(+(priceVariant==='coffee'&&el.dataset.coffee?el.dataset.coffee:el.dataset.v))});
+}
+document.getElementById('vtog').addEventListener('click',e=>{const b=e.target.closest('button[data-variant]');if(!b)return;priceVariant=b.dataset.variant;applyVariant()});
 function setLang(l){
   lang=l; document.documentElement.lang=l;
   try{localStorage.setItem('qm_lang',l)}catch(e){}
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
   document.querySelectorAll('[data-t]').forEach(el=>{el.innerHTML=T(el.dataset.t)});
-  document.querySelectorAll('.money').forEach(el=>el.textContent=fmt(+el.dataset.v));
+  applyVariant();
+  document.querySelectorAll('img[data-cover]').forEach(i=>{i.src='img/deck_'+i.dataset.cover+'_'+(l==='ru'?'ru':'vi')+'.jpg'});
   menuLang=l==='vi'?'en':l;
   renderPaper(); renderMenu(); [1,2,3].forEach(applyMoment); calc();
 }
