@@ -8,7 +8,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500&family=Instrument+Serif&family=Playfair+Display:wght@500;600&family=Be+Vietnam+Pro:wght@400;600;700;800&family=Patrick+Hand&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500&family=Instrument+Serif&family=Playfair+Display:wght@500;600&family=Be+Vietnam+Pro:wght@400;600;700;800&family=Patrick+Hand&family=Lora:wght@500;600&family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;700&family=Nunito:wght@800;900&display=swap">
 <style>
 /* Layout: one column of "moments". Each moment = text + a live mock that flips between "now" (destructive) and "with us" (primary). Theme: tweakcn (user-supplied). */
 :root{
@@ -245,7 +245,7 @@ section{scroll-margin-top:72px}
 @media (max-width:860px){.prices{grid-template-columns:1fr}}
 
 /* timeline */
-.days{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.days{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .days li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:18px;min-width:0}
 .days .d{font-family:var(--f-mono);font-size:12px;color:var(--jade);font-weight:500;letter-spacing:.04em}
 .days p{margin-top:6px;font-weight:600}
@@ -369,6 +369,29 @@ img.ph{object-fit:cover;display:block;background:var(--line)}
 #menuApp .paym button[aria-pressed="true"],#menuApp .reasons button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
 #menuApp .cashnote{margin:16px 0 0;border:1px dashed var(--line);border-radius:var(--radius);padding:12px;font-size:14px}
 #menuApp .q{margin:10px 0 6px;color:var(--muted);font-size:14px}
+#menuApp .skins{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:4px 0 10px;font-size:12px;color:var(--muted)}
+#menuApp .skins .skl{font-weight:700;margin-right:2px}
+#menuApp .skins button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700}
+#menuApp .skins button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#menuApp .skins .skh{flex-basis:100%;font-size:12px}
+/* demo skins: the café's own style */
+:root[data-skin="cafe"]{--bg:#F3ECE2;--surface:#FFFBF5;--ink:#2B1D14;--muted:#7A6555;--line:#E2D4C2;--primary:#6B3F22;--primary-soft:#EEDFCF;--on-primary:#FFF8F0;--accent:#B9853A;--accent-soft:#F4E6CF;--on-accent:#24170A;--radius:4px;--f-display:"Playfair Display",Georgia,serif;--f-body:"Manrope",system-ui,sans-serif;--shadow:0 1px 2px rgba(43,29,20,.06);color-scheme:light}
+:root[data-skin="beach"]{--bg:#E8F4F3;--surface:#FFFFFF;--ink:#0E2A33;--muted:#4D6B72;--line:#C9E2E0;--primary:#0F7C8C;--primary-soft:#D3ECEE;--on-primary:#FFFFFF;--accent:#F08A4B;--accent-soft:#FDE6D7;--on-accent:#2A1206;--radius:18px;--f-display:"Lora",Georgia,serif;--f-body:"Manrope",system-ui,sans-serif;--shadow:0 6px 18px rgba(15,124,140,.10);color-scheme:light}
+:root[data-skin="night"]{--bg:#14161C;--surface:#1E2129;--ink:#F1EDE4;--muted:#A9A79F;--line:#30343E;--primary:#E8B04B;--primary-soft:#3A3221;--on-primary:#1A1406;--accent:#E0563B;--accent-soft:#3E2420;--on-accent:#FFFFFF;--radius:14px;--f-display:"Unbounded",system-ui,sans-serif;--f-body:"Manrope",system-ui,sans-serif;--shadow:0 6px 18px rgba(0,0,0,.4);color-scheme:dark}
+:root[data-skin] body{background:var(--bg)}
+:root[data-skin="night"] #menuApp h1,:root[data-skin="night"] #menuApp h2,:root[data-skin="night"] #menuApp h3{font-weight:500}
+:root{--art:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20260%22%20fill%3D%22none%22%20stroke%3D%22%238A96B0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M0%2016Q100%2052%20200%2016%22%2F%3E%3Cpath%20d%3D%22M48%2042v10%22%2F%3E%3Crect%20x%3D%2239%22%20y%3D%2250%22%20width%3D%2218%22%20height%3D%225%22%20rx%3D%221%22%2F%3E%3Cellipse%20cx%3D%2248%22%20cy%3D%2276%22%20rx%3D%2218%22%20ry%3D%2222%22%2F%3E%3Cpath%20d%3D%22M38%2058c-5%2012-5%2024%200%2036M58%2058c5%2012%205%2024%200%2036M48%2054v44%22%2F%3E%3Crect%20x%3D%2239%22%20y%3D%2297%22%20width%3D%2218%22%20height%3D%225%22%20rx%3D%221%22%2F%3E%3Cpath%20d%3D%22M48%20102v14M45%20110l3%208%203-8%22%2F%3E%3Cpath%20d%3D%22M108%2064v10%22%2F%3E%3Crect%20x%3D%2299%22%20y%3D%2272%22%20width%3D%2218%22%20height%3D%225%22%20rx%3D%221%22%2F%3E%3Cellipse%20cx%3D%22108%22%20cy%3D%2298%22%20rx%3D%2218%22%20ry%3D%2222%22%2F%3E%3Cpath%20d%3D%22M98%2080c-5%2012-5%2024%200%2036M118%2080c5%2012%205%2024%200%2036M108%2076v44%22%2F%3E%3Crect%20x%3D%2299%22%20y%3D%22119%22%20width%3D%2218%22%20height%3D%225%22%20rx%3D%221%22%2F%3E%3Cpath%20d%3D%22M108%20124v14M105%20132l3%208%203-8%22%2F%3E%3Cpath%20d%3D%22M166%2038v10%22%2F%3E%3Crect%20x%3D%22157%22%20y%3D%2246%22%20width%3D%2218%22%20height%3D%225%22%20rx%3D%221%22%2F%3E%3Cellipse%20cx%3D%22166%22%20cy%3D%2272%22%20rx%3D%2218%22%20ry%3D%2222%22%2F%3E%3Cpath%20d%3D%22M156%2054c-5%2012-5%2024%200%2036M176%2054c5%2012%205%2024%200%2036M166%2050v44%22%2F%3E%3Crect%20x%3D%22157%22%20y%3D%2293%22%20width%3D%2218%22%20height%3D%225%22%20rx%3D%221%22%2F%3E%3Cpath%20d%3D%22M166%2098v14M163%20106l3%208%203-8%22%2F%3E%3Cpath%20d%3D%22M48%2042V30M108%2064V38M166%2038V28%22%2F%3E%3C%2Fsvg%3E")}
+:root[data-skin="cafe"]{--art:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20260%22%20fill%3D%22none%22%20stroke%3D%22%236B3F22%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M58%20160h84l-9%2062a8%208%200%200%201-8%207H75a8%208%200%200%201-8-7z%22%2F%3E%3Cpath%20d%3D%22M142%20172h10a12%2012%200%200%201%200%2024h-13%22%2F%3E%3Crect%20x%3D%2270%22%20y%3D%22120%22%20width%3D%2260%22%20height%3D%2240%22%20rx%3D%224%22%2F%3E%3Cpath%20d%3D%22M62%20120h76M80%20112h40v8M100%20104v8%22%2F%3E%3Cpath%20d%3D%22M84%2096c-6-10%206-14%200-24M100%2092c-6-10%206-14%200-24M116%2096c-6-10%206-14%200-24%22%2F%3E%3Cellipse%20cx%3D%2234%22%20cy%3D%22232%22%20rx%3D%2210%22%20ry%3D%2214%22%20transform%3D%22rotate%28-25%2034%20232%29%22%2F%3E%3Cpath%20d%3D%22M28%20222c6%206%206%2014%2012%2020%22%2F%3E%3Cellipse%20cx%3D%22170%22%20cy%3D%2240%22%20rx%3D%2210%22%20ry%3D%2214%22%20transform%3D%22rotate%2830%20170%2040%29%22%2F%3E%3Cpath%20d%3D%22M164%2030c6%206%206%2014%2012%2020%22%2F%3E%3Cellipse%20cx%3D%2230%22%20cy%3D%2260%22%20rx%3D%228%22%20ry%3D%2211%22%20transform%3D%22rotate%28-10%2030%2060%29%22%2F%3E%3Cpath%20d%3D%22M27%2051c4%205%204%2012%207%2017%22%2F%3E%3C%2Fsvg%3E")}
+:root[data-skin="beach"]{--art:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20260%22%20fill%3D%22none%22%20stroke%3D%22%230F7C8C%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2244%22%20cy%3D%2244%22%20r%3D%2216%22%2F%3E%3Cpath%20d%3D%22M44%2014v-8M44%2082v-8M14%2044H6M82%2044h-8M23%2023l-6-6M65%2065l6%206M65%2023l6-6M23%2065l-6%206%22%2F%3E%3Cpath%20d%3D%22M112%20244c-4-50-8-100%206-150%22%2F%3E%3Cpath%20d%3D%22M118%2094c-24-24-54-24-74-9M118%2094c-18-34-34-54-60-58M118%2094c6-34%2022-50%2046-54M118%2094c26-20%2056-20%2074-3M118%2094c-4-26-4-46%204-70%22%2F%3E%3Ccircle%20cx%3D%22112%22%20cy%3D%22102%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22123%22%20cy%3D%22104%22%20r%3D%225%22%2F%3E%3Cpath%20d%3D%22M0%20236q15-10%2030%200t30%200%2030%200%2030%200%2030%200%2030%200%2030%200M10%20252q15-10%2030%200t30%200%2030%200%2030%200%2030%200%2030%200%22%2F%3E%3C%2Fsvg%3E")}
+:root[data-skin="night"]{--art:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20260%22%20fill%3D%22none%22%20stroke%3D%22%23E8B04B%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M0%2022Q100%2064%20200%2022%22%2F%3E%3Cpath%20d%3D%22M20%2030v8M50%2040v8M80%2046v8M110%2048v8M140%2044v8M170%2036v8%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2243%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2253%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%2259%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22110%22%20cy%3D%2261%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22140%22%20cy%3D%2257%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22170%22%20cy%3D%2249%22%20r%3D%225%22%2F%3E%3Cpath%20d%3D%22M162%2096a30%2030%200%201%200%2014%2056%2024%2024%200%201%201-14-56z%22%2F%3E%3Cpath%20d%3D%22M52%20186h64M58%20186l-8%2060M110%20186l8%2060M60%20220h48M66%20186l-2%2034M102%20186l2%2034%22%2F%3E%3Cpath%20d%3D%22M48%20178h72v8H48z%22%2F%3E%3C%2Fsvg%3E")}
+:root[data-skin="karaoke"]{--art:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20260%22%20fill%3D%22none%22%20stroke%3D%22%23FF3EA5%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%22104%22%20cy%3D%2270%22%20r%3D%2228%22%2F%3E%3Cpath%20d%3D%22M80%2058h48M77%2072h54M82%2086h44M94%2044v52M114%2044v52%22%2F%3E%3Cpath%20d%3D%22M90%2098l6%2092h16l6-92%22%2F%3E%3Cpath%20d%3D%22M104%20190c0%2030-30%2030-40%2050%22%2F%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2274%22%20r%3D%228%22%2F%3E%3Cpath%20d%3D%22M42%2074V40l18%206%22%2F%3E%3Ccircle%20cx%3D%22168%22%20cy%3D%22140%22%20r%3D%228%22%2F%3E%3Ccircle%20cx%3D%22188%22%20cy%3D%22134%22%20r%3D%228%22%2F%3E%3Cpath%20d%3D%22M176%20140V106l20-6v34%22%2F%3E%3Cpath%20d%3D%22M176%20114l20-6%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%22176%22%20r%3D%227%22%2F%3E%3Cpath%20d%3D%22M47%20176v-28l12%204%22%2F%3E%3C%2Fsvg%3E")}
+#menuApp .wrap{position:relative}
+#menuApp .wrap::before{content:"";position:absolute;top:58px;right:-8px;width:170px;height:221px;background:var(--art) no-repeat center/contain;opacity:var(--art-op,.22);pointer-events:none;z-index:0}
+#menuApp header,#menuApp .skins,#menuApp .cats,#menuApp main{position:relative;z-index:1}
+:root[data-skin="night"],:root[data-skin="karaoke"]{--art-op:.32}
+:root[data-skin="karaoke"]{--bg:#1A0F2E;--surface:#261843;--ink:#F7EEFF;--muted:#B9A6D6;--line:#3C2A60;--primary:#FF3EA5;--primary-soft:#4A1F48;--on-primary:#1A0F2E;--accent:#3ED6FF;--accent-soft:#163A4F;--on-accent:#071820;--radius:20px;--f-display:"Nunito",system-ui,sans-serif;--f-body:"Manrope",system-ui,sans-serif;--shadow:0 0 0 1px rgba(255,62,165,.18),0 8px 24px rgba(0,0,0,.45);color-scheme:dark}
+:root[data-skin="karaoke"] #menuApp h1{font-weight:900;text-shadow:0 0 14px rgba(255,62,165,.55)}
+:root[data-skin="karaoke"] #menuApp .sect h2{font-weight:800;color:#3ED6FF;text-shadow:0 0 10px rgba(62,214,255,.45)}
 </style>
 </head>
 <body>
@@ -531,7 +554,7 @@ img.ph{object-fit:cover;display:block;background:var(--line)}
         <div class="field"><label for="conv"><span data-t="l_conv"></span><output id="o_conv"></output></label>
           <input id="conv" type="range" min="0.5" max="8" step="0.5" value="2"></div>
         <div class="field"><label for="check"><span data-t="l_check"></span><output id="o_check"></output></label>
-          <input id="check" type="range" min="40000" max="400000" step="10000" value="150000"></div>
+          <input id="check" type="range" min="40000" max="400000" step="10000" value="250000"></div>
         <p class="disc" data-t="calc_disc"></p>
       </div>
       <div class="outs">
@@ -555,7 +578,7 @@ img.ph{object-fit:cover;display:block;background:var(--line)}
         <span class="time" data-t="pk_time"></span>
         <ul>
           <li data-t="pk_1"></li><li data-t="pk_2"></li><li data-t="pk_3"></li>
-          <li data-t="pk_4"></li><li data-t="pk_5"></li><li data-t="pk_6"></li><li data-t="pk_7"></li>
+          <li data-t="pk_4"></li><li data-t="pk_5"></li><li data-t="pk_6"></li><li data-t="pk_7"></li><li data-t="pk_8"></li>
         </ul>
         <p class="compare" data-t="compare"></p>
       </div>
@@ -569,6 +592,7 @@ img.ph{object-fit:cover;display:block;background:var(--line)}
         <div class="plan">
           <div class="pt" data-t="ad_tag"></div>
           <ul class="addons">
+            <li><span data-t="ad_4"></span><span class="money" data-v="399000"></span></li>
             <li><span data-t="ad_1"></span><span class="money" data-v="800000"></span></li>
             <li><span data-t="ad_2"></span><span class="money" data-v="500000"></span></li>
             <li><span data-t="ad_3"></span><span class="money" data-v="300000"></span></li>
@@ -586,7 +610,6 @@ img.ph{object-fit:cover;display:block;background:var(--line)}
       <li><span class="d" data-t="d4"></span><p data-t="d4t"></p></li>
       <li><span class="d" data-t="d5"></span><p data-t="d5t"></p></li>
       <li><span class="d" data-t="d6"></span><p data-t="d6t"></p></li>
-      <li><span class="d" data-t="d7"></span><p data-t="d7t"></p></li>
     </ol>
     <p class="tnote" data-t="steps_note"></p>
   </section>
@@ -649,7 +672,7 @@ nav_contact:["Liên hệ","Contact","Связаться"],
 hero_eyebrow:["Cho quán ở Nha Trang và Phú Quốc","For cafés in Nha Trang and Phu Quoc","Для кафе в Нячанге и на Фукуоке"],
 hero_h1a:["Khách du lịch đứng trước cửa quán bạn.","A tourist stops at your door.","Турист стоит у вашей двери."],
 hero_h1b:["Rồi đi sang quán bên cạnh.","Then walks to the café next door.","И уходит к соседу."],
-hero_sub:["Không phải vì món không ngon. Họ không thấy quán trên bản đồ, không hiểu thực đơn và không biết gọi món thế nào. Chúng tôi sửa cả ba trong 7 ngày.","Not because your food is bad. They couldn't find you on the map, couldn't read the menu and didn't know how to order. We fix all three in 7 days.","Не потому что у вас невкусно. Он не нашёл вас на карте, не понял меню и не знал, как заказать. Мы исправляем все три за 7 дней."],
+hero_sub:["Không phải vì món không ngon. Họ không thấy quán trên bản đồ, không hiểu thực đơn và không biết gọi món thế nào. Chúng tôi sửa cả ba trong 3–5 ngày.","Not because your food is bad. They couldn't find you on the map, couldn't read the menu and didn't know how to order. We fix all three in 3–5 days.","Не потому что у вас невкусно. Он не нашёл вас на карте, не понял меню и не знал, как заказать. Мы исправляем все три за 3–5 дней."],
 hero_cta1:["Xem bằng mắt khách du lịch","See it as a tourist","Посмотреть глазами туриста"],
 live_demo:["Thực đơn demo thật →","Live demo menu →","Живое демо-меню →"],
 live_demo2:["Mở thực đơn trên điện thoại →","Open the menu on your phone →","Открыть меню на телефоне →"],
@@ -716,32 +739,33 @@ pk_tag:["Gói chính","Main package","Основной пакет"],
 pk_name:["Quán trọn gói","Café Ready","Кафе под ключ"],
 once:["một lần","one-time","один раз"],
 month:["/ tháng","/ month","/ мес."],
-pk_time:["Xong trong 5–7 ngày","Done in 5–7 days","Готово за 5–7 дней"],
+pk_time:["Xong trong 3–5 ngày","Done in 3–5 days","Готово за 3–5 дней"],
 pk_1:["Thực đơn QR tiếng Việt, Anh, Nga, tối đa 50 món","QR menu in Vietnamese, English and Russian, up to 50 items","QR-меню на вьетнамском, английском и русском, до 50 позиций"],
 pk_2:["Nhận đơn qua Zalo và Telegram, bằng tiếng Việt cho nhân viên","Orders via Zalo and Telegram, in Vietnamese for your staff","Заказы в Zalo и Telegram, на вьетнамском для персонала"],
 pk_3:["Khách chọn thanh toán VietQR hoặc tiền mặt","Guests choose VietQR or cash","Оплата по VietQR или наличными — на выбор гостя"],
 pk_7:["Nút «Gọi phục vụ» trong thực đơn: tính tiền, nước, gọi nhân viên","A “Call waiter” button in the menu: bill, water, come to table","Кнопка «Позвать официанта» в меню: счёт, вода, подойти к столу"],
 pk_4:["Google Maps: hồ sơ, danh mục, mô tả, ảnh, mã QR xin đánh giá","Google Maps: profile, categories, description, photos, review QR","Google Maps: карточка, категории, описание, фото, QR для отзывов"],
 pk_5:["2 bài đăng và 1 video Reels","2 posts and 1 Reel","2 поста и 1 рилс"],
+pk_8:["Thực đơn theo 1 trong 5 phong cách có sẵn: quán cà phê, biển, phố đêm, karaoke…","Menu in one of 5 ready-made styles: coffee house, beach, night street, karaoke…","Меню в одном из 5 готовых стилей: кофейня, пляж, ночной, караоке…"],
 pk_6:["Mẫu bảng QR để bàn, sẵn sàng in","Table QR stand design, ready to print","Макет QR-табличек на столы, готовый к печати"],
 compare:["Thực đơn QR thông thường giá 99–199 nghìn ₫ mỗi tháng và chỉ là thực đơn. Chúng tôi làm để khách tìm thấy quán, hiểu món và gọi được.","A typical QR menu costs 99–199k ₫ a month and is only a menu. We make sure guests find you, understand you and can order.","Обычное QR-меню стоит 99–199 тыс. ₫ в месяц и даёт только меню. Мы делаем так, чтобы гость вас нашёл, понял и смог заказать."],
-sp_tag:["Tùy chọn","Optional","По желанию"],
+sp_tag:["2 tuần đầu miễn phí","First 2 weeks free","Первые 2 недели — в подарок"],
 sp_name:["Duy trì","Care plan","Поддержка"],
 sp_1:["Đổi giá và món trong ngày","Price and dish changes the same day","Меняем цены и блюда в тот же день"],
 sp_2:["Trả lời đánh giá bằng 3 ngôn ngữ","Replies to reviews in 3 languages","Отвечаем на отзывы на трёх языках"],
 sp_3:["2 bài đăng mỗi tháng","2 posts a month","2 поста в месяц"],
 sp_4:["Đã gồm lưu trữ thực đơn","Menu hosting included","Хостинг меню включён"],
 ad_tag:["Thêm","Add-ons","Дополнительно"],
+ad_4:["Phong cách riêng của quán + bảng QR A4 cùng phong cách","Your café's own style + matching A4 QR sign","Фирменный стиль меню + табличка A4 в том же стиле"],
 ad_1:["Chụp ảnh món tại quán","On-site food photo shoot","Фотосъёмка блюд на месте"],
 ad_2:["Thêm 1 video Reels","One more Reel","Ещё один рилс"],
 ad_3:["Thêm 25 món vào thực đơn","25 more menu items","+25 позиций в меню"],
-steps_h:["7 ngày diễn ra thế nào","How the 7 days go","Как проходят 7 дней"],
+steps_h:["3–5 ngày diễn ra thế nào","How the 3–5 days go","Как проходят 3–5 дней"],
 d1:["NGÀY 1","DAY 1","ДЕНЬ 1"],d1t:["Gặp mặt, chụp thực đơn và không gian quán","We meet and photograph the menu and the place","Знакомимся, фотографируем меню и зал"],
-d2:["NGÀY 2–3","DAYS 2–3","ДНИ 2–3"],d2t:["Dịch và làm thực đơn QR, bạn kiểm tra","We translate and build the QR menu, you review it","Переводим и собираем QR-меню, вы проверяете"],
-d4:["NGÀY 4","DAY 4","ДЕНЬ 4"],d4t:["Kết nối đơn Zalo, Telegram và VietQR","We connect Zalo, Telegram and VietQR","Подключаем заказы в Zalo, Telegram и VietQR"],
-d5:["NGÀY 5","DAY 5","ДЕНЬ 5"],d5t:["Hoàn thiện Google Maps và gửi xác minh","We set up Google Maps and submit verification","Оформляем Google Maps и отправляем на подтверждение"],
-d6:["NGÀY 6","DAY 6","ДЕНЬ 6"],d6t:["Quay Reels, viết 2 bài đăng","We shoot the Reel and write 2 posts","Снимаем рилс, пишем 2 поста"],
-d7:["NGÀY 7","DAY 7","ДЕНЬ 7"],d7t:["Đặt QR lên bàn, hướng dẫn nhân viên nhận đơn","QR stands go on tables, we train staff to take orders","Ставим QR на столы, учим персонал принимать заказы"],
+d2:["NGÀY 2","DAY 2","ДЕНЬ 2"],d2t:["Dịch và làm thực đơn QR, bạn kiểm tra","We translate and build the QR menu, you review it","Переводим и собираем QR-меню, вы проверяете"],
+d4:["NGÀY 3","DAY 3","ДЕНЬ 3"],d4t:["Kết nối đơn Zalo, Telegram, VietQR và nút gọi phục vụ","We connect Zalo, Telegram, VietQR and the waiter button","Подключаем заказы в Zalo и Telegram, VietQR и кнопку официанта"],
+d5:["NGÀY 4","DAY 4","ДЕНЬ 4"],d5t:["Hoàn thiện Google Maps, quay Reels, viết bài đăng","We set up Google Maps, shoot the Reel and write posts","Оформляем Google Maps, снимаем рилс, пишем посты"],
+d6:["NGÀY 5","DAY 5","ДЕНЬ 5"],d6t:["Đặt QR lên bàn, hướng dẫn nhân viên nhận đơn","QR stands go on tables, we train staff to take orders","Ставим QR на столы, учим персонал принимать заказы"],
 steps_note:["Xác minh của Google đôi khi mất hơn một tuần. Việc này do Google quyết định, chúng tôi hỗ trợ đến khi xong.","Google verification sometimes takes more than a week. That's up to Google, and we stay with you until it's done.","Подтверждение Google иногда занимает больше недели. Это зависит от Google, мы сопровождаем до конца."],
 faq_h:["Câu hỏi thường gặp","Questions","Частые вопросы"],
 q1:["Tôi có cần website hay máy tính không?","Do I need a website or a computer?","Нужен ли мне сайт или компьютер?"],
@@ -1008,6 +1032,7 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
       <button data-lang="vi">VI</button><button data-lang="en">EN</button><button data-lang="ru">RU</button>
     </div>
   </header>
+  <div class="skins" id="skins"><span class="skl" data-mt="skin_lbl"></span><button data-skin="" aria-pressed="true">CafeUp</button><button data-skin="cafe" data-mt="skin_cafe"></button><button data-skin="beach" data-mt="skin_beach"></button><button data-skin="night" data-mt="skin_night"></button><button data-skin="karaoke" data-mt="skin_karaoke"></button><span class="skh" data-mt="skin_hint"></span></div>
   <nav class="cats" id="cats"></nav>
   <main id="list"></main>
   <footer data-mt="demo"></footer>
@@ -1067,10 +1092,20 @@ if(ON){document.querySelector('header.top').hidden=true;document.querySelector('
 
 /* ===== Settings: put the café's contacts here ===== */
 const CONFIG={
-  telegram:'e_milanova',   // username without @, e.g. 'quancosau'
-  zalo:'0799808594',
-  googleReview:''   // review link of the café, e.g. 'https://g.page/r/XXXX/review'        // phone number, e.g. '0901234567'
+  telegram:'e_milanova',   // Telegram username without @
+  zalo:'0799808594',       // Zalo phone number
+  googleReview:'',         // café review link, e.g. 'https://g.page/r/XXXX/review'
+  umamiId:'17dd7f6c-e3d2-49b9-acaa-5a146f1dd86e'               // Umami "Website ID" for the visit and order counter
 };
+/* counter: sends events to Umami when umamiId is set; does nothing otherwise */
+function track(name,data){try{if(window.umami&&umami.track)umami.track(name,data)}catch(e){}}
+function loadCounter(){
+  if(!CONFIG.umamiId||document.getElementById('umamiScript'))return;
+  const sc=document.createElement('script');sc.id='umamiScript';sc.defer=true;
+  sc.src='https://cloud.umami.is/script.js';sc.setAttribute('data-website-id',CONFIG.umamiId);
+  sc.onload=()=>track('menu_open',{table:table||'-',lang});
+  document.head.appendChild(sc);
+}
 
 const D={
  cafe_name:["Tên quán của bạn","Your café name here","Здесь будет название вашего заведения"],
@@ -1097,6 +1132,12 @@ const D={
  empty:["Chọn món để gọi","Pick dishes to order","Выберите блюда"],
  copied:["Đã sao chép đơn","Order copied","Заказ скопирован"],
  per_piece:["/ con","/ piece","/ шт."],
+ skin_lbl:["Kiểu thực đơn (demo):","Menu style (demo):","Стиль меню (демо):"],
+ skin_cafe:["Quán cà phê","Coffee house","Кофейня"],
+ skin_beach:["Biển","Beach","Пляж"],
+ skin_karaoke:["Karaoke","Karaoke","Караоке"],
+ skin_night:["Phố đêm","Night street","Ночной"],
+ skin_hint:["Chúng tôi làm thực đơn theo phong cách của quán bạn: màu sắc, phông chữ, logo.","We style the menu to match your café: colours, fonts, logo.","Сделаем меню в стиле вашего заведения: цвета, шрифты, логотип."],
  waiter_btn:["Gọi phục vụ","Waiter","Официант"],
  waiter_h:["Gọi phục vụ","Call a waiter","Позвать официанта"],
  waiter_q:["Bạn cần gì?","What do you need?","Что нужно?"],
@@ -1226,6 +1267,7 @@ let tt;function toast(s){const el=document.getElementById('toast');el.textConten
 document.getElementById('list').addEventListener('click',e=>{
   const b=e.target.closest('button[data-id]');if(!b)return;
   const id=b.dataset.id;cart[id]=(cart[id]||0)+(+b.dataset.d);if(cart[id]<=0)delete cart[id];
+  if(+b.dataset.d>0)track('add_dish',{dish:MENU.find(m=>m.id===id).vi,lang});
   b.closest('.it').outerHTML=itemHTML(MENU.find(m=>m.id===id));renderBar();
 });
 document.getElementById('cats').addEventListener('click',e=>{
@@ -1241,13 +1283,16 @@ bg.addEventListener('click',e=>{if(e.target===bg)bg.hidden=true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')bg.hidden=true});
 document.getElementById('table').addEventListener('input',e=>{table=e.target.value.replace(/\D/g,'');renderChip();renderSheet()});
 document.getElementById('note').addEventListener('input',()=>renderSheet());
-document.getElementById('sendTg').addEventListener('click',()=>{copyOrder();document.getElementById('sendHint').textContent=T('hint_tg')});
-document.getElementById('sendZl').addEventListener('click',()=>{copyOrder();document.getElementById('sendHint').textContent=T('hint_zl')});
+document.getElementById('sendTg').addEventListener('click',()=>{copyOrder();track('order_sent',{channel:'telegram',items:count(),total:total(),pay:pm==='cash'?'cash':'vietqr',table:table||'-',lang});document.getElementById('sendHint').textContent=T('hint_tg')});
+document.getElementById('sendZl').addEventListener('click',()=>{copyOrder();track('order_sent',{channel:'zalo',items:count(),total:total(),pay:pm==='cash'?'cash':'vietqr',table:table||'-',lang});document.getElementById('sendHint').textContent=T('hint_zl')});
 
 const paidBtn=document.getElementById('paidBtn'),thanks=document.getElementById('thanks'),gmapBtn=document.getElementById('gmapBtn');
-paidBtn.addEventListener('click',()=>{paidBtn.hidden=true;thanks.hidden=false;thanks.scrollIntoView({block:'nearest',behavior:'smooth'})});
-gmapBtn.addEventListener('click',e=>{if(CONFIG.googleReview){gmapBtn.href=CONFIG.googleReview}else{e.preventDefault();toast(T('rate_toast'))}});
+paidBtn.addEventListener('click',()=>{track('paid',{pay:pm==='cash'?'cash':'vietqr',total:total(),table:table||'-'});paidBtn.hidden=true;thanks.hidden=false;thanks.scrollIntoView({block:'nearest',behavior:'smooth'})});
+gmapBtn.addEventListener('click',e=>{track('review_click',{table:table||'-'});if(CONFIG.googleReview){gmapBtn.href=CONFIG.googleReview}else{e.preventDefault();toast(T('rate_toast'))}});
 document.getElementById('openCart').addEventListener('click',()=>{paidBtn.hidden=false;thanks.hidden=true});
+document.getElementById('skins').addEventListener('click',e=>{const b=e.target.closest('button[data-skin]');if(!b)return;
+  const k=b.dataset.skin; if(k)document.documentElement.dataset.skin=k; else delete document.documentElement.dataset.skin;
+  document.querySelectorAll('#skins button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
 document.getElementById('paym').addEventListener('click',e=>{const b=e.target.closest('button[data-pm]');if(!b)return;pm=b.dataset.pm;renderSheet()});
 const wbg=document.getElementById('waiterBg');
 document.getElementById('callW').addEventListener('click',()=>{renderWaiter();wbg.hidden=false;document.getElementById('closeWaiter').focus()});
@@ -1257,8 +1302,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')wbg.hidden=true});
 document.getElementById('wPaym').addEventListener('click',e=>{const b=e.target.closest('button[data-pm]');if(!b)return;pm=b.dataset.pm;renderWaiter()});
 document.getElementById('reasons').addEventListener('click',e=>{const b=e.target.closest('button[data-r]');if(!b)return;reason=b.dataset.r;renderWaiter()});
 const copyText=t=>{try{navigator.clipboard.writeText(t).then(()=>toast(T('copied')),()=>{})}catch(e){}};
-document.getElementById('wTg').addEventListener('click',()=>{copyText(waiterText());document.getElementById('wHint').textContent=T('hint_tg')});
-document.getElementById('wZl').addEventListener('click',()=>{copyText(waiterText());document.getElementById('wHint').textContent=T('hint_zl')});
+document.getElementById('wTg').addEventListener('click',()=>{track('waiter_call',{reason,channel:'telegram',table:table||'-'});copyText(waiterText());document.getElementById('wHint').textContent=T('hint_tg')});
+document.getElementById('wZl').addEventListener('click',()=>{track('waiter_call',{reason,channel:'zalo',table:table||'-'});copyText(waiterText());document.getElementById('wHint').textContent=T('hint_zl')});
 function renderChip(){document.getElementById('tablechip').textContent=`${T('table_chip')} ${table||'—'}`}
 function setLang(l){
   lang=l;document.documentElement.lang=l;
@@ -1268,7 +1313,7 @@ function setLang(l){
   document.getElementById('note').placeholder=T('note_ph');
   renderCats();renderList();renderBar();renderChip();if(!bg.hidden)renderSheet();if(!document.getElementById('waiterBg').hidden)renderWaiter();
 }
-document.querySelector('#menuApp .lang').addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(b)setLang(b.dataset.lang)});
+document.querySelector('#menuApp .lang').addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(b)track('lang_change',{lang:b.dataset.lang});if(b)setLang(b.dataset.lang)});
 
 /* QR illustration */
 (function(){const N=25,g=[];let s=11;const r=()=>(s=(s*16807)%2147483647)/2147483647;
@@ -1279,6 +1324,7 @@ document.querySelector('#menuApp .lang').addEventListener('click',e=>{const b=e.
 
 window.addEventListener('hashchange',()=>{if(ON!==/^#(menu|table-\d{1,4})$/.test(location.hash))location.reload()});
 if(!ON)return;
+setTimeout(loadCounter,0);
 /* table from #table-N, language from storage or phone */
 (function(){
   const m=(location.hash||'').match(/^#table-(\d{1,4})$/);if(m)table=m[1];
