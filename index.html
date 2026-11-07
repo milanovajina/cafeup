@@ -435,6 +435,21 @@ body.has-ostrip #menuApp .toast{bottom:calc(150px + env(safe-area-inset-bottom,0
 #menuApp .send .direct:disabled{opacity:.6}
 :root[data-skin="cats"]{--art:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20260%22%20fill%3D%22none%22%20stroke%3D%22%23C94F78%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M72%2074L76%2042L94%2062M106%2062L124%2042L128%2074%22%2F%3E%3Ccircle%20cx%3D%22100%22%20cy%3D%2290%22%20r%3D%2232%22%2F%3E%3Cpath%20d%3D%22M86%2088q5%205%2010%200M104%2088q5%205%2010%200%22%2F%3E%3Cpath%20d%3D%22M97%2098h6l-3%204z%22%2F%3E%3Cpath%20d%3D%22M100%20102q-4%206-9%203M100%20102q4%206%209%203%22%2F%3E%3Cpath%20d%3D%22M68%2095H48M68%20101l-18%205M132%2095h20M132%20101l18%205%22%2F%3E%3Cpath%20d%3D%22M78%20118C62%20150%2062%20198%2070%20228h60c8-30%208-78-8-110%22%2F%3E%3Cpath%20d%3D%22M88%20228v-16M112%20228v-16%22%2F%3E%3Cpath%20d%3D%22M130%20222c34%200%2048-30%2030-56%22%2F%3E%3Cg%20transform%3D%22rotate%28-15%2036%20196%29%22%3E%3Cellipse%20cx%3D%2236%22%20cy%3D%22196%22%20rx%3D%227%22%20ry%3D%226%22%2F%3E%3Ccircle%20cx%3D%2228%22%20cy%3D%22187%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%22184%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2244%22%20cy%3D%22187%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22rotate%2820%20170%2044%29%22%3E%3Cellipse%20cx%3D%22170%22%20cy%3D%2244%22%20rx%3D%227%22%20ry%3D%226%22%2F%3E%3Ccircle%20cx%3D%22162%22%20cy%3D%2235%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22170%22%20cy%3D%2232%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22178%22%20cy%3D%2235%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22rotate%2810%20160%20250%29%22%3E%3Cellipse%20cx%3D%22160%22%20cy%3D%22250%22%20rx%3D%227%22%20ry%3D%226%22%2F%3E%3Ccircle%20cx%3D%22152%22%20cy%3D%22241%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22160%22%20cy%3D%22238%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22168%22%20cy%3D%22241%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%22238%22%20r%3D%2214%22%2F%3E%3Cpath%20d%3D%22M22%20232c8%202%2016%208%2020%2016M24%20244c6-6%2016-10%2024-8M30%20225c2%208%202%2018-2%2026%22%2F%3E%3C%2Fsvg%3E");--bg:#FFF4F1;--surface:#FFFFFF;--ink:#3A2A35;--muted:#8A6F7E;--line:#F2D9DF;--primary:#C94F78;--primary-soft:#FBE3EA;--on-primary:#FFFFFF;--accent:#F2A65A;--accent-soft:#FDEBD8;--on-accent:#3A1E06;--radius:22px;--f-display:"Nunito",system-ui,sans-serif;--f-body:"Manrope",system-ui,sans-serif;--shadow:0 6px 18px rgba(201,79,120,.10);color-scheme:light}
 :root[data-skin="cats"] #menuApp h1,:root[data-skin="cats"] #menuApp .sect h2,:root[data-skin="cats"] #menuApp .sheet h3{font-weight:800}
+#menuApp .tips{display:flex;gap:6px}
+#menuApp .tips button{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);border-radius:var(--radius);padding:10px 6px;font-weight:700;font-size:14px}
+#menuApp .tips button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+#menuApp .tipsum{color:var(--muted);font-size:13px}
+#menuApp .stepper{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+#menuApp .stepper button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-weight:800}
+#menuApp .stepper b{min-width:18px;text-align:center;color:var(--ink);font-size:16px}
+#menuApp .splitlist{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:6px}
+#menuApp .splitlist li{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;padding:6px 0;border-bottom:1px dashed var(--line)}
+#menuApp .splitlist li small{color:var(--muted)}
+#menuApp .splitlist .who{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px;max-width:58%}
+#menuApp .splitlist .who button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-weight:800;font-size:13px}
+#menuApp .splitlist .who button[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+#menuApp .splitsum{display:grid;gap:4px}
+#menuApp .splitsum div{display:flex;justify-content:space-between;background:var(--bg);border-radius:var(--radius);padding:8px 12px;font-size:14px}
 </style>
 </head>
 <body>
@@ -1157,6 +1172,7 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
     <b class="newh" id="newH" data-mt="new_order" hidden></b>
     <ul class="lines" id="lines"></ul>
     <div class="tot"><span data-mt="total"></span><span class="mono" id="sum"></span></div>
+    <div class="f"><label for="guestName" data-mt="name_label"></label><input id="guestName" maxlength="24" autocomplete="given-name"><small class="tipsum" data-mt="own_phone"></small></div>
     <div class="f"><label for="table" data-mt="table"></label><input id="table" inputmode="numeric" maxlength="4"></div>
     <div class="f"><label for="note" data-mt="note"></label><textarea id="note"></textarea></div>
     <div class="f"><span class="lbl" data-mt="pay_method"></span>
@@ -1188,6 +1204,16 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
     <div class="reasons" id="reasons"><button data-r="come" data-mt="r_come"></button><button data-r="bill" data-mt="r_bill"></button><button data-r="water" data-mt="r_water"></button></div>
     <div class="f" id="wPayWrap" hidden><span class="lbl" data-mt="pay_method"></span>
       <div class="paym" id="wPaym"><button data-pm="qr">VietQR</button><button data-pm="cash" data-mt="cash"></button></div></div>
+    <div class="f" id="tipWrap" hidden><span class="lbl" data-mt="tip_h"></span>
+      <div class="tips" id="tips"><button data-tip="0" data-mt="tip_none"></button><button data-tip="5">5%</button><button data-tip="10">10%</button><button data-tip="15">15%</button></div>
+      <small class="tipsum" id="tipSum"></small></div>
+    <div class="f" id="splitWrap" hidden><span class="lbl" data-mt="split_h"></span>
+      <div class="paym" id="splitMode"><button data-split="none" data-mt="split_none"></button><button data-split="equal" data-mt="split_equal"></button><button data-split="items" data-mt="split_items"></button></div>
+      <div class="stepper" id="splitPeople" hidden><span data-mt="split_people"></span><button data-d="-1" aria-label="−">−</button><b id="splitN" class="mono">2</b><button data-d="1" aria-label="+">+</button></div>
+      <small class="tipsum" id="splitHint" data-mt="split_hint_items" hidden></small>
+      <ul class="splitlist" id="splitList"></ul>
+      <div class="splitsum" id="splitSum"></div>
+    </div>
     <div class="send">
       <button class="direct" id="wDirect" data-mt="send_direct_w" hidden></button>
       <a class="tg" id="wTg" href="#" target="_blank" rel="noopener" data-mt="send_tg"></a>
@@ -1294,6 +1320,20 @@ const D={
  sent_direct:["Đơn đã đến nhân viên!","The staff got your order!","Заказ получен персоналом!"],
  sent_waiter:["Nhân viên đã nhận được yêu cầu.","The staff got your request.","Персонал получил запрос."],
  send_fail:["Không gửi được. Hãy gửi qua Telegram hoặc Zalo bên dưới.","Couldn't send. Please use Telegram or Zalo below.","Не получилось отправить. Отправьте через Telegram или Zalo ниже."],
+ tip_h:["Tiền tip cho nhân viên","Tip for the staff","Чаевые персоналу"],
+ tip_none:["Không","No tip","Нет"],
+ tip_short:["Tip","Tip","Чаевые"],
+ tip_hint:["Tiền tip được cộng vào hóa đơn.","The tip is added to your bill.","Чаевые добавятся к счёту."],
+ tip_unknown:["Nhân viên sẽ cộng %s vào hóa đơn.","The waiter will add %s to your bill.","Официант добавит %s к счёту."],
+ name_label:["Tên của bạn (nếu bàn có nhiều khách)","Your name (if several guests share the table)","Ваше имя (если за столом несколько гостей)"],
+ own_phone:["Mỗi người có thể gọi món bằng điện thoại riêng — hóa đơn sẽ tách riêng.","Everyone can order from their own phone — bills stay separate.","Каждый может заказывать со своего телефона — счета будут раздельные."],
+ split_h:["Chia hóa đơn","Split the bill","Разделить счёт"],
+ split_none:["Một hóa đơn","One bill","Один счёт"],
+ split_equal:["Chia đều","Equally","Поровну"],
+ split_items:["Theo món","By dish","По блюдам"],
+ split_people:["Số người","People","Человек"],
+ split_hint_items:["Bấm số để chọn ai trả món nào.","Tap a number to choose who pays for each dish.","Нажмите номер гостя у каждого блюда."],
+ person:["Khách","Guest","Гость"],
  pay_after:["Bạn chưa cần thanh toán bây giờ. Khi muốn thanh toán, bấm «Gọi phục vụ» → «Tính tiền».","No need to pay now. When you're ready, tap “Waiter” → “Bring the bill”.","Платить сейчас не нужно. Когда будете готовы, нажмите «Официант» → «Принести счёт»."],
  amount_staff:["Nhân viên sẽ báo số tiền","The waiter will tell you the amount","Сумму назовёт официант"],
  paid:["Tôi đã thanh toán","I've paid","Я оплатил(а)"],
@@ -1341,7 +1381,8 @@ let table='4';
 let sent=[];
 const SENT_KEY='cafeup_sent';
 let hashTable=null; /* table number from the QR link (#table-N), if any */
-function saveSent(){try{localStorage.setItem(SENT_KEY,JSON.stringify({table,at:Date.now(),sent,cart,pm}))}catch(e){}}
+let guestName='';
+function saveSent(){try{localStorage.setItem(SENT_KEY,JSON.stringify({table,at:Date.now(),sent,cart,pm,guestName}))}catch(e){}}
 function loadSent(){try{
   const d=JSON.parse(localStorage.getItem(SENT_KEY)||'null');
   if(!d||Date.now()-d.at>8*3600e3)return;
@@ -1350,6 +1391,7 @@ function loadSent(){try{
   sent=d.sent||[];
   Object.entries(d.cart||{}).forEach(([id,q])=>{if(MENU.some(m=>m.id===id)&&q>0)cart[id]=q});
   if(d.pm)pm=d.pm;
+  if(d.guestName){guestName=d.guestName;document.getElementById('guestName').value=guestName;}
   document.getElementById('table').value=table;
 }catch(e){}}
 const sentItems=()=>{const a={};sent.forEach(o=>Object.entries(o.items).forEach(([id,q])=>a[id]=(a[id]||0)+q));return a};
@@ -1398,7 +1440,7 @@ function kitchenText(){
   const langName={vi:'tiếng Việt',en:'tiếng Anh',ru:'tiếng Nga'}[lang];
   const lines=MENU.filter(m=>cart[m.id]).map(m=>`${cart[m.id]} × ${m.vi} — ${fmt(cart[m.id]*m.price,'vi')}`).join('\n');
   const note=document.getElementById('note').value.trim();
-  return `${sent.length?`GỌI THÊM (lần ${sent.length+1})`:'ĐƠN MỚI'} · Bàn ${table||'?'}\n${lines}\nTổng: ${fmt(total(),'vi')}\nThanh toán: ${pm==='cash'?'Tiền mặt':'Chuyển khoản VietQR'}${note?`\nGhi chú: ${note}`:''}\nKhách nói ${langName}`;
+  return `${sent.length?`GỌI THÊM (lần ${sent.length+1})`:'ĐƠN MỚI'} · Bàn ${table||'?'}${guestName?` · ${guestName}`:''}\n${lines}\nTổng: ${fmt(total(),'vi')}\nThanh toán: ${pm==='cash'?'Tiền mặt':'Chuyển khoản VietQR'}${note?`\nGhi chú: ${note}`:''}\nKhách nói ${langName}`;
 }
 function renderSheet(){
   const si=sentItems(), n=count();
@@ -1420,10 +1462,52 @@ function renderSheet(){
   document.getElementById('sendHint').textContent=(!CONFIG.telegram&&!CONFIG.zalo)?T('not_connected'):'';
   document.querySelectorAll('#paym button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pm===pm));
 }
+let tipPct=0, splitMode='none', splitN=2, assign=[];
+/* split inside one phone (equally / by dish): switched off — guests order from their own phones instead */
+const SPLIT_ENABLED=false;
+/* one row per ordered portion, so "2 × coffee" can be paid by two people */
+function units(){const si=sentItems(),u=[];MENU.forEach(m=>{for(let i=0;i<(si[m.id]||0);i++)u.push(m)});return u}
+function shares(){
+  const tot=billTotal(), tip=tipAmt(), r1k=v=>Math.round(v/1000)*1000;
+  /* round every share to 1 000 ₫; the last guest pays the remainder so the parts always add up to the bill */
+  const fix=arr=>{const sum=arr.slice(0,-1).reduce((x,y)=>x+y,0);arr[arr.length-1]=tot+tip-sum;return arr};
+  if(splitMode==='equal')return fix(Array.from({length:splitN},()=>r1k((tot+tip)/splitN)));
+  if(splitMode==='items'){
+    const u=units(),base=Array(splitN).fill(0);
+    u.forEach((m,i)=>{base[Math.min(assign[i]||1,splitN)-1]+=m.price});
+    return fix(base.map(b=>r1k(b+(tot?tip*b/tot:0))));
+  }
+  return [];
+}
+function splitText(){
+  if(!SPLIT_ENABLED||reason!=='bill'||splitMode==='none'||!billTotal())return '';
+  const sh=shares();
+  if(splitMode==='equal')return `\nChia đều: ${splitN} người × ${fmt(sh[0],'vi')}`;
+  const u=units(), per=sh.map(()=>({}));
+  u.forEach((m,i)=>{const k=Math.min(assign[i]||1,splitN)-1;per[k][m.vi]=(per[k][m.vi]||0)+1});
+  return '\nChia theo món:'+sh.map((v,k)=>`\n• Khách ${k+1}: ${fmt(v,'vi')} — ${Object.entries(per[k]).map(([n,q])=>`${q} × ${n}`).join(', ')||'—'}`).join('');
+}
+function renderSplit(){
+  const wrap=document.getElementById('splitWrap'); wrap.hidden=!SPLIT_ENABLED||reason!=='bill'||!billTotal();
+  if(wrap.hidden)return;
+  const u=units(); if(!u.length&&splitMode==='items')splitMode='equal';
+  document.querySelector('#splitMode button[data-split="items"]').hidden=!u.length;
+  document.querySelectorAll('#splitMode button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.split===splitMode));
+  document.getElementById('splitPeople').hidden=splitMode==='none';
+  document.getElementById('splitN').textContent=splitN;
+  document.getElementById('splitHint').hidden=splitMode!=='items';
+  document.getElementById('splitList').innerHTML=splitMode!=='items'?'':u.map((m,i)=>`<li><span>${name(m)}<small class="mono"> ${fmt(m.price)}</small></span><span class="who">${
+    Array.from({length:splitN},(_,k)=>`<button data-u="${i}" data-p="${k+1}" aria-pressed="${(Math.min(assign[i]||1,splitN))===k+1}">${k+1}</button>`).join('')}</span></li>`).join('');
+  const sh=shares();
+  document.getElementById('splitSum').innerHTML=splitMode==='none'?'':sh.map((v,k)=>`<div><span>${T('person')} ${k+1}</span><b class="mono">${fmt(v)}</b></div>`).join('');
+}
+const tipAmt=()=>Math.round(billTotal()*tipPct/100/1000)*1000;
 function waiterText(){
   const langName={vi:'tiếng Việt',en:'tiếng Anh',ru:'tiếng Nga'}[lang];
   const what={come:'GỌI PHỤC VỤ',bill:'TÍNH TIỀN',water:'XIN THÊM NƯỚC ĐÁ / KHĂN GIẤY'}[reason];
-  return `${what} · Bàn ${table||'?'}${reason==='bill'&&billTotal()?`\nTổng: ${fmt(billTotal(),'vi')}`:''}${reason==='bill'?`\nThanh toán: ${pm==='cash'?'Tiền mặt':'Chuyển khoản VietQR'}`:''}\nKhách nói ${langName}`;
+  const tipLine0=reason!=='bill'||!tipPct?'':(billTotal()?`\nTiền tip: ${fmt(tipAmt(),'vi')} (${tipPct}%)\nTổng cộng: ${fmt(billTotal()+tipAmt(),'vi')}`:`\nTiền tip: ${tipPct}%`);
+  const tipLine=tipLine0+splitText();
+  return `${what} · Bàn ${table||'?'}${guestName?` · ${guestName}`:''}${reason==='bill'&&billTotal()?`\nTổng: ${fmt(billTotal(),'vi')}`:''}${tipLine}${reason==='bill'?`\nThanh toán: ${pm==='cash'?'Tiền mặt':'Chuyển khoản VietQR'}`:''}\nKhách nói ${langName}`;
 }
 function renderWaiter(){
   document.querySelectorAll('#reasons button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.r===reason));
@@ -1432,7 +1516,11 @@ function renderWaiter(){
   document.getElementById('billPay').hidden=reason!=='bill';
   document.getElementById('payQr').hidden=pm!=='qr';
   document.getElementById('cashNote').hidden=pm!=='cash';
-  document.getElementById('payAmt').textContent=billTotal()>0?fmt(billTotal()):T('amount_staff');
+  document.getElementById('payAmt').textContent=billTotal()>0?fmt(billTotal()+tipAmt()):T('amount_staff');
+  document.getElementById('tipWrap').hidden=reason!=='bill';
+  renderSplit();
+  document.querySelectorAll('#tips button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.tip===tipPct));
+  document.getElementById('tipSum').textContent=!tipPct?T('tip_hint'):(billTotal()?`${T('tip_short')}: ${fmt(tipAmt())} · ${T('total')}: ${fmt(billTotal()+tipAmt())}`:T('tip_unknown').replace('%s',tipPct+'%'));
   document.getElementById('waiterText').textContent=waiterText();
   const tg=document.getElementById('wTg'), zl=document.getElementById('wZl');
   const dir=directOn();
@@ -1525,8 +1613,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')hbg.hidden=true});
 document.getElementById('billBtn2').addEventListener('click',()=>{hbg.hidden=true;reason='bill';thanks.hidden=true;renderWaiter();document.getElementById('waiterBg').hidden=false});
 function closeTable(){
   closedBill=billTotal();
-  track('table_closed',{total:closedBill,pay:pm==='cash'?'cash':'vietqr',table:table||'-'});
-  sent=[];Object.keys(cart).forEach(k=>delete cart[k]);saveSent();renderList();renderBar();
+  track('table_closed',{total:closedBill,tip:tipAmt(),tip_pct:tipPct,pay:pm==='cash'?'cash':'vietqr',table:table||'-'});
+  sent=[];Object.keys(cart).forEach(k=>delete cart[k]);splitMode='none';assign=[];saveSent();renderList();renderBar();
   document.getElementById('wHint').textContent=T('bill_sent');
   thanks.hidden=false;thanks.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
@@ -1544,6 +1632,11 @@ document.getElementById('wDirect').addEventListener('click',async e=>{
   if(ok){track('waiter_call',{reason,channel:'bot',table:table||'-'});h.textContent=T('sent_waiter');if(reason==='bill')closeTable();}
   else{directFailed=true;syncDirect();renderWaiter();h.textContent=T('send_fail');}
 });
+document.getElementById('guestName').addEventListener('input',e=>{guestName=e.target.value.trim();renderSheet();saveSent()});
+document.getElementById('splitMode').addEventListener('click',e=>{const b=e.target.closest('button[data-split]');if(!b)return;splitMode=b.dataset.split;renderWaiter()});
+document.getElementById('splitPeople').addEventListener('click',e=>{const b=e.target.closest('button[data-d]');if(!b)return;splitN=Math.max(2,Math.min(10,splitN+(+b.dataset.d)));renderWaiter()});
+document.getElementById('splitList').addEventListener('click',e=>{const b=e.target.closest('button[data-u]');if(!b)return;assign[+b.dataset.u]=+b.dataset.p;renderWaiter()});
+document.getElementById('tips').addEventListener('click',e=>{const b=e.target.closest('button[data-tip]');if(!b)return;tipPct=+b.dataset.tip;renderWaiter()});
 function renderChip(){document.getElementById('tablechip').textContent=`${T('table_chip')} ${table||'—'}`}
 function setLang(l){
   lang=l;document.documentElement.lang=l;
