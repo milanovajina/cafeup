@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1B2230">
+<meta name="robots" content="noindex">
+<title>CafeUp · Đơn hàng</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#F1F3F7;--surface:#fff;--ink:#1B2230;--muted:#5C6478;--line:#D3D9E3;--pink:#B8653F;--pink-soft:#F3E3DA;--green:#3E7A5A;--green-soft:#DCEDE3;--amber:#C98A3D;--amber-soft:#F6E8D3;--blue:#3F5F8F;--blue-soft:#DDE5F1;--teal:#2F7F86;--teal-soft:#DAEEEF}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,sans-serif}
+:lang(ru) body{font-family:"Manrope","Be Vietnam Pro",system-ui,sans-serif}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer}
+.top{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;padding:max(10px,env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.top b{font-size:17px}
+.top .st{font-size:13px;opacity:.85;display:flex;align-items:center;gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;background:#7a7a7a}
+.dot.on{background:#5BD18B}.dot.err{background:#E0563B}
+.top .sp{flex:1}
+.top button{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700}
+.lang{display:flex;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:2px}
+.top .lang button{border:0;padding:5px 10px;font-size:12px;letter-spacing:.06em}
+.top .lang button[aria-pressed="true"]{background:#fff;color:var(--ink)}
+.wrap{max-width:820px;margin:0 auto;padding:14px 14px 40px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:24px;text-align:center}
+.panel h1{font-size:22px;margin:0 0 6px}
+.panel p{color:var(--muted);margin:0 0 14px;line-height:1.45}
+.panel input{font:inherit;font-size:26px;letter-spacing:.3em;text-align:center;width:200px;padding:10px;border:2px solid var(--line);border-radius:12px}
+.big{display:block;width:100%;max-width:380px;margin:14px auto 0;border:0;border-radius:14px;padding:16px;font-size:17px;font-weight:800;background:var(--pink);color:#fff}
+.big.alt{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.err-t{color:#B33A2E;font-weight:700;min-height:1.4em;margin-top:8px}
+.bar{display:flex;gap:8px;align-items:center;margin:4px 0 12px;flex-wrap:wrap}
+.bar h2{font-size:15px;margin:0;color:var(--muted);font-weight:700}
+.bar .sp{flex:1}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.list{display:grid;gap:12px}
+.o{background:var(--surface);border:2px solid var(--line);border-left-width:10px;border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.o.new{animation:pulse 1.6s ease-in-out 3}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(184,69,106,.25)}}
+.o.k-order{border-left-color:var(--pink)}.o.k-add{border-left-color:var(--amber)}.o.k-waiter{border-left-color:var(--blue)}.o.k-water{border-left-color:var(--teal)}.o.k-bill{border-left-color:var(--green)}
+.o .h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.o .tb{font-size:26px;font-weight:800;line-height:1}
+.o .tag{font-size:12px;font-weight:800;letter-spacing:.04em;border-radius:999px;padding:3px 9px}
+.k-order .tag{background:var(--pink-soft);color:var(--pink)}.k-add .tag{background:var(--amber-soft);color:#8a5a1c}.k-waiter .tag{background:var(--blue-soft);color:var(--blue)}.k-water .tag{background:var(--teal-soft);color:var(--teal)}.k-bill .tag{background:var(--green-soft);color:var(--green)}
+.o .tm{font-size:13px;color:var(--muted)}
+.o .who{font-size:16px;font-weight:800}
+.o pre{margin:8px 0 0;font:inherit;font-size:16px;line-height:1.5;white-space:pre-wrap}
+.o .acts{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.o .pr{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 12px;font-size:14px;font-weight:700;color:var(--ink)}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.o .ok{border:0;border-radius:12px;padding:14px 16px;font-size:16px;font-weight:800;background:var(--green);color:#fff;white-space:nowrap}
+.o.done{opacity:.55;border-left-color:var(--line)!important}
+.o.done .ok{background:var(--line);color:var(--muted)}
+.o.done pre{max-height:3em;overflow:hidden}
+.empty{color:var(--muted);text-align:center;padding:40px 10px}
+.hint{font-size:13px;color:var(--muted);text-align:center;margin-top:18px;line-height:1.5}
+@media (max-width:520px){.o{grid-template-columns:1fr}.o .ok{width:100%}}
+</style>
+</head>
+<body>
+<header class="top">
+  <b data-t="title"></b>
+  <span class="st"><span class="dot" id="dot"></span><span id="stText"></span></span>
+  <span class="sp"></span>
+  <span class="lang" role="group" aria-label="Language"><button data-lang="vi">VI</button><button data-lang="en">EN</button><button data-lang="ru">RU</button></span>
+  <button id="soundBtn" hidden></button>
+  <button id="logoutBtn" data-t="changeCode" hidden></button>
+</header>
+
+<main class="wrap">
+  <section class="panel" id="login" hidden>
+    <h1 data-t="loginH"></h1>
+    <p data-t="loginP"></p><p class="hint" style="margin:-6px 0 12px"><b data-t="demoCode"></b> <b style="font-size:20px;letter-spacing:.2em">0000</b></p>
+    <input id="code" inputmode="numeric" autocomplete="off" maxlength="12">
+    <button class="big" id="loginBtn" data-t="cont"></button>
+    <div class="err-t" id="loginErr"></div>
+  </section>
+
+  <section class="panel" id="start" hidden>
+    <h1 data-t="readyH"></h1>
+    <p data-t="readyP"></p>
+    <button class="big" id="startBtn" data-t="start"></button>
+    <button class="big alt" id="pushBtn" data-t="push"></button>
+    <div class="err-t" id="pushErr"></div>
+    <p class="hint" id="iosHint" data-t="iosHint" hidden></p>
+  </section>
+
+  <section id="board" hidden>
+    <div class="bar"><h2 id="countH"></h2><span class="sp"></span>
+      <button class="chip" data-f="new" aria-pressed="true" data-t="filterNew"></button><button class="chip" data-f="all" aria-pressed="false" data-t="filterAll"></button></div>
+    <div class="list" id="list"></div>
+    <p class="hint"><span data-t="autoHint"></span><br>
+      <button class="chip" id="pushBtn2" data-t="pushShort"></button> <button class="chip" id="testBtn" data-t="testSound"></button> <button class="chip" id="autoPrintBtn"></button> <button class="chip" id="testPrintBtn" data-t="testPrint"></button></p>
+  </section>
+</main>
+
+<script>
+const API = new URLSearchParams(location.search).get('api') || 'https://cafeupnhatrang.nhatrang.workers.dev';
+const VENUE = 'demo';
+const POLL_MS = 6000;
+/* dish names by menu number (filled from menu-data.js by tools/build_staff.py) */
+const NAMES = {"bk":["Bún kèn, Phu Quoc fish noodle soup","Бун кен — суп Фукуока"],"gct":["Raw herring salad, Phu Quoc style","Салат из сельди по-фукуокски"],"bcc":["Thick noodle soup with fish cakes","Бань кань с рыбными котлетками"],"ht":["Hủ tiếu, clear pork noodle soup","Хутьеу — суп с рисовой лапшой"],"nhum":["Grilled sea urchin with scallion oil","Морской ёж на гриле с луковым маслом"],"mn":["Charcoal-grilled squid with satay chili","Кальмар на углях с соусом сатай"],"gh":["Steamed blue crabs (2 pcs)","Крабы на пару (2 шт.)"],"cchs":["Seafood fried rice","Жареный рис с морепродуктами"],"cpsd":["Iced coffee with condensed milk","Кофе со сгущёнкой и льдом"],"bx":["Bạc xỉu, milky coffee","Бак сиу, молочный кофе"],"cpm":["Salt coffee","Солёный кофе"],"stb":["Avocado smoothie","Смузи из авокадо"],"dua":["Fresh coconut","Свежий кокос"],"ckb":["Chè khúc bạch, milk jelly dessert","Че кхук бать — молочное желе"],"kd":["Coconut ice cream","Кокосовое мороженое"]}/*NAMES*/;
+const NAMES_VI = {"Bún kèn":["Bún kèn, Phu Quoc fish noodle soup","Бун кен — суп Фукуока"],"Gỏi cá trích":["Raw herring salad, Phu Quoc style","Салат из сельди по-фукуокски"],"Bánh canh chả cá":["Thick noodle soup with fish cakes","Бань кань с рыбными котлетками"],"Hủ tiếu":["Hủ tiếu, clear pork noodle soup","Хутьеу — суп с рисовой лапшой"],"Nhum nướng mỡ hành":["Grilled sea urchin with scallion oil","Морской ёж на гриле с луковым маслом"],"Mực nướng sa tế":["Charcoal-grilled squid with satay chili","Кальмар на углях с соусом сатай"],"Ghẹ Hàm Ninh hấp (2 con)":["Steamed blue crabs (2 pcs)","Крабы на пару (2 шт.)"],"Cơm chiên hải sản":["Seafood fried rice","Жареный рис с морепродуктами"],"Cà phê sữa đá":["Iced coffee with condensed milk","Кофе со сгущёнкой и льдом"],"Bạc xỉu":["Bạc xỉu, milky coffee","Бак сиу, молочный кофе"],"Cà phê muối":["Salt coffee","Солёный кофе"],"Sinh tố bơ":["Avocado smoothie","Смузи из авокадо"],"Dừa tươi":["Fresh coconut","Свежий кокос"],"Chè khúc bạch":["Chè khúc bạch, milk jelly dessert","Че кхук бать — молочное желе"],"Kem dừa":["Coconut ice cream","Кокосовое мороженое"]};
+
+const L = {
+ vi: { title:'CafeUp · Đơn hàng', off:'Chưa kết nối', live:'Đang nhận đơn', lost:'Mất kết nối, đang thử lại…',
+   loginH:'Nhập mã nhân viên', loginP:'Mã do chủ quán cung cấp. Chỉ cần nhập một lần trên máy này.', cont:'Tiếp tục', demoCode:'Mã demo:',
+   wrongCode:'Mã không đúng.', codeChanged:'Mã không đúng hoặc đã đổi. Nhập lại mã.', noServer:'Không kết nối được máy chủ. Kiểm tra mạng.',
+   readyH:'Sẵn sàng nhận đơn', readyP:'Bấm để bật âm thanh báo đơn mới và giữ màn hình luôn sáng.', start:'▶ Bắt đầu nhận đơn',
+   push:'📳 Bật thông báo trên điện thoại này', pushOn:'📳 Thông báo đã bật (bấm để bật lại)', pushShort:'📳 Thông báo trên điện thoại', testSound:'🔊 Thử âm thanh',
+   iosHint:'iPhone: bấm nút Chia sẻ → Thêm vào MH chính, mở ứng dụng từ màn hình chính, rồi bấm «Bật thông báo».',
+   waiting:n=>`Chưa nhận: ${n}`, none:'Không có đơn chờ', filterNew:'Chưa nhận', filterAll:'Tất cả (12 giờ)',
+   emptyNew:'Chưa có đơn mới. Đơn sẽ hiện ở đây kèm âm thanh.', emptyAll:'Chưa có đơn trong 12 giờ qua.',
+   autoHint:'Màn hình tự cập nhật mỗi vài giây. Đơn mới có âm thanh và nhấp nháy.',
+   soundOn:'🔔 Âm thanh: bật', soundOff:'🔕 Âm thanh: tắt', changeCode:'Đổi mã', confirmOut:'Đăng xuất và nhập mã khác?',
+   printBtn:'🖨 In', autoOn:'🖨 Tự động in hóa đơn: bật', autoOff:'🖨 Tự động in hóa đơn: tắt', testPrint:'🧪 In thử', ack:'Đã nhận ✓', acked:'✓ Đã nhận', sendFail:'Không gửi được. Thử lại.', table:'Bàn',
+   now:'vừa xong', min:m=>`${m} phút trước`, hour:h=>`${h} giờ trước`,
+   tag:{order:'🧾 ĐƠN MỚI', add:'➕ GỌI THÊM', waiter:'🔔 GỌI PHỤC VỤ', water:'💧 NƯỚC ĐÁ / KHĂN GIẤY', bill:'💳 TÍNH TIỀN'},
+   noSupport:'Trình duyệt này không hỗ trợ thông báo. Dùng Chrome trên Android.', iosFirst:'iPhone: trước tiên thêm trang vào Màn hình chính (xem hướng dẫn).',
+   denied:'Bạn chưa cho phép thông báo. Mở cài đặt trình duyệt → Thông báo → Cho phép.', pushOk:'✓ Đã bật thông báo trên điện thoại này.' },
+ en: { title:'CafeUp · Orders', off:'Not connected', live:'Receiving orders', lost:'Connection lost, retrying…',
+   loginH:'Enter the staff code', loginP:'The code comes from the owner. Enter it once on this device.', cont:'Continue', demoCode:'Demo code:',
+   wrongCode:'Wrong code.', codeChanged:'The code is wrong or has changed. Enter it again.', noServer:'Cannot reach the server. Check the internet.',
+   readyH:'Ready for orders', readyP:'Tap to turn on the new-order sound and keep the screen on.', start:'▶ Start receiving orders',
+   push:'📳 Turn on notifications on this phone', pushOn:'📳 Notifications are on (tap to redo)', pushShort:'📳 Phone notifications', testSound:'🔊 Test sound',
+   iosHint:'iPhone: tap Share → Add to Home Screen, open the app from the home screen, then tap “Turn on notifications”.',
+   waiting:n=>`Waiting: ${n}`, none:'Nothing waiting', filterNew:'Waiting', filterAll:'All (12 hours)',
+   emptyNew:'No new orders yet. They appear here with a sound.', emptyAll:'No orders in the last 12 hours.',
+   autoHint:'The screen updates every few seconds. New orders beep and flash.',
+   soundOn:'🔔 Sound: on', soundOff:'🔕 Sound: off', changeCode:'Change code', confirmOut:'Log out and enter another code?',
+   printBtn:'🖨 Print', autoOn:'🖨 Auto-print bills: on', autoOff:'🖨 Auto-print bills: off', testPrint:'🧪 Test print', ack:'Taken ✓', acked:'✓ Taken', sendFail:'Could not send. Try again.', table:'Table',
+   now:'just now', min:m=>`${m} min ago`, hour:h=>`${h} h ago`,
+   tag:{order:'🧾 NEW ORDER', add:'➕ ADD-ON', waiter:'🔔 CALL WAITER', water:'💧 ICE WATER / NAPKINS', bill:'💳 BILL'},
+   noSupport:'This browser has no notifications. Use Chrome on Android.', iosFirst:'iPhone: first add this page to the Home Screen (see the tip below).',
+   denied:'Notifications are not allowed. Open the browser settings → Notifications → Allow.', pushOk:'✓ Notifications are on for this phone.' },
+ ru: { title:'CafeUp · Заказы', off:'Нет подключения', live:'Принимаем заказы', lost:'Нет связи, пробуем снова…',
+   loginH:'Введите код персонала', loginP:'Код выдаёт владелец. Вводится один раз на этом устройстве.', cont:'Продолжить', demoCode:'Демо-код:',
+   wrongCode:'Неверный код.', codeChanged:'Код неверный или изменился. Введите его снова.', noServer:'Нет связи с сервером. Проверьте интернет.',
+   readyH:'Готово к приёму заказов', readyP:'Нажмите, чтобы включить звук новых заказов и не гасить экран.', start:'▶ Начать приём заказов',
+   push:'📳 Включить уведомления на этом телефоне', pushOn:'📳 Уведомления включены (нажмите, чтобы повторить)', pushShort:'📳 Уведомления на телефон', testSound:'🔊 Проверить звук',
+   iosHint:'iPhone: «Поделиться» → «На экран Домой», откройте приложение с экрана Домой и нажмите «Включить уведомления».',
+   waiting:n=>`Ожидают: ${n}`, none:'Нет ожидающих заказов', filterNew:'Ожидают', filterAll:'Все (12 часов)',
+   emptyNew:'Новых заказов пока нет. Они появятся здесь со звуком.', emptyAll:'За последние 12 часов заказов нет.',
+   autoHint:'Экран обновляется каждые несколько секунд. Новые заказы — со звуком и миганием.',
+   soundOn:'🔔 Звук: вкл', soundOff:'🔕 Звук: выкл', changeCode:'Сменить код', confirmOut:'Выйти и ввести другой код?',
+   printBtn:'🖨 Печать', autoOn:'🖨 Автопечать счетов: вкл', autoOff:'🖨 Автопечать счетов: выкл', testPrint:'🧪 Тестовая печать', ack:'Принято ✓', acked:'✓ Принято', sendFail:'Не удалось отправить. Попробуйте ещё раз.', table:'Стол',
+   now:'только что', min:m=>`${m} мин назад`, hour:h=>`${h} ч назад`,
+   tag:{order:'🧾 НОВЫЙ ЗАКАЗ', add:'➕ ДОЗАКАЗ', waiter:'🔔 ЗОВУТ ОФИЦИАНТА', water:'💧 ВОДА / САЛФЕТКИ', bill:'💳 СЧЁТ'},
+   noSupport:'Этот браузер не поддерживает уведомления. Используйте Chrome на Android.', iosFirst:'iPhone: сначала добавьте страницу на экран Домой (подсказка ниже).',
+   denied:'Уведомления не разрешены. Настройки браузера → Уведомления → Разрешить.', pushOk:'✓ Уведомления на этом телефоне включены.' },
+};
+/* lines of the Vietnamese ticket, translated for EN / RU (the guest's own note stays as written) */
+const LINE = {
+ en: [[/^Tổng cộng: /,'Total with tip: '],[/^Tổng: /,'Total: '],[/^Tiền tip: /,'Tip: '],[/^Thanh toán: Chuyển khoản VietQR$/,'Payment: VietQR transfer'],[/^Thanh toán: Tiền mặt$/,'Payment: cash'],
+      [/^Ghi chú: /,'Note: '],[/^Khách nói tiếng Nga$/,'Guest speaks Russian'],[/^Khách nói tiếng Anh$/,'Guest speaks English'],[/^Khách nói tiếng Việt$/,'Guest speaks Vietnamese']],
+ ru: [[/^Tổng cộng: /,'Всего с чаевыми: '],[/^Tổng: /,'Итого: '],[/^Tiền tip: /,'Чаевые: '],[/^Thanh toán: Chuyển khoản VietQR$/,'Оплата: перевод VietQR'],[/^Thanh toán: Tiền mặt$/,'Оплата: наличные'],
+      [/^Ghi chú: /,'Комментарий: '],[/^Khách nói tiếng Nga$/,'Гость говорит по-русски'],[/^Khách nói tiếng Anh$/,'Гость говорит по-английски'],[/^Khách nói tiếng Việt$/,'Гость говорит по-вьетнамски']],
+};
+
+const $ = id => document.getElementById(id);
+const store = { get: k => { try { return localStorage.getItem('sg_' + k) } catch (e) { return null } }, set: (k, v) => { try { localStorage.setItem('sg_' + k, v) } catch (e) {} }, del: k => { try { localStorage.removeItem('sg_' + k) } catch (e) {} } };
+let lang = store.get('lang') || ({ ru: 'ru', en: 'en' }[(navigator.language || '').slice(0, 2)] || 'vi');
+const t = k => L[lang][k];
+
+let code = store.get('code') || '';
+let orders = new Map(), maxId = 0, lastNow = 0, filter = 'new', soundOn = store.get('sound') !== '0', audio = null, timer = null, wake = null, remind = 0, status = ['', 'off'];
+
+async function api(path, body) {
+  const r = await fetch(API + path + (path.includes('?') ? '&' : '?') + 'venue=' + VENUE, {
+    method: body ? 'POST' : 'GET', cache: 'no-store',
+    headers: Object.assign({ 'X-Staff-Key': code }, body ? { 'Content-Type': 'application/json' } : {}),
+    body: body ? JSON.stringify(Object.assign({ venue: VENUE }, body)) : undefined });
+  if (r.status === 401) throw new Error('code');
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+
+function beep() {
+  if (!soundOn || !audio) return;
+  const t0 = audio.currentTime;
+  [880, 1175, 1568].forEach((f, i) => {
+    const o = audio.createOscillator(), g = audio.createGain(); o.type = 'sine'; o.frequency.value = f;
+    g.gain.setValueAtTime(0.0001, t0 + i * 0.22); g.gain.exponentialRampToValueAtTime(0.6, t0 + i * 0.22 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * 0.22 + 0.2);
+    o.connect(g).connect(audio.destination); o.start(t0 + i * 0.22); o.stop(t0 + i * 0.22 + 0.22);
+  });
+  if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+}
+
+const kindOf = o => o.text.startsWith('GỌI THÊM') ? 'add' : o.text.startsWith('XIN THÊM') ? 'water' : o.kind === 'bill' ? 'bill' : o.kind === 'waiter' ? 'waiter' : 'order';
+const ago = ms => { const m = Math.max(0, Math.round((Date.now() - ms) / 60000)); return m < 1 ? t('now') : m < 60 ? t('min')(m) : t('hour')(Math.floor(m / 60)) };
+const hhmm = ms => { const d = new Date(ms); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') };
+const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+function body(o) {
+  let lines = o.text.split('\n').slice(1);
+  if (lang !== 'vi') lines = lines.map(l => {
+    const m = l.match(/^(\d+ × )\[(\w+)\] (.+?)( — .*)$/);
+    if (m) { const n = NAMES[m[2]]; return `${m[1]}[${m[2]}] ${n ? n[lang === 'en' ? 0 : 1] : m[3]}${m[4]}` }
+    const v = l.match(/^(\d+ × )(.+?)( — .*)$/);
+    if (v && NAMES_VI[v[2]]) return `${v[1]}${NAMES_VI[v[2]][lang === 'en' ? 0 : 1]}${v[3]}`;
+    for (const [re, to] of LINE[lang]) if (re.test(l)) return l.replace(re, to);
+    return l;
+  });
+  return lines.join('\n');
+}
+
+function render(freshIds = []) {
+  const all = [...orders.values()].sort((a, b) => b.id - a.id);
+  const open = all.filter(o => o.status === 'new');
+  const show = filter === 'new' ? open : all;
+  $('countH').textContent = open.length ? t('waiting')(open.length) : t('none');
+  document.title = (open.length ? `(${open.length}) ` : '') + t('title');
+  $('list').innerHTML = show.length ? show.map(o => {
+    const k = kindOf(o);
+    return `<article class="o k-${k}${o.status === 'done' ? ' done' : ''}${freshIds.includes(o.id) ? ' new' : ''}" data-id="${o.id}">
+      <div><div class="h"><span class="tb">${t('table')} ${esc(o.tbl || '?')}</span>${(o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/) || [])[1] ? `<span class="who">👤 ${esc(o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/)[1])}</span>` : ''}<span class="tag">${t('tag')[k]}</span><span class="tm">${hhmm(o.created)} · ${ago(o.created)}</span></div>
+      <pre>${esc(body(o))}</pre></div>
+      <div class="acts"><button class="ok" data-ack="${o.id}" ${o.status === 'done' ? 'disabled' : ''}>${o.status === 'done' ? t('acked') : t('ack')}</button>${['order','add','bill'].includes(k) ? `<button class="pr" data-print="${o.id}">${t('printBtn')}</button>` : ''}</div></article>`;
+  }).join('') : `<div class="empty">${filter === 'new' ? t('emptyNew') : t('emptyAll')}</div>`;
+}
+
+async function poll() {
+  try {
+    const d = await api(`/staff/orders?since=${maxId}&changed=${lastNow}`);
+    const fresh = [];
+    d.orders.forEach(o => { if (!orders.has(o.id)) { orders.set(o.id, o); if (o.status === 'new' && maxId) fresh.push(o.id); } maxId = Math.max(maxId, o.id) });
+    d.done.forEach(x => { const o = orders.get(x.id); if (o) { o.status = 'done'; o.done_at = x.done_at } });
+    for (const [id, o] of orders) if (Date.now() - o.created > 12 * 3600e3) orders.delete(id);
+    lastNow = d.now;
+    setStatus('on', 'live');
+    if (fresh.length || d.done.length || !render.once) { render(fresh); render.once = true }
+    if (fresh.length) { beep(); remind = Date.now(); if (autoPrint) fresh.map(id => orders.get(id)).filter(o => o.kind === 'bill' && !printed.has(o.id)).forEach(o => printOrder(o)) }
+    else if ([...orders.values()].some(o => o.status === 'new') && Date.now() - remind > 45000) { beep(); remind = Date.now() }
+  } catch (e) {
+    if (e.message === 'code') return logout(t('codeChanged'));
+    setStatus('err', 'lost');
+  }
+}
+function setStatus(c, key) { status = [c, key]; $('dot').className = 'dot ' + c; $('stText').textContent = t(key) }
+
+function show(id) { ['login', 'start', 'board'].forEach(x => $(x).hidden = x !== id); $('soundBtn').hidden = $('logoutBtn').hidden = id === 'login' }
+function logout(msg) { clearInterval(timer); timer = null; code = ''; store.del('code'); show('login'); $('loginErr').textContent = msg || ''; setStatus('', 'off') }
+
+function setLang(l) {
+  lang = L[l] ? l : 'vi'; store.set('lang', lang); document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(el => el.textContent = t(el.dataset.t));
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+  $('soundBtn').textContent = soundOn ? t('soundOn') : t('soundOff');
+  if (store.get('push') === '1') $('pushBtn').textContent = t('pushOn');
+  setStatus(status[0], status[1]); if ($('autoPrintBtn')) syncAutoBtn();
+  if (render.once) render();
+}
+document.querySelector('.lang').onclick = e => { const b = e.target.closest('[data-lang]'); if (b) setLang(b.dataset.lang) };
+
+$('loginBtn').onclick = async () => {
+  code = $('code').value.trim(); $('loginErr').textContent = '';
+  try { await api('/staff/orders?since=999999999'); store.set('code', code); show('start'); saveSwConfig() }
+  catch (e) { $('loginErr').textContent = e.message === 'code' ? t('wrongCode') : t('noServer'); code = '' }
+};
+$('code').addEventListener('keydown', e => { if (e.key === 'Enter') $('loginBtn').click() });
+
+$('startBtn').onclick = async () => {
+  try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); await audio.resume() } catch (e) {}
+  try { wake = await navigator.wakeLock.request('screen') } catch (e) {}
+  show('board'); await poll(); timer = timer || setInterval(poll, POLL_MS);
+};
+document.addEventListener('visibilitychange', async () => { if (!document.hidden && timer) { poll(); try { wake = await navigator.wakeLock.request('screen') } catch (e) {} } });
+$('soundBtn').onclick = () => { soundOn = !soundOn; store.set('sound', soundOn ? '1' : '0'); $('soundBtn').textContent = soundOn ? t('soundOn') : t('soundOff') };
+$('logoutBtn').onclick = () => { if (confirm(t('confirmOut'))) logout() };
+$('testBtn').onclick = () => { if (!audio) { try { audio = new (window.AudioContext || window.webkitAudioContext)() } catch (e) {} } const s = soundOn; soundOn = true; beep(); soundOn = s };
+document.querySelectorAll('.chip[data-f]').forEach(b => b.onclick = () => { filter = b.dataset.f; document.querySelectorAll('.chip[data-f]').forEach(x => x.setAttribute('aria-pressed', x === b)); render() });
+
+$('list').addEventListener('click', async e => {
+  const b = e.target.closest('[data-ack]'); if (!b) return;
+  const id = Number(b.dataset.ack), o = orders.get(id); b.disabled = true;
+  try { await api('/staff/ack', { id }); o.status = 'done'; o.done_at = Date.now(); render() }
+  catch (err) { b.disabled = false; alert(t('sendFail')) }
+});
+
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+if (isIOS && !standalone) $('iosHint').hidden = false;
+
+async function saveSwConfig() {
+  if (!('caches' in window)) return;
+  try { const c = await caches.open('sg-config'); await c.put('/sg-config', new Response(JSON.stringify({ api: API, venue: VENUE, code }))) } catch (e) {}
+}
+async function enablePush() {
+  $('pushErr').textContent = '';
+  try {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) throw new Error(isIOS && !standalone ? t('iosFirst') : t('noSupport'));
+    const perm = await Notification.requestPermission();
+    if (perm !== 'granted') throw new Error(t('denied'));
+    await saveSwConfig();
+    const reg = await navigator.serviceWorker.register('sw.js');
+    await navigator.serviceWorker.ready;
+    const { key } = await api('/staff/vapid');
+    const raw = Uint8Array.from(atob(key.replace(/-/g, '+').replace(/_/g, '/') + '=='.slice(0, (4 - key.length % 4) % 4)), c => c.charCodeAt(0));
+    const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: raw });
+    await api('/staff/subscribe', { sub: sub.toJSON() });
+    store.set('push', '1'); $('pushBtn').textContent = t('pushOn');
+    $('pushErr').textContent = t('pushOk'); alert(t('pushOk'));
+  } catch (e) { const m = e.message === 'code' ? t('wrongCode') : e.message; $('pushErr').textContent = m; if (!$('board').hidden) alert(m) }
+}
+$('pushBtn').onclick = enablePush; $('pushBtn2').onclick = enablePush;
+
+/* ---------- printing (80 mm receipt through the device's print system) ---------- */
+let autoPrint = store.get('autoprint') === '1';
+const printed = new Set(JSON.parse(store.get('printed') || '[]'));
+const money = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' ₫';
+const guestOf = o => ((o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/) || [])[1] || '');
+function itemsFor(bill) {          /* all orders of this table (and guest) since the previous bill */
+  const all = [...orders.values()].filter(o => o.tbl === bill.tbl).sort((a, b) => a.id - b.id);
+  const prev = all.filter(o => o.kind === 'bill' && o.id < bill.id && guestOf(o) === guestOf(bill)).pop();
+  const lines = {};
+  all.filter(o => o.kind === 'order' && o.id < bill.id && (!prev || o.id > prev.id) && (!guestOf(bill) || guestOf(o) === guestOf(bill)))
+    .forEach(o => o.text.split('\n').forEach(l => { const m = l.match(/^(\d+) × \[(\w+)\] (.+?) — ([\d.]+) ₫$/) || (x => x && [x[0], x[1], x[2], x[2], x[3]])(l.match(/^(\d+) × (.+?) — ([\d.]+) ₫$/));
+      if (m) { const k = '#' + m[2]; lines[k] = lines[k] || { q: 0, name: m[3], sum: 0 }; lines[k].q += +m[1]; lines[k].sum += +m[4].replace(/\./g, '') } }));
+  return Object.entries(lines).map(([k, v]) => [k.slice(1), v]);
+}
+function receiptHTML(o) {
+  const d = new Date(o.created), when = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()} ${hhmm(o.created)}`;
+  const tl = o.text.split('\n'), rest = tl.slice(1).filter(l => !/^Khách nói/.test(l));
+  let body = '';
+  if (o.kind === 'bill') {
+    const it = itemsFor(o);
+    body = (it.length ? `<table>${it.map(([id, x]) => `<tr><td>${x.q} × ${esc(x.name)}${id === x.name ? '' : `<small> [${id}]</small>`}</td><td class="r">${money(x.sum)}</td></tr>`).join('')}</table><hr>` : '')
+      + rest.map(l => { const m = l.match(/^(Tổng cộng|Tổng|Tiền tip)( \(\d+%\))?: (.+)$/) || l.match(/^(Tiền tip): (.+?)( \(\d+%\))$/);
+          return /^Tổng cộng|^Tổng:/.test(l) ? `<div class="row big"><span>${esc(l.split(': ')[0])}</span><span>${esc(l.split(': ')[1])}</span></div>` : `<div class="row"><span>${esc(l.split(': ')[0])}</span><span>${esc(l.split(': ').slice(1).join(': '))}</span></div>` }).join('');
+  } else {
+    body = rest.map(l => { const m = l.match(/^(\d+ × )\[(\w+)\] (.+?) — (.+)$/);
+      const v = !m && l.match(/^(\d+ × )(.+?) — (.+)$/);
+      if (v) return `<div class="row"><span><b>${v[1]}</b>${esc(v[2])}</span><span>${esc(v[3])}</span></div>`;
+      return m ? `<div class="row"><span><b>${m[1]}</b>${esc(m[3])}<small> [${m[2]}]</small></span><span>${esc(m[4])}</span></div>` : `<div class="row ${/^Tổng/.test(l) ? 'big' : ''}"><span>${esc(l)}</span></div>` }).join('');
+  }
+  const head = { order: tl[0].startsWith('GỌI THÊM') ? 'GỌI THÊM' : 'PHIẾU GỌI MÓN', bill: 'HÓA ĐƠN TẠM TÍNH' }[o.kind] || tl[0].split(' · ')[0];
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+@page{size:80mm auto;margin:0} *{box-sizing:border-box} body{width:72mm;margin:0 auto;padding:3mm 0 6mm;font:12px/1.35 "Be Vietnam Pro",Arial,sans-serif;color:#000}
+.c{text-align:center} h1{font-size:16px;margin:0} h2{font-size:14px;margin:2mm 0 0;letter-spacing:.04em} .tb{font-size:22px;font-weight:800;margin:1mm 0}
+hr{border:0;border-top:1px dashed #000;margin:2mm 0} table{width:100%;border-collapse:collapse} td{padding:.6mm 0;vertical-align:top} .r{text-align:right;white-space:nowrap;padding-left:2mm}
+.row{display:flex;justify-content:space-between;gap:2mm;padding:.5mm 0} .row span:last-child{white-space:nowrap;text-align:right} .big{font-weight:800;font-size:14px} small{color:#444}
+</style></head><body><div class="c"><h1>Tên quán của bạn</h1><div>CafeUp</div><h2>${head}</h2><div class="tb">Bàn ${esc(o.tbl || '?')}${guestOf(o) ? ' · ' + esc(guestOf(o)) : ''}</div><div>${when} · #${o.id}</div></div><hr>${body}<hr>
+<div class="c">${o.kind === 'bill' ? 'Cảm ơn quý khách! · Thank you!' : 'Bếp / Kitchen'}</div></body></html>`;
+}
+let printQueue = Promise.resolve();
+function printOrder(o) {
+  printed.add(o.id); store.set('printed', JSON.stringify([...printed].slice(-200)));
+  printQueue = printQueue.then(() => new Promise(done => {
+    const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
+    document.body.appendChild(f); f.contentDocument.open(); f.contentDocument.write(receiptHTML(o)); f.contentDocument.close();
+    setTimeout(() => { try { f.contentWindow.focus(); f.contentWindow.print() } catch (e) {} setTimeout(() => { f.remove(); done() }, 1500) }, 400);
+  }));
+}
+function syncAutoBtn() { const b = $('autoPrintBtn'); b.textContent = autoPrint ? t('autoOn') : t('autoOff'); b.classList.toggle('on', autoPrint) }
+$('autoPrintBtn').onclick = () => { autoPrint = !autoPrint; store.set('autoprint', autoPrint ? '1' : '0'); syncAutoBtn() };
+$('testPrintBtn').onclick = () => printOrder({ id: 0, kind: 'bill', tbl: '0', created: Date.now(), text: 'TÍNH TIỀN · Bàn 0\nTổng: 100.000 ₫\nThanh toán: Tiền mặt' });
+$('list').addEventListener('click', e => { const b = e.target.closest('[data-print]'); if (b) printOrder(orders.get(Number(b.dataset.print))) });
+
+setLang(lang);
+if (code) { show('start'); saveSwConfig() } else show('login');
+setInterval(() => { if (timer) render() }, 30000);
+</script>
+</body>
+</html>
