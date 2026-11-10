@@ -320,7 +320,7 @@ function itemsFor(bill) {          /* all orders of this table (and guest) since
   const prev = all.filter(o => o.kind === 'bill' && o.id < bill.id && guestOf(o) === guestOf(bill)).pop();
   const lines = {};
   all.filter(o => o.kind === 'order' && o.id < bill.id && (!prev || o.id > prev.id) && (!guestOf(bill) || guestOf(o) === guestOf(bill)))
-    .forEach(o => o.text.split('\n').forEach(l => { const m = l.match(/^(\d+) × \[(\w+)\] (.+?) — ([\d.]+) ₫$/) || (x => x && [x[0], x[1], x[2], x[2], x[3]])(l.match(/^(\d+) × (.+?) — ([\d.]+) ₫$/));
+    .forEach(o => o.text.split('\n').forEach(l => { const m = l.match(/^(\d+) × \[(\w+)\] (.+?) — ([\d.]+)\s₫$/) || (x => x && [x[0], x[1], x[2], x[2], x[3]])(l.match(/^(\d+) × (.+?) — ([\d.]+)\s₫$/));
       if (m) { const k = '#' + m[2]; lines[k] = lines[k] || { q: 0, name: m[3], sum: 0 }; lines[k].q += +m[1]; lines[k].sum += +m[4].replace(/\./g, '') } }));
   return Object.entries(lines).map(([k, v]) => [k.slice(1), v]);
 }
