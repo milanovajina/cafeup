@@ -1405,8 +1405,8 @@ window.addEventListener('hashchange',()=>{if(ON!==/^#(menu|table-\d{1,4})$/.test
 /* ===== Settings: put the café's contacts here ===== */
 const CONFIG={
   venue:'demo',            // demo venue on the order server (staff screen /cafeup/staff/, code 0000)
-  telegram:'e_milanova',   // Telegram username without @
-  zalo:'0799808594',       // Zalo phone number
+  telegram:'',             // no Telegram fallback: orders go to the staff screen only
+  zalo:'',                 // no Zalo fallback
   googleReview:'',         // café review link, e.g. 'https://g.page/r/XXXX/review'
   orderEndpoint:'https://cafeupnhatrang.nhatrang.workers.dev/',
   umamiId:'17dd7f6c-e3d2-49b9-acaa-5a146f1dd86e',
@@ -1501,7 +1501,7 @@ const D={
  cafe_name:["Tên quán của bạn","Your café name here","Здесь будет название вашего заведения"],
  cafe_sub:["Dương Đông · Phú Quốc","Duong Dong · Phu Quoc","Зыонгдонг · Фукуок"],
  not_connected:["Bản demo: chưa kết nối tài khoản của quán. Bên dưới là đơn bếp sẽ nhận.","Demo: the café's messenger isn't connected yet. Below is what the kitchen would receive.","Демо: мессенджер кафе пока не подключён. Ниже — что получит кухня."],
- send_fail:["Không gửi được. Hãy gửi qua Telegram hoặc Zalo bên dưới.","Couldn't send. Please use Telegram or Zalo below.","Не получилось отправить. Отправьте через Telegram или Zalo ниже."],
+ send_fail:["Không gửi được. Hãy gọi nhân viên và đưa màn hình này.", "Couldn't send. Please call a waiter and show this screen.", "Не получилось отправить. Позовите официанта и покажите этот экран."],
  pay_qr_staff:["Nhân viên sẽ mang mã VietQR đến bàn.", "The waiter will bring the VietQR code to your table.", "Официант принесёт QR-код VietQR к столу."],
  pay_save:["Số tiền đã có sẵn trong mã. Lưu ảnh mã (nhấn giữ) và mở trong ứng dụng ngân hàng.", "The amount is already in the code. Save the code (press and hold) and open it in your banking app.", "Сумма уже в коде. Сохраните его (долгое нажатие) и откройте в банковском приложении."],
  cat_pop:["⭐ Phổ biến", "⭐ Popular", "⭐ Популярное"],
