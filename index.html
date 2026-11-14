@@ -643,7 +643,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
             <div class="msg" id="guestmsg"></div>
           </div>
           <div class="opane">
-            <div class="oh"><span data-t="cafe_gets"></span><span class="ch">Zalo · Telegram</span></div>
+            <div class="oh"><span data-t="cafe_gets"></span><span class="ch" data-t="ch_screen"></span></div>
             <div class="msg kitchen" id="kitchenmsg"></div>
           </div>
           <div class="opane">
@@ -875,7 +875,7 @@ m4_result:["Khách chờ 15 phút để trả tiền và không quay lại.", "T
 ps_tag:["Phổ biến", "Most popular", "Популярный"],
 ps_name:["Thực đơn + Phục vụ", "Menu + Service", "Меню + Обслуживание"],
 ps_0:["Tất cả trong gói chính", "Everything in the main package", "Всё из основного пакета"],
-ps_1:["Màn hình đơn hàng: âm thanh, màu theo loại đơn, sửa đơn, tự tạo đơn", "Order screen: sound, colour by order type, edit orders, enter orders by hand", "Экран заказов: звук, цвет по типу заказа, изменение и создание заказов"],
+ps_1:["Màn hình đơn hàng đầy đủ: sửa đơn, tự tạo đơn, bàn đang mở", "Full order screen: edit orders, enter orders by hand, open tables", "Полный экран заказов: изменение и создание заказов, открытые столы"],
 ps_2:["Thông báo trên điện thoại nhân viên, kể cả khi khóa màn hình", "Notifications on staff phones, even when locked", "Уведомления на телефоны официантов, даже при заблокированном экране"],
 ps_3:["Bàn đang mở: giảm giá, thuế, tiền mặt / VietQR / thẻ, in phiếu bếp và hóa đơn 80 mm", "Open tables: discount, tax, cash / VietQR / card, 80 mm kitchen tickets and bills", "Открытые столы: скидка, налог, наличные / VietQR / карта, кухонный тикет и счёт на 80 мм"],
 ps_4:["Màn hình bằng tiếng Việt, Anh, Nga: chủ quán xem đơn bằng ngôn ngữ của mình", "Screen in Vietnamese, English, Russian: owners read orders in their language", "Экран на вьетнамском, английском, русском: владелец читает заказы на своём языке"],
@@ -887,7 +887,7 @@ sp_serv:["+ Phục vụ", "+ Service", "+ Обслуживание"],
 sp_serv_d:["Thêm theo dõi đơn hàng, hỗ trợ máy in, 1 lần đến quán mỗi tháng", "Plus order system monitoring, printer help, 1 visit a month", "Плюс контроль заказов, помощь с принтером, 1 выезд в месяц"],
 ad_10:["Ảnh món bằng AI, theo phong cách quán (mỗi ảnh)", "AI dish photo in your café's style (per photo)", "AI-фото блюда в стиле заведения (за фото)"],
 ad_11:["Phong cách riêng có linh vật của quán + bảng QR, poster", "Custom style with your café's mascot + QR stands, poster", "Индивидуальный стиль с маскотом заведения + таблички, плакат"],
-ad_12:["Màn hình đơn hàng + thông báo (cho gói chính)", "Order screen + notifications (for the main package)", "Экран заказов + уведомления (к основному пакету)"],
+ad_12:["Thông báo trên điện thoại nhân viên (cho gói chính)", "Notifications on staff phones (for the main package)", "Уведомления на телефоны персонала (к основному пакету)"],
 ad_13:["Cài đặt in hóa đơn tự động tại quán", "On-site setup of automatic bill printing", "Настройка автопечати счетов на месте"],
 ad_14:["Thêm ngôn ngữ: Trung, Hàn…", "Extra language: Chinese, Korean…", "Ещё язык: китайский, корейский…"],
 ad_14v:["từ 700.000 ₫", "from 700,000 ₫", "от 700 000 ₫"],
@@ -989,7 +989,9 @@ once:["một lần","one-time","один раз"],
 month:["/ tháng","/ month","/ мес."],
 pk_time:["Xong trong 3–5 ngày","Done in 3–5 days","Готово за 3–5 дней"],
 pk_1:["Thực đơn QR tiếng Việt, Anh, Nga, tối đa 50 món","QR menu in Vietnamese, English and Russian, up to 50 items","QR-меню на вьетнамском, английском и русском, до 50 позиций"],
-pk_2:["Đơn gửi thẳng cho nhân viên bằng tiếng Việt (Telegram)", "Orders go straight to staff in Vietnamese (Telegram)", "Заказы сразу персоналу на вьетнамском (Telegram)"],
+pk_2:["Đơn đến màn hình nhân viên bằng tiếng Việt, có âm thanh", "Orders reach the staff screen in Vietnamese, with a sound alert", "Заказы приходят на экран персонала на вьетнамском, со звуком"],
+ch_menu:["Thực đơn QR","QR menu","QR-меню"],
+ch_screen:["Màn hình nhân viên","Staff screen","Экран персонала"],
 pk_3:["Khách chọn thanh toán VietQR hoặc tiền mặt","Guests choose VietQR or cash","Оплата по VietQR или наличными — на выбор гостя"],
 pk_7:["Nút «Gọi phục vụ» trong thực đơn: tính tiền, nước, gọi nhân viên","A “Call waiter” button in the menu: bill, water, come to table","Кнопка «Позвать официанта» в меню: счёт, вода, подойти к столу"],
 pk_4:["Google Maps: hồ sơ, danh mục, mô tả, ảnh, mã QR xin đánh giá","Google Maps: profile, categories, description, photos, review QR","Google Maps: карточка, категории, описание, фото, QR для отзывов"],
@@ -1156,7 +1158,7 @@ function lines(l){return MENU.filter(m=>cart[m.id]).map(m=>`${cart[m.id]} × ${i
 function renderOrder(){
   const gl=menuLang, sum=total();
   const greet=D.greet[LI[gl]], tot=D.total[LI[gl]];
-  document.getElementById('guestch').textContent=gl==='vi'?'Zalo':'Telegram';
+  document.getElementById('guestch').textContent=D.ch_menu[LI[gl]];
   document.getElementById('guestmsg').textContent=Object.keys(cart).length?`${greet}\n${lines(gl)}\n${tot}: ${fmt(sum,gl)}`:'—';
   const langName={vi:'tiếng Việt',en:'tiếng Anh',ru:'tiếng Nga'}[gl];
   document.getElementById('kitchenmsg').textContent=Object.keys(cart).length?`ĐƠN MỚI · Bàn 4\n${lines('vi')}\nTổng: ${fmt(sum,'vi')}\nKhách nói ${langName} · Thanh toán VietQR`:'—';
