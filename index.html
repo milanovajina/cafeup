@@ -1208,7 +1208,7 @@ function renderMap(state){
 }
 
 /* ---- moment toggles ---- */
-const mstate={1:'now',2:'now',3:'now',4:'now'};
+const mstate={1:'with',2:'with',3:'with',4:'with'};
 function applyMoment(k){
   const art=document.querySelector(`.moment[data-moment="${k}"]`), s=mstate[k];
   art.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.state===s));
