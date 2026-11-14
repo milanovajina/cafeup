@@ -462,6 +462,51 @@ body.has-ostrip #menuApp .toast{bottom:calc(150px + env(safe-area-inset-bottom,0
 #menuApp .splitsum{display:grid;gap:4px}
 #menuApp .splitsum div{display:flex;justify-content:space-between;background:var(--bg);border-radius:var(--radius);padding:8px 12px;font-size:14px}
 </style>
+<style>
+/* menu engine shared with SUSHI GO */
+#menuApp .it{grid-template-columns:84px 1fr}
+#menuApp .it .ph{width:84px;height:84px;object-fit:cover;background:var(--accent-soft)}
+#menuApp .it .no{font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--primary);background:var(--primary-soft);border-radius:6px;padding:1px 6px;margin-right:2px;vertical-align:2px}
+#menuApp footer a{color:inherit}
+#menuApp .notice{position:relative;z-index:1;margin:2px 0 10px;padding:12px 14px 12px 42px;border-radius:14px;background:var(--primary-soft);border:1px solid var(--line);color:var(--ink);font-size:15px;line-height:1.45;white-space:pre-line}
+#menuApp .notice b{font-weight:800}
+#menuApp .bpick{position:fixed;inset:0;z-index:30;background:color-mix(in srgb,var(--ink) 45%,transparent);display:flex;align-items:flex-end;justify-content:center}
+#menuApp .bpick[hidden]{display:none}
+#menuApp .sheet.done-bill>*:not(.top):not(#billPay){display:none!important}
+#menuApp .sheet.done-bill #billPay>*:not(#thanks){display:none!important}
+#menuApp #payQr{display:none!important}   /* the VietQR comes printed on the bill */
+#menuApp .sheet.done-bill .top h3{visibility:hidden}
+#menuApp .lines li>span:first-child{min-width:0}
+#menuApp .dnb{display:block;margin-top:4px;font:inherit;font-size:13px;font-weight:600;color:var(--muted);background:none;border:1px dashed var(--line);border-radius:999px;padding:3px 10px;text-align:left}
+#menuApp .dnb.has{color:var(--ink);border-style:solid;background:var(--bg);white-space:normal}
+#menuApp .dnote input{width:100%;margin-top:6px;font:inherit;font-size:16px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+#menuApp .stick{position:sticky;top:0;z-index:7;background:var(--bg);margin-inline:-16px;padding-inline:16px;padding-top:env(safe-area-inset-top,0px);box-shadow:0 6px 10px -10px rgba(80,50,30,.35)}
+#menuApp .stick header{padding-block:10px 6px}
+#menuApp .stick .notice{margin-block:0 4px}
+#menuApp .stick .cats{position:static;box-shadow:none;margin-inline:0;padding-inline:0;padding-top:8px}
+#menuApp .cq{display:inline-flex;gap:6px;margin-top:6px;align-items:center}
+#menuApp .cq button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font:inherit;font-size:17px;font-weight:700;line-height:1;color:var(--ink);padding:0}
+#menuApp .cq button.del{width:auto;padding:0 10px;border-radius:999px;font-size:13px;color:#B23A48}
+#menuApp .lines li.dnh{display:block;font-size:12px;color:var(--muted)}
+#menuApp .dnote input::placeholder{font-size:13px;color:var(--muted);opacity:.8}
+#menuApp .bpbox{width:100%;max-width:520px;background:var(--surface);border-radius:22px 22px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
+#menuApp .bpbox h3{margin:0;font-size:22px}
+#menuApp .bpn{font-weight:700;margin-top:4px}
+#menuApp .bps{color:var(--muted);font-size:14px;margin:4px 0 12px}
+#menuApp .bpo{display:grid;gap:8px}
+#menuApp .bpo button{font:inherit;font-size:17px;font-weight:700;text-align:left;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+#menuApp .bpc{display:block;width:100%;margin-top:10px;font:inherit;font-weight:700;padding:12px;border:0;background:none;color:var(--muted)}
+body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuApp .tablechip,body.view-only #menuApp .sheet-bg{display:none!important}
+#menuApp .notice::before{content:"📢";position:absolute;left:13px;top:11px;font-size:18px}
+#menuApp .it .ph0{display:grid;place-items:center;font-family:var(--f-display);font-size:26px;color:var(--primary);background:var(--primary-soft) ;}
+#menuApp .wrap::before{top:44px;width:130px;height:170px}
+/* category bar stays on top while scrolling (the art layer rule had turned sticky off) */
+#menuApp .cats{position:sticky;top:0;z-index:6;margin-inline:-16px;padding-inline:16px;padding-top:max(10px,env(safe-area-inset-top,0px));box-shadow:0 6px 10px -10px rgba(80,50,30,.35)}
+#menuApp .sect{scroll-margin-top:72px}
+#menuApp .pay{grid-template-columns:1fr}
+#menuApp .pay img{width:100%;max-width:260px;justify-self:center;border-radius:8px;background:#fff}
+#menuApp .pay small{font-size:13px;line-height:1.45;margin-top:4px}
+</style>
 </head>
 <body>
 
@@ -1234,24 +1279,28 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
 
 <div id="menuApp" hidden>
 <div class="wrap">
+<div class="stick">
   <header>
     <div>
       <h1 data-mt="cafe_name"></h1>
-      <div class="sub">Dương Đông · Phú Quốc</div>
+      <div class="sub" data-mt="cafe_sub"></div>
       <span class="tablechip" id="tablechip"></span>
     </div>
     <div class="lang" role="group" aria-label="Language">
       <button data-lang="vi">VI</button><button data-lang="en">EN</button><button data-lang="ru">RU</button>
     </div>
   </header>
-  <div class="skins" id="skins"><span class="skl" data-mt="skin_lbl"></span><button data-skin="" aria-pressed="true">CafeUp</button><button data-skin="cafe" data-mt="skin_cafe"></button><button data-skin="beach" data-mt="skin_beach"></button><button data-skin="night" data-mt="skin_night"></button><button data-skin="karaoke" data-mt="skin_karaoke"></button><button data-skin="cats" data-mt="skin_cats"></button><span class="skh" data-mt="skin_hint"></span></div>
+  <div class="notice" id="notice" hidden></div>
   <nav class="cats" id="cats"></nav>
+</div>
+  <div class="skins" id="skins"><span class="skl" data-mt="skin_lbl"></span><button data-skin="" aria-pressed="true">CafeUp</button><button data-skin="cafe" data-mt="skin_cafe"></button><button data-skin="beach" data-mt="skin_beach"></button><button data-skin="night" data-mt="skin_night"></button><button data-skin="karaoke" data-mt="skin_karaoke"></button><button data-skin="cats" data-mt="skin_cats"></button><span class="skh" data-mt="skin_hint"></span></div>
   <main id="list"></main>
   <footer data-mt="demo"></footer>
 </div>
 
 <div class="bar"><button class="ostrip" id="ostrip" hidden><span class="ol"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b data-mt="ordered_h"></b><span id="osCount"></span></span><span class="or"><span class="mono" id="osSum"></span><span class="ov" data-mt="os_view"></span></span></button><div class="barin"><button class="callw" id="callW"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span data-mt="waiter_btn"></span></button><button id="openCart" disabled><span id="barCount"></span><span class="mono" id="barSum"></span></button></div></div>
 
+<div class="bpick" id="bpick" hidden><div class="bpbox" role="dialog" aria-modal="true"><h3></h3><div class="bpn"></div><div class="bps"></div><div class="bpo"></div><button class="bpc"></button></div></div>
 <div class="sheet-bg" id="sheetBg" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <div class="top"><h3 id="sheetTitle" data-mt="your_order"></h3><button class="x" id="closeSheet" aria-label="Close">×</button></div>
@@ -1268,7 +1317,7 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
     <div class="f"><label for="guestName" data-mt="name_label"></label><input id="guestName" maxlength="24" autocomplete="given-name"><small class="tipsum" data-mt="own_phone"></small></div>
     <div class="f"><label for="table" data-mt="table"></label><input id="table" inputmode="numeric" maxlength="4"></div>
     <div class="f"><label for="note" data-mt="note"></label><textarea id="note"></textarea></div>
-    <div class="f"><span class="lbl" data-mt="pay_method"></span>
+    <div class="f" hidden><span class="lbl" data-mt="pay_method"></span>
       <div class="paym" id="paym"><button data-pm="qr">VietQR</button><button data-pm="cash" data-mt="cash"></button></div></div>
     <div class="send">
       <button class="direct" id="sendDirect" data-mt="send_direct" hidden></button>
@@ -1296,7 +1345,7 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
     <p class="q" data-mt="waiter_q"></p>
     <div class="reasons" id="reasons"><button data-r="come" data-mt="r_come"></button><button data-r="bill" data-mt="r_bill"></button><button data-r="water" data-mt="r_water"></button></div>
     <div class="f" id="wPayWrap" hidden><span class="lbl" data-mt="pay_method"></span>
-      <div class="paym" id="wPaym"><button data-pm="qr">VietQR</button><button data-pm="cash" data-mt="cash"></button></div></div>
+      <div class="paym" id="wPaym"><button data-pm="qr">VietQR</button><button data-pm="cash" data-mt="cash"></button><button data-pm="card" data-mt="card"></button></div></div>
     <div class="f" id="tipWrap" hidden><span class="lbl" data-mt="tip_h"></span>
       <div class="tips" id="tips"><button data-tip="0" data-mt="tip_none"></button><button data-tip="5">5%</button><button data-tip="10">10%</button><button data-tip="15">15%</button></div>
       <small class="tipsum" id="tipSum"></small></div>
@@ -1316,15 +1365,15 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
     <div class="kitchen"><b data-mt="staff_gets"></b><pre id="waiterText"></pre></div>
     <div id="billPay" hidden>
     <p class="cashnote" id="cashNote" data-mt="cash_note" hidden></p>
-    <div class="pay" id="payQr"><svg id="mqr" viewBox="0 0 25 25" shape-rendering="crispEdges" aria-hidden="true"></svg>
-      <div><b data-mt="pay"></b><div class="mono" id="payAmt"></div><small data-mt="pay_demo"></small></div></div>
+    <p class="cashnote" id="cardNote" data-mt="card_note" hidden></p>
+    <div class="pay" id="payQr"><img id="vqr" alt="VietQR" hidden>
+      <div><b data-mt="pay"></b><div class="mono" id="payAmt"></div><small id="payInfo"></small></div></div>
     <button class="paid" id="paidBtn" data-mt="paid" hidden></button>
     <div class="thanks" id="thanks" hidden>
       <b data-mt="thanks_h"></b>
       <p data-mt="thanks_p"></p>
       <a class="gmap" id="gmapBtn" href="#" target="_blank" rel="noopener" data-mt="rate_btn"></a>
-      <small data-mt="rate_demo"></small>
-    </div>
+          </div>
     </div>
   </div>
 </div>
@@ -1332,17 +1381,37 @@ document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.cl
 
 </div>
 <script>
+/* qrcode-generator 1.4.4, Kazuhiko Arase, MIT license, https://github.com/kazuhikoarase/qrcode-generator */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,(function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1}))},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(t,r){var e=n("友");if(2!=e.length||38726!=(e[0]<<8|e[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}((function(){return qrcode}));
+</script>
+<script>
+/* VietQR (NAPAS 247) code with the amount: built here from the venue's bank QR, no outside service */
+function vqPayload(vq, amount, info) {
+  const f = (t, v) => t + String(v.length).padStart(2, '0') + v;
+  let s = f('00', '01') + f('01', amount ? '12' : '11') + f('38', f('00', 'A000000727') + f('01', f('00', vq.bin) + f('01', vq.account)) + f('02', 'QRIBFTTA'))
+    + f('53', '704') + (amount ? f('54', String(Math.round(amount))) : '') + f('58', 'VN') + (info ? f('62', f('08', String(info).replace(/[^\x20-\x7e]/g, '').slice(0, 25))) : '') + '6304';
+  let c = 0xFFFF; for (const ch of s) { c ^= ch.charCodeAt(0) << 8; for (let i = 0; i < 8; i++) c = c & 0x8000 ? ((c << 1) ^ 0x1021) & 0xFFFF : (c << 1) & 0xFFFF }
+  return s + c.toString(16).toUpperCase().padStart(4, '0');
+}
+function vqSvg(vq, amount, info) { const q = qrcode(0, 'M'); q.addData(vqPayload(vq, amount, info)); q.make(); return q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }) }
+
 (function(){
 const ON=/^#(menu|table-\d{1,4})$/.test(location.hash);
 if(ON){document.querySelector('header.top').hidden=true;document.querySelector('main.wrap').hidden=true;document.getElementById('menuApp').hidden=false;document.body.classList.add('menu-mode');document.title='Menu';}
+/* without a table number in the link (the A4 poster, #menu) the menu is view-only: no ordering, no waiter calls */
+const VIEW_ONLY=false;   /* demo: ordering works from #menu too */
+window.addEventListener('hashchange',()=>{if(ON!==/^#(menu|table-\d{1,4})$/.test(location.hash))location.reload()});
 
 /* ===== Settings: put the café's contacts here ===== */
 const CONFIG={
+  venue:'demo',            // demo venue on the order server (staff screen /cafeup/staff/, code 0000)
   telegram:'e_milanova',   // Telegram username without @
   zalo:'0799808594',       // Zalo phone number
   googleReview:'',         // café review link, e.g. 'https://g.page/r/XXXX/review'
-  orderEndpoint:'https://cafeupnhatrang.nhatrang.workers.dev/',        // Cloudflare Worker URL: orders go straight to the café's Telegram bot
-  umamiId:'17dd7f6c-e3d2-49b9-acaa-5a146f1dd86e'               // Umami "Website ID" for the visit and order counter
+  orderEndpoint:'https://cafeupnhatrang.nhatrang.workers.dev/',
+  umamiId:'17dd7f6c-e3d2-49b9-acaa-5a146f1dd86e',
+  vietqr:null,             // demo: no bank account
+  sheetId:''               // demo: stop-list and prices come from the staff screen
 };
 /* counter: sends events to Umami when umamiId is set; does nothing otherwise */
 function track(name,data){try{if(window.umami&&umami.track)umami.track(name,data)}catch(e){}}
@@ -1355,7 +1424,16 @@ function loadCounter(){
 }
 
 const D={
- cafe_name:["Tên quán của bạn","Your café name here","Здесь будет название вашего заведения"],
+ rate_demo:["Bản demo: ở quán thật, nút này mở trang đánh giá của quán trên Google Maps.","Demo: in a real café this button opens its Google Maps review page.","Демо: в настоящем кафе кнопка откроет страницу отзыва этого кафе в Google Maps."],
+ pay_demo:["Mã minh họa, không thanh toán thật.","Illustration only, not a real payment code.","Иллюстрация, не настоящий платёжный код."],
+ demo:["Thực đơn demo của CafeUp. Món và giá là ví dụ điển hình ở Phú Quốc.","Demo menu by CafeUp. Dishes and prices are a typical Phu Quoc example.","Демо-меню от CafeUp. Блюда и цены — типичный пример для Фукуока."],
+ skin_lbl:["Kiểu thực đơn (demo):","Menu style (demo):","Стиль меню (демо):"],
+ skin_cafe:["Quán cà phê","Coffee house","Кофейня"],
+ skin_beach:["Biển","Beach","Пляж"],
+ skin_cats:["Động vật","Animals","Животные"],
+ skin_karaoke:["Karaoke","Karaoke","Караоке"],
+ skin_night:["Phố đêm","Night street","Ночной"],
+ skin_hint:["Chúng tôi làm thực đơn theo phong cách của quán bạn: màu sắc, phông chữ, logo.","We style the menu to match your café: colours, fonts, logo.","Сделаем меню в стиле вашего заведения: цвета, шрифты, логотип."],
  cat_pq:["Món Phú Quốc","Phu Quoc dishes","Блюда Фукуока"],
  cat_sea:["Hải sản","Seafood","Морепродукты"],
  cat_drink:["Đồ uống","Drinks","Напитки"],
@@ -1364,34 +1442,23 @@ const D={
  total:["Tổng","Total","Итого"],
  table:["Số bàn","Table number","Номер стола"],
  table_chip:["Bàn","Table","Стол"],
- note:["Ghi chú cho bếp","Note for the kitchen","Комментарий для кухни"],
  note_ph:["không đường, không ngò…","no sugar, no coriander…","без сахара, без кинзы…"],
  send_tg:["Gửi qua Telegram","Send via Telegram","Отправить в Telegram"],
  send_zl:["Gửi qua Zalo","Send via Zalo","Отправить в Zalo"],
  hint_tg:["Đơn đã được sao chép. Nếu Telegram không tự điền, hãy dán vào chat.","The order is copied too. If Telegram doesn't fill it in, paste it into the chat.","Заказ скопирован. Если Telegram не вставит его сам, вставьте текст в чат."],
  hint_zl:["Đơn đã được sao chép. Dán vào chat Zalo và gửi.","The order is copied. Paste it into the Zalo chat and send.","Заказ скопирован. Вставьте его в чат Zalo и отправьте."],
- not_connected:["Bản demo: chưa kết nối tài khoản của quán. Bên dưới là đơn bếp sẽ nhận.","Demo: the café's messenger isn't connected yet. Below is what the kitchen would receive.","Демо: мессенджер кафе пока не подключён. Ниже — что получит кухня."],
  kitchen:["Bếp nhận được","The kitchen receives","Кухня получит"],
  pay:["Thanh toán VietQR","Pay by VietQR","Оплата по VietQR"],
- pay_demo:["Mã minh họa, không thanh toán thật.","Illustration only, not a real payment code.","Иллюстрация, не настоящий платёжный код."],
  add:["Thêm","Add","Добавить"],
  view:["Xem đơn","View order","Посмотреть заказ"],
  empty:["Chọn món để gọi","Pick dishes to order","Выберите блюда"],
  copied:["Đã sao chép đơn","Order copied","Заказ скопирован"],
  per_piece:["/ con","/ piece","/ шт."],
- skin_lbl:["Kiểu thực đơn (demo):","Menu style (demo):","Стиль меню (демо):"],
- skin_cafe:["Quán cà phê","Coffee house","Кофейня"],
- skin_beach:["Biển","Beach","Пляж"],
- skin_cats:["Động vật","Animals","Животные"],
- skin_karaoke:["Karaoke","Karaoke","Караоке"],
- skin_night:["Phố đêm","Night street","Ночной"],
- skin_hint:["Chúng tôi làm thực đơn theo phong cách của quán bạn: màu sắc, phông chữ, logo.","We style the menu to match your café: colours, fonts, logo.","Сделаем меню в стиле вашего заведения: цвета, шрифты, логотип."],
  waiter_btn:["Gọi phục vụ","Waiter","Официант"],
  waiter_h:["Gọi phục vụ","Call a waiter","Позвать официанта"],
  waiter_q:["Bạn cần gì?","What do you need?","Что нужно?"],
  r_come:["Mời nhân viên đến bàn","Please come to my table","Подойти к столу"],
  r_bill:["Tính tiền","Bring the bill","Принести счёт"],
- r_water:["Thêm nước đá / khăn giấy","Ice water / napkins","Вода со льдом / салфетки"],
  staff_gets:["Nhân viên nhận được","Staff receive","Персонал получит"],
  pay_method:["Cách thanh toán","How will you pay?","Как будете платить?"],
  cash:["Tiền mặt","Cash","Наличными"],
@@ -1412,8 +1479,6 @@ const D={
  sending:["Đang gửi…","Sending…","Отправляем…"],
  sent_direct:["Đơn đã đến nhân viên!","The staff got your order!","Заказ получен персоналом!"],
  sent_waiter:["Nhân viên đã nhận được yêu cầu.","The staff got your request.","Персонал получил запрос."],
- send_fail:["Không gửi được. Hãy gửi qua Telegram hoặc Zalo bên dưới.","Couldn't send. Please use Telegram or Zalo below.","Не получилось отправить. Отправьте через Telegram или Zalo ниже."],
- tip_h:["Tiền tip cho nhân viên (không bắt buộc)","Tip for the staff (optional)","Чаевые персоналу (не является обязательным условием)"],
  tip_none:["Không","No tip","Нет"],
  tip_short:["Tip","Tip","Чаевые"],
  tip_hint:["Tiền tip được cộng vào hóa đơn.","The tip is added to your bill.","Чаевые добавятся к счёту."],
@@ -1432,16 +1497,27 @@ const D={
  amount_staff:["Nhân viên sẽ báo số tiền","The waiter will tell you the amount","Сумму назовёт официант"],
  paid:["Tôi đã thanh toán","I've paid","Я оплатил(а)"],
  thanks_h:["Cảm ơn bạn!","Thank you!","Спасибо!"],
- thanks_p:["Bạn thấy ngon không? Đánh giá quán trên Google Maps chỉ mất 30 giây và giúp quán gia đình rất nhiều.","Enjoyed it? Rating us on Google Maps takes 30 seconds and helps a small family café a lot.","Понравилось? Оценить нас в Google Maps — 30 секунд, а маленькому семейному кафе это очень помогает."],
  rate_btn:["★ Đánh giá trên Google Maps","★ Rate us on Google Maps","★ Оценить в Google Maps"],
+ cafe_name:["Tên quán của bạn","Your café name here","Здесь будет название вашего заведения"],
+ cafe_sub:["Dương Đông · Phú Quốc","Duong Dong · Phu Quoc","Зыонгдонг · Фукуок"],
+ not_connected:["Bản demo: chưa kết nối tài khoản của quán. Bên dưới là đơn bếp sẽ nhận.","Demo: the café's messenger isn't connected yet. Below is what the kitchen would receive.","Демо: мессенджер кафе пока не подключён. Ниже — что получит кухня."],
+ send_fail:["Không gửi được. Hãy gửi qua Telegram hoặc Zalo bên dưới.","Couldn't send. Please use Telegram or Zalo below.","Не получилось отправить. Отправьте через Telegram или Zalo ниже."],
+ pay_qr_staff:["Nhân viên sẽ mang mã VietQR đến bàn.", "The waiter will bring the VietQR code to your table.", "Официант принесёт QR-код VietQR к столу."],
+ pay_save:["Số tiền đã có sẵn trong mã. Lưu ảnh mã (nhấn giữ) và mở trong ứng dụng ngân hàng.", "The amount is already in the code. Save the code (press and hold) and open it in your banking app.", "Сумма уже в коде. Сохраните его (долгое нажатие) и откройте в банковском приложении."],
+ cat_pop:["⭐ Phổ biến", "⭐ Popular", "⭐ Популярное"],
+ note:["Ghi chú cho cả đơn", "Comment for the whole order", "Комментарий к общему заказу"],
+ r_water:["Dụng cụ ăn / khăn giấy", "Cutlery / napkins", "Приборы / салфетки"],
+ card:["Thẻ", "Card", "Картой"],
+ card_note:["Nhân viên sẽ mang máy quẹt thẻ đến bàn.", "The waiter will bring the card terminal to your table.", "Официант принесёт терминал для оплаты картой к столу."],
+ tip_h:["Tiền tip cho nhân viên (không bắt buộc)", "Tip for the staff (optional)", "Чаевые персоналу (не является обязательным условием)"],
+ thanks_p:["Bạn thấy ngon không? Đánh giá quán trên Google Maps chỉ mất 30 giây và giúp quán gia đình rất nhiều.","Enjoyed it? Rating us on Google Maps takes 30 seconds and helps a small family café a lot.","Понравилось? Оценить нас в Google Maps — 30 секунд, а маленькому семейному кафе это очень помогает."],
  rate_toast:["Demo: ở đây sẽ mở Google Maps","Demo: Google Maps opens here","Демо: здесь откроется Google Maps"],
- rate_demo:["Bản demo: ở quán thật, nút này mở trang đánh giá của quán trên Google Maps.","Demo: in a real café this button opens its Google Maps review page.","Демо: в настоящем кафе кнопка откроет страницу отзыва этого кафе в Google Maps."],
- demo:["Thực đơn demo của CafeUp. Món và giá là ví dụ điển hình ở Phú Quốc.","Demo menu by CafeUp. Dishes and prices are a typical Phu Quoc example.","Демо-меню от CafeUp. Блюда и цены — типичный пример для Фукуока."]
 };
 const LI={vi:0,en:1,ru:2};
 let lang='en';
 const T=k=>D[k][LI[lang]];
 
+const IMGV={};
 const ICON={
  cup:'<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 12h16v6a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7z"/><path d="M23 14h2a3 3 0 0 1 0 6h-2"/><path d="M12 5c0 2 2 2 2 4M17 5c0 2 2 2 2 4"/></svg>',
  glass:'<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 8h14l-2 19H11z"/><path d="M18 8l3-5"/><path d="M10 14h12"/></svg>',
@@ -1450,25 +1526,27 @@ const ICON={
  crab:'<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="16" cy="19" rx="8" ry="6"/><path d="M8 17l-4-3M8 21l-4 2M24 17l4-3M24 21l4 2M11 13l-3-6M21 13l3-6"/></svg>'
 };
 const MENU=[
- {id:'bk',cat:'pq',vi:'Bún kèn',price:50000,ic:'bowl',bg:'#E2B44C',fg:'#3D2A08',en:['Bún kèn, Phu Quoc fish noodle soup','The island speciality: rice noodles in a coconut-milk broth with flaked fish, herbs and green papaya.'],ru:['Бун кен — суп Фукуока','Фирменное блюдо острова: рисовая лапша в бульоне на кокосовом молоке с рыбой, зеленью и зелёной папайей.'],vd:'Bún, nước cốt dừa, cá xay, đu đủ, rau.'},
- {id:'gct',cat:'pq',vi:'Gỏi cá trích',price:120000,ic:'fish',bg:'#5E8F9A',fg:'#EAF6F8',en:['Raw herring salad, Phu Quoc style','Fresh herring cured in lime with coconut, onion and herbs. Wrap it in rice paper with greens and dip in peanut sauce.'],ru:['Салат из сельди по-фукуокски','Свежая сельдь в лайме с кокосом, луком и зеленью. Заворачивают в рисовую бумагу с зеленью и макают в арахисовый соус.'],vd:'Cá trích tươi, dừa, rau, bánh tráng, nước chấm đậu phộng.'},
- {id:'bcc',cat:'pq',vi:'Bánh canh chả cá',price:55000,ic:'bowl',bg:'#C9A27A',fg:'#2E1F10',en:['Thick noodle soup with fish cakes','Chewy tapioca noodles, fish cakes from local fish, clear broth.'],ru:['Бань кань с рыбными котлетками','Плотная лапша из тапиоки, котлетки из местной рыбы, прозрачный бульон.'],vd:'Bánh canh, chả cá thu, nước dùng.'},
- {id:'ht',cat:'pq',vi:'Hủ tiếu',price:50000,ic:'bowl',bg:'#B8865B',fg:'#FFF3E4',en:['Hủ tiếu, clear pork noodle soup','Thin rice noodles, pork broth, sliced pork, shrimp and quail egg.'],ru:['Хутьеу — суп с рисовой лапшой','Тонкая рисовая лапша, свиной бульон, свинина, креветки и перепелиное яйцо.'],vd:'Hủ tiếu, nước lèo xương heo, thịt, tôm.'},
- {id:'nhum',cat:'sea',vi:'Nhum nướng mỡ hành',price:35000,unit:true,ic:'crab',bg:'#4B3B5C',fg:'#F1E9F7',en:['Grilled sea urchin with scallion oil','Grilled in the shell with scallion oil and crushed peanuts.'],ru:['Морской ёж на гриле с луковым маслом','Запекают в панцире с зелёным луком и арахисом.'],vd:'Nướng mỡ hành, đậu phộng.'},
- {id:'mn',cat:'sea',vi:'Mực nướng sa tế',price:150000,ic:'fish',bg:'#B5543A',fg:'#FBE7DD',en:['Charcoal-grilled squid with satay chili','Whole local squid over charcoal with a mildly spicy satay sauce.'],ru:['Кальмар на углях с соусом сатай','Целый местный кальмар на углях, слегка острый соус сатай.'],vd:'Mực nướng than, sa tế.'},
- {id:'gh',cat:'sea',vi:'Ghẹ Hàm Ninh hấp (2 con)',price:220000,ic:'crab',bg:'#D46A4A',fg:'#FFF0EA',en:['Steamed blue crabs (2 pcs)','Hàm Ninh blue crabs steamed with lemongrass, served with salt, pepper and lime dip.'],ru:['Крабы на пару (2 шт.)','Синие крабы из Хамнинь на пару с лемонграссом. Подаются с солью, перцем и лаймом.'],vd:'Ghẹ hấp sả, muối tiêu chanh.'},
- {id:'cchs',cat:'sea',vi:'Cơm chiên hải sản',price:85000,ic:'bowl',bg:'#D9A441',fg:'#3A2808',en:['Seafood fried rice','Fried rice with shrimp, squid and egg.'],ru:['Жареный рис с морепродуктами','Рис, жаренный с креветками, кальмаром и яйцом.'],vd:'Cơm chiên tôm, mực, trứng.'},
- {id:'cpsd',cat:'drink',vi:'Cà phê sữa đá',price:25000,ic:'cup',bg:'#6B4A2E',fg:'#F3E6D2',en:['Iced coffee with condensed milk','Strong phin coffee over ice with sweet condensed milk.'],ru:['Кофе со сгущёнкой и льдом','Крепкий кофе из фина, лёд и сгущённое молоко.'],vd:'Cà phê phin, sữa đặc, đá.'},
- {id:'bx',cat:'drink',vi:'Bạc xỉu',price:30000,ic:'glass',bg:'#D9BF97',fg:'#4A3420',en:['Bạc xỉu, milky coffee','More milk than coffee. Mild and sweet.'],ru:['Бак сиу, молочный кофе','Молока больше, чем кофе. Мягкий и сладкий.'],vd:'Nhiều sữa, ít cà phê.'},
- {id:'cpm',cat:'drink',vi:'Cà phê muối',price:35000,ic:'cup',bg:'#A9805A',fg:'#FFF4E6',en:['Salt coffee','Coffee under a lightly salted cream. Sweet, salty and smooth.'],ru:['Солёный кофе','Кофе под слегка солёной сливочной пенкой. Сладко-солёный и мягкий.'],vd:'Cà phê phin, kem muối béo.'},
- {id:'stb',cat:'drink',vi:'Sinh tố bơ',price:45000,ic:'glass',bg:'#8DB255',fg:'#1F300C',en:['Avocado smoothie','Ripe avocado, fresh milk and a little condensed milk.'],ru:['Смузи из авокадо','Спелый авокадо, молоко и немного сгущёнки.'],vd:'Bơ chín, sữa tươi, sữa đặc.'},
- {id:'dua',cat:'drink',vi:'Dừa tươi',price:30000,ic:'glass',bg:'#7FA36B',fg:'#F2F7EA',en:['Fresh coconut','Chilled young coconut, drink straight from the shell.'],ru:['Свежий кокос','Охлаждённый молодой кокос, пьют прямо из ореха.'],vd:'Dừa xiêm ướp lạnh.'},
- {id:'ckb',cat:'des',vi:'Chè khúc bạch',price:40000,ic:'glass',bg:'#E8D9C0',fg:'#4A3A22',en:['Chè khúc bạch, milk jelly dessert','Cubes of milk jelly with lychee, almonds and syrup over ice.'],ru:['Че кхук бать — молочное желе','Кубики молочного желе с личи, миндалём и сиропом со льдом.'],vd:'Khúc bạch, vải, hạnh nhân, đá.'},
- {id:'kd',cat:'des',vi:'Kem dừa',price:45000,ic:'glass',bg:'#9CC3B4',fg:'#123128',en:['Coconut ice cream','Served in half a coconut with peanuts and coconut flesh.'],ru:['Кокосовое мороженое','Подаётся в половинке кокоса с арахисом и мякотью.'],vd:'Kem dừa trong trái dừa, đậu phộng.'}
+ {id:'1',img:'bk',cat:'pq',vi:'Bún kèn',price:50000,ic:'bowl',bg:'#E2B44C',fg:'#3D2A08',en:['Bún kèn, Phu Quoc fish noodle soup','The island speciality: rice noodles in a coconut-milk broth with flaked fish, herbs and green papaya.'],ru:['Бун кен — суп Фукуока','Фирменное блюдо острова: рисовая лапша в бульоне на кокосовом молоке с рыбой, зеленью и зелёной папайей.'],vd:'Bún, nước cốt dừa, cá xay, đu đủ, rau.'},
+ {id:'2',img:'gct',cat:'pq',vi:'Gỏi cá trích',price:120000,ic:'fish',bg:'#5E8F9A',fg:'#EAF6F8',en:['Raw herring salad, Phu Quoc style','Fresh herring cured in lime with coconut, onion and herbs. Wrap it in rice paper with greens and dip in peanut sauce.'],ru:['Салат из сельди по-фукуокски','Свежая сельдь в лайме с кокосом, луком и зеленью. Заворачивают в рисовую бумагу с зеленью и макают в арахисовый соус.'],vd:'Cá trích tươi, dừa, rau, bánh tráng, nước chấm đậu phộng.'},
+ {id:'3',img:'bcc',cat:'pq',vi:'Bánh canh chả cá',price:55000,ic:'bowl',bg:'#C9A27A',fg:'#2E1F10',en:['Thick noodle soup with fish cakes','Chewy tapioca noodles, fish cakes from local fish, clear broth.'],ru:['Бань кань с рыбными котлетками','Плотная лапша из тапиоки, котлетки из местной рыбы, прозрачный бульон.'],vd:'Bánh canh, chả cá thu, nước dùng.'},
+ {id:'4',img:'ht',cat:'pq',vi:'Hủ tiếu',price:50000,ic:'bowl',bg:'#B8865B',fg:'#FFF3E4',en:['Hủ tiếu, clear pork noodle soup','Thin rice noodles, pork broth, sliced pork, shrimp and quail egg.'],ru:['Хутьеу — суп с рисовой лапшой','Тонкая рисовая лапша, свиной бульон, свинина, креветки и перепелиное яйцо.'],vd:'Hủ tiếu, nước lèo xương heo, thịt, tôm.'},
+ {id:'5',img:'nhum',cat:'sea',vi:'Nhum nướng mỡ hành',price:35000,unit:true,ic:'crab',bg:'#4B3B5C',fg:'#F1E9F7',en:['Grilled sea urchin with scallion oil','Grilled in the shell with scallion oil and crushed peanuts.'],ru:['Морской ёж на гриле с луковым маслом','Запекают в панцире с зелёным луком и арахисом.'],vd:'Nướng mỡ hành, đậu phộng.'},
+ {id:'6',img:'mn',cat:'sea',vi:'Mực nướng sa tế',price:150000,ic:'fish',bg:'#B5543A',fg:'#FBE7DD',en:['Charcoal-grilled squid with satay chili','Whole local squid over charcoal with a mildly spicy satay sauce.'],ru:['Кальмар на углях с соусом сатай','Целый местный кальмар на углях, слегка острый соус сатай.'],vd:'Mực nướng than, sa tế.'},
+ {id:'7',img:'gh',cat:'sea',vi:'Ghẹ Hàm Ninh hấp (2 con)',price:220000,ic:'crab',bg:'#D46A4A',fg:'#FFF0EA',en:['Steamed blue crabs (2 pcs)','Hàm Ninh blue crabs steamed with lemongrass, served with salt, pepper and lime dip.'],ru:['Крабы на пару (2 шт.)','Синие крабы из Хамнинь на пару с лемонграссом. Подаются с солью, перцем и лаймом.'],vd:'Ghẹ hấp sả, muối tiêu chanh.'},
+ {id:'8',img:'cchs',cat:'sea',vi:'Cơm chiên hải sản',price:85000,ic:'bowl',bg:'#D9A441',fg:'#3A2808',en:['Seafood fried rice','Fried rice with shrimp, squid and egg.'],ru:['Жареный рис с морепродуктами','Рис, жаренный с креветками, кальмаром и яйцом.'],vd:'Cơm chiên tôm, mực, trứng.'},
+ {id:'9',img:'cpsd',cat:'drink',vi:'Cà phê sữa đá',price:25000,ic:'cup',bg:'#6B4A2E',fg:'#F3E6D2',en:['Iced coffee with condensed milk','Strong phin coffee over ice with sweet condensed milk.'],ru:['Кофе со сгущёнкой и льдом','Крепкий кофе из фина, лёд и сгущённое молоко.'],vd:'Cà phê phin, sữa đặc, đá.'},
+ {id:'10',img:'bx',cat:'drink',vi:'Bạc xỉu',price:30000,ic:'glass',bg:'#D9BF97',fg:'#4A3420',en:['Bạc xỉu, milky coffee','More milk than coffee. Mild and sweet.'],ru:['Бак сиу, молочный кофе','Молока больше, чем кофе. Мягкий и сладкий.'],vd:'Nhiều sữa, ít cà phê.'},
+ {id:'11',img:'cpm',cat:'drink',vi:'Cà phê muối',price:35000,ic:'cup',bg:'#A9805A',fg:'#FFF4E6',en:['Salt coffee','Coffee under a lightly salted cream. Sweet, salty and smooth.'],ru:['Солёный кофе','Кофе под слегка солёной сливочной пенкой. Сладко-солёный и мягкий.'],vd:'Cà phê phin, kem muối béo.'},
+ {id:'12',img:'stb',cat:'drink',vi:'Sinh tố bơ',price:45000,ic:'glass',bg:'#8DB255',fg:'#1F300C',en:['Avocado smoothie','Ripe avocado, fresh milk and a little condensed milk.'],ru:['Смузи из авокадо','Спелый авокадо, молоко и немного сгущёнки.'],vd:'Bơ chín, sữa tươi, sữa đặc.'},
+ {id:'13',img:'dua',cat:'drink',vi:'Dừa tươi',price:30000,ic:'glass',bg:'#7FA36B',fg:'#F2F7EA',en:['Fresh coconut','Chilled young coconut, drink straight from the shell.'],ru:['Свежий кокос','Охлаждённый молодой кокос, пьют прямо из ореха.'],vd:'Dừa xiêm ướp lạnh.'},
+ {id:'14',img:'ckb',cat:'des',vi:'Chè khúc bạch',price:40000,ic:'glass',bg:'#E8D9C0',fg:'#4A3A22',en:['Chè khúc bạch, milk jelly dessert','Cubes of milk jelly with lychee, almonds and syrup over ice.'],ru:['Че кхук бать — молочное желе','Кубики молочного желе с личи, миндалём и сиропом со льдом.'],vd:'Khúc bạch, vải, hạnh nhân, đá.'},
+ {id:'15',img:'kd',cat:'des',vi:'Kem dừa',price:45000,ic:'glass',bg:'#9CC3B4',fg:'#123128',en:['Coconut ice cream','Served in half a coconut with peanuts and coconut flesh.'],ru:['Кокосовое мороженое','Подаётся в половинке кокоса с арахисом и мякотью.'],vd:'Kem dừa trong trái dừa, đậu phộng.'}
 ];
+let POPULAR=[];
+const catList=()=>POPULAR.length?['pop',...CATS]:CATS;
 const CATS=['pq','sea','drink','des'];
 /* stop-list: dishes that ran out today (demo: set by hand; for clients this comes from the café's Google Sheet) */
-const SOLD_OUT=['gh'];
+const SOLD_OUT=[];   /* ids of dishes that ran out today (set from the staff screen) */
 const cart={};
 let table='4';
 /* orders already sent from this table; kept for 8 hours or until the bill is paid */
@@ -1483,7 +1561,7 @@ function loadSent(){try{
   if(hashTable&&d.table!==hashTable)return;        /* a different table's QR: start fresh */
   if(!hashTable&&d.table)table=d.table;            /* opened without a table number: keep the saved one */
   sent=d.sent||[];
-  Object.entries(d.cart||{}).forEach(([id,q])=>{if(MENU.some(m=>m.id===id)&&q>0)cart[id]=q});
+  Object.entries(d.cart||{}).forEach(([id,q])=>{if(MENU.some(m=>m.id===idOf(id))&&q>0)cart[id]=q});
   if(d.pm)pm=d.pm;
   if(d.guestName){guestName=d.guestName;document.getElementById('guestName').value=guestName;}
   document.getElementById('table').value=table;
@@ -1491,13 +1569,54 @@ function loadSent(){try{
 const sentItems=()=>{const a={};sent.forEach(o=>Object.entries(o.items).forEach(([id,q])=>a[id]=(a[id]||0)+q));return a};
 const sentTotal=()=>sent.reduce((s,o)=>s+o.total,0);
 let closedBill=0;
-const billTotal=()=>sentTotal()||closedBill||MENU.reduce((s,m)=>s+(cart[m.id]||0)*m.price,0);
+const billTotal=()=>sentTotal()||closedBill||total();
 
 function fmt(n,l){l=l||lang;const s=Math.round(n).toString(),sep=l==='vi'?'.':l==='en'?',':' ';return s.replace(/\B(?=(\d{3})+(?!\d))/g,sep)+' ₫'}
 const name=m=>lang==='vi'?m.vi:m[lang][0];
 const desc=m=>lang==='vi'?m.vd:m[lang][1];
-const total=()=>MENU.reduce((s,m)=>s+(cart[m.id]||0)*m.price,0);
+const total=()=>rows(cart).reduce((s,r)=>s+r.q*r.m.price,0);
 const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const BASES={s:['cơm sushi','sushi rice + salad','рис для суши + салат'],g:['gạo lứt','brown rice + salad','бурый рис + салат'],x:['toàn salad','salad only','только салат']};
+const BP_T={vi:['Chọn đế cho poke','Nửa cơm và nửa salad, hoặc toàn bộ salad.','Hủy'],en:['Choose the base','Half rice and half salad, or salad only.','Cancel'],ru:['Выберите основу','Половина риса и половина салата или только салат.','Отмена']};
+const idOf=k=>k.split('~')[0];
+const baseName=(k,l)=>{const b=BASES[k.split('~')[1]];return b?b[{vi:0,en:1,ru:2}[l||lang]]:''};
+function rows(o){const r=[];MENU.forEach(m=>Object.keys(o).forEach(k=>{if(idOf(k)===m.id&&o[k]>0)r.push({k,m,q:o[k]})}));return r}
+const rowName=(r,l)=>{l=l||lang;const n=l==='vi'?r.m.vi:r.m[l][0],b=baseName(r.k,l);return b?n+' · '+b:n};
+const inCart=id=>Object.keys(cart).reduce((a,k)=>a+(idOf(k)===id?cart[k]:0),0);
+const lastBase={};
+const NOTES=(()=>{try{return JSON.parse(localStorage.getItem('cafeup_notes')||'{}')}catch(e){return{}}})();let noteEdit=null;
+const NT_L={vi:['✏️ Yêu cầu','Ví dụ: gấp đôi cá hồi, không dưa leo','Món có thay đổi tính phí: nhân viên sẽ cộng vào hóa đơn.'],en:['✏️ Request','e.g. double salmon, no cucumber','Paid changes are added to the bill by the waiter.'],ru:['✏️ Пожелание','Например: двойной лосось, без огурца','Платные изменения официант добавит в счёт.']};
+const ntl=i=>(NT_L[lang]||NT_L.en)[i];
+const cleanNote=t=>String(t||'').replace(/[—\n\r]+/g,' - ').replace(/\s+/g,' ').trim().slice(0,80);
+function saveNotes(){Object.keys(NOTES).forEach(k=>{if(!cart[k]||!cleanNote(NOTES[k]))delete NOTES[k]});try{localStorage.setItem('cafeup_notes',JSON.stringify(NOTES))}catch(e){}}
+const escH=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function noteRow(r){
+  const k=r.k,n=cleanNote(NOTES[k]);
+  if(noteEdit===k)return `<div class="dnote"><input data-ni="${escH(k)}" maxlength="80" value="${escH(NOTES[k]||'')}" placeholder="${escH(ntl(1))}" enterkeyhint="done"></div>`;
+  return n?`<button class="dnb has" data-nk="${escH(k)}">✏️ ${escH(n)}</button>`:`<button class="dnb" data-nk="${escH(k)}">${ntl(0)}</button>`;
+}
+setTimeout(()=>{const L=document.getElementById('lines');
+  L.addEventListener('click',e=>{const c=e.target.closest('[data-cq]');if(!c)return;const k=c.dataset.cq;cart[k]=(cart[k]||0)+(+c.dataset.d);if(cart[k]<=0)delete cart[k];saveNotes();renderList();renderBar();saveSent();renderSheet();if(!count()&&!sent.length)document.getElementById('closeSheet').click()});
+  L.addEventListener('click',e=>{const b=e.target.closest('[data-nk]');if(!b)return;noteEdit=b.dataset.nk;renderSheet();const i=L.querySelector('[data-ni]');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}});
+  L.addEventListener('input',e=>{const i=e.target.closest('[data-ni]');if(!i)return;NOTES[i.dataset.ni]=i.value;saveNotes();document.getElementById('kitchenText').textContent=kitchenText()});
+  L.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.closest('[data-ni]')){e.preventDefault();e.target.blur()}});
+  L.addEventListener('focusout',e=>{if(e.target.closest('[data-ni]')){noteEdit=null;setTimeout(renderSheet,0)}});
+},0);
+
+function askBase(m){
+  const el=document.getElementById('bpick'),t=BP_T[lang]||BP_T.en;
+  el.querySelector('h3').textContent=t[0];el.querySelector('.bpn').textContent=(lang==='vi'?m.vi:m[lang][0]);el.querySelector('.bps').textContent=t[1];
+  el.querySelector('.bpo').innerHTML=Object.keys(BASES).map(b=>`<button data-base="${b}">${{s:'🍚',g:'🟤',x:'🥗'}[b]} ${BASES[b][{vi:0,en:1,ru:2}[lang]]}</button>`).join('');
+  el.querySelector('.bpc').textContent=t[2];el.dataset.id=m.id;el.hidden=false;
+}
+setTimeout(()=>document.getElementById('bpick').addEventListener('click',e=>{
+  const el=document.getElementById('bpick');
+  if(e.target===el||e.target.closest('.bpc')){el.hidden=true;return}
+  const b=e.target.closest('[data-base]');if(!b)return;
+  const id=el.dataset.id,k=id+'~'+b.dataset.base;cart[k]=(cart[k]||0)+1;lastBase[id]=k;el.hidden=true;
+  track('add_dish',{dish:MENU.find(m=>m.id===id).vi,lang});renderList();renderBar();saveSent();
+}),0);
+
 function plural(n){
   if(lang==='vi')return `${n} món`;
   if(lang==='en')return `${n} item${n===1?'':'s'}`;
@@ -1505,19 +1624,19 @@ function plural(n){
 }
 
 function renderCats(){
-  document.getElementById('cats').innerHTML=CATS.map((c,i)=>`<button data-cat="${c}" aria-pressed="${i===0}">${T('cat_'+c)}</button>`).join('');
+  document.getElementById('cats').innerHTML=catList().map((c,i)=>`<button data-cat="${c}" aria-pressed="${i===0}">${T('cat_'+c)}</button>`).join('');
 }
 function itemHTML(m){
-  const q=cart[m.id]||0;
+  const q=inCart(m.id);
   const usd=lang==='vi'?'':` <span class="usd">≈ $${(m.price/26000).toFixed(1)}</span>`;
   const so=SOLD_OUT.includes(m.id);
-  return `<article class="it${so?' so':''}">${DISH_IMG.includes(m.id)?`<img class="ph" src="img/${m.id}.webp" alt="" loading="lazy">`:`<div class="ph" style="background:${m.bg};color:${m.fg}">${ICON[m.ic]}</div>`}
-   <div style="min-width:0"><div class="n">${name(m)}</div>${lang!=='vi'?`<div class="o">${m.vi}</div>`:''}<div class="d">${desc(m)}</div>
+  return `<article class="it${so?' so':''}">${(m.img||(window.__PH||{})[m.id])?`<img class="ph" src="${photoSrc(m)}" alt="" loading="lazy">`:`<div class="ph ph0" aria-hidden="true">${m.id}</div>`}
+   <div style="min-width:0"><div class="n">${/^\d+$/.test(m.id)?`<span class="no">${m.id}</span> `:''}${name(m)}</div>${lang!=='vi'?`<div class="o">${m.vi}</div>`:''}<div class="d">${desc(m)}</div>
    <div class="row"><span class="p mono">${fmt(m.price)}${m.unit?' '+T('per_piece'):''}${usd}</span>
    ${so?`<span class="sold">${T('sold_out')}</span>`:`<span class="qty">${q?`<button class="minus" data-id="${m.id}" data-d="-1" aria-label="−">−</button><span class="q mono">${q}</span>`:''}<button data-id="${m.id}" data-d="1" aria-label="${T('add')}">+</button></span>`}</div></div></article>`;
 }
 function renderList(){
-  document.getElementById('list').innerHTML=CATS.map(c=>`<section class="sect" id="s-${c}"><h2>${T('cat_'+c)}</h2><div class="items">${MENU.filter(m=>m.cat===c).map(itemHTML).join('')}</div></section>`).join('');
+  document.getElementById('list').innerHTML=catList().map(c=>`<section class="sect" id="s-${c}"><h2>${T('cat_'+c)}</h2><div class="items">${(c==='pop'?POPULAR.map(id=>MENU.find(m=>m.id===id)).filter(Boolean):MENU.filter(m=>m.cat===c)).map(itemHTML).join('')}</div></section>`).join('');
 }
 function renderBar(){
   const n=count(), b=document.getElementById('openCart');
@@ -1532,19 +1651,19 @@ function renderBar(){
 let pm='qr', reason='come';
 function kitchenText(){
   const langName={vi:'tiếng Việt',en:'tiếng Anh',ru:'tiếng Nga'}[lang];
-  const lines=MENU.filter(m=>cart[m.id]).map(m=>`${cart[m.id]} × ${m.vi} — ${fmt(cart[m.id]*m.price,'vi')}`).join('\n');
+  const lines=rows(cart).map(r=>`${r.q} × [${r.m.id}] ${r.m.vi}${baseName(r.k,'vi')?' · Đế: '+baseName(r.k,'vi'):''}${cleanNote(NOTES[r.k])?' · Yêu cầu: '+cleanNote(NOTES[r.k]):''} — ${fmt(r.q*r.m.price,'vi')}`).join('\n');
   const note=document.getElementById('note').value.trim();
-  return `${sent.length?`GỌI THÊM (lần ${sent.length+1})`:'ĐƠN MỚI'} · Bàn ${table||'?'}${guestName?` · ${guestName}`:''}\n${lines}\nTổng: ${fmt(total(),'vi')}\nThanh toán: ${pm==='cash'?'Tiền mặt':'Chuyển khoản VietQR'}${note?`\nGhi chú: ${note}`:''}\nKhách nói ${langName}`;
+  return `${sent.length?`GỌI THÊM (lần ${sent.length+1})`:'ĐƠN MỚI'} · Bàn ${table||'?'}${guestName?` · ${guestName}`:''}\n${lines}\nTổng: ${fmt(total(),'vi')}${note?`\nGhi chú: ${note}`:''}\nKhách nói ${langName}`;
 }
 function renderSheet(){
   const si=sentItems(), n=count();
   document.getElementById('ordered').hidden=!sent.length;
-  document.getElementById('orderedLines').innerHTML=MENU.filter(m=>si[m.id]).map(m=>`<li><span>${si[m.id]} × ${name(m)}</span><span class="mono">${fmt(si[m.id]*m.price)}</span></li>`).join('');
+  document.getElementById('orderedLines').innerHTML=rows(si).map(r=>`<li><span>${r.q} × ${rowName(r)}</span><span class="mono">${fmt(r.q*r.m.price)}</span></li>`).join('');
   document.getElementById('orderedSum').textContent=fmt(sentTotal());
   document.getElementById('newPart').hidden=!n;
   document.getElementById('newH').hidden=!sent.length;
   document.getElementById('emptyNew').hidden=!!n;
-  document.getElementById('lines').innerHTML=MENU.filter(m=>cart[m.id]).map(m=>`<li><span>${cart[m.id]} × ${name(m)}</span><span class="mono">${fmt(cart[m.id]*m.price)}</span></li>`).join('');
+  document.getElementById('lines').innerHTML=rows(cart).map(r=>`<li><span>${r.q} × ${rowName(r)}${noteRow(r)}<span class="cq"><button data-cq="${escH(r.k)}" data-d="-1" aria-label="-1">−</button><button data-cq="${escH(r.k)}" data-d="1" aria-label="+1">+</button><button class="del" data-cq="${escH(r.k)}" data-d="-99">🗑 ${({vi:'Xóa',en:'Remove',ru:'Удалить'})[lang]||'Remove'}</button></span></span><span class="mono">${fmt(r.q*r.m.price)}</span></li>`).join('')+(rows(cart).length?`<li class="dnh">${ntl(2)}</li>`:'');
   document.getElementById('sum').textContent=fmt(total());
   document.getElementById('kitchenText').textContent=kitchenText();
   const txt=encodeURIComponent(kitchenText());
@@ -1553,14 +1672,14 @@ function renderSheet(){
   tg.hidden=dir||!CONFIG.telegram; zl.hidden=dir||!CONFIG.zalo;
   if(CONFIG.telegram)tg.href=`https://t.me/${CONFIG.telegram}?text=${txt}`;
   if(CONFIG.zalo)zl.href=`https://zalo.me/${CONFIG.zalo.replace(/\D/g,'')}`;
-  document.getElementById('sendHint').textContent=(!CONFIG.telegram&&!CONFIG.zalo)?T('not_connected'):'';
+  document.getElementById('sendHint').textContent=(!directOn()&&!CONFIG.telegram&&!CONFIG.zalo)?T('not_connected'):'';
   document.querySelectorAll('#paym button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pm===pm));
 }
 let tipPct=0, splitMode='none', splitN=2, assign=[];
 /* split inside one phone (equally / by dish): switched off — guests order from their own phones instead */
 const SPLIT_ENABLED=false;
 /* one row per ordered portion, so "2 × coffee" can be paid by two people */
-function units(){const si=sentItems(),u=[];MENU.forEach(m=>{for(let i=0;i<(si[m.id]||0);i++)u.push(m)});return u}
+function units(){const si=sentItems(),u=[];rows(si).forEach(r=>{for(let i=0;i<r.q;i++)u.push(r.m)});return u}
 function shares(){
   const tot=billTotal(), tip=tipAmt(), r1k=v=>Math.round(v/1000)*1000;
   /* round every share to 1 000 ₫; the last guest pays the remainder so the parts always add up to the bill */
@@ -1598,10 +1717,10 @@ function renderSplit(){
 const tipAmt=()=>Math.round(billTotal()*tipPct/100/1000)*1000;
 function waiterText(){
   const langName={vi:'tiếng Việt',en:'tiếng Anh',ru:'tiếng Nga'}[lang];
-  const what={come:'GỌI PHỤC VỤ',bill:'TÍNH TIỀN',water:'XIN THÊM NƯỚC ĐÁ / KHĂN GIẤY'}[reason];
+  const what={come:'GỌI PHỤC VỤ',bill:'TÍNH TIỀN',water:'XIN THÊM DỤNG CỤ ĂN / KHĂN GIẤY'}[reason]||'GỌI PHỤC VỤ';
   const tipLine0=reason!=='bill'||!tipPct?'':(billTotal()?`\nTiền tip: ${fmt(tipAmt(),'vi')} (${tipPct}%)\nTổng cộng: ${fmt(billTotal()+tipAmt(),'vi')}`:`\nTiền tip: ${tipPct}%`);
   const tipLine=tipLine0+splitText();
-  return `${what} · Bàn ${table||'?'}${guestName?` · ${guestName}`:''}${reason==='bill'&&billTotal()?`\nTổng: ${fmt(billTotal(),'vi')}`:''}${tipLine}${reason==='bill'?`\nThanh toán: ${pm==='cash'?'Tiền mặt':'Chuyển khoản VietQR'}`:''}\nKhách nói ${langName}`;
+  return `${what} · Bàn ${table||'?'}${guestName?` · ${guestName}`:''}${reason==='bill'&&billTotal()?`\nTổng: ${fmt(billTotal(),'vi')}`:''}${tipLine}${reason==='bill'?`\nThanh toán: ${pm==='cash'?'Tiền mặt':pm==='card'?'Thẻ ngân hàng':'Chuyển khoản VietQR'}`:''}\nKhách nói ${langName}`;
 }
 function renderWaiter(){
   document.querySelectorAll('#reasons button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.r===reason));
@@ -1609,19 +1728,26 @@ function renderWaiter(){
   document.querySelectorAll('#wPaym button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pm===pm));
   document.getElementById('billPay').hidden=reason!=='bill';
   document.getElementById('payQr').hidden=pm!=='qr';
-  document.getElementById('cashNote').hidden=pm!=='cash';
+  document.getElementById('cashNote').hidden=pm!=='cash';document.getElementById('cardNote').hidden=pm!=='card';
   document.getElementById('payAmt').textContent=billTotal()>0?fmt(billTotal()+tipAmt()):T('amount_staff');
+  const vq=CONFIG.vietqr||{}, vimg=document.getElementById('vqr'), info=document.getElementById('payInfo');
+  if(vq.bin&&vq.account){
+    const amt=billTotal()>0?billTotal()+tipAmt():0;
+    vimg.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(vqSvg(vq,amt,'Ban '+(table||'')));
+    vimg.hidden=false; info.innerHTML=`${vq.bank} · VietQR · Napas 247<br>${T('pay_save')}`;
+  }else{vimg.hidden=true; info.textContent=T('pay_qr_staff');}
   document.getElementById('tipWrap').hidden=reason!=='bill';
   renderSplit();
   document.querySelectorAll('#tips button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.tip===tipPct));
   document.getElementById('tipSum').textContent=!tipPct?T('tip_hint'):(billTotal()?`${T('tip_short')}: ${fmt(tipAmt())} · ${T('total')}: ${fmt(billTotal()+tipAmt())}`:T('tip_unknown').replace('%s',tipPct+'%'));
   document.getElementById('waiterText').textContent=waiterText();
+  {const none=!reason;document.querySelector('#waiterBg .send').hidden=none;document.getElementById('wHint').hidden=none;if(none)document.getElementById('splitWrap').hidden=true;}
   const tg=document.getElementById('wTg'), zl=document.getElementById('wZl');
   const dir=directOn();
   tg.hidden=dir||!CONFIG.telegram; zl.hidden=dir||!CONFIG.zalo;
   if(CONFIG.telegram)tg.href=`https://t.me/${CONFIG.telegram}?text=${encodeURIComponent(waiterText())}`;
   if(CONFIG.zalo)zl.href=`https://zalo.me/${CONFIG.zalo.replace(/\D/g,'')}`;
-  document.getElementById('wHint').textContent=(!CONFIG.telegram&&!CONFIG.zalo)?T('not_connected'):'';
+  document.getElementById('wHint').textContent=(!directOn()&&!CONFIG.telegram&&!CONFIG.zalo)?T('not_connected'):'';
 }
 
 let directFailed=false;
@@ -1629,7 +1755,9 @@ let directFailed=false;
 const directOn=()=>!!CONFIG.orderEndpoint&&!directFailed&&!/claude\.ai$|claudeusercontent\.com$/.test(location.hostname);
 async function sendDirect(text,kind){
   try{
-    const r=await fetch(CONFIG.orderEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,kind,table:table||'',lang,venue:'demo'})});
+    const post=t=>fetch(CONFIG.orderEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:t,kind,table:table||'',lang,venue:CONFIG.venue})});
+    let r=await post(text);
+    if(r.status===400&&text.startsWith('XIN THÊM DỤNG CỤ ĂN'))r=await post(text.replace('XIN THÊM DỤNG CỤ ĂN / KHĂN GIẤY','XIN THÊM NƯỚC ĐÁ / KHĂN GIẤY'));
     return r.ok;
   }catch(e){return false}
 }
@@ -1642,7 +1770,7 @@ function commitOrder(){
   if(!count())return;
   closedBill=0;
   sent.push({at:Date.now(),items:{...cart},total:total()});
-  Object.keys(cart).forEach(k=>delete cart[k]);
+  Object.keys(cart).forEach(k=>delete cart[k]);Object.keys(NOTES).forEach(k=>delete NOTES[k]);saveNotes();
   document.getElementById('note').value='';
   saveSent();renderList();renderBar();renderSheet();toast(T('sent_ok'));
 }
@@ -1654,15 +1782,21 @@ let tt;function toast(s){const el=document.getElementById('toast');el.textConten
 
 document.getElementById('list').addEventListener('click',e=>{
   const b=e.target.closest('button[data-id]');if(!b)return;
-  const id=b.dataset.id;cart[id]=(cart[id]||0)+(+b.dataset.d);if(cart[id]<=0)delete cart[id];
+  const id=b.dataset.id,m=MENU.find(x=>x.id===id),d=+b.dataset.d;
+  if(m&&m.cat==='poke'){
+    if(d>0)return askBase(m);
+    const ks=Object.keys(cart).filter(k=>idOf(k)===id),k=ks.includes(lastBase[id])?lastBase[id]:ks[ks.length-1];if(!k)return;
+    cart[k]--;if(cart[k]<=0)delete cart[k];renderList();renderBar();saveSent();return;
+  }
+  cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];
   if(+b.dataset.d>0)track('add_dish',{dish:MENU.find(m=>m.id===id).vi,lang});
-  b.closest('.it').outerHTML=itemHTML(MENU.find(m=>m.id===id));renderBar();saveSent();
+  renderList();renderBar();saveSent();
 });
 document.getElementById('cats').addEventListener('click',e=>{
   const b=e.target.closest('button[data-cat]');if(!b)return;
-  document.querySelectorAll('#cats button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.querySelectorAll('#cats button').forEach(x=>x.setAttribute('aria-pressed',x===b));b.scrollIntoView({inline:'center',block:'nearest'});
   const s=document.getElementById('s-'+b.dataset.cat);
-  spyLock=Date.now()+900;b.scrollIntoView({inline:'center',block:'nearest'});window.scrollTo({top:s.getBoundingClientRect().top+scrollY-document.getElementById('cats').offsetHeight-6,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  spyLock=Date.now()+900;window.scrollTo({top:s.getBoundingClientRect().top+scrollY-document.getElementById('cats').offsetHeight-6,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 });
 const bg=document.getElementById('sheetBg');
 document.getElementById('openCart').addEventListener('click',()=>{renderSheet();bg.hidden=false;document.getElementById('closeSheet').focus()});
@@ -1678,12 +1812,13 @@ const paidBtn=document.getElementById('paidBtn'),thanks=document.getElementById(
 paidBtn.addEventListener('click',()=>{track('paid',{pay:pm==='cash'?'cash':'vietqr',total:billTotal(),table:table||'-'});sent=[];saveSent();renderBar();paidBtn.hidden=true;thanks.hidden=false;thanks.scrollIntoView({block:'nearest',behavior:'smooth'})});
 gmapBtn.addEventListener('click',e=>{track('review_click',{table:table||'-'});if(CONFIG.googleReview){gmapBtn.href=CONFIG.googleReview}else{e.preventDefault();toast(T('rate_toast'))}});
 document.getElementById('callW').addEventListener('click',()=>{thanks.hidden=true});
+document.getElementById('paym').addEventListener('click',e=>{const b=e.target.closest('button[data-pm]');if(!b)return;pm=b.dataset.pm;renderSheet();saveSent()});
+const wbg=document.getElementById('waiterBg');
 document.getElementById('skins').addEventListener('click',e=>{const b=e.target.closest('button[data-skin]');if(!b)return;
   const k=b.dataset.skin; if(k)document.documentElement.dataset.skin=k; else delete document.documentElement.dataset.skin;
   document.querySelectorAll('#skins button').forEach(x=>x.setAttribute('aria-pressed',x===b));});
-document.getElementById('paym').addEventListener('click',e=>{const b=e.target.closest('button[data-pm]');if(!b)return;pm=b.dataset.pm;renderSheet();saveSent()});
-const wbg=document.getElementById('waiterBg');
-document.getElementById('callW').addEventListener('click',()=>{renderWaiter();wbg.hidden=false;document.getElementById('closeWaiter').focus()});
+function billOnly(on){document.querySelector('#waiterBg .sheet').classList.remove('done-bill');document.getElementById('reasons').hidden=on;wbg.querySelector('p.q').hidden=on;const h=document.getElementById('waiterTitle');h.dataset.mt=on?'r_bill':'waiter_h';h.textContent=T(h.dataset.mt);document.getElementById('wHint').textContent=''}
+document.getElementById('callW').addEventListener('click',()=>{billOnly(false);reason='';thanks.hidden=true;document.getElementById('wHint').textContent='';renderWaiter();wbg.hidden=false;document.getElementById('closeWaiter').focus()});
 document.getElementById('closeWaiter').addEventListener('click',()=>wbg.hidden=true);
 wbg.addEventListener('click',e=>{if(e.target===wbg)wbg.hidden=true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')wbg.hidden=true});
@@ -1692,11 +1827,11 @@ document.getElementById('reasons').addEventListener('click',e=>{const b=e.target
 const copyText=t=>{try{navigator.clipboard.writeText(t).then(()=>toast(T('copied')),()=>{})}catch(e){}};
 document.getElementById('wTg').addEventListener('click',()=>{if(reason==='bill')setTimeout(closeTable,400);track('waiter_call',{reason,channel:'telegram',table:table||'-'});copyText(waiterText());document.getElementById('wHint').textContent=T('hint_tg')});
 document.getElementById('wZl').addEventListener('click',()=>{if(reason==='bill')setTimeout(closeTable,400);track('waiter_call',{reason,channel:'zalo',table:table||'-'});copyText(waiterText());document.getElementById('wHint').textContent=T('hint_zl')});
-document.getElementById('billBtn').addEventListener('click',()=>{bg.hidden=true;reason='bill';thanks.hidden=true;renderWaiter();document.getElementById('waiterBg').hidden=false});
+document.getElementById('billBtn').addEventListener('click',()=>{bg.hidden=true;billOnly(true);reason='bill';thanks.hidden=true;renderWaiter();document.getElementById('waiterBg').hidden=false});
 function renderHist(){
   const tf=d=>{const x=new Date(d);return String(x.getHours()).padStart(2,'0')+':'+String(x.getMinutes()).padStart(2,'0')};
   document.getElementById('rounds').innerHTML=sent.map((o,i)=>`<div class="round"><div class="rh"><b>${i?T('round_more'):T('round_first')} ${i+1}</b><span>${tf(o.at)}</span></div><ul class="lines">${
-    MENU.filter(m=>o.items[m.id]).map(m=>`<li><span>${o.items[m.id]} × ${name(m)}</span><span class="mono">${fmt(o.items[m.id]*m.price)}</span></li>`).join('')}</ul></div>`).join('');
+    rows(o.items).map(r=>`<li><span>${r.q} × ${rowName(r)}</span><span class="mono">${fmt(r.q*r.m.price)}</span></li>`).join('')}</ul></div>`).join('');
   document.getElementById('histSum').textContent=fmt(sentTotal());
 }
 const hbg=document.getElementById('histBg');
@@ -1704,13 +1839,14 @@ document.getElementById('ostrip').addEventListener('click',()=>{renderHist();hbg
 document.getElementById('closeHist').addEventListener('click',()=>hbg.hidden=true);
 hbg.addEventListener('click',e=>{if(e.target===hbg)hbg.hidden=true});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')hbg.hidden=true});
-document.getElementById('billBtn2').addEventListener('click',()=>{hbg.hidden=true;reason='bill';thanks.hidden=true;renderWaiter();document.getElementById('waiterBg').hidden=false});
+document.getElementById('billBtn2').addEventListener('click',()=>{hbg.hidden=true;billOnly(true);reason='bill';thanks.hidden=true;renderWaiter();document.getElementById('waiterBg').hidden=false});
 function closeTable(){
   closedBill=billTotal();
   track('table_closed',{total:closedBill,tip:tipAmt(),tip_pct:tipPct,pay:pm==='cash'?'cash':'vietqr',table:table||'-'});
   sent=[];Object.keys(cart).forEach(k=>delete cart[k]);splitMode='none';assign=[];saveSent();renderList();renderBar();
   document.getElementById('wHint').textContent=T('bill_sent');
-  thanks.hidden=false;thanks.scrollIntoView({block:'nearest',behavior:'smooth'});
+  thanks.hidden=false;
+  const ws=document.querySelector('#waiterBg .sheet');ws.classList.add('done-bill');ws.classList.toggle('pay-qr',pm==='qr');ws.scrollTop=0;
 }
 document.getElementById('sendDirect').addEventListener('click',async e=>{
   const b=e.currentTarget, h=document.getElementById('sendHint'); if(b.disabled||!count())return;
@@ -1734,7 +1870,7 @@ document.getElementById('tips').addEventListener('click',e=>{const b=e.target.cl
 function renderChip(){document.getElementById('tablechip').textContent=`${T('table_chip')} ${table||'—'}`}
 function setLang(l){
   lang=l;document.documentElement.lang=l;
-  try{localStorage.setItem('menu_lang',l)}catch(e){}
+  try{localStorage.setItem('cafeup_lang',l)}catch(e){}
   document.querySelectorAll('#menuApp .lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
   document.querySelectorAll('#menuApp [data-mt]').forEach(el=>el.textContent=T(el.dataset.mt));
   document.getElementById('note').placeholder=T('note_ph');
@@ -1743,24 +1879,132 @@ function setLang(l){
 }
 document.querySelector('#menuApp .lang').addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(b)track('lang_change',{lang:b.dataset.lang});if(b)setLang(b.dataset.lang)});
 
-/* QR illustration */
-(function(){const N=25,g=[];let s=11;const r=()=>(s=(s*16807)%2147483647)/2147483647;
- for(let i=0;i<N*N;i++)g.push(r()>.52);
- const f=(ox,oy)=>{for(let y=-1;y<8;y++)for(let x=-1;x<8;x++){const X=ox+x,Y=oy+y;if(X<0||Y<0||X>=N||Y>=N)continue;const e=x>=0&&y>=0&&x<7&&y<7&&(x==0||y==0||x==6||y==6||(x>1&&x<5&&y>1&&y<5));g[Y*N+X]=e}};
- f(0,0);f(N-7,0);f(0,N-7);let o='';g.forEach((v,i)=>{if(v)o+=`<rect x="${i%N}" y="${(i/N)|0}" width="1" height="1"/>`});
- document.getElementById('mqr').innerHTML=`<g fill="#15241C">${o}</g>`})();
 
-window.addEventListener('hashchange',()=>{if(ON!==/^#(menu|table-\d{1,4})$/.test(location.hash))location.reload()});
 if(!ON)return;
 setTimeout(()=>{loadSent();renderList();renderBar();renderChip();syncDirect();loadCounter()},0);
-/* active category follows the scroll */
+/* ---- stop-list and prices from the venue's Google Sheet (re-read every minute and when the guest comes back to the tab) ---- */
+function parseCSV(t){const rows=[];let r=[],f='',q=false;for(let i=0;i<t.length;i++){const c=t[i];
+  if(q){if(c==='"'){if(t[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+  else if(c==='"')q=true;else if(c===','){r.push(f);f=''}else if(c==='\n'){r.push(f);rows.push(r);r=[];f=''}else if(c!=='\r')f+=c}
+  if(f||r.length){r.push(f);rows.push(r)}return rows}
+async function loadSheet(){
+  if(!CONFIG.sheetId)return;
+  try{
+    const res=await fetch(`https://docs.google.com/spreadsheets/d/${CONFIG.sheetId}/gviz/tq?tqx=out:csv&_=${Date.now()}`,{cache:'no-store'});
+    if(!res.ok)return;
+    const rows=parseCSV(await res.text()).slice(1);
+    if(!rows.length)return;
+    const so=[];let changed=false;
+    rows.forEach(r=>{
+      const id=String(r[0]||'').trim().replace(/\.0+$/,''), m=MENU.find(x=>x.id===id); if(!m)return;
+      const p=parseInt(String(r[2]||'').replace(/\D/g,''),10);
+      if(p>=1000&&p!==m.price&&!PRICES[id]){m.price=p;changed=true}
+      if(String(r[3]||'').trim())so.push(id);
+    });
+    SOLD_SHEET=so;
+    if(applySold())changed=true;
+    if(changed){renderList();renderBar();saveSent();if(!document.getElementById('sheetBg').hidden)renderSheet()}
+  }catch(e){}
+}
+/* sold out = staff screen stop-list + (old) sheet column D */
+var SOLD_SHEET=[],SOLD_STAFF=[],PRICES={};
+function applySold(){
+  const so=[...new Set([...SOLD_STAFF,...SOLD_SHEET])].sort();let changed=false;
+  if(so.join()!==SOLD_OUT.slice().sort().join()){SOLD_OUT.length=0;SOLD_OUT.push(...so);changed=true}
+  Object.keys(cart).forEach(k=>{if(SOLD_OUT.includes(idOf(k))){delete cart[k];changed=true}});
+  return changed;
+}
+setTimeout(loadSheet,0);
+const MENU_BASE=JSON.parse(JSON.stringify(MENU));let MENU_OVR='';
+function applyMenu(o){
+  const k=JSON.stringify(o||{});if(k===MENU_OVR)return false;MENU_OVR=k;o=o||{};
+  const hid=new Set(o.hidden||[]),ed=o.edits||{},list=[];
+  const fix=(m,e)=>{if(!e)return m;if(e.vi)m.vi=e.vi;if(e.vd!=null)m.vd=e.vd;
+    ['en','ru'].forEach(l=>{if(Array.isArray(e[l])){m[l]=[e[l][0]||m[l][0],e[l][1]!=null&&e[l][1]!==''?e[l][1]:m[l][1]]}});
+    if(e.cat&&CATS.includes(e.cat))m.cat=e.cat;if(+e.price>=1000)m.price=+e.price;return m};
+  MENU_BASE.forEach(b=>{if(!hid.has(b.id))list.push(fix(JSON.parse(JSON.stringify(b)),ed[b.id]))});
+  (o.added||[]).forEach(a=>{if(hid.has(a.id)||list.some(m=>m.id===a.id)||!CATS.includes(a.cat))return;
+    list.push({id:a.id,cat:a.cat,vi:a.vi,vd:a.vd||'',price:+a.price||0,en:[(a.en||[])[0]||a.vi,(a.en||[])[1]||''],ru:[(a.ru||[])[0]||a.vi,(a.ru||[])[1]||'']})});
+  MENU.length=0;MENU.push(...list);return true;
+}
+
+const TC_T={vi:['Bàn đã được đóng. Cảm ơn bạn đã ghé quán!','Bàn đã được mở lại, đơn của bạn vẫn còn.'],en:['Your table is closed. Thank you for visiting!','Your table is open again, your order is back.'],ru:['Стол закрыт. Спасибо, что были у нас!','Стол снова открыт, ваш заказ на месте.']};
+/* the orders of a closed table are kept aside for 3 hours: if the staff reopen the table, they come back */
+let STASH=(()=>{try{return JSON.parse(localStorage.getItem('cafeup_closed')||'null')}catch(e){return null}})();
+function saveStash(){try{STASH?localStorage.setItem('cafeup_closed',JSON.stringify(STASH)):localStorage.removeItem('cafeup_closed')}catch(e){}}
+function tcMsg(i){const el=document.getElementById('toast');el.textContent=(TC_T[lang]||TC_T.en)[i];el.hidden=false;clearTimeout(tt);tt=setTimeout(()=>el.hidden=true,8000)}
+async function checkClosed(){
+  if(!table||VIEW_ONLY)return;
+  if(STASH&&(STASH.table!==table||Date.now()-STASH.t>3*3600e3)){STASH=null;saveStash()}
+  if(!sent.length&&!STASH)return;
+  try{
+    const r=await fetch(CONFIG.orderEndpoint.replace(/\/$/,'')+'/table?venue='+CONFIG.venue+'&tbl='+encodeURIComponent(table),{cache:'no-store'});
+    if(!r.ok)return; const d=await r.json(), closes=d.closes||[], skew=d.now-Date.now(), me=(guestName||'').trim();
+    if(STASH&&!closes.some(c=>c.at===STASH.closeAt)){
+      sent=[...STASH.sent,...sent];STASH=null;saveStash();saveSent();renderBar();tcMsg(1);return;
+    }
+    if(!sent.length)return;
+    const last=Math.max(...sent.map(o=>o.at)), c=closes.find(c=>(c.guest||'')===me&&c.at-skew>last);
+    if(c){
+      STASH={sent:[...(STASH?STASH.sent:[]),...sent],closeAt:c.at,t:Date.now(),table};saveStash();
+      closedBill=0;sent=[];saveSent();renderBar();
+      ['histBg','waiterBg'].forEach(id=>{const el=document.getElementById(id);if(el)el.hidden=true});
+      tcMsg(0);
+    }
+  }catch(e){}
+}
+setInterval(checkClosed,30000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkClosed()});
+setTimeout(checkClosed,3000);
+
+/* photos the staff replaced on the staff screen are served by the orders server */
+function photoSrc(m){const v=(window.__PH||{})[m.id];return v?CONFIG.orderEndpoint.replace(/\/$/,'')+'/photo?venue='+CONFIG.venue+'&id='+m.id+'&v='+v:'img/'+m.img+'.webp'+(IMGV[m.img]?'?v='+IMGV[m.img]:'')}
+async function loadPopular(){
+  try{
+    const r=await fetch(CONFIG.orderEndpoint.replace(/\/$/,'')+'/popular?venue='+CONFIG.venue,{cache:'no-store'});
+    if(!r.ok)return; const d=await r.json(); const menuChanged=applyMenu(d.menu); const ids=(d.ids||[]).filter(id=>MENU.some(m=>m.id===id));
+    SOLD_STAFF=(d.soldout||[]).filter(id=>MENU.some(m=>m.id===id));
+    NOTICE=d.notice||{}; renderNotice();
+    PRICES=d.prices||{}; let priceChanged=menuChanged;
+    if(JSON.stringify(d.photos||{})!==JSON.stringify(window.__PH||{})){window.__PH=d.photos||{};priceChanged=true}
+    MENU.forEach(m=>{const p=+PRICES[m.id];if(p>=1000&&p!==m.price){m.price=p;priceChanged=true}});
+    const soldChanged=applySold(), popChanged=ids.join()!==POPULAR.join();
+    if(!soldChanged&&!popChanged&&!priceChanged)return; POPULAR=ids; renderCats(); renderList(); renderBar(); saveSent();
+    if(!document.getElementById('sheetBg').hidden)renderSheet();
+  }catch(e){}
+}
+var NOTICE={};
+/* a notice without this language: show another one and translate it automatically (cached on the phone) */
+const NT_TR=(()=>{try{return JSON.parse(localStorage.getItem('cafeup_nt')||'{}')}catch(e){return{}}})(), NT_WAIT={};
+function ntTranslate(text,src,tl){
+  const k=src+'|'+tl+'|'+text; if(NT_TR[k])return NT_TR[k]; if(NT_WAIT[k])return ''; NT_WAIT[k]=1;
+  const parts=text.split(/(\*\*[^*\n]+?\*\*)/);
+  Promise.all(parts.map(async p=>{const m=p.match(/^\*\*([^*]+)\*\*$/),core=m?m[1]:p;if(!core.trim())return p;
+    const lead=core.match(/^\s*/)[0],tail=core.match(/\s*$/)[0];
+    const d=await (await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(core.trim().slice(0,450))+'&langpair='+src+'|'+tl)).json();
+    const t=document.createElement('textarea');t.innerHTML=String((d&&d.responseData&&d.responseData.translatedText)||'');const x=t.value.trim();
+    if(+d.responseStatus!==200||!x)throw 0; return m?'**'+x+'**':lead+x+tail}))
+   .then(o=>{NT_TR[k]=o.join('');try{localStorage.setItem('cafeup_nt',JSON.stringify(NT_TR))}catch(e){}renderNotice()}).catch(()=>{});
+  return '';
+}
+function renderNotice(){
+  const el=document.getElementById('notice'), src=['vi','en','ru'].find(l=>(NOTICE[l]||'').trim());
+  let tx=(NOTICE[lang]||'').trim(); if(!tx&&src){tx=ntTranslate(NOTICE[src].trim(),src,lang)||(NOTICE.en||NOTICE.vi||NOTICE.ru||'').trim()}
+  el.hidden=!tx; el.innerHTML=tx.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])).replace(/\*\*([^*\n]+?)\*\*/g,'<b>$1</b>');
+}
+document.querySelector('#menuApp .lang').addEventListener('click',()=>setTimeout(renderNotice,0));
+setTimeout(loadPopular,0);setInterval(loadPopular,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)loadPopular()});setInterval(loadSheet,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)loadSheet()});
+
+/* ---- active category follows the scroll ---- */
 var spyLock=0;
 function spy(){
-  if(!ON||Date.now()<spyLock)return;
+  if(Date.now()<spyLock)return;
   const bar=document.getElementById('cats'), edge=bar.getBoundingClientRect().bottom+12;
-  let cur=CATS[0];
-  CATS.forEach(c=>{const s=document.getElementById('s-'+c);if(s&&s.getBoundingClientRect().top<=edge)cur=c});
-  if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)cur=CATS[CATS.length-1];
+  const CL=catList();let cur=CL[0];
+  CL.forEach(c=>{const s=document.getElementById('s-'+c);if(s&&s.getBoundingClientRect().top<=edge)cur=c});
+  if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)cur=CL[CL.length-1];
   const b=bar.querySelector(`button[data-cat="${cur}"]`);
   if(!b||b.getAttribute('aria-pressed')==='true')return;
   bar.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
@@ -1772,7 +2016,7 @@ let spyT;addEventListener('scroll',()=>{clearTimeout(spyT);spyT=setTimeout(spy,6
 (function(){
   const m=(location.hash||'').match(/^#table-(\d{1,4})$/);if(m){table=m[1];hashTable=m[1];}
   document.getElementById('table').value=table;
-  let l=null;try{l=localStorage.getItem('menu_lang')}catch(e){}
+  let l=null;try{l=localStorage.getItem('cafeup_lang')}catch(e){}
   if(!l){const n=(navigator.language||'').slice(0,2);l=n==='vi'?'vi':n==='ru'?'ru':'en'}
   setLang(LI[l]!==undefined?l:'en');
 })();

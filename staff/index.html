@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1B2230">
 <meta name="robots" content="noindex">
-<title>CafeUp · Đơn hàng</title>
+<title>CafeUp · Đơn hàng (demo)</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="icon-192.png">
@@ -53,10 +53,123 @@ button{font:inherit;cursor:pointer}
 .o .who{font-size:16px;font-weight:800}
 .o pre{margin:8px 0 0;font:inherit;font-size:16px;line-height:1.5;white-space:pre-wrap}
 .o .acts{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.ibody{margin-top:8px;font-size:16px;line-height:1.45}
+.ir{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:3px 0;border-bottom:1px dashed var(--line)}
+.ir .in{min-width:0}
+.ib{display:flex;gap:4px;flex:none}
+.ib button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:16px;font-weight:800;line-height:1}
+.ib button.x{border-color:#F0CFCF;background:#FDF1F1;color:#B33A2E;font-size:13px}
+.il{padding:2px 0}.rtr{display:block;font-weight:800;font-size:15px}
+.il.trn{font-weight:800;color:var(--ink);padding-left:12px}
+.iadd{margin-top:8px;width:100%;font:inherit;font-size:14px;padding:8px;border:1px dashed var(--line);border-radius:10px;background:var(--bg);color:var(--muted)}
+.o .ed{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 12px;font-size:14px;font-weight:700;color:var(--ink)}
+.o .edited{font-size:12px;font-weight:800;color:#8a5a1c;background:var(--amber-soft);border-radius:999px;padding:3px 9px}
+.newbar{display:flex;gap:10px;margin:2px 0 14px;flex-wrap:wrap}
+.newb{flex:1;min-width:200px;border:0;border-radius:14px;padding:15px;font-size:17px;font-weight:800;background:var(--pink);color:#fff}
+.billb{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:15px 18px;font-size:16px;font-weight:800;color:var(--ink);font-family:inherit}
+@media (max-width:640px){
+  .newbar{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .newb{grid-column:1/-1;min-width:0;padding:14px;font-size:17px}
+  .bar h2{width:100%}.bar .sp{display:none}
+  .billb{min-width:0;padding:12px 8px;font-size:15px;line-height:1.25;display:flex;align-items:center;justify-content:center;gap:6px;text-align:center}
+}
+.crow{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.crow .f{flex:1;min-width:140px}
+.crow input{width:100%;font:inherit;font-size:18px;padding:10px;border:1px solid var(--line);border-radius:10px;margin-top:6px}
+.cpay{display:flex;gap:8px;margin-top:6px}
+.cpay button{flex:1;font:inherit;font-weight:700;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.cpay button[aria-pressed="true"]{border-color:var(--pink);background:var(--pink-soft)}
+.ntr{font:inherit;font-weight:700;font-size:14px;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 12px;margin-top:6px}
+.mntop{display:flex;gap:8px;margin:4px 0 8px}.mntop input{flex:1;min-width:0;font:inherit;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:10px}.mntop .save{border:0;border-radius:10px;padding:0 14px;font:inherit;font-weight:800;background:var(--green);color:#fff;white-space:nowrap}
+.mnrow{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px dashed var(--line)}.mnrow .pn{flex:1;min-width:0;font-weight:700}.mnrow .pn small{display:block;font-weight:400;color:var(--muted)}.mnrow.off .pn{opacity:.5;text-decoration:line-through}.mnrow.off .pn small{text-decoration:none}
+.mnrow .pb{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.mnrow .pb button{font:inherit;font-size:14px;font-weight:700;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:7px 10px;white-space:nowrap}
+.mein,.mesel{width:100%;font:inherit;font-size:16px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;margin-top:6px;background:var(--surface)}
+#meVd,#meEnD,#meRuD{min-height:56px;margin-top:6px}
+.phrow{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px dashed var(--line)}
+.phrow img,.phrow .noimg{width:64px;height:64px;border-radius:12px;object-fit:cover;flex:none;background:var(--bg);border:1px solid var(--line)}
+.phrow .pn{flex:1;min-width:0;font-weight:700;line-height:1.3}.phrow .pn small{display:block;font-weight:400;color:var(--muted)}.phrow .pn em{display:block;font-style:normal;font-size:12px;color:var(--green);font-weight:800}
+.phrow .pb{display:flex;flex-direction:column;gap:6px}.phrow .pb button{font:inherit;font-size:14px;font-weight:700;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 10px;white-space:nowrap}
+.phrow .pb button:disabled{opacity:.5}
+.prow{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px dashed var(--line);font-size:16px;cursor:pointer}
+.dsearch{margin-top:12px;position:relative}
+.drow{display:flex;gap:8px}
+.drow select{flex:0 0 38%;min-width:0;font:inherit;font-size:15px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.dsearch input{flex:1;min-width:0;width:100%;font:inherit;font-size:16px;padding:12px 12px 12px 40px;border:1px solid var(--line);border-radius:12px;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%23806A5A' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='M12.5 12.5 17 17'/%3E%3C/svg%3E") no-repeat 13px center}
+.dres{display:grid;gap:4px;margin-top:6px}
+.dres button{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;width:100%;font:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.dres button:hover,.dres button:focus{border-color:var(--pink);background:var(--pink-soft)}
+.dres button small{display:block;color:var(--muted);font-size:12px}
+.dres button b{white-space:nowrap}
+.dres .so{opacity:.5}
+.dnone{color:var(--muted);font-size:14px;padding:8px 2px}
+.ntools{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13px;color:var(--muted)}
+.ntools button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:18px}
+.prrow{display:grid;grid-template-columns:1fr 150px;gap:12px;align-items:center;padding:9px 4px;border-bottom:1px dashed var(--line)}
+.prrow b{font-weight:700}.prrow small{display:block;color:var(--muted)}
+.prrow input{width:100%;font:inherit;font-size:17px;text-align:right;padding:8px 10px;border:1px solid var(--line);border-radius:10px}
+.prrow.chg input{border-color:var(--pink);background:var(--pink-soft);font-weight:800}
+.prrow .was{font-size:12px;color:var(--muted);text-align:right;grid-column:2}
+.modal label.prow{display:flex;margin-top:0;font-size:16px;font-weight:400}
+.prow.off b{text-decoration:line-through;color:#B33A2E}
+.soTag{font-size:12px;font-weight:800;color:#B33A2E;background:#FDF1F1;border:1px solid #F0CFCF;border-radius:999px;padding:2px 8px;margin-left:auto;flex:none}
+.prow input{width:22px;height:22px;accent-color:var(--pink);flex:none}
+.prow b{font-weight:700}.prow small{color:var(--muted);display:block}
+.cempty{color:var(--muted);padding:12px 0;font-size:14px}
+.mbg{position:fixed;inset:0;z-index:20;background:rgba(51,36,26,.45);display:flex;align-items:flex-end;justify-content:center}
+.modal{width:100%;max-width:620px;max-height:92vh;overflow:auto;background:var(--surface);border-radius:18px 18px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom))}
+.modal h3{margin:0 0 4px;font-size:20px}
+.modal .sub{color:var(--muted);font-size:14px;margin-bottom:10px}
+.erow{display:grid;grid-template-columns:1fr auto auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.erow .nm{font-weight:700;line-height:1.3}.erow .nm small{display:block;font-weight:400;color:var(--muted)}
+.erow .qty{display:flex;align-items:center;gap:8px}
+.erow .qty button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:20px;font-weight:800}
+.erow .qty b{min-width:20px;text-align:center;font-size:17px}
+.erow .sum{font-weight:800;white-space:nowrap;min-width:84px;text-align:right}
+.erow .rm{width:38px;height:38px;border-radius:50%;border:1px solid #F0CFCF;background:#FDF1F1;color:#B33A2E;font-size:17px;font-weight:800}
+.erow.zero{opacity:.45}.erow.zero .nm{text-decoration:line-through}
+.eadd{display:flex;gap:8px;margin-top:12px}
+.eadd select{flex:1;min-width:0;font:inherit;font-size:15px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.eadd button,.mact button{font:inherit;font-weight:800;border-radius:12px;padding:12px 16px;border:1px solid var(--line);background:var(--bg)}
+.modal label{display:block;font-weight:700;font-size:14px;margin-top:14px}
+.modal textarea{width:100%;font:inherit;font-size:15px;min-height:64px;margin-top:6px;padding:10px;border:1px solid var(--line);border-radius:10px}
+.etot{display:flex;justify-content:space-between;font-size:18px;font-weight:800;margin-top:14px}
+.ehint{font-size:13px;color:var(--muted);margin-top:6px}
+.tbtabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.tbtabs button{position:relative;font:inherit;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;min-width:96px}
+.tbtabs button b{font-size:16px}.tbtabs button small{color:var(--muted);font-size:12px}.tbtabs button span{font-weight:700;font-size:14px}
+.tbtabs button i{position:absolute;top:-8px;right:-6px;font-style:normal}
+.tbtabs button[aria-pressed="true"]{border-color:var(--pink);background:var(--pink-soft)}
+.tbhead{font-size:15px;color:var(--muted);padding-bottom:6px;border-bottom:1px solid var(--line)}.tbhead b{color:var(--ink);font-size:18px}
+.tbhead .ask{display:inline-block;margin-left:8px;color:var(--green);font-weight:800}
+.trow{display:grid;grid-template-columns:1fr auto auto auto auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+.trow .nm{font-weight:700;line-height:1.3}.trow .nm small{display:block;font-weight:400;color:var(--muted)}
+.trow .qty{display:flex;align-items:center;gap:6px}
+.trow .qty button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:20px;font-weight:800}
+.trow .qty b{min-width:18px;text-align:center;font-size:17px}
+.modal label.up{margin:0;font-weight:400}.up small{display:block;font-size:11px;color:var(--muted)}
+.up input{width:86px;font:inherit;font-size:15px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;text-align:right}
+.trow .sum{font-weight:800;white-space:nowrap;min-width:84px;text-align:right}
+.trow .rm{width:36px;height:36px;border-radius:50%;border:1px solid #F0CFCF;background:#FDF1F1;color:#B33A2E;font-size:16px;font-weight:800}
+.trow .nm small.chg{color:#B33A2E;font-weight:700}
+.tbnotes{display:grid;gap:6px;margin:8px 0 2px}.tbn{background:#FFF6E0;border:1px solid #F0DDAE;border-radius:10px;padding:8px 10px;font-size:15px}.tbn b{display:block;font-size:12px;color:var(--muted)}.tbn span{display:block;font-weight:800}
+.tbtot{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}
+.trw{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 0;font-size:16px}
+.trw.tbig{font-size:19px;font-weight:800}.trw.tbig input{width:150px;font:inherit;font-weight:800;text-align:right;padding:8px 10px;border:2px solid var(--pink);border-radius:10px}
+.trw.disc{flex-wrap:wrap}.pcts{display:flex;gap:6px;flex-wrap:wrap;align-items:center;flex:1}
+.pcts button{font:inherit;font-size:14px;font-weight:700;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 10px}
+.pcts button[aria-pressed="true"]{border-color:var(--pink);background:var(--pink-soft)}
+.modal .pcts label{margin:0;display:flex;align-items:center;gap:4px}.pcts input{width:56px;font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;text-align:right}
+#tbDiscSum{font-weight:800;color:#B33A2E;white-space:nowrap}#tbTaxSum{font-weight:800;white-space:nowrap}
+@media (max-width:560px){.trow{grid-template-columns:auto auto 1fr auto;row-gap:6px}.trow .nm{grid-column:1/-1}.up input{width:80px}.trow .sum{min-width:0}.trw.disc>span:first-child{width:100%}}
+.o.k-reopened{border-left-color:var(--line)}.k-reopened .tag{background:var(--bg);color:var(--muted)}
+.o.k-closed{border-left-color:var(--line)}.k-closed .tag{background:var(--bg);color:var(--muted)}
+.mact{display:flex;gap:10px;margin-top:16px}.mact .save{flex:1;background:var(--green);border-color:var(--green);color:#fff}
 .o .pr{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 12px;font-size:14px;font-weight:700;color:var(--ink)}
 .chip.on{background:var(--green);border-color:var(--green);color:#fff}
 .o .ok{border:0;border-radius:12px;padding:14px 16px;font-size:16px;font-weight:800;background:var(--green);color:#fff;white-space:nowrap}
-.o.done{opacity:.55;border-left-color:var(--line)!important}
+.o.done{border-left-color:var(--line)!important;background:#FBF7F1}
+.o.done>div:first-child{opacity:.55}   /* only the text is dimmed: Print / Reopen stay clearly tappable */
+.o.done .acts .pr{background:var(--surface);color:var(--ink);border-color:#D9C9B6}
 .o.done .ok{background:var(--line);color:var(--muted)}
 .o.done pre{max-height:3em;overflow:hidden}
 .empty{color:var(--muted);text-align:center;padding:40px 10px}
@@ -93,75 +206,186 @@ button{font:inherit;cursor:pointer}
   </section>
 
   <section id="board" hidden>
+    <div class="newbar"><button class="newb" id="newBtn" data-t="newOrder"></button><button class="billb" id="tblBillBtn" data-t="tableBill"></button><button class="billb" id="popBtn" data-t="popBtn"></button><button class="billb" id="soBtn" data-t="soBtn"></button><button class="billb" id="prBtn" data-t="prBtn"></button><button class="billb" id="ntBtn" data-t="ntBtn"></button><button class="billb" id="phBtn" data-t="phBtn"></button><button class="billb" id="mnBtn" data-t="mnBtn"></button></div>
     <div class="bar"><h2 id="countH"></h2><span class="sp"></span>
       <button class="chip" data-f="new" aria-pressed="true" data-t="filterNew"></button><button class="chip" data-f="all" aria-pressed="false" data-t="filterAll"></button></div>
     <div class="list" id="list"></div>
     <p class="hint"><span data-t="autoHint"></span><br>
-      <button class="chip" id="pushBtn2" data-t="pushShort"></button> <button class="chip" id="testBtn" data-t="testSound"></button> <button class="chip" id="autoPrintBtn"></button> <button class="chip" id="testPrintBtn" data-t="testPrint"></button></p>
+      <button class="chip" id="pushBtn2" data-t="pushShort"></button> <button class="chip" id="testBtn" data-t="testSound"></button> <button class="chip" id="autoPrintBtn"></button> <button class="chip" id="rawbtBtn"></button> <button class="chip" id="testPrintBtn" data-t="testPrint"></button></p>
   </section>
 </main>
+<div class="mbg" id="newBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 data-t="newOrder"></h3>
+  <div class="crow"><div class="f"><label for="newTbl" data-t="tblLabel"></label><input id="newTbl" inputmode="numeric" maxlength="4"></div>
+    <div class="f"><label for="newGuest" data-t="guestLabel"></label><input id="newGuest" maxlength="24"></div></div>
+  <div id="newRows"></div>
+  <div class="dsearch" id="newSearch"></div>
+  <label data-t="payLabel"></label><div class="cpay" id="newPay"><button data-pm="cash" data-t="payCash"></button><button data-pm="qr">VietQR</button><button data-pm="card" data-t="payCard"></button></div>
+  <label for="newNote" data-t="kitchenNote"></label><textarea id="newNote" maxlength="200"></textarea>
+  <div class="etot"><span data-t="total2"></span><span id="newSum"></span></div>
+  <div class="mact"><button id="newCancel" data-t="editCancel"></button><button class="save" id="newSave" data-t="newSave"></button></div>
+</div></div>
+<div class="mbg" id="mnBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 data-t="mnBtn"></h3><div class="sub" data-t="mnSub"></div>
+  <div class="mntop"><input type="search" id="mnFind" autocomplete="off"><button class="save" id="mnAdd" data-t="mnAddBtn"></button></div>
+  <div id="mnList"></div>
+  <div class="mact"><button id="mnClose" data-t="tbDone"></button></div>
+</div></div>
+<div class="mbg" id="meBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 id="meTitle"></h3>
+  <div class="crow"><div class="f"><label for="meId" data-t="mnId"></label><input id="meId" inputmode="numeric" maxlength="4"></div>
+    <div class="f"><label for="mePrice" data-t="mnPrice"></label><input id="mePrice" inputmode="numeric" maxlength="9"></div></div>
+  <label for="meCat" data-t="mnCat"></label><select id="meCat" class="mesel"></select>
+  <label for="meVi">🇻🇳 <span data-t="mnName"></span></label><input id="meVi" class="mein" maxlength="120">
+  <textarea id="meVd" maxlength="600"></textarea>
+  <label for="meEn">🇬🇧 <span data-t="mnName"></span></label><input id="meEn" class="mein" maxlength="120">
+  <textarea id="meEnD" maxlength="600"></textarea>
+  <label for="meRu">🇷🇺 <span data-t="mnName"></span></label><input id="meRu" class="mein" maxlength="120">
+  <textarea id="meRuD" maxlength="600"></textarea>
+  <div class="ehint" data-t="mnHint"></div>
+  <button type="button" class="ntr" id="meTr" data-t="ntTrBtn"></button>
+  <div class="mact"><button id="meDel" data-t="mnDel" hidden></button><button id="meCancel" data-t="editCancel"></button><button class="save" id="meSave" data-t="editSave"></button></div>
+</div></div>
+<div class="mbg" id="phBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 data-t="phBtn"></h3><div class="sub" data-t="phSub"></div>
+  <div id="phList"></div>
+  <input type="file" id="phFile" accept="image/*" hidden>
+  <div class="mact"><button id="phClose" data-t="tbDone"></button></div>
+</div></div>
+<div class="mbg" id="ntBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 data-t="ntBtn"></h3><div class="sub" data-t="ntSub"></div>
+  <div class="ntools"><button type="button" id="ntBold" title="Bold"><b>B</b></button><span data-t="ntBoldHint"></span></div>
+  <div class="ehint" data-t="ntTrHint"></div><button type="button" class="ntr" id="ntTr" data-t="ntTrBtn"></button>
+  <label for="ntVi">🇻🇳 Tiếng Việt</label><textarea id="ntVi" maxlength="400"></textarea>
+  <label for="ntEn">🇬🇧 English</label><textarea id="ntEn" maxlength="400"></textarea>
+  <label for="ntRu">🇷🇺 Русский</label><textarea id="ntRu" maxlength="400"></textarea>
+  <div class="mact"><button id="ntClear" data-t="ntClear"></button><button id="ntCancel" data-t="editCancel"></button><button class="save" id="ntSave" data-t="ntSave"></button></div>
+</div></div>
+<div class="mbg" id="prBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 data-t="prBtn"></h3><div class="sub" data-t="prSub"></div>
+  <div id="prRows"></div>
+  <div class="mact"><button id="prCancel" data-t="editCancel"></button><button class="save" id="prSave" data-t="editSave"></button></div>
+</div></div>
+<div class="mbg" id="soBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 data-t="soBtn"></h3><div class="sub" data-t="soSub"></div>
+  <div id="soRows"></div>
+  <div class="mact"><button id="soCancel" data-t="editCancel"></button><button class="save" id="soSave" data-t="editSave"></button></div>
+</div></div>
+<div class="mbg" id="popBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 data-t="popBtn"></h3><div class="sub" data-t="popSub"></div>
+  <div id="popRows"></div>
+  <div class="mact"><button id="popCancel" data-t="editCancel"></button><button class="save" id="popSave" data-t="editSave"></button></div>
+</div></div>
+<div class="mbg" id="tbBg" hidden><div class="modal tbm" role="dialog" aria-modal="true">
+  <h3 data-t="tableBill"></h3><div class="sub" data-t="tbSub"></div>
+  <div class="tbtabs" id="tbTabs"></div>
+  <div class="cempty" id="tbEmpty" data-t="tbNoTables"></div>
+  <div id="tbCard">
+    <div class="tbhead" id="tbHead"></div>
+    <div class="tbnotes" id="tbNotes" hidden></div>
+    <div id="tbRows"></div>
+    <div class="dsearch" id="tbSearch"></div>
+    <div class="tbtot">
+      <div class="trw"><span data-t="tbSubtotal"></span><span id="tbSubSum"></span></div>
+      <div class="trw disc"><span id="tbDiscLbl"></span><span class="pcts" id="tbPcts"><button data-pct="0">0%</button><button data-pct="5">5%</button><button data-pct="10">10%</button><button data-pct="15">15%</button><button data-pct="20">20%</button><label><input id="tbPct" inputmode="numeric" maxlength="3" aria-label="%"> %</label></span><span id="tbDiscSum"></span></div>
+      <div class="trw disc"><span data-t="tbTax"></span><span class="pcts" id="tbTaxes"><button data-tax="0">0%</button><button data-tax="3">3%</button><button data-tax="4.5">4,5%</button><button data-tax="5">5%</button><button data-tax="8">8%</button><button data-tax="10">10%</button><button data-tax="15">15%</button><button data-tax="20">20%</button><label><input id="tbTaxIn" inputmode="decimal" maxlength="4" aria-label="%"> %</label></span><span id="tbTaxSum"></span></div>
+      <div class="trw tbig"><span data-t="tbFinal"></span><input id="tbFinal" inputmode="numeric" maxlength="10"></div>
+      <div class="ehint" data-t="tbFinalHint"></div>
+      <div id="tbTipBox"></div>
+    </div>
+    <label data-t="payLabel"></label><div class="cpay" id="tbPay"><button data-pm="cash" data-t="payCash"></button><button data-pm="qr">VietQR</button><button data-pm="card" data-t="payCard"></button></div>
+    <div class="mact"><button id="tbPrint" data-t="tbPrint"></button><button class="save" id="tbClose" data-t="tbClose"></button></div>
+  </div>
+  <div class="mact"><button id="tbCancel" data-t="tbDone"></button></div>
+</div></div>
+<div class="mbg" id="editBg" hidden><div class="modal" role="dialog" aria-modal="true">
+  <h3 id="editTitle"></h3><div class="sub" data-t="editSub"></div>
+  <div id="editRows"></div>
+  <div class="dsearch" id="editSearch"></div>
+  <textarea id="editNote" maxlength="200" hidden></textarea>
+  <div class="etot"><span data-t="editTotal"></span><span id="editSum"></span></div>
+  <div class="ehint" data-t="editHint"></div>
+  <div class="mact"><button id="editCancel" data-t="editCancel"></button><button class="save" id="editSave" data-t="editSave"></button></div>
+</div></div>
 
+<script>
+/* qrcode-generator 1.4.4, Kazuhiko Arase, MIT license, https://github.com/kazuhikoarase/qrcode-generator */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,(function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1}))},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(t,r){var e=n("友");if(2!=e.length||38726!=(e[0]<<8|e[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}((function(){return qrcode}));
+</script>
+<script>
+const VQ = null;   /* demo: no bank account, the bill prints without a VietQR code */
+/* VietQR (NAPAS 247) code with the amount: built here from the venue's bank QR, no outside service */
+function vqPayload(vq, amount, info) {
+  const f = (t, v) => t + String(v.length).padStart(2, '0') + v;
+  let s = f('00', '01') + f('01', amount ? '12' : '11') + f('38', f('00', 'A000000727') + f('01', f('00', vq.bin) + f('01', vq.account)) + f('02', 'QRIBFTTA'))
+    + f('53', '704') + (amount ? f('54', String(Math.round(amount))) : '') + f('58', 'VN') + (info ? f('62', f('08', String(info).replace(/[^\x20-\x7e]/g, '').slice(0, 25))) : '') + '6304';
+  let c = 0xFFFF; for (const ch of s) { c ^= ch.charCodeAt(0) << 8; for (let i = 0; i < 8; i++) c = c & 0x8000 ? ((c << 1) ^ 0x1021) & 0xFFFF : (c << 1) & 0xFFFF }
+  return s + c.toString(16).toUpperCase().padStart(4, '0');
+}
+function vqSvg(vq, amount, info) { const q = qrcode(0, 'M'); q.addData(vqPayload(vq, amount, info)); q.make(); return q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }) }
+</script>
 <script>
 const API = new URLSearchParams(location.search).get('api') || 'https://cafeupnhatrang.nhatrang.workers.dev';
 const VENUE = 'demo';
 const POLL_MS = 6000;
 /* dish names by menu number (filled from menu-data.js by tools/build_staff.py) */
-const NAMES = {"bk":["Bún kèn, Phu Quoc fish noodle soup","Бун кен — суп Фукуока"],"gct":["Raw herring salad, Phu Quoc style","Салат из сельди по-фукуокски"],"bcc":["Thick noodle soup with fish cakes","Бань кань с рыбными котлетками"],"ht":["Hủ tiếu, clear pork noodle soup","Хутьеу — суп с рисовой лапшой"],"nhum":["Grilled sea urchin with scallion oil","Морской ёж на гриле с луковым маслом"],"mn":["Charcoal-grilled squid with satay chili","Кальмар на углях с соусом сатай"],"gh":["Steamed blue crabs (2 pcs)","Крабы на пару (2 шт.)"],"cchs":["Seafood fried rice","Жареный рис с морепродуктами"],"cpsd":["Iced coffee with condensed milk","Кофе со сгущёнкой и льдом"],"bx":["Bạc xỉu, milky coffee","Бак сиу, молочный кофе"],"cpm":["Salt coffee","Солёный кофе"],"stb":["Avocado smoothie","Смузи из авокадо"],"dua":["Fresh coconut","Свежий кокос"],"ckb":["Chè khúc bạch, milk jelly dessert","Че кхук бать — молочное желе"],"kd":["Coconut ice cream","Кокосовое мороженое"]}/*NAMES*/;
-const NAMES_VI = {"Bún kèn":["Bún kèn, Phu Quoc fish noodle soup","Бун кен — суп Фукуока"],"Gỏi cá trích":["Raw herring salad, Phu Quoc style","Салат из сельди по-фукуокски"],"Bánh canh chả cá":["Thick noodle soup with fish cakes","Бань кань с рыбными котлетками"],"Hủ tiếu":["Hủ tiếu, clear pork noodle soup","Хутьеу — суп с рисовой лапшой"],"Nhum nướng mỡ hành":["Grilled sea urchin with scallion oil","Морской ёж на гриле с луковым маслом"],"Mực nướng sa tế":["Charcoal-grilled squid with satay chili","Кальмар на углях с соусом сатай"],"Ghẹ Hàm Ninh hấp (2 con)":["Steamed blue crabs (2 pcs)","Крабы на пару (2 шт.)"],"Cơm chiên hải sản":["Seafood fried rice","Жареный рис с морепродуктами"],"Cà phê sữa đá":["Iced coffee with condensed milk","Кофе со сгущёнкой и льдом"],"Bạc xỉu":["Bạc xỉu, milky coffee","Бак сиу, молочный кофе"],"Cà phê muối":["Salt coffee","Солёный кофе"],"Sinh tố bơ":["Avocado smoothie","Смузи из авокадо"],"Dừa tươi":["Fresh coconut","Свежий кокос"],"Chè khúc bạch":["Chè khúc bạch, milk jelly dessert","Че кхук бать — молочное желе"],"Kem dừa":["Coconut ice cream","Кокосовое мороженое"]};
+const IMGS = {"1": "bk.webp", "2": "gct.webp", "3": "bcc.webp", "4": "ht.webp", "5": "nhum.webp", "6": "mn.webp", "7": "gh.webp", "8": "cchs.webp", "9": "cpsd.webp", "10": "bx.webp", "11": "cpm.webp", "12": "stb.webp", "13": "dua.webp", "14": "ckb.webp", "15": "kd.webp"};
+const MENU_FULL = {"m": {"1": ["pq", "Bún kèn", "Bún, nước cốt dừa, cá xay, đu đủ, rau.", "Bún kèn, Phu Quoc fish noodle soup", "The island speciality: rice noodles in a coconut-milk broth with flaked fish, herbs and green papaya.", "Бун кен — суп Фукуока", "Фирменное блюдо острова: рисовая лапша в бульоне на кокосовом молоке с рыбой, зеленью и зелёной папайей.", 50000], "2": ["pq", "Gỏi cá trích", "Cá trích tươi, dừa, rau, bánh tráng, nước chấm đậu phộng.", "Raw herring salad, Phu Quoc style", "Fresh herring cured in lime with coconut, onion and herbs. Wrap it in rice paper with greens and dip in peanut sauce.", "Салат из сельди по-фукуокски", "Свежая сельдь в лайме с кокосом, луком и зеленью. Заворачивают в рисовую бумагу с зеленью и макают в арахисовый соус.", 120000], "3": ["pq", "Bánh canh chả cá", "Bánh canh, chả cá thu, nước dùng.", "Thick noodle soup with fish cakes", "Chewy tapioca noodles, fish cakes from local fish, clear broth.", "Бань кань с рыбными котлетками", "Плотная лапша из тапиоки, котлетки из местной рыбы, прозрачный бульон.", 55000], "4": ["pq", "Hủ tiếu", "Hủ tiếu, nước lèo xương heo, thịt, tôm.", "Hủ tiếu, clear pork noodle soup", "Thin rice noodles, pork broth, sliced pork, shrimp and quail egg.", "Хутьеу — суп с рисовой лапшой", "Тонкая рисовая лапша, свиной бульон, свинина, креветки и перепелиное яйцо.", 50000], "5": ["sea", "Nhum nướng mỡ hành", "Nướng mỡ hành, đậu phộng.", "Grilled sea urchin with scallion oil", "Grilled in the shell with scallion oil and crushed peanuts.", "Морской ёж на гриле с луковым маслом", "Запекают в панцире с зелёным луком и арахисом.", 35000], "6": ["sea", "Mực nướng sa tế", "Mực nướng than, sa tế.", "Charcoal-grilled squid with satay chili", "Whole local squid over charcoal with a mildly spicy satay sauce.", "Кальмар на углях с соусом сатай", "Целый местный кальмар на углях, слегка острый соус сатай.", 150000], "7": ["sea", "Ghẹ Hàm Ninh hấp (2 con)", "Ghẹ hấp sả, muối tiêu chanh.", "Steamed blue crabs (2 pcs)", "Hàm Ninh blue crabs steamed with lemongrass, served with salt, pepper and lime dip.", "Крабы на пару (2 шт.)", "Синие крабы из Хамнинь на пару с лемонграссом. Подаются с солью, перцем и лаймом.", 220000], "8": ["sea", "Cơm chiên hải sản", "Cơm chiên tôm, mực, trứng.", "Seafood fried rice", "Fried rice with shrimp, squid and egg.", "Жареный рис с морепродуктами", "Рис, жаренный с креветками, кальмаром и яйцом.", 85000], "9": ["drink", "Cà phê sữa đá", "Cà phê phin, sữa đặc, đá.", "Iced coffee with condensed milk", "Strong phin coffee over ice with sweet condensed milk.", "Кофе со сгущёнкой и льдом", "Крепкий кофе из фина, лёд и сгущённое молоко.", 25000], "10": ["drink", "Bạc xỉu", "Nhiều sữa, ít cà phê.", "Bạc xỉu, milky coffee", "More milk than coffee. Mild and sweet.", "Бак сиу, молочный кофе", "Молока больше, чем кофе. Мягкий и сладкий.", 30000], "11": ["drink", "Cà phê muối", "Cà phê phin, kem muối béo.", "Salt coffee", "Coffee under a lightly salted cream. Sweet, salty and smooth.", "Солёный кофе", "Кофе под слегка солёной сливочной пенкой. Сладко-солёный и мягкий.", 35000], "12": ["drink", "Sinh tố bơ", "Bơ chín, sữa tươi, sữa đặc.", "Avocado smoothie", "Ripe avocado, fresh milk and a little condensed milk.", "Смузи из авокадо", "Спелый авокадо, молоко и немного сгущёнки.", 45000], "13": ["drink", "Dừa tươi", "Dừa xiêm ướp lạnh.", "Fresh coconut", "Chilled young coconut, drink straight from the shell.", "Свежий кокос", "Охлаждённый молодой кокос, пьют прямо из ореха.", 30000], "14": ["des", "Chè khúc bạch", "Khúc bạch, vải, hạnh nhân, đá.", "Chè khúc bạch, milk jelly dessert", "Cubes of milk jelly with lychee, almonds and syrup over ice.", "Че кхук бать — молочное желе", "Кубики молочного желе с личи, миндалём и сиропом со льдом.", 40000], "15": ["des", "Kem dừa", "Kem dừa trong trái dừa, đậu phộng.", "Coconut ice cream", "Served in half a coconut with peanuts and coconut flesh.", "Кокосовое мороженое", "Подаётся в половинке кокоса с арахисом и мякотью.", 45000]}, "c": [["pq", "Món Phú Quốc", "Phu Quoc dishes", "Блюда Фукуока"], ["sea", "Hải sản", "Seafood", "Морепродукты"], ["drink", "Đồ uống", "Drinks", "Напитки"], ["des", "Tráng miệng", "Desserts", "Десерты"]]};
+const NAMES = {"1": ["Bún kèn, Phu Quoc fish noodle soup", "Бун кен — суп Фукуока", "Bún kèn", 50000], "2": ["Raw herring salad, Phu Quoc style", "Салат из сельди по-фукуокски", "Gỏi cá trích", 120000], "3": ["Thick noodle soup with fish cakes", "Бань кань с рыбными котлетками", "Bánh canh chả cá", 55000], "4": ["Hủ tiếu, clear pork noodle soup", "Хутьеу — суп с рисовой лапшой", "Hủ tiếu", 50000], "5": ["Grilled sea urchin with scallion oil", "Морской ёж на гриле с луковым маслом", "Nhum nướng mỡ hành", 35000], "6": ["Charcoal-grilled squid with satay chili", "Кальмар на углях с соусом сатай", "Mực nướng sa tế", 150000], "7": ["Steamed blue crabs (2 pcs)", "Крабы на пару (2 шт.)", "Ghẹ Hàm Ninh hấp (2 con)", 220000], "8": ["Seafood fried rice", "Жареный рис с морепродуктами", "Cơm chiên hải sản", 85000], "9": ["Iced coffee with condensed milk", "Кофе со сгущёнкой и льдом", "Cà phê sữa đá", 25000], "10": ["Bạc xỉu, milky coffee", "Бак сиу, молочный кофе", "Bạc xỉu", 30000], "11": ["Salt coffee", "Солёный кофе", "Cà phê muối", 35000], "12": ["Avocado smoothie", "Смузи из авокадо", "Sinh tố bơ", 45000], "13": ["Fresh coconut", "Свежий кокос", "Dừa tươi", 30000], "14": ["Chè khúc bạch, milk jelly dessert", "Че кхук бать — молочное желе", "Chè khúc bạch", 40000], "15": ["Coconut ice cream", "Кокосовое мороженое", "Kem dừa", 45000]};
 
 const L = {
- vi: { title:'CafeUp · Đơn hàng', off:'Chưa kết nối', live:'Đang nhận đơn', lost:'Mất kết nối, đang thử lại…',
-   loginH:'Nhập mã nhân viên', loginP:'Mã do chủ quán cung cấp. Chỉ cần nhập một lần trên máy này.', cont:'Tiếp tục', demoCode:'Mã demo:',
+ vi: { title:'CafeUp · Đơn hàng (demo)', demoCode:'Mã demo:', off:'Chưa kết nối', live:'Đang nhận đơn', lost:'Mất kết nối, đang thử lại…',
+   loginH:'Nhập mã nhân viên', loginP:'Mã do chủ quán cung cấp. Chỉ cần nhập một lần trên máy này.', cont:'Tiếp tục',
    wrongCode:'Mã không đúng.', codeChanged:'Mã không đúng hoặc đã đổi. Nhập lại mã.', noServer:'Không kết nối được máy chủ. Kiểm tra mạng.',
    readyH:'Sẵn sàng nhận đơn', readyP:'Bấm để bật âm thanh báo đơn mới và giữ màn hình luôn sáng.', start:'▶ Bắt đầu nhận đơn',
    push:'📳 Bật thông báo trên điện thoại này', pushOn:'📳 Thông báo đã bật (bấm để bật lại)', pushShort:'📳 Thông báo trên điện thoại', testSound:'🔊 Thử âm thanh',
    iosHint:'iPhone: bấm nút Chia sẻ → Thêm vào MH chính, mở ứng dụng từ màn hình chính, rồi bấm «Bật thông báo».',
-   waiting:n=>`Chưa nhận: ${n}`, none:'Không có đơn chờ', filterNew:'Chưa nhận', filterAll:'Tất cả (12 giờ)',
-   emptyNew:'Chưa có đơn mới. Đơn sẽ hiện ở đây kèm âm thanh.', emptyAll:'Chưa có đơn trong 12 giờ qua.',
+   waiting:n=>`Chưa nhận: ${n}`, none:'Không có đơn chờ', filterNew:'Chưa nhận', filterAll:'Đơn đã xong',
+   emptyNew:'Chưa có đơn mới. Đơn sẽ hiện ở đây kèm âm thanh.', emptyAll:'Chưa có đơn đã xong trong 12 giờ qua.',
    autoHint:'Màn hình tự cập nhật mỗi vài giây. Đơn mới có âm thanh và nhấp nháy.',
-   soundOn:'🔔 Âm thanh: bật', soundOff:'🔕 Âm thanh: tắt', changeCode:'Đổi mã', confirmOut:'Đăng xuất và nhập mã khác?',
-   printBtn:'🖨 In', autoOn:'🖨 Tự động in hóa đơn: bật', autoOff:'🖨 Tự động in hóa đơn: tắt', testPrint:'🧪 In thử', ack:'Đã nhận ✓', acked:'✓ Đã nhận', sendFail:'Không gửi được. Thử lại.', table:'Bàn',
+   soundOn:'🔔 Âm thanh: bật', soundOff:'🔕 Âm thanh: tắt', changeCode:'Đăng xuất', confirmOut:'Đăng xuất khỏi màn hình nhân viên?',
+   mnBtn:'📝 Thực đơn', mnSub:'Thêm món mới, sửa tên và mô tả, ẩn món khỏi thực đơn của khách. Khách thấy thay đổi trong khoảng 1 phút. Ảnh món mới: nút «🖼 Đổi ảnh».', mnAddBtn:'+ Món mới', mnEditBtn:'✏️ Sửa', mnHide:'🙈 Ẩn', mnShow:'↺ Hiện lại', mnHidden:'đang ẩn', mnNew:'món mới', mnEditT:'Sửa món', mnAddT:'Món mới', mnId:'Số món', mnPrice:'Giá (₫)', mnCat:'Mục', mnName:'Tên và mô tả', mnHint:'Ô đầu là tên, ô dưới là mô tả. Chỉ cần viết tiếng Việt rồi bấm «Dịch các ô trống».', mnDel:'🗑 Xóa món', mnNeedId:'Nhập số món.', mnIdTaken:'Số này đã có trong thực đơn.', mnNeedName:'Nhập tên món tiếng Việt.', mnSaved:'Đã lưu. Thực đơn của khách cập nhật trong khoảng 1 phút.', mnHideQ:'Ẩn món này khỏi thực đơn của khách?', mnHiddenOk:'Đã ẩn món.', mnShown:'Món đã hiện lại.', mnDelQ:'Xóa hẳn món mới này?', mnDeleted:'Đã xóa món.', phBtn:'🖼 Đổi ảnh', phSub:'Bấm «Đổi ảnh» và chụp hoặc chọn ảnh món. Ảnh được cắt vuông và nén ngay trên điện thoại. Khách thấy ảnh mới trong khoảng 1 phút.', phChange:'📷 Đổi ảnh', phReset:'↺ Ảnh gốc', phNew:'ảnh mới', phSaving:'Đang tải lên…', phSaved:'Đã lưu ảnh. Khách thấy trong khoảng 1 phút.', phResetQ:'Trả lại ảnh gốc cho món này?', phBad:'Không mở được ảnh này. Thử ảnh khác (JPG, PNG).', ntBtn:'📢 Thông báo', ntSub:'Dòng thông báo hiện dưới tên quán trong thực đơn của khách, khoảng 1 phút sau. Khách thấy ngôn ngữ của mình; ô trống sẽ dùng ngôn ngữ khác đã điền.', ntBoldHint:'Bôi đen chữ rồi bấm B để in đậm (hiện như **chữ**).', ntClear:'Xóa', ntSave:'Đăng', ntSaved:'Đã đăng. Khách thấy trong khoảng 1 phút.', ntSavedTr:'Đã đăng. Ô trống đã được dịch tự động — mở lại để kiểm tra. Khách thấy trong khoảng 1 phút.', ntTrHint:'Chỉ cần viết một ngôn ngữ: ô trống sẽ được dịch tự động khi đăng.', ntTrBtn:'🌐 Dịch các ô trống', ntCleared:'Đã xóa thông báo.', prBtn:'💲 Đổi giá', prSub:'Gõ giá mới (chỉ số, ví dụ 105000). Thực đơn của khách cập nhật trong khoảng 1 phút. Xóa ô để trở về giá gốc.', prWas:'Giá gốc', prSaved:'Đã lưu giá mới. Thực đơn của khách cập nhật trong khoảng 1 phút.', prBad:'Giá phải là số từ 1.000 ₫.', soBtn:'⛔ Hết món', soSub:'Đánh dấu món đã hết. Khách thấy «Hết món» và không gọi được, sau khoảng 1 phút. Bỏ dấu khi có món trở lại.', soOut:'Hết', soSaved:'Đã lưu. Thực đơn của khách cập nhật trong khoảng 1 phút.', popBtn:'⭐ Món phổ biến', popSub:'Chọn món hiện trong mục «⭐ Phổ biến» ở đầu thực đơn của khách. Bỏ chọn hết để ẩn mục này.', popSaved:'Đã lưu. Thực đơn của khách cập nhật trong vài phút.', newOrder:'+ Tạo đơn', tableBill:'💳 Đơn đang mở', tbNoTables:'Không có bàn nào đang mở.', tbOrders:n => n + ' đơn', tbSince:'từ', tbSubtotal:'Tạm tính', tbDisc:'Giảm giá', tbTax:'Thuế', tbExtra:'Phụ thu', tbFinal:'Thành tiền', tbFinalHint:'Có thể sửa số tiền cuối cùng — phần chênh lệch ghi vào hóa đơn là giảm giá.', tbTip:'Tiền tip', tbTipTot:'Tổng cộng', tbClose:'✅ Đóng bàn', reopen:'↩ Mở lại bàn', reopenQ:b => `Mở lại bàn ${b}? Các món sẽ quay lại hóa đơn của bàn.`, tbCloseQ:(b, s) => `Đóng bàn ${b}? Khách đã thanh toán ${s}?`, tbDone:'Xong', tbAsk:'💳 khách gọi tính tiền', tbUnit:'Đơn giá', tbChanged:'giá đã sửa', tblLabel:'Số bàn', guestLabel:'Tên khách (không bắt buộc)', payLabel:'Thanh toán', payCash:'Tiền mặt', payCard:'Thẻ', kitchenNote:'Ghi chú cho cả đơn', staffNote:'Nhân viên', total2:'Tổng', newSave:'Gửi đơn', needTbl:'Nhập số bàn.', needDish:'Chọn ít nhất một món.', tbSub:'Tất cả bàn đang mở. Sửa món và giá, giảm giá, in hóa đơn và đóng bàn sau khi khách thanh toán.', tbPrint:'🖨 In hóa đơn', tbNone:'Bàn này chưa có món nào.', searchPh:'Tìm món: tên hoặc số…', searchNone:'Không tìm thấy món.', addDish:'+ Thêm món…', lastDish:'Đây là món cuối cùng của đơn. Xóa?', editRm:'Xóa món', editBack:'Hoàn tác', editBtn:'✏️ Sửa', edited:'✏️ đã sửa', editT:'Sửa đơn · Bàn ', editSub:'Đổi số lượng, bấm ✕ để xóa món hoặc thêm món. Mọi máy sẽ thấy đơn mới.', editAdd:'+ Thêm', editNote:'Ghi chú của nhân viên (ví dụ: hết cá hồi, đổi sang cá ngừ)', editTotal:'Tổng mới', editHint:'Khách đã thanh toán trước? Báo khách số tiền chênh lệch.', editCancel:'Hủy', editSave:'Lưu thay đổi', editPick:'Chọn món…', editFail:'Không lưu được. Thử lại.', printBtn:'🖨 In', rawbtOn:'📲 In qua RawBT (không hộp thoại): bật', rawbtOff:'📲 In qua RawBT: tắt', rawbtNoSrv:'qua liên kết', rawbtFail:'Không in được qua RawBT. Kiểm tra ứng dụng RawBT và máy in.',autoOn:'🖨 Tự động in đơn & hóa đơn: bật', autoOff:'🖨 Tự động in đơn & hóa đơn: tắt', testPrint:'🧪 In thử', ack:'Đã nhận ✓', acked:'✓ Đã nhận', sendFail:'Không gửi được. Thử lại.', table:'Bàn',
    now:'vừa xong', min:m=>`${m} phút trước`, hour:h=>`${h} giờ trước`,
-   tag:{order:'🧾 ĐƠN MỚI', add:'➕ GỌI THÊM', waiter:'🔔 GỌI PHỤC VỤ', water:'💧 NƯỚC ĐÁ / KHĂN GIẤY', bill:'💳 TÍNH TIỀN'},
+   tag:{order:'🧾 ĐƠN MỚI', add:'➕ GỌI THÊM', waiter:'🔔 GỌI PHỤC VỤ', water:'🍴 DỤNG CỤ ĂN / KHĂN GIẤY', bill:'💳 TÍNH TIỀN', closed:'✅ ĐÃ ĐÓNG BÀN', reopened:'↩ ĐÃ MỞ LẠI BÀN'},
    noSupport:'Trình duyệt này không hỗ trợ thông báo. Dùng Chrome trên Android.', iosFirst:'iPhone: trước tiên thêm trang vào Màn hình chính (xem hướng dẫn).',
    denied:'Bạn chưa cho phép thông báo. Mở cài đặt trình duyệt → Thông báo → Cho phép.', pushOk:'✓ Đã bật thông báo trên điện thoại này.' },
- en: { title:'CafeUp · Orders', off:'Not connected', live:'Receiving orders', lost:'Connection lost, retrying…',
-   loginH:'Enter the staff code', loginP:'The code comes from the owner. Enter it once on this device.', cont:'Continue', demoCode:'Demo code:',
+ en: { title:'CafeUp · Orders (demo)', demoCode:'Demo code:', off:'Not connected', live:'Receiving orders', lost:'Connection lost, retrying…',
+   loginH:'Enter the staff code', loginP:'The code comes from the owner. Enter it once on this device.', cont:'Continue',
    wrongCode:'Wrong code.', codeChanged:'The code is wrong or has changed. Enter it again.', noServer:'Cannot reach the server. Check the internet.',
    readyH:'Ready for orders', readyP:'Tap to turn on the new-order sound and keep the screen on.', start:'▶ Start receiving orders',
    push:'📳 Turn on notifications on this phone', pushOn:'📳 Notifications are on (tap to redo)', pushShort:'📳 Phone notifications', testSound:'🔊 Test sound',
    iosHint:'iPhone: tap Share → Add to Home Screen, open the app from the home screen, then tap “Turn on notifications”.',
-   waiting:n=>`Waiting: ${n}`, none:'Nothing waiting', filterNew:'Waiting', filterAll:'All (12 hours)',
-   emptyNew:'No new orders yet. They appear here with a sound.', emptyAll:'No orders in the last 12 hours.',
+   waiting:n=>`Waiting: ${n}`, none:'Nothing waiting', filterNew:'Waiting', filterAll:'Completed orders',
+   emptyNew:'No new orders yet. They appear here with a sound.', emptyAll:'No completed orders in the last 12 hours.',
    autoHint:'The screen updates every few seconds. New orders beep and flash.',
-   soundOn:'🔔 Sound: on', soundOff:'🔕 Sound: off', changeCode:'Change code', confirmOut:'Log out and enter another code?',
-   printBtn:'🖨 Print', autoOn:'🖨 Auto-print bills: on', autoOff:'🖨 Auto-print bills: off', testPrint:'🧪 Test print', ack:'Taken ✓', acked:'✓ Taken', sendFail:'Could not send. Try again.', table:'Table',
+   soundOn:'🔔 Sound: on', soundOff:'🔕 Sound: off', changeCode:'Log out', confirmOut:'Log out of the staff screen?',
+   mnBtn:'📝 Menu', mnSub:'Add a dish, edit names and descriptions, hide a dish from the guest menu. Guests see the change within about a minute. Photo of a new dish: the «🖼 Photos» button.', mnAddBtn:'+ New dish', mnEditBtn:'✏️ Edit', mnHide:'🙈 Hide', mnShow:'↺ Show', mnHidden:'hidden', mnNew:'new dish', mnEditT:'Edit dish', mnAddT:'New dish', mnId:'Menu number', mnPrice:'Price (₫)', mnCat:'Category', mnName:'Name and description', mnHint:'The first field is the name, the one below is the description. Write one language and tap «Translate empty fields».', mnDel:'🗑 Delete dish', mnNeedId:'Enter the menu number.', mnIdTaken:'This number is already in the menu.', mnNeedName:'Enter the Vietnamese name.', mnSaved:'Saved. The guest menu updates within about a minute.', mnHideQ:'Hide this dish from the guest menu?', mnHiddenOk:'The dish is hidden.', mnShown:'The dish is shown again.', mnDelQ:'Delete this new dish completely?', mnDeleted:'Dish deleted.', phBtn:'🖼 Photos', phSub:'Tap «Change photo» and take or pick a picture of the dish. It is cropped square and compressed right on the phone. Guests see the new photo within about a minute.', phChange:'📷 Change photo', phReset:'↺ Original', phNew:'new photo', phSaving:'Uploading…', phSaved:'Photo saved. Guests see it within about a minute.', phResetQ:'Go back to the original photo of this dish?', phBad:'Could not open this picture. Try another one (JPG, PNG).', ntBtn:'📢 Announcement', ntSub:'A message under the café name in the guest menu, within about a minute. Guests see their language; an empty field falls back to another filled one.', ntBoldHint:'Select text and tap B to make it bold (shown as **text**).', ntClear:'Remove', ntSave:'Publish', ntSaved:'Published. Guests see it within about a minute.', ntSavedTr:'Published. Empty fields were translated automatically — open it again to check. Guests see it within about a minute.', ntTrHint:'One language is enough: empty fields are translated automatically when you publish.', ntTrBtn:'🌐 Translate empty fields', ntCleared:'Announcement removed.', prBtn:'💲 Prices', prSub:'Type the new price (digits only, e.g. 105000). The guest menu updates within about a minute. Clear a field to go back to the original price.', prWas:'Original', prSaved:'Prices saved. The guest menu updates within about a minute.', prBad:'A price must be a number from 1,000 ₫.', soBtn:'⛔ Sold out', soSub:'Tick the dishes that ran out. Guests see «Sold out» and cannot order them, within about a minute. Untick when the dish is back.', soOut:'Sold out', soSaved:'Saved. The guest menu updates within about a minute.', popBtn:'⭐ Popular dishes', popSub:'Pick the dishes for the «⭐ Popular» tab at the top of the guest menu. Untick all to hide the tab.', popSaved:'Saved. The guest menu updates within a few minutes.', newOrder:'+ New order', tableBill:'💳 Active orders', tbNoTables:'No open tables.', tbOrders:n => n + (n === 1 ? ' order' : ' orders'), tbSince:'since', tbSubtotal:'Subtotal', tbDisc:'Discount', tbTax:'Tax', tbExtra:'Surcharge', tbFinal:'To pay', tbFinalHint:'You can type the final amount — the difference goes on the bill as a discount.', tbTip:'Tip', tbTipTot:'Total with tip', tbClose:'✅ Close table', reopen:'↩ Reopen table', reopenQ:b => `Reopen table ${b}? Its dishes go back to the table bill.`, tbCloseQ:(b, s) => `Close table ${b}? The guest has paid ${s}?`, tbDone:'Done', tbAsk:'💳 guest asked for the bill', tbUnit:'Unit price', tbChanged:'price changed', tblLabel:'Table', guestLabel:'Guest name (optional)', payLabel:'Payment', payCash:'Cash', payCard:'Card', kitchenNote:'Comment for the whole order', staffNote:'Staff', total2:'Total', newSave:'Send order', needTbl:'Enter the table number.', needDish:'Add at least one dish.', tbSub:'Every open table. Edit dishes and prices, give a discount, print the bill and close the table once the guest has paid.', tbPrint:'🖨 Print bill', tbNone:'This table has no dishes yet.', searchPh:'Find a dish: name or number…', searchNone:'No dish found.', addDish:'+ Add a dish…', lastDish:'This is the last dish in the order. Remove it?', editRm:'Remove dish', editBack:'Undo', editBtn:'✏️ Edit', edited:'✏️ edited', editT:'Edit order · Table ', editSub:'Change quantities, tap ✕ to remove a dish, or add dishes. Every screen sees the new order.', editAdd:'+ Add', editNote:'Staff note (e.g. out of salmon, swapped for tuna)', editTotal:'New total', editHint:'If the guest has already paid, tell them the difference.', editCancel:'Cancel', editSave:'Save changes', editPick:'Choose a dish…', editFail:'Could not save. Try again.', printBtn:'🖨 Print', rawbtOn:'📲 Print via RawBT (no dialog): on', rawbtOff:'📲 Print via RawBT: off', rawbtNoSrv:'via link', rawbtFail:'Could not print via RawBT. Check the RawBT app and the printer.',autoOn:'🖨 Auto-print orders & bills: on', autoOff:'🖨 Auto-print orders & bills: off', testPrint:'🧪 Test print', ack:'Taken ✓', acked:'✓ Taken', sendFail:'Could not send. Try again.', table:'Table',
    now:'just now', min:m=>`${m} min ago`, hour:h=>`${h} h ago`,
-   tag:{order:'🧾 NEW ORDER', add:'➕ ADD-ON', waiter:'🔔 CALL WAITER', water:'💧 ICE WATER / NAPKINS', bill:'💳 BILL'},
+   tag:{order:'🧾 NEW ORDER', add:'➕ ADD-ON', waiter:'🔔 CALL WAITER', water:'🍴 CUTLERY / NAPKINS', bill:'💳 BILL', closed:'✅ TABLE CLOSED', reopened:'↩ TABLE REOPENED'},
    noSupport:'This browser has no notifications. Use Chrome on Android.', iosFirst:'iPhone: first add this page to the Home Screen (see the tip below).',
    denied:'Notifications are not allowed. Open the browser settings → Notifications → Allow.', pushOk:'✓ Notifications are on for this phone.' },
- ru: { title:'CafeUp · Заказы', off:'Нет подключения', live:'Принимаем заказы', lost:'Нет связи, пробуем снова…',
-   loginH:'Введите код персонала', loginP:'Код выдаёт владелец. Вводится один раз на этом устройстве.', cont:'Продолжить', demoCode:'Демо-код:',
+ ru: { title:'CafeUp · Заказы (демо)', demoCode:'Демо-код:', off:'Нет подключения', live:'Принимаем заказы', lost:'Нет связи, пробуем снова…',
+   loginH:'Введите код персонала', loginP:'Код выдаёт владелец. Вводится один раз на этом устройстве.', cont:'Продолжить',
    wrongCode:'Неверный код.', codeChanged:'Код неверный или изменился. Введите его снова.', noServer:'Нет связи с сервером. Проверьте интернет.',
    readyH:'Готово к приёму заказов', readyP:'Нажмите, чтобы включить звук новых заказов и не гасить экран.', start:'▶ Начать приём заказов',
    push:'📳 Включить уведомления на этом телефоне', pushOn:'📳 Уведомления включены (нажмите, чтобы повторить)', pushShort:'📳 Уведомления на телефон', testSound:'🔊 Проверить звук',
    iosHint:'iPhone: «Поделиться» → «На экран Домой», откройте приложение с экрана Домой и нажмите «Включить уведомления».',
-   waiting:n=>`Ожидают: ${n}`, none:'Нет ожидающих заказов', filterNew:'Ожидают', filterAll:'Все (12 часов)',
-   emptyNew:'Новых заказов пока нет. Они появятся здесь со звуком.', emptyAll:'За последние 12 часов заказов нет.',
+   waiting:n=>`Ожидают: ${n}`, none:'Нет ожидающих заказов', filterNew:'Ожидают', filterAll:'Выполненные заказы',
+   emptyNew:'Новых заказов пока нет. Они появятся здесь со звуком.', emptyAll:'За последние 12 часов выполненных заказов нет.',
    autoHint:'Экран обновляется каждые несколько секунд. Новые заказы — со звуком и миганием.',
-   soundOn:'🔔 Звук: вкл', soundOff:'🔕 Звук: выкл', changeCode:'Сменить код', confirmOut:'Выйти и ввести другой код?',
-   printBtn:'🖨 Печать', autoOn:'🖨 Автопечать счетов: вкл', autoOff:'🖨 Автопечать счетов: выкл', testPrint:'🧪 Тестовая печать', ack:'Принято ✓', acked:'✓ Принято', sendFail:'Не удалось отправить. Попробуйте ещё раз.', table:'Стол',
+   soundOn:'🔔 Звук: вкл', soundOff:'🔕 Звук: выкл', changeCode:'Выход', confirmOut:'Выйти из экрана персонала?',
+   mnBtn:'📝 Меню', mnSub:'Добавляйте блюда, меняйте названия и описания, скрывайте блюда из меню гостя. Гости увидят изменения примерно через минуту. Фото нового блюда — кнопка «🖼 Изменить фото».', mnAddBtn:'+ Новое блюдо', mnEditBtn:'✏️ Изменить', mnHide:'🙈 Скрыть', mnShow:'↺ Вернуть', mnHidden:'скрыто', mnNew:'новое', mnEditT:'Блюдо', mnAddT:'Новое блюдо', mnId:'Номер в меню', mnPrice:'Цена (₫)', mnCat:'Раздел', mnName:'Название и описание', mnHint:'Верхнее поле — название, нижнее — описание. Достаточно заполнить один язык и нажать «Перевести пустые поля».', mnDel:'🗑 Удалить блюдо', mnNeedId:'Введите номер блюда.', mnIdTaken:'Такой номер уже есть в меню.', mnNeedName:'Введите название на вьетнамском.', mnSaved:'Сохранено. Меню гостя обновится примерно через минуту.', mnHideQ:'Скрыть это блюдо из меню гостя?', mnHiddenOk:'Блюдо скрыто.', mnShown:'Блюдо снова в меню.', mnDelQ:'Удалить это новое блюдо совсем?', mnDeleted:'Блюдо удалено.', phBtn:'🖼 Изменить фото', phSub:'Нажмите «Изменить фото» и сфотографируйте блюдо или выберите снимок из галереи. Фото обрежется до квадрата и сожмётся прямо в телефоне. Гости увидят новое фото примерно через минуту.', phChange:'📷 Изменить фото', phReset:'↺ Исходное', phNew:'новое фото', phSaving:'Загружаю…', phSaved:'Фото сохранено. Гости увидят его примерно через минуту.', phResetQ:'Вернуть исходное фото этого блюда?', phBad:'Не получилось открыть это фото. Попробуйте другое (JPG, PNG).', ntBtn:'📢 Объявление', ntSub:'Сообщение под названием заведения в меню гостя, появится примерно через минуту. Гость видит свой язык; если поле пустое — покажется другой заполненный язык.', ntBoldHint:'Выделите текст и нажмите B — он станет жирным (выглядит как **текст**).', ntClear:'Удалить', ntSave:'Опубликовать', ntSaved:'Опубликовано. Гости увидят примерно через минуту.', ntSavedTr:'Опубликовано. Пустые поля переведены автоматически — откройте ещё раз, чтобы проверить. Гости увидят примерно через минуту.', ntTrHint:'Достаточно написать на одном языке: пустые поля переведутся автоматически при публикации.', ntTrBtn:'🌐 Перевести пустые поля', ntCleared:'Объявление удалено.', prBtn:'💲 Цены', prSub:'Впишите новую цену (только цифры, например 105000). Меню гостя обновится примерно через минуту. Очистите поле, чтобы вернуть исходную цену.', prWas:'Исходная', prSaved:'Цены сохранены. Меню гостя обновится примерно через минуту.', prBad:'Цена — число от 1 000 ₫.', soBtn:'⛔ Стоп-лист', soSub:'Отметьте закончившиеся блюда. Гость увидит «Нет в наличии» и не сможет заказать — примерно через минуту. Снимите отметку, когда блюдо снова есть.', soOut:'Стоп', soSaved:'Сохранено. Меню гостя обновится примерно через минуту.', popBtn:'⭐ Популярное', popSub:'Отметьте блюда для вкладки «⭐ Популярное» в начале меню гостя. Снимите все отметки, чтобы скрыть вкладку.', popSaved:'Сохранено. Меню гостя обновится в течение нескольких минут.', newOrder:'+ Создать заказ', tableBill:'💳 Активные заказы', tbNoTables:'Открытых столов нет.', tbOrders:n => n + ' ' + (n % 10 === 1 && n % 100 !== 11 ? 'заказ' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'заказа' : 'заказов'), tbSince:'с', tbSubtotal:'Сумма', tbDisc:'Скидка', tbTax:'Налог', tbExtra:'Надбавка', tbFinal:'К оплате', tbFinalHint:'Сумму к оплате можно исправить вручную — разница попадёт в счёт как скидка.', tbTip:'Чаевые', tbTipTot:'Всего с чаевыми', tbClose:'✅ Закрыть стол', reopen:'↩ Открыть стол снова', reopenQ:b => `Открыть стол ${b} снова? Его блюда вернутся в счёт стола.`, tbCloseQ:(b, s) => `Закрыть стол ${b}? Гость оплатил ${s}?`, tbDone:'Готово', tbAsk:'💳 гость просит счёт', tbUnit:'Цена за 1', tbChanged:'цена изменена', tblLabel:'Номер стола', guestLabel:'Имя гостя (необязательно)', payLabel:'Оплата', payCash:'Наличные', payCard:'Картой', kitchenNote:'Комментарий к общему заказу', staffNote:'Персонал', total2:'Итого', newSave:'Отправить заказ', needTbl:'Введите номер стола.', needDish:'Добавьте хотя бы одно блюдо.', tbSub:'Все открытые столы. Меняйте блюда и цены, давайте скидку, печатайте счёт и закрывайте стол после оплаты.', tbPrint:'🖨 Печать счёта', tbNone:'У этого стола ещё нет блюд.', searchPh:'Поиск блюда: название или номер…', searchNone:'Блюдо не найдено.', addDish:'+ Добавить блюдо…', lastDish:'Это последнее блюдо в заказе. Убрать?', editRm:'Убрать блюдо', editBack:'Вернуть', editBtn:'✏️ Изменить', edited:'✏️ изменён', editT:'Изменить заказ · Стол ', editSub:'Поменяйте количество, нажмите ✕, чтобы убрать блюдо, или добавьте блюдо. Все экраны увидят новый заказ.', editAdd:'+ Добавить', editNote:'Комментарий персонала (например: нет лосося, заменили на тунца)', editTotal:'Новая сумма', editHint:'Если гость уже оплатил — сообщите ему разницу.', editCancel:'Отмена', editSave:'Сохранить', editPick:'Выберите блюдо…', editFail:'Не удалось сохранить. Попробуйте ещё раз.', printBtn:'🖨 Печать', rawbtOn:'📲 Печать через RawBT (без окна): вкл', rawbtOff:'📲 Печать через RawBT: выкл', rawbtNoSrv:'через ссылку', rawbtFail:'Не удалось напечатать через RawBT. Проверьте приложение RawBT и принтер.',autoOn:'🖨 Автопечать заказов и счетов: вкл', autoOff:'🖨 Автопечать заказов и счетов: выкл', testPrint:'🧪 Тестовая печать', ack:'Принято ✓', acked:'✓ Принято', sendFail:'Не удалось отправить. Попробуйте ещё раз.', table:'Стол',
    now:'только что', min:m=>`${m} мин назад`, hour:h=>`${h} ч назад`,
-   tag:{order:'🧾 НОВЫЙ ЗАКАЗ', add:'➕ ДОЗАКАЗ', waiter:'🔔 ЗОВУТ ОФИЦИАНТА', water:'💧 ВОДА / САЛФЕТКИ', bill:'💳 СЧЁТ'},
+   tag:{order:'🧾 НОВЫЙ ЗАКАЗ', add:'➕ ДОЗАКАЗ', waiter:'🔔 ЗОВУТ ОФИЦИАНТА', water:'🍴 ПРИБОРЫ / САЛФЕТКИ', bill:'💳 СЧЁТ', closed:'✅ СТОЛ ЗАКРЫТ', reopened:'↩ СТОЛ ОТКРЫТ СНОВА'},
    noSupport:'Этот браузер не поддерживает уведомления. Используйте Chrome на Android.', iosFirst:'iPhone: сначала добавьте страницу на экран Домой (подсказка ниже).',
    denied:'Уведомления не разрешены. Настройки браузера → Уведомления → Разрешить.', pushOk:'✓ Уведомления на этом телефоне включены.' },
 };
 /* lines of the Vietnamese ticket, translated for EN / RU (the guest's own note stays as written) */
 const LINE = {
- en: [[/^Tổng cộng: /,'Total with tip: '],[/^Tổng: /,'Total: '],[/^Tiền tip: /,'Tip: '],[/^Thanh toán: Chuyển khoản VietQR$/,'Payment: VietQR transfer'],[/^Thanh toán: Tiền mặt$/,'Payment: cash'],
-      [/^Ghi chú: /,'Note: '],[/^Khách nói tiếng Nga$/,'Guest speaks Russian'],[/^Khách nói tiếng Anh$/,'Guest speaks English'],[/^Khách nói tiếng Việt$/,'Guest speaks Vietnamese']],
- ru: [[/^Tổng cộng: /,'Всего с чаевыми: '],[/^Tổng: /,'Итого: '],[/^Tiền tip: /,'Чаевые: '],[/^Thanh toán: Chuyển khoản VietQR$/,'Оплата: перевод VietQR'],[/^Thanh toán: Tiền mặt$/,'Оплата: наличные'],
-      [/^Ghi chú: /,'Комментарий: '],[/^Khách nói tiếng Nga$/,'Гость говорит по-русски'],[/^Khách nói tiếng Anh$/,'Гость говорит по-английски'],[/^Khách nói tiếng Việt$/,'Гость говорит по-вьетнамски']],
+ en: [[/^Tổng cộng: /,'Total with tip: '],[/^Thuế/,'Tax'],[/^Tạm tính: /,'Subtotal: '],[/^Giảm giá/,'Discount'],[/^Phụ thu: /,'Surcharge: '],[/^Tổng: /,'Total: '],[/^Tiền tip: /,'Tip: '],[/^Thanh toán: Chuyển khoản VietQR$/,'Payment: VietQR transfer'],[/^Thanh toán: Tiền mặt$/,'Payment: cash'],[/^Thanh toán: Thẻ ngân hàng$/,'Payment: card'],
+      [/^Ghi chú: /,'Note: '],[/^✏️ Nhân viên: /,'✏️ Staff: '],[/^✍️ Nhân viên nhập đơn$/,'✍️ Entered by staff'],[/^Khách nói tiếng Nga$/,'Guest speaks Russian'],[/^Khách nói tiếng Anh$/,'Guest speaks English'],[/^Khách nói tiếng Việt$/,'Guest speaks Vietnamese']],
+ ru: [[/^Tổng cộng: /,'Всего с чаевыми: '],[/^Thuế/,'Налог'],[/^Tạm tính: /,'Сумма: '],[/^Giảm giá/,'Скидка'],[/^Phụ thu: /,'Надбавка: '],[/^Tổng: /,'Итого: '],[/^Tiền tip: /,'Чаевые: '],[/^Thanh toán: Chuyển khoản VietQR$/,'Оплата: перевод VietQR'],[/^Thanh toán: Tiền mặt$/,'Оплата: наличные'],[/^Thanh toán: Thẻ ngân hàng$/,'Оплата: картой'],
+      [/^Ghi chú: /,'Комментарий: '],[/^✏️ Nhân viên: /,'✏️ Персонал: '],[/^✍️ Nhân viên nhập đơn$/,'✍️ Внесён персоналом'],[/^Khách nói tiếng Nga$/,'Гость говорит по-русски'],[/^Khách nói tiếng Anh$/,'Гость говорит по-английски'],[/^Khách nói tiếng Việt$/,'Гость говорит по-вьетнамски']],
 };
 
 const $ = id => document.getElementById(id);
@@ -182,7 +406,10 @@ async function api(path, body) {
   return r.json();
 }
 
+/* staff app: a hidden «printer» copy of this page runs in the background; the visible copy («view») does not print, so nothing prints twice */
+const appRole = () => { try { return window.cafeupApp && cafeupApp.role ? cafeupApp.role() : '' } catch (e) { return '' } };
 function beep() {
+  if (appRole() === 'printer') return;
   if (!soundOn || !audio) return;
   const t0 = audio.currentTime;
   [880, 1175, 1568].forEach((f, i) => {
@@ -193,49 +420,79 @@ function beep() {
   if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
 }
 
-const kindOf = o => o.text.startsWith('GỌI THÊM') ? 'add' : o.text.startsWith('XIN THÊM') ? 'water' : o.kind === 'bill' ? 'bill' : o.kind === 'waiter' ? 'waiter' : 'order';
+const kindOf = o => o.kind === 'closed' ? 'closed' : o.kind === 'reopened' ? 'reopened' : o.text.startsWith('GỌI THÊM') ? 'add' : o.text.startsWith('XIN THÊM') ? 'water' : o.kind === 'bill' ? 'bill' : o.kind === 'waiter' ? 'waiter' : 'order';
 const ago = ms => { const m = Math.max(0, Math.round((Date.now() - ms) / 60000)); return m < 1 ? t('now') : m < 60 ? t('min')(m) : t('hour')(Math.floor(m / 60)) };
 const hhmm = ms => { const d = new Date(ms); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') };
 const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+/* guest comments are translated automatically into the screen language (free MyMemory service; cached on this device) */
+const TRN = new Map((() => { try { return JSON.parse(store.get('trn') || '[]') } catch (e) { return [] } })()), TRN_WAIT = new Set();
+const guestLang = o => ({ Nga: 'ru', Anh: 'en', 'Việt': 'vi' })[(o.text.match(/^Khách nói tiếng (\S+)$/m) || [])[1]] || '';
+const unent = x => { const d = document.createElement('textarea'); d.innerHTML = x; return d.value };
+const TRN_P = {};
+/* before printing: wait (max 5 s) for the Vietnamese translation of the guest's comments, so the kitchen ticket has it */
+function trReady(o) {
+  const notes = []; String(o.text || '').split('\n').forEach(l => { const n = l.match(/^Ghi chú: (.+)$/) || l.match(/ · Yêu cầu: (.+?) — [\d.]+\s₫$/); if (n) notes.push(n[1]) });
+  notes.forEach(n => noteTr(o, n, 'vi'));
+  const ps = notes.map(n => TRN_P[guestLang(o) + '|vi|' + n]).filter(Boolean);
+  return ps.length ? Promise.race([Promise.all(ps.map(p => p.catch(() => {}))), new Promise(r => setTimeout(r, 5000))]) : Promise.resolve();
+}
+function noteTr(o, note, tl = lang) {
+  const src = guestLang(o); if (!src || src === tl || !note.trim()) return '';
+  const k = src + '|' + tl + '|' + note; if (TRN.has(k)) return TRN.get(k);
+  if (!TRN_WAIT.has(k)) { TRN_WAIT.add(k);
+    TRN_P[k] = fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(note.slice(0, 450)) + '&langpair=' + src + '|' + tl)
+      .then(r => r.json()).then(d => { const x = unent(String((d && d.responseData && d.responseData.translatedText) || '')).trim();
+        if (d && +d.responseStatus === 200 && x && x.toLowerCase() !== note.trim().toLowerCase()) {
+          TRN.set(k, x); store.set('trn', JSON.stringify([...TRN].slice(-200))); render(); if (typeof renderTb === 'function' && !$('tbBg').hidden && !(document.activeElement && document.activeElement.closest && document.activeElement.closest('#tbBg input'))) renderTb(); if (typeof renderEdit === 'function' && editing && !$('editBg').hidden) renderEdit() } })
+      .catch(() => {}); }
+  return '';
+}
+/* translated guest request of a dish line («… · Yêu cầu: …») in the screen language */
+const reqTr = (o, vi) => { const rq = (String(vi).match(/ · Yêu cầu: (.+)$/) || [])[1], x = rq && o && noteTr(o, rq); return x ? `<b class="rtr">🌐 ${esc(x)}</b>` : '' };
+/* poke base chosen by the guest: «… · Đế: gạo lứt» → shown in the screen language */
+const BASE_TR = { 'cơm sushi': ['sushi rice + salad', 'рис для суши + салат'], 'gạo lứt': ['brown rice + salad', 'бурый рис + салат'], 'toàn salad': ['salad only', 'только салат'] };
+const baseTr = vi => { const rq = (String(vi).match(/ · Yêu cầu: (.+)$/) || [])[1]; return baseOnly(String(vi).replace(/ · Yêu cầu: .+$/, '')) + (rq ? ' · ✏️ ' + rq : '') };
+const baseOnly = vi => { const m = String(vi).match(/ · Đế: (.+)$/); if (!m) return ''; const t = BASE_TR[m[1]]; return ' · ' + (lang === 'vi' || !t ? 'Đế: ' + m[1] : (lang === 'en' ? 'base: ' : 'основа: ') + t[lang === 'en' ? 0 : 1]) };
 function body(o) {
   let lines = o.text.split('\n').slice(1);
   if (lang !== 'vi') lines = lines.map(l => {
-    const m = l.match(/^(\d+ × )\[(\w+)\] (.+?)( — .*)$/);
-    if (m) { const n = NAMES[m[2]]; return `${m[1]}[${m[2]}] ${n ? n[lang === 'en' ? 0 : 1] : m[3]}${m[4]}` }
-    const v = l.match(/^(\d+ × )(.+?)( — .*)$/);
-    if (v && NAMES_VI[v[2]]) return `${v[1]}${NAMES_VI[v[2]][lang === 'en' ? 0 : 1]}${v[3]}`;
+    const m = l.match(/^(\d+ × )\[(\d+)\] (.+?)( — .*)$/);
+    if (m) { const n = NAMES[m[2]]; return `${m[1]}[${m[2]}] ${n ? n[lang === 'en' ? 0 : 1] + baseTr(m[3]) : m[3]}${m[4]}` }
     for (const [re, to] of LINE[lang]) if (re.test(l)) return l.replace(re, to);
     return l;
   });
-  return lines.join('\n');
+  return lines.map((l, i) => { const src = o.text.split('\n')[i + 1] || '', n = src.match(/^Ghi chú: (.+)$/) || src.match(/ · Yêu cầu: (.+?) — [\d.]+\s₫$/), x = n && noteTr(o, n[1]); return x ? l + '\n   🌐 ' + x : l }).join('\n');
 }
 
 function render(freshIds = []) {
   const all = [...orders.values()].sort((a, b) => b.id - a.id);
   const open = all.filter(o => o.status === 'new');
-  const show = filter === 'new' ? open : all;
+  const show = filter === 'new' ? open : all.filter(o => o.status !== 'new');
   $('countH').textContent = open.length ? t('waiting')(open.length) : t('none');
   document.title = (open.length ? `(${open.length}) ` : '') + t('title');
   $('list').innerHTML = show.length ? show.map(o => {
     const k = kindOf(o);
     return `<article class="o k-${k}${o.status === 'done' ? ' done' : ''}${freshIds.includes(o.id) ? ' new' : ''}" data-id="${o.id}">
-      <div><div class="h"><span class="tb">${t('table')} ${esc(o.tbl || '?')}</span>${(o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/) || [])[1] ? `<span class="who">👤 ${esc(o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/)[1])}</span>` : ''}<span class="tag">${t('tag')[k]}</span><span class="tm">${hhmm(o.created)} · ${ago(o.created)}</span></div>
-      <pre>${esc(body(o))}</pre></div>
-      <div class="acts"><button class="ok" data-ack="${o.id}" ${o.status === 'done' ? 'disabled' : ''}>${o.status === 'done' ? t('acked') : t('ack')}</button>${['order','add','bill'].includes(k) ? `<button class="pr" data-print="${o.id}">${t('printBtn')}</button>` : ''}</div></article>`;
+      <div><div class="h"><span class="tb">${t('table')} ${esc(o.tbl || '?')}</span>${(o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/) || [])[1] ? `<span class="who">👤 ${esc(o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/)[1])}</span>` : ''}<span class="tag">${t('tag')[k]}</span>${o.edited_at ? `<span class="edited">${t('edited')}</span>` : ''}<span class="tm">${hhmm(o.created)} · ${ago(o.created)}</span></div>
+      ${['order','add'].includes(k) && o.status === 'new' ? inlineBody(o) : `<pre>${esc(body(o))}</pre>`}</div>
+      <div class="acts"><button class="ok" data-ack="${o.id}" ${o.status === 'done' ? 'disabled' : ''}>${o.status === 'done' ? t('acked') : t('ack')}</button>${['order','add'].includes(k) ? `<button class="ed" data-edit="${o.id}">${t('editBtn')}</button>` : ''}${['order','add','bill','closed'].includes(k) ? `<button class="pr" data-print="${o.id}">${t('printBtn')}</button>` : ''}${k === 'closed' ? `<button class="pr" data-reopen="${o.id}">${t('reopen')}</button>` : ''}</div></article>`;
   }).join('') : `<div class="empty">${filter === 'new' ? t('emptyNew') : t('emptyAll')}</div>`;
 }
 
 async function poll() {
+  if (appRole() === 'printer') { autoPrint = store.get('autoprint') === '1'; rawbt = store.get('rawbt') === '1' }   /* settings changed in the visible screen */
   try {
     const d = await api(`/staff/orders?since=${maxId}&changed=${lastNow}`);
-    const fresh = [];
-    d.orders.forEach(o => { if (!orders.has(o.id)) { orders.set(o.id, o); if (o.status === 'new' && maxId) fresh.push(o.id); } maxId = Math.max(maxId, o.id) });
+    const fresh = []; let added = 0;
+    d.orders.forEach(o => { if (!orders.has(o.id)) { orders.set(o.id, o); added++; if (o.status === 'new' && poll.ready && !mine.has(o.id)) fresh.push(o.id); } maxId = Math.max(maxId, o.id) });
     d.done.forEach(x => { const o = orders.get(x.id); if (o) { o.status = 'done'; o.done_at = x.done_at } });
+    const ed = d.edited || [];
+    ed.forEach(x => { const o = orders.get(x.id); if (o) { o.text = x.text; o.edited_at = x.edited_at; if (x.kind) o.kind = x.kind } });
     for (const [id, o] of orders) if (Date.now() - o.created > 12 * 3600e3) orders.delete(id);
-    lastNow = d.now;
+    lastNow = d.now; poll.ready = true;   /* orders already there when the screen opens are not new; everything after is, even the first of the day */
     setStatus('on', 'live');
-    if (fresh.length || d.done.length || !render.once) { render(fresh); render.once = true }
-    if (fresh.length) { beep(); remind = Date.now(); if (autoPrint) fresh.map(id => orders.get(id)).filter(o => o.kind === 'bill' && !printed.has(o.id)).forEach(o => printOrder(o)) }
+    if (added || d.done.length || ed.length || !render.once) { render(fresh); render.once = true; if (!$('tbBg').hidden && !tbBusy && !$('tbBg').contains(document.activeElement && document.activeElement.matches('input') ? document.activeElement : null)) renderTb() }
+    if (fresh.length) { beep(); remind = Date.now(); if (autoPrint) fresh.map(id => orders.get(id)).filter(o => ['order', 'bill'].includes(o.kind) && !printed.has(o.id) && appRole() !== 'view').forEach(o => { printOrder(o); autoAck(o) }) }
     else if ([...orders.values()].some(o => o.status === 'new') && Date.now() - remind > 45000) { beep(); remind = Date.now() }
   } catch (e) {
     if (e.message === 'code') return logout(t('codeChanged'));
@@ -245,7 +502,13 @@ async function poll() {
 function setStatus(c, key) { status = [c, key]; $('dot').className = 'dot ' + c; $('stText').textContent = t(key) }
 
 function show(id) { ['login', 'start', 'board'].forEach(x => $(x).hidden = x !== id); $('soundBtn').hidden = $('logoutBtn').hidden = id === 'login' }
-function logout(msg) { clearInterval(timer); timer = null; code = ''; store.del('code'); show('login'); $('loginErr').textContent = msg || ''; setStatus('', 'off') }
+function logout(msg) { clearInterval(timer); timer = null; code = ''; store.del('code'); show('login'); $('loginErr').textContent = msg || ''; setStatus('', 'off'); stopPush() }
+/* after «Log out» this phone gets no notifications: the push subscription is cancelled and the saved code is removed */
+async function stopPush() {
+  store.del('push'); $('pushBtn').textContent = t('push');
+  try { if ('caches' in window) await caches.delete('sg-config') } catch (e) {}
+  try { if ('serviceWorker' in navigator) for (const reg of await navigator.serviceWorker.getRegistrations()) { const sub = reg.pushManager && await reg.pushManager.getSubscription(); if (sub) await sub.unsubscribe() } } catch (e) {}
+}
 
 function setLang(l) {
   lang = L[l] ? l : 'vi'; store.set('lang', lang); document.documentElement.lang = lang;
@@ -253,7 +516,7 @@ function setLang(l) {
   document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
   $('soundBtn').textContent = soundOn ? t('soundOn') : t('soundOff');
   if (store.get('push') === '1') $('pushBtn').textContent = t('pushOn');
-  setStatus(status[0], status[1]); if ($('autoPrintBtn')) syncAutoBtn();
+  setStatus(status[0], status[1]); if ($('autoPrintBtn')) syncAutoBtn(); syncRawbtBtn();
   if (render.once) render();
 }
 document.querySelector('.lang').onclick = e => { const b = e.target.closest('[data-lang]'); if (b) setLang(b.dataset.lang) };
@@ -315,55 +578,600 @@ let autoPrint = store.get('autoprint') === '1';
 const printed = new Set(JSON.parse(store.get('printed') || '[]'));
 const money = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' ₫';
 const guestOf = o => ((o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/) || [])[1] || '');
-function itemsFor(bill) {          /* all orders of this table (and guest) since the previous bill */
-  const all = [...orders.values()].filter(o => o.tbl === bill.tbl).sort((a, b) => a.id - b.id);
-  const prev = all.filter(o => o.kind === 'bill' && o.id < bill.id && guestOf(o) === guestOf(bill)).pop();
-  const lines = {};
-  all.filter(o => o.kind === 'order' && o.id < bill.id && (!prev || o.id > prev.id) && (!guestOf(bill) || guestOf(o) === guestOf(bill)))
-    .forEach(o => o.text.split('\n').forEach(l => { const m = l.match(/^(\d+) × \[(\w+)\] (.+?) — ([\d.]+)\s₫$/) || (x => x && [x[0], x[1], x[2], x[2], x[3]])(l.match(/^(\d+) × (.+?) — ([\d.]+)\s₫$/));
-      if (m) { const k = '#' + m[2]; lines[k] = lines[k] || { q: 0, name: m[3], sum: 0 }; lines[k].q += +m[1]; lines[k].sum += +m[4].replace(/\./g, '') } }));
-  return Object.entries(lines).map(([k, v]) => [k.slice(1), v]);
+/* a table's «session»: everything since the table was last closed (or since a 3-hour pause) */
+function sessionOrders(tbl, guest, before = Infinity) {
+  let out = [];
+  [...orders.values()].filter(o => o.tbl === tbl && o.id < before && guestOf(o) === guest).sort((a, b) => a.id - b.id).forEach(o => {
+    if (o.kind === 'closed') { out = []; return }
+    if (out.length && o.created - out[out.length - 1].created > 3 * 3600e3) out = [];
+    out.push(o) });
+  return out;
 }
+function itemsFor(bill) {          /* the dishes of the guest's (or the whole table's) open orders */
+  const guests = guestOf(bill) ? [guestOf(bill)] : [...new Set([...orders.values()].filter(o => o.tbl === bill.tbl).map(guestOf))];
+  const lines = {};
+  guests.flatMap(g => sessionOrders(bill.tbl, g, bill.id)).filter(o => o.kind === 'order')
+    .forEach(o => o.text.split('\n').forEach(l => { const m = l.match(/^(\d+) × \[(\d+)\] (.+?) — ([\d.]+)\s₫$/);
+      if (m) { const k = '#' + m[2] + '@' + Math.round(+m[4].replace(/\./g, '') / +m[1]); lines[k] = lines[k] || { q: 0, name: m[3], sum: 0 }; lines[k].q += +m[1]; lines[k].sum += +m[4].replace(/\./g, '') } }));
+  return Object.entries(lines).filter(([, v]) => v.q).map(([k, v]) => [k.slice(1).split('@')[0], v]);
+}
+/* guest bills also show the guest's language (from «Khách nói tiếng …» in the orders) */
+const RL = { en: { 'Tạm tính': 'Subtotal', 'Giảm giá': 'Discount', 'Phụ thu': 'Surcharge', 'Thuế': 'Tax', 'Tổng': 'Total', 'Tiền tip': 'Tip', 'Tổng cộng': 'Total with tip', 'Thanh toán': 'Payment', 'Tiền mặt': 'Cash', 'Chuyển khoản VietQR': 'VietQR transfer', 'Thẻ ngân hàng': 'Card', head: 'Provisional bill', thanks: 'Thank you!' },
+  ru: { 'Tạm tính': 'Сумма', 'Giảm giá': 'Скидка', 'Phụ thu': 'Надбавка', 'Thuế': 'Налог', 'Tổng': 'Итого', 'Tiền tip': 'Чаевые', 'Tổng cộng': 'Всего с чаевыми', 'Thanh toán': 'Оплата', 'Tiền mặt': 'Наличные', 'Chuyển khoản VietQR': 'Перевод VietQR', 'Thẻ ngân hàng': 'Картой', head: 'Предварительный счёт', thanks: 'Спасибо!' } };
+const glOf = o => { const g = guestLang(o) || (o.calc && o.calc.ords.map(guestLang).find(Boolean)) || [...orders.values()].filter(x => x.tbl === o.tbl && x.id < o.id && guestOf(x) === guestOf(o) && guestLang(x)).sort((a, b) => b.id - a.id).map(guestLang)[0] || ''; return RL[g] ? g : '' };
+const dishIn = (id, vi, gl) => { const f = MENU_FULL.m[id], n = NAMES[id] || (f ? [f[3], f[5]] : null); if (!gl || !n) return '';
+  const b = (String(vi).match(/ · Đế: (.+?)(?= · Yêu cầu: |$)/) || [])[1], bt = b && BASE_TR[b.trim()]; return n[gl === 'en' ? 0 : 1] + (bt ? ' · ' + bt[gl === 'en' ? 0 : 1] : '') };
+function billRow(l, gl, big) {
+  const [a, ...r] = l.split(': '), v = r.join(': '), k = a.replace(/\s*\(.*\)$/, ''), sfx = (a.match(/\s*\(.*\)$/) || [''])[0];
+  const at = gl && RL[gl][k] ? RL[gl][k] + sfx : '', vt = gl && RL[gl][v] ? RL[gl][v] : '';
+  return `<div class="row${big ? ' big' : ''}"><span>${esc(a)}${at ? `<br><small>${esc(at)}</small>` : ''}</span><span>${esc(v)}${vt ? `<br><small>${esc(vt)}</small>` : ''}</span></div>`;
+}
+const dishTd = (q, vi, id, sum, gl) => { const dn = dishIn(id, vi, gl); return `<tr><td>${q} × ${esc(vi)}<small> [${id}]</small>${dn ? `<br><small>${esc(dn)}</small>` : ''}</td><td class="r">${money(sum)}</td></tr>` };
 function receiptHTML(o) {
+  const gl = ['bill', 'closed'].includes(o.kind) ? glOf(o) : '';
   const d = new Date(o.created), when = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()} ${hhmm(o.created)}`;
-  const tl = o.text.split('\n'), rest = tl.slice(1).filter(l => !/^Khách nói/.test(l));
+  const tl = o.text.split('\n'), rest = tl.slice(1).filter(l => !/^Khách nói/.test(l)).flatMap(l => { const n = l.match(/^Ghi chú: (.+)$/), x = n && noteTr(o, n[1], 'vi'); return x ? [l, '🌐 ' + x] : [l] });
   let body = '';
-  if (o.kind === 'bill') {
+  if (o.kind === 'bill' && o.calc) {
+    const c = o.calc;
+    body = `<table>${c.lines.map(l => dishTd(l.q, l.vi, l.id, l.sum, gl)).join('')}</table><hr>`
+      + calcLines(c).map(l => billRow(l, gl, /^Tổng/.test(l))).join('');
+  } else if (o.kind === 'bill') {
     const it = itemsFor(o);
-    body = (it.length ? `<table>${it.map(([id, x]) => `<tr><td>${x.q} × ${esc(x.name)}${id === x.name ? '' : `<small> [${id}]</small>`}</td><td class="r">${money(x.sum)}</td></tr>`).join('')}</table><hr>` : '')
-      + rest.map(l => { const m = l.match(/^(Tổng cộng|Tổng|Tiền tip)( \(\d+%\))?: (.+)$/) || l.match(/^(Tiền tip): (.+?)( \(\d+%\))$/);
-          return /^Tổng cộng|^Tổng:/.test(l) ? `<div class="row big"><span>${esc(l.split(': ')[0])}</span><span>${esc(l.split(': ')[1])}</span></div>` : `<div class="row"><span>${esc(l.split(': ')[0])}</span><span>${esc(l.split(': ').slice(1).join(': '))}</span></div>` }).join('');
+    if (it.length) {   /* recompute totals from the dishes, so staff edits are on the bill */
+      const sum = it.reduce((a, [, x]) => a + x.sum, 0), pm = (o.text.match(/Tiền tip: .*?\((\d+)%\)/) || [])[1];
+      const tip = pm ? Math.round(sum * pm / 100 / 1000) * 1000 : 0;
+      rest.splice(0, rest.length, ...rest.filter(l => !/^(Tổng cộng|Tổng|Tiền tip):/.test(l)));
+      rest.unshift(`Tổng: ${money(sum)}`, ...(pm ? [`Tiền tip: ${money(tip)} (${pm}%)`, `Tổng cộng: ${money(sum + tip)}`] : []));
+    }
+    body = (it.length ? `<table>${it.map(([id, x]) => dishTd(x.q, x.name, id, x.sum, gl)).join('')}</table><hr>` : '')
+      + rest.map(l => billRow(l, gl, /^Tổng cộng|^Tổng:/.test(l))).join('');
+  } else if (o.kind === 'closed') {
+    const ds = [], ot = [];
+    rest.forEach(l => { const m = l.match(/^(\d+) × \[(\d+)\] (.+?) — ([\d.]+)\s₫$/); if (m) ds.push(dishTd(m[1], m[3], m[2], +m[4].replace(/\./g, ''), gl)); else ot.push(billRow(l, gl, /^Tổng/.test(l))) });
+    body = (ds.length ? `<table>${ds.join('')}</table><hr>` : '') + ot.join('');
   } else {
-    body = rest.map(l => { const m = l.match(/^(\d+ × )\[(\w+)\] (.+?) — (.+)$/);
-      const v = !m && l.match(/^(\d+ × )(.+?) — (.+)$/);
-      if (v) return `<div class="row"><span><b>${v[1]}</b>${esc(v[2])}</span><span>${esc(v[3])}</span></div>`;
-      return m ? `<div class="row"><span><b>${m[1]}</b>${esc(m[3])}<small> [${m[2]}]</small></span><span>${esc(m[4])}</span></div>` : `<div class="row ${/^Tổng/.test(l) ? 'big' : ''}"><span>${esc(l)}</span></div>` }).join('');
+    body = rest.map(l => { const m = l.match(/^(\d+ × )\[(\d+)\] (.+?) — (.+)$/);
+      const rq = m && (m[3].match(/ · Yêu cầu: (.+)$/) || [])[1], rv = rq && noteTr(o, rq, 'vi');
+      return m ? `<div class="row"><span><b>${m[1]}</b>${esc(m[3])}<small> [${m[2]}]</small>${rv ? `<br><b>🌐 ${esc(rv)}</b>` : ''}</span><span>${esc(m[4])}</span></div>` : `<div class="row ${/^Tổng/.test(l) ? 'big' : ''}"><span>${esc(l)}</span></div>` }).join('');
   }
-  const head = { order: tl[0].startsWith('GỌI THÊM') ? 'GỌI THÊM' : 'PHIẾU GỌI MÓN', bill: 'HÓA ĐƠN TẠM TÍNH' }[o.kind] || tl[0].split(' · ')[0];
+  if (['bill', 'closed'].includes(o.kind)) {
+    const ls = o.calc ? calcLines(o.calc) : rest, paidQr = ls.some(l => /^Thanh toán: Chuyển khoản VietQR/.test(l));
+    const tot = ls.filter(l => /^(Tổng cộng|Tổng): /.test(l)).map(l => +l.replace(/\D/g, '')).pop() || 0;
+    if (paidQr && tot && VQ) body += `<hr><div class="c vq">${vqSvg(VQ, tot, 'Ban ' + (o.tbl || ''))}<div><b>VietQR · ${money(tot)}</b><br>${VQ.bank} · Napas 247<br>Quét mã để thanh toán${gl ? '<br>' + { en: 'Scan to pay', ru: 'Отсканируйте для оплаты' }[gl] : ''}</div></div>`;
+  }
+  const head = { order: tl[0].startsWith('GỌI THÊM') ? 'GỌI THÊM' : 'PHIẾU GỌI MÓN', bill: 'HÓA ĐƠN TẠM TÍNH', closed: 'HÓA ĐƠN' }[o.kind] || tl[0].split(' · ')[0];
   return `<!doctype html><html><head><meta charset="utf-8"><style>
 @page{size:80mm auto;margin:0} *{box-sizing:border-box} body{width:72mm;margin:0 auto;padding:3mm 0 6mm;font:12px/1.35 "Be Vietnam Pro",Arial,sans-serif;color:#000}
 .c{text-align:center} h1{font-size:16px;margin:0} h2{font-size:14px;margin:2mm 0 0;letter-spacing:.04em} .tb{font-size:22px;font-weight:800;margin:1mm 0}
 hr{border:0;border-top:1px dashed #000;margin:2mm 0} table{width:100%;border-collapse:collapse} td{padding:.6mm 0;vertical-align:top} .r{text-align:right;white-space:nowrap;padding-left:2mm}
-.row{display:flex;justify-content:space-between;gap:2mm;padding:.5mm 0} .row span:last-child{white-space:nowrap;text-align:right} .big{font-weight:800;font-size:14px} small{color:#444}
-</style></head><body><div class="c"><h1>Tên quán của bạn</h1><div>CafeUp</div><h2>${head}</h2><div class="tb">Bàn ${esc(o.tbl || '?')}${guestOf(o) ? ' · ' + esc(guestOf(o)) : ''}</div><div>${when} · #${o.id}</div></div><hr>${body}<hr>
-<div class="c">${o.kind === 'bill' ? 'Cảm ơn quý khách! · Thank you!' : 'Bếp / Kitchen'}</div></body></html>`;
+.row{display:flex;justify-content:space-between;gap:2mm;padding:.5mm 0} .row span:last-child{white-space:nowrap;text-align:right} .big{font-weight:800;font-size:14px} small{color:#444} .vq svg{width:42mm;height:42mm;display:block;margin:1mm auto}
+</style></head><body><div class="c"><h1>CafeUp demo</h1><div>Dương Đông · Phú Quốc</div><h2>${head}</h2>${gl ? `<div style="font-size:11px">${RL[gl].head}</div>` : ''}<div class="tb">Bàn ${esc(o.tbl || '?')}${guestOf(o) ? ' · ' + esc(guestOf(o)) : ''}</div><div>${when}${o.id < 1e9 ? ' · #' + o.id : ''}</div></div><hr>${body}<hr>
+<div class="c">${['bill', 'closed'].includes(o.kind) ? '<small style="display:block;font-size:10px;margin-bottom:1.5mm">Phiếu tạm tính — không phải hóa đơn GTGT<br>Provisional bill — not a tax invoice</small>Cảm ơn quý khách! · Thank you!' + (gl === 'ru' ? ' · Спасибо!' : '') + '<br>CafeUp · milanovajina.github.io/cafeup' : 'Bếp / Kitchen'}</div></body></html>`;
 }
 let printQueue = Promise.resolve();
+/* Android + RawBT: the receipt is drawn as a picture (Vietnamese, Russian, QR all print) and sent to the printer without the print dialog */
+let rawbt = store.get('rawbt') === '1';
+function syncRawbtBtn() { const b = $('rawbtBtn'); b.textContent = rawbt ? t('rawbtOn') : t('rawbtOff'); b.classList.toggle('on', rawbt) }
+async function receiptCanvas(html) {
+  const W = 576, frame = document.createElement('iframe');
+  frame.style.cssText = `position:fixed;left:-9999px;top:0;width:${W}px;height:10px;border:0`; document.body.appendChild(frame);
+  const css = '<style>body{width:' + (W - 16) + 'px!important;margin:0 8px!important;padding:8px 0 24px!important;font-size:24px!important;background:#fff}h1{font-size:32px!important}h2{font-size:28px!important}.tb{font-size:44px!important}.big{font-size:28px!important}small{font-size:20px!important;color:#000!important}.vq svg{width:300px!important;height:300px!important}</style>';
+  frame.contentDocument.open(); frame.contentDocument.write(html.replace('</head>', css + '</head>')); frame.contentDocument.close();
+  await new Promise(r => setTimeout(r, 150));
+  const d = frame.contentDocument, H = Math.ceil(d.documentElement.scrollHeight) + 10;
+  const doc = new XMLSerializer().serializeToString(d.documentElement); frame.remove();
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><foreignObject width="100%" height="100%">${doc}</foreignObject></svg>`;
+  const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); await img.decode();
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, W, H); g.drawImage(img, 0, 0); return c;
+}
+function escposImage(c) {          /* ESC @, image in bands of 255 rows (GS v 0), feed, cut */
+  const W = c.width, H = c.height, px = c.getContext('2d').getImageData(0, 0, W, H).data, bw = W / 8, out = [0x1b, 0x40];
+  for (let y0 = 0; y0 < H; y0 += 255) {
+    const h = Math.min(255, H - y0); out.push(0x1d, 0x76, 0x30, 0, bw & 255, bw >> 8, h & 255, h >> 8);
+    for (let y = y0; y < y0 + h; y++) for (let xb = 0; xb < bw; xb++) { let v = 0; for (let b = 0; b < 8; b++) { const i = (y * W + xb * 8 + b) * 4; if (px[i] * .3 + px[i + 1] * .59 + px[i + 2] * .11 < 160) v |= 128 >> b } out.push(v) }
+  }
+  out.push(0x1b, 0x64, 4, 0x1d, 0x56, 66, 0);
+  let s = ''; const u = new Uint8Array(out); for (let i = 0; i < u.length; i += 8192) s += String.fromCharCode.apply(null, u.subarray(i, i + 8192)); return btoa(s);
+}
+function rawbtStatus(ok) { const b = $('rawbtBtn'); if (b && rawbt) b.textContent = t('rawbtOn') + (ok ? ' ✓' : ' · ' + (window.cafeupApp ? 'App ✓' : window.fully && fully.startIntent ? 'Fully ✓' : t('rawbtNoSrv'))) }
+function rawbtSend(b64) {
+  if (window.cafeupApp) { rawbtStatus(false); cafeupApp.print('intent:base64,' + b64 + '#Intent;scheme=rawbt;package=ru.a402d.rawbtprinter;end;'); return Promise.resolve() }   /* SUSHI GO staff app: straight to RawBT */          /* RawBT server on the tablet (ws://localhost:40213); if it is off, open RawBT by link */
+  return new Promise(res => {
+    let done = false; const fin = ok => { if (!done) { done = true; res(ok) } };
+    try { const ws = new WebSocket('ws://127.0.0.1:40213/'); ws.binaryType = 'arraybuffer'; ws.onopen = () => { ws.send(Uint8Array.from(atob(b64), ch => ch.charCodeAt(0)));   /* RawBT server takes raw ESC/POS bytes */ setTimeout(() => { ws.close(); fin(true) }, 300) }; ws.onerror = () => fin(false); setTimeout(() => fin(false), 2500) } catch (e) { fin(false) }
+  }).then(ok => { rawbtStatus(ok); if (ok) return;
+    const url = 'intent:base64,' + b64 + '#Intent;scheme=rawbt;package=ru.a402d.rawbtprinter;end;';
+    /* Fully Kiosk Browser: its JavaScript interface starts RawBT without a tap */
+    if (window.fully && typeof fully.startIntent === 'function') { try { fully.startIntent(url); return } catch (e) {} }
+    location.href = url });
+}
+/* with auto-print on, a printed order / bill is marked «Taken» by itself: no reminder beeps, no button to press */
+async function autoAck(o) { if (o.status !== 'new') return; try { const r = await api('/staff/ack', { id: o.id }); o.status = 'done'; o.done_at = r.now || Date.now(); render() } catch (e) {} }
 function printOrder(o) {
   printed.add(o.id); store.set('printed', JSON.stringify([...printed].slice(-200)));
-  printQueue = printQueue.then(() => new Promise(done => {
+  if (rawbt) { printQueue = printQueue.then(async () => { try { await trReady(o); await rawbtSend(escposImage(await receiptCanvas(receiptHTML(o)))) } catch (e) { alert(t('rawbtFail')) } }); return }
+  printQueue = printQueue.then(() => trReady(o)).then(() => new Promise(done => {
     const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
     document.body.appendChild(f); f.contentDocument.open(); f.contentDocument.write(receiptHTML(o)); f.contentDocument.close();
     setTimeout(() => { try { f.contentWindow.focus(); f.contentWindow.print() } catch (e) {} setTimeout(() => { f.remove(); done() }, 1500) }, 400);
   }));
 }
 function syncAutoBtn() { const b = $('autoPrintBtn'); b.textContent = autoPrint ? t('autoOn') : t('autoOff'); b.classList.toggle('on', autoPrint) }
+$('rawbtBtn').onclick = () => { rawbt = !rawbt; store.set('rawbt', rawbt ? '1' : '0'); syncRawbtBtn() };
 $('autoPrintBtn').onclick = () => { autoPrint = !autoPrint; store.set('autoprint', autoPrint ? '1' : '0'); syncAutoBtn() };
 $('testPrintBtn').onclick = () => printOrder({ id: 0, kind: 'bill', tbl: '0', created: Date.now(), text: 'TÍNH TIỀN · Bàn 0\nTổng: 100.000 ₫\nThanh toán: Tiền mặt' });
 $('list').addEventListener('click', e => { const b = e.target.closest('[data-print]'); if (b) printOrder(orders.get(Number(b.dataset.print))) });
 
+/* ---------- edit an order (quantities, remove, add dishes, staff note) ---------- */
+let editing = null;
+const mine = new Set();
+const LINE_RE = /^(\d+) × \[(\w+)\] (.+?) — ([\d.]+)\s₫$/;
+function parseOrder(o) {
+  const lines = o.text.split('\n'), items = [], other = [];
+  let note = '';
+  lines.slice(1).forEach(l => { const m = l.match(LINE_RE);
+    if (m) { const q = +m[1], sum = +m[4].replace(/\./g, ''); items.push({ id: m[2], vi: m[3], q, unit: Math.round(sum / q) }) }
+    else if (/^✏️ Nhân viên: /.test(l)) note = l.replace(/^✏️ Nhân viên: /, '');
+    else if (!/^Tổng: /.test(l)) other.push(l) });
+  return { o, head: lines[0], items, other, note };
+}
+function buildText(e, note) {
+  const keep = e.items.filter(it => it.q > 0), sum = keep.reduce((a, it) => a + it.q * it.unit, 0);
+  const pay = e.other.filter(l => /^Thanh toán: /.test(l)), rest = e.other.filter(l => !/^Thanh toán: /.test(l));
+  return [e.head, ...keep.map(it => `${it.q} × [${it.id}] ${it.vi} — ${money(it.q * it.unit)}`), `Tổng: ${money(sum)}`, ...pay,
+    ...rest.filter(l => /^Ghi chú: /.test(l)), ...(note ? [`✏️ Nhân viên: ${note}`] : []), ...rest.filter(l => !/^Ghi chú: /.test(l))].join('\n');
+}
+async function saveOrder(o, text) { const r = await api('/staff/edit', { id: o.id, text }); o.text = text; o.edited_at = r.now; render() }
+const dishOptions = () => `<option value="">${t('addDish')}</option>` + Object.entries(NAMES).map(([id, n]) => `<option value="${id}">[${id}] ${esc(lang === 'vi' ? n[2] : n[lang === 'en' ? 0 : 1])} — ${money(n[3])}</option>`).join('');
+/* dish search: type part of the name (any language, accents optional) or the menu number, tap a result to add it */
+const norm = x => String(x).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/gi, 'd').toLowerCase();
+function mountSearch(box, pick) {
+  box.innerHTML = `<div class="drow"><input type="search" placeholder="${t('searchPh')}" autocomplete="off" enterkeyhint="search"><select aria-label="${t('addDish')}">${dishOptions()}</select></div><div class="dres"></div>`;
+  const inp = box.querySelector('input'), res = box.querySelector('.dres'), sel = box.querySelector('select');
+  sel.addEventListener('change', () => { if (sel.value) { pick(sel.value); sel.value = '' } });
+  const draw = () => { const q = norm(inp.value.trim()); if (!q) { res.innerHTML = ''; return }
+    const hits = Object.entries(NAMES).filter(([id, n]) => id.startsWith(q) || norm(n.slice(0, 3).join(' · ')).includes(q)).slice(0, 8);
+    res.innerHTML = hits.length ? hits.map(([id, n]) => `<button type="button" data-pick="${id}" class="${(typeof SOLD !== 'undefined' && SOLD.includes(id)) ? 'so' : ''}"><span>[${id}] ${esc(lang === 'vi' ? n[2] : n[lang === 'en' ? 0 : 1])}${lang !== 'vi' ? `<small>${esc(n[2])}</small>` : ''}</span><b>${money(n[3])}</b></button>`).join('') : `<div class="dnone">${t('searchNone')}</div>` };
+  inp.addEventListener('input', draw);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); const f = res.querySelector('[data-pick]'); if (f) f.click() } });
+  res.addEventListener('click', e => { const b = e.target.closest('[data-pick]'); if (!b) return; pick(b.dataset.pick); inp.value = ''; draw(); inp.focus() });
+}
+function openEdit(o) {
+  editing = parseOrder(o); const note = editing.note;
+  $('editTitle').textContent = t('editT') + (o.tbl || '?');
+  $('editNote').value = note;
+  mountSearch($('editSearch'), addToEdit);
+  renderEdit(); $('editBg').hidden = false;
+}
+function renderEdit() {
+  const e = editing, nm = it => { const n = NAMES[it.id]; return lang === 'vi' || !n ? it.vi : n[lang === 'en' ? 0 : 1] + baseTr(it.vi) };
+  $('editRows').innerHTML = e.items.map((it, i) => `<div class="erow${it.q ? '' : ' zero'}"><div class="nm">[${it.id}] ${esc(nm(it))}${reqTr(e.o, it.vi)}${lang !== 'vi' ? `<small>${esc(it.vi)}</small>` : ''}</div>
+    <div class="qty"><button data-q="${i}" data-d="-1" aria-label="−">−</button><b>${it.q}</b><button data-q="${i}" data-d="1" aria-label="+">+</button></div><div class="sum">${money(it.q * it.unit)}</div><button class="rm" data-rm="${i}" aria-label="${it.q ? t('editRm') : t('editBack')}">${it.q ? '✕' : '↺'}</button></div>`).join('');
+  $('editSum').textContent = money(e.items.reduce((a, it) => a + it.q * it.unit, 0));
+}
+$('editRows').addEventListener('click', ev => { const r = ev.target.closest('[data-rm]');
+  if (r) { const it = editing.items[+r.dataset.rm]; if (it.q) { it.was = it.q; it.q = 0 } else it.q = it.was || 1; renderEdit(); return }
+  const b = ev.target.closest('[data-q]'); if (!b) return;
+  const it = editing.items[+b.dataset.q]; it.q = Math.max(0, Math.min(99, it.q + +b.dataset.d)); renderEdit() });
+function addToEdit(id) { const n = NAMES[id];
+  const ex = editing.items.find(it => it.id === id && it.unit === n[3]); if (ex) ex.q++; else editing.items.push({ id, vi: n[2], q: 1, unit: n[3] });
+  renderEdit() }
+$('editCancel').onclick = () => { $('editBg').hidden = true; editing = null };
+$('editBg').addEventListener('click', ev => { if (ev.target === $('editBg')) $('editCancel').click() });
+$('editSave').onclick = async () => {
+  const e = editing, text = buildText(e, $('editNote').value.replace(/\s+/g, ' ').trim());
+  const b = $('editSave'); b.disabled = true;
+  try { await saveOrder(e.o, text); $('editBg').hidden = true; editing = null }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) }
+  b.disabled = false;
+};
+/* inline editing right on the order card: − / + / ✕ per dish and «add a dish» */
+function inlineBody(o) {
+  const tr = l => { if (lang === 'vi') return l; for (const [re, to] of LINE[lang]) if (re.test(l)) return l.replace(re, to); return l };
+  const rows = o.text.split('\n').slice(1).map(l => { const m = l.match(LINE_RE);
+    if (!m) { const n = l.match(/^Ghi chú: (.+)$/), x = n && noteTr(o, n[1]); return `<div class="il">${esc(tr(l))}</div>${x ? `<div class="il trn">🌐 ${esc(x)}</div>` : ''}` }
+    const n = NAMES[m[2]], nm = lang === 'vi' || !n ? m[3] : n[lang === 'en' ? 0 : 1] + baseTr(m[3]);
+    const rq = (m[3].match(/ · Yêu cầu: (.+)$/) || [])[1], rx = rq && noteTr(o, rq);
+    return `<div class="ir"><span class="in">${m[1]} × [${m[2]}] ${esc(nm)} — ${m[4]} ₫${rx ? `<b class="rtr">🌐 ${esc(rx)}</b>` : ''}</span><span class="ib"><button data-iq="${o.id}:${m[2]}@${Math.round(+m[4].replace(/\./g, '') / +m[1])}:-1" aria-label="−">−</button><button data-iq="${o.id}:${m[2]}@${Math.round(+m[4].replace(/\./g, '') / +m[1])}:1" aria-label="+">+</button><button class="x" data-iq="${o.id}:${m[2]}@${Math.round(+m[4].replace(/\./g, '') / +m[1])}:x" aria-label="${t('editRm')}">✕</button></span></div>` }).join('');
+  return `<div class="ibody">${rows}<select class="iadd" data-iadd="${o.id}">${dishOptions()}</select></div>`;
+}
+let busy = false;
+$('list').addEventListener('click', async ev => { const b = ev.target.closest('[data-iq]'); if (!b || busy) return;
+  const [oid, key, d] = b.dataset.iq.split(':'), [id, u] = key.split('@'), o = orders.get(+oid), e = parseOrder(o), it = e.items.find(x => x.id === id && x.unit === +u); if (!it) return;
+  if (d === 'x') { if (e.items.filter(x => x.q).length === 1 && !confirm(t('lastDish'))) return; it.q = 0 } else it.q = Math.max(0, Math.min(99, it.q + +d));
+  busy = true; try { await saveOrder(o, buildText(e, e.note)) } catch (err) { alert(t('editFail')) } busy = false });
+$('list').addEventListener('change', async ev => { const s = ev.target.closest('[data-iadd]'); if (!s || !s.value || busy) return;
+  const o = orders.get(+s.dataset.iadd), e = parseOrder(o), id = s.value, n = NAMES[id], ex = e.items.find(x => x.id === id && x.unit === n[3]);
+  if (ex) ex.q++; else e.items.push({ id, vi: n[2], q: 1, unit: n[3] });
+  busy = true; try { await saveOrder(o, buildText(e, e.note)) } catch (err) { alert(t('editFail')); s.value = '' } busy = false });
+
+$('list').addEventListener('click', ev => { const b = ev.target.closest('[data-edit]'); if (b) openEdit(orders.get(Number(b.dataset.edit))) });
+
+/* ---------- waiter enters an order by hand ---------- */
+let draft = null;
+const tableOrders = (tbl, guest) => sessionOrders(tbl, guest).filter(o => o.kind === 'order');
+function payButtons(box, pm) { box.querySelectorAll('[data-pm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.pm === pm)) }
+function renderNew() {
+  const nm = it => { const n = NAMES[it.id]; return lang === 'vi' || !n ? it.vi : n[lang === 'en' ? 0 : 1] };
+  $('newRows').innerHTML = draft.items.length ? draft.items.map((it, i) => `<div class="erow"><div class="nm">[${it.id}] ${esc(nm(it))}${lang !== 'vi' ? `<small>${esc(it.vi)}</small>` : ''}</div>
+    <div class="qty"><button data-nq="${i}" data-d="-1">−</button><b>${it.q}</b><button data-nq="${i}" data-d="1">+</button></div><div class="sum">${money(it.q * it.unit)}</div><button class="rm" data-nrm="${i}">✕</button></div>`).join('')
+    : `<div class="cempty">${t('needDish')}</div>`;
+  $('newSum').textContent = money(draft.items.reduce((a, it) => a + it.q * it.unit, 0));
+  payButtons($('newPay'), draft.pm);
+}
+$('newBtn').onclick = () => { draft = { items: [], pm: 'cash' }; $('newTbl').value = ''; $('newGuest').value = ''; $('newNote').value = '';
+  mountSearch($('newSearch'), addToNew); renderNew(); $('newBg').hidden = false; $('newTbl').focus() };
+function addToNew(id) { const n = NAMES[id], ex = draft.items.find(x => x.id === id && x.unit === n[3]);
+  if (ex) ex.q++; else draft.items.push({ id, vi: n[2], q: 1, unit: n[3] }); renderNew() }
+$('newRows').addEventListener('click', ev => { const r = ev.target.closest('[data-nrm]'); if (r) { draft.items.splice(+r.dataset.nrm, 1); return renderNew() }
+  const b = ev.target.closest('[data-nq]'); if (!b) return; const it = draft.items[+b.dataset.nq]; it.q = Math.max(1, Math.min(99, it.q + +b.dataset.d)); renderNew() });
+$('newPay').onclick = ev => { const b = ev.target.closest('[data-pm]'); if (b) { draft.pm = b.dataset.pm; renderNew() } };
+$('newCancel').onclick = () => { $('newBg').hidden = true };
+$('newBg').addEventListener('click', ev => { if (ev.target === $('newBg')) $('newBg').hidden = true });
+$('newSave').onclick = async () => {
+  const tbl = $('newTbl').value.replace(/\D/g, ''), guest = $('newGuest').value.replace(/\s+/g, ' ').trim().slice(0, 24), note = $('newNote').value.replace(/\s+/g, ' ').trim();
+  if (!tbl) return alert(t('needTbl')); if (!draft.items.length) return alert(t('needDish'));
+  const n = tableOrders(tbl, guest).length, sum = draft.items.reduce((a, it) => a + it.q * it.unit, 0);
+  const text = [`${n ? `GỌI THÊM (lần ${n + 1})` : 'ĐƠN MỚI'} · Bàn ${tbl}${guest ? ' · ' + guest : ''}`,
+    ...draft.items.map(it => `${it.q} × [${it.id}] ${it.vi} — ${money(it.q * it.unit)}`), `Tổng: ${money(sum)}`,
+    `Thanh toán: ${pmVi(draft.pm)}`, ...(note ? [`Ghi chú: ${note}`] : []), '✍️ Nhân viên nhập đơn'].join('\n');
+  const b = $('newSave'); b.disabled = true;
+  try { const r = await api('/staff/create', { text }); mine.add(r.id); $('newBg').hidden = true; await poll(); const o = orders.get(r.id); if (autoPrint && o && !printed.has(o.id) && appRole() !== 'view') { printOrder(o); autoAck(o) } }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) }
+  b.disabled = false;
+};
+
+/* ---------- table bills: every open table, edit dishes / prices, discount, print, close ---------- */
+const tbState = new Map();      /* per table: { pct, final, pm } — set on this device */
+let tbSel = '', tbBusy = false;
+const gKey = (tbl, guest) => tbl + '|' + guest;
+function activeTables() {
+  const keys = new Set([...orders.values()].filter(o => o.kind === 'order' && o.tbl && o.tbl !== '?').map(o => gKey(o.tbl, guestOf(o))));
+  return [...keys].map(k => { const [tbl, guest] = k.split('|'); return { key: k, tbl, guest, ses: sessionOrders(tbl, guest) } })
+    .filter(g => g.ses.some(o => o.kind === 'order')).sort((a, b) => (+a.tbl - +b.tbl) || a.guest.localeCompare(b.guest));
+}
+const CARD_TAX = 4.5;
+function tableCalc(g) {
+  const ords = g.ses.filter(o => o.kind === 'order'), lines = [];
+  ords.forEach(o => parseOrder(o).items.forEach(it => { if (!it.q) return; let l = lines.find(x => x.id === it.id && x.unit === it.unit && x.vi === it.vi);
+    if (!l) lines.push(l = { id: it.id, vi: it.vi, unit: it.unit, q: 0, sum: 0, o }); l.q += it.q; l.sum += it.q * it.unit }));
+  lines.sort((a, b) => (+a.id - +b.id) || (b.unit - a.unit));
+  const st = tbState.get(g.key) || {}, sub = lines.reduce((a, l) => a + l.sum, 0);
+  const bills = g.ses.filter(o => o.kind === 'bill'), lastBill = bills[bills.length - 1];
+  const tipPct = +(((lastBill && lastBill.text.match(/Tiền tip: .*?\((\d+)%\)/)) || [])[1] || 0);
+  const payLine = [...g.ses].reverse().map(o => (o.text.match(/^Thanh toán: (.+)$/m) || [])[1]).find(Boolean);
+  const pm = st.pm || (payLine && /VietQR/.test(payLine) ? 'qr' : payLine && /Thẻ/.test(payLine) ? 'card' : 'cash');
+  const pct = st.final == null ? (st.pct || 0) : null;
+  const tax = st.tax != null ? st.tax : (pm === 'card' ? CARD_TAX : 0);      /* tax %: added after the discount; card payment → 4.5% unless set by hand */
+  let after, taxAmt, final;
+  if (st.final != null) { final = st.final; after = Math.round(final / (1 + tax / 100)); taxAmt = final - after }
+  else { after = sub - Math.round(sub * pct / 100 / 1000) * 1000; taxAmt = Math.round(after * tax / 100 / 1000) * 1000; final = after + taxAmt }
+  const tip = tipPct ? Math.round(final * tipPct / 100 / 1000) * 1000 : 0;
+  return { lines, sub, pct, disc: sub - after, tax, taxAmt, final, tipPct, tip, total: final + tip, pm, asked: !!lastBill, ords };
+}
+const pmVi = pm => pm === 'cash' ? 'Tiền mặt' : pm === 'card' ? 'Thẻ ngân hàng' : 'Chuyển khoản VietQR';
+function calcLines(c) {          /* Vietnamese lines for the bill / the closed-table record */
+  return [...(c.disc || c.tax ? [`Tạm tính: ${money(c.sub)}`] : []), ...(c.disc ? [c.disc > 0 ? `Giảm giá${c.pct ? ` (${c.pct}%)` : ''}: −${money(c.disc)}` : `Phụ thu: +${money(-c.disc)}`] : []),
+    ...(c.tax ? [`Thuế (${c.tax}%): +${money(c.taxAmt)}`] : []),
+    `Tổng: ${money(c.final)}`, ...(c.tipPct ? [`Tiền tip: ${money(c.tip)} (${c.tipPct}%)`, `Tổng cộng: ${money(c.total)}`] : []),
+    `Thanh toán: ${pmVi(c.pm)}`];
+}
+function renderTb() {
+  const groups = activeTables();
+  if (!groups.find(g => g.key === tbSel)) tbSel = groups.length ? groups[0].key : '';
+  $('tbEmpty').hidden = !!groups.length; $('tbCard').hidden = !groups.length;
+  $('tbTabs').innerHTML = groups.map(g => `<button data-tg="${esc(g.key)}" aria-pressed="${g.key === tbSel}"><b>${t('table')} ${esc(g.tbl)}</b>${g.guest ? `<small>👤 ${esc(g.guest)}</small>` : ''}<span>${money(tableCalc(g).total)}</span>${tableCalc(g).asked ? '<i>💳</i>' : ''}</button>`).join('');
+  const g = groups.find(x => x.key === tbSel); if (!g) return;
+  const c = tableCalc(g), nm = l => { const n = NAMES[l.id]; return lang === 'vi' || !n ? l.vi : n[lang === 'en' ? 0 : 1] + baseTr(l.vi) };
+  $('tbHead').innerHTML = `<b>${t('table')} ${esc(g.tbl)}</b>${g.guest ? ` · 👤 ${esc(g.guest)}` : ''} · ${t('tbOrders')(c.ords.length)} · ${t('tbSince')} ${hhmm(c.ords[0].created)}${c.asked ? `<span class="ask">${t('tbAsk')}</span>` : ''}`;
+  const notes = c.ords.flatMap(o => o.text.split('\n').filter(l => /^(Ghi chú|✏️ Nhân viên): /.test(l)).map(l => {
+    const staff = /^✏️/.test(l), txt = l.replace(/^(Ghi chú|✏️ Nhân viên): /, ''), x = staff ? '' : noteTr(o, txt);
+    return `<div class="tbn"><b>${staff ? '✏️ ' + t('staffNote') : '💬 ' + t('kitchenNote')} · ${hhmm(o.created)}</b>${esc(txt)}${x ? `<span>🌐 ${esc(x)}</span>` : ''}</div>` }));
+  $('tbNotes').innerHTML = notes.join(''); $('tbNotes').hidden = !notes.length;
+  $('tbRows').innerHTML = c.lines.length ? c.lines.map(l => `<div class="trow"><div class="nm">[${l.id}] ${esc(nm(l))}${reqTr(l.o, l.vi)}${lang !== 'vi' ? `<small>${esc(l.vi)}</small>` : ''}${NAMES[l.id] && NAMES[l.id][3] !== l.unit ? `<small class="chg">✏️ ${t('tbChanged')} · ${t('prWas')}: ${money(NAMES[l.id][3])}</small>` : ''}</div>
+    <div class="qty"><button data-tq="${l.id}@${l.unit}:-1" aria-label="−">−</button><b>${l.q}</b><button data-tq="${l.id}@${l.unit}:1" aria-label="+">+</button></div>
+    <label class="up"><small>${t('tbUnit')}</small><input data-up="${l.id}@${l.unit}" inputmode="numeric" value="${l.unit}" aria-label="${t('tbUnit')}"></label>
+    <div class="sum">${money(l.sum)}</div><button class="rm" data-tq="${l.id}@${l.unit}:x" aria-label="${t('editRm')}">✕</button></div>`).join('') : `<div class="cempty">${t('tbNone')}</div>`;
+  $('tbSubSum').textContent = money(c.sub);
+  const f = document.activeElement;
+  if (f !== $('tbPct')) $('tbPct').value = c.pct == null ? '' : (c.pct || '');
+  if (f !== $('tbFinal')) $('tbFinal').value = c.final;
+  $('tbDiscSum').textContent = c.disc > 0 ? '−' + money(c.disc) : c.disc < 0 ? '+' + money(-c.disc) : '';
+  $('tbDiscLbl').textContent = c.disc < 0 ? t('tbExtra') : t('tbDisc');
+  $('tbPcts').querySelectorAll('[data-pct]').forEach(b => b.setAttribute('aria-pressed', c.pct === +b.dataset.pct));
+  $('tbTaxes').querySelectorAll('[data-tax]').forEach(b => b.setAttribute('aria-pressed', c.tax === +b.dataset.tax));
+  if (f !== $('tbTaxIn')) $('tbTaxIn').value = c.tax && ![3, 4.5, 5, 8, 10, 15, 20].includes(c.tax) ? c.tax : '';
+  $('tbTaxSum').textContent = c.taxAmt ? '+' + money(c.taxAmt) : '';
+  $('tbTipBox').innerHTML = c.tipPct ? `<div class="trw"><span>${t('tbTip')} (${c.tipPct}%)</span><span>${money(c.tip)}</span></div><div class="trw tbig"><span>${t('tbTipTot')}</span><span>${money(c.total)}</span></div>` : '';
+  payButtons($('tbPay'), c.pm);
+}
+const tbGroup = () => activeTables().find(g => g.key === tbSel);
+const tbSet = patch => { tbState.set(tbSel, Object.assign({}, tbState.get(tbSel), patch)); renderTb() };
+async function tbApply(change) {           /* change(parsed orders) edits them; the changed orders are saved */
+  const g = tbGroup(); if (!g || tbBusy) return;
+  const ps = g.ses.filter(o => o.kind === 'order').map(parseOrder), before = ps.map(e => buildText(e, e.note));
+  change(ps);
+  tbBusy = true;
+  try { for (let i = 0; i < ps.length; i++) { const txt = buildText(ps[i], ps[i].note); if (txt !== before[i]) await saveOrder(ps[i].o, txt) } }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) }
+  tbBusy = false; renderTb();
+}
+function tbAdd(id) { const n = NAMES[id]; tbApply(ps => { const last = ps[ps.length - 1], ex = last.items.find(x => x.id === id && x.unit === n[3]);
+  if (ex) ex.q++; else last.items.push({ id, vi: n[2], q: 1, unit: n[3] }) }) }
+$('tbRows').addEventListener('click', ev => { const b = ev.target.closest('[data-tq]'); if (!b) return; const [key, d] = b.dataset.tq.split(':'), [id, u] = key.split('@'), same = x => x.id === id && x.unit === +u;
+  tbApply(ps => { const has = ps.filter(e => e.items.some(x => same(x) && x.q > 0));
+    if (d === 'x') has.forEach(e => e.items.forEach(x => { if (same(x)) x.q = 0 }));
+    else { const e = has[has.length - 1], it = e && e.items.find(x => same(x) && x.q > 0); if (it) it.q = Math.max(0, Math.min(99, it.q + +d)) } }) });
+$('tbRows').addEventListener('change', ev => { const inp = ev.target.closest('[data-up]'); if (!inp) return;
+  const v = +inp.value.replace(/\D/g, ''); if (v < 1000) { alert(t('prBad')); return renderTb() }
+  const [id, u] = inp.dataset.up.split('@'); tbApply(ps => ps.forEach(e => e.items.forEach(x => { if (x.id === id && x.unit === +u) x.unit = v }))) });
+$('tbRows').addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target.matches('[data-up]')) ev.target.blur() });
+$('tbTabs').onclick = ev => { const b = ev.target.closest('[data-tg]'); if (b) { tbSel = b.dataset.tg; renderTb() } };
+$('tbPcts').onclick = ev => { const b = ev.target.closest('[data-pct]'); if (b) tbSet({ pct: +b.dataset.pct, final: null }) };
+$('tbTaxes').onclick = ev => { const b = ev.target.closest('[data-tax]'); if (b) tbSet({ tax: +b.dataset.tax, final: null }) };
+$('tbTaxIn').addEventListener('input', () => { const v = Math.min(100, Math.max(0, parseFloat($('tbTaxIn').value.replace(',', '.')) || 0)); tbSet({ tax: v, final: null }) });
+$('tbTaxIn').addEventListener('blur', renderTb);
+$('tbPct').addEventListener('input', () => { const v = Math.min(100, +$('tbPct').value.replace(/\D/g, '') || 0); tbSet({ pct: v, final: null }) });
+$('tbFinal').addEventListener('input', () => { const raw = $('tbFinal').value.replace(/\D/g, ''); tbSet(raw === '' ? { final: null, pct: 0 } : { final: +raw }) });
+$('tbFinal').addEventListener('blur', renderTb); $('tbPct').addEventListener('blur', renderTb);
+$('tbPay').onclick = ev => { const b = ev.target.closest('[data-pm]'); if (b) tbSet({ pm: b.dataset.pm, tax: null, final: null }) };
+function tbBill(g, c) { return { id: Date.now(), kind: 'bill', tbl: g.tbl, created: Date.now(), calc: c, text: `TÍNH TIỀN · Bàn ${g.tbl}${g.guest ? ' · ' + g.guest : ''}` } }
+$('tbPrint').onclick = () => { const g = tbGroup(); if (!g) return; const c = tableCalc(g); if (!c.lines.length) return alert(t('tbNone')); printOrder(tbBill(g, c)) };
+$('tbClose').onclick = async () => {
+  const g = tbGroup(); if (!g) return; const c = tableCalc(g);
+  if (!confirm(t('tbCloseQ')(g.tbl + (g.guest ? ' · ' + g.guest : ''), money(c.total)))) return;
+  const text = [`ĐÃ ĐÓNG BÀN · Bàn ${g.tbl}${g.guest ? ' · ' + g.guest : ''}`, ...c.lines.map(l => `${l.q} × [${l.id}] ${l.vi} — ${money(l.sum)}`), ...calcLines(c)].join('\n');
+  const b = $('tbClose'); b.disabled = true;
+  try { const r = await api('/staff/close', { text, ids: g.ses.filter(o => o.status === 'new').map(o => o.id) });
+    g.ses.forEach(o => { if (o.status === 'new') o.status = 'done' }); tbState.delete(g.key);
+    orders.set(r.id, { id: r.id, kind: 'closed', tbl: g.tbl, text, created: r.now, status: 'done', done_at: r.now }); maxId = Math.max(maxId, r.id);
+    render(); renderTb() }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) }
+  b.disabled = false;
+};
+$('list').addEventListener('click', async ev => { const b = ev.target.closest('[data-reopen]'); if (!b) return;
+  const o = orders.get(+b.dataset.reopen); if (!o) return;
+  if (!confirm(t('reopenQ')(o.tbl + (guestOf(o) ? ' · ' + guestOf(o) : '')))) return;
+  b.disabled = true;
+  try { await api('/staff/reopen', { id: o.id }); o.kind = 'reopened'; render(); if (!$('tbBg').hidden) renderTb() }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')); b.disabled = false }
+});
+$('tblBillBtn').onclick = () => { mountSearch($('tbSearch'), tbAdd); renderTb(); $('tbBg').hidden = false };
+$('tbCancel').onclick = () => { $('tbBg').hidden = true };
+$('tbBg').addEventListener('click', ev => { if (ev.target === $('tbBg')) $('tbBg').hidden = true });
+
+/* ---------- «Popular» tab of the guest menu ---------- */
+$('popBtn').onclick = async () => {
+  let cur = [];
+  try { const r = await fetch(API + '/popular?venue=' + VENUE, { cache: 'no-store' }); cur = (await r.json()).ids || [] } catch (e) {}
+  $('popRows').innerHTML = Object.entries(NAMES).map(([id, n]) => `<label class="prow"><input type="checkbox" value="${id}" ${cur.includes(id) ? 'checked' : ''}><span><b>[${id}] ${esc(lang === 'vi' ? n[2] : n[lang === 'en' ? 0 : 1])}</b>${lang !== 'vi' ? `<small>${esc(n[2])}</small>` : ''}</span></label>`).join('');
+  $('popBg').hidden = false;
+};
+$('popCancel').onclick = () => { $('popBg').hidden = true };
+$('popBg').addEventListener('click', ev => { if (ev.target === $('popBg')) $('popBg').hidden = true });
+$('popSave').onclick = async () => {
+  const ids = [...$('popRows').querySelectorAll('input:checked')].map(i => i.value), b = $('popSave'); b.disabled = true;
+  try { await api('/staff/popular', { ids }); $('popBg').hidden = true; alert(t('popSaved')) } catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) }
+  b.disabled = false;
+};
+
+/* ---------- stop-list (sold out) ---------- */
+let SOLD = [];
+async function loadSold() { try { const r = await fetch(API + '/popular?venue=' + VENUE, { cache: 'no-store' }); SOLD = (await r.json()).soldout || [] } catch (e) {} return SOLD }
+function renderSo() {
+  $('soRows').innerHTML = Object.entries(NAMES).map(([id, n]) => { const off = SOLD.includes(id);
+    return `<label class="prow${off ? ' off' : ''}"><input type="checkbox" value="${id}" ${off ? 'checked' : ''}><span><b>[${id}] ${esc(lang === 'vi' ? n[2] : n[lang === 'en' ? 0 : 1])}</b>${lang !== 'vi' ? `<small>${esc(n[2])}</small>` : ''}</span>${off ? `<span class="soTag">${t('soOut')}</span>` : ''}</label>` }).join('');
+}
+loadSold(); setInterval(loadSold, 300000);
+$('soBtn').onclick = async () => { await loadSold(); renderSo(); $('soBg').hidden = false };
+$('soRows').addEventListener('change', ev => { const i = ev.target.closest('input'); if (!i) return; SOLD = i.checked ? [...new Set([...SOLD, i.value])] : SOLD.filter(x => x !== i.value); renderSo() });
+$('soCancel').onclick = () => { $('soBg').hidden = true };
+$('soBg').addEventListener('click', ev => { if (ev.target === $('soBg')) $('soBg').hidden = true });
+$('soSave').onclick = async () => { const b = $('soSave'); b.disabled = true;
+  try { await api('/staff/soldout', { ids: SOLD }); $('soBg').hidden = true; alert(t('soSaved')) } catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) }
+  b.disabled = false };
+
+/* ---------- prices ---------- */
+const BASE = Object.fromEntries(Object.entries(NAMES).map(([id, n]) => [id, n[3]]));
+let PRICES = {};
+async function loadPrices() {
+  try { const r = await fetch(API + '/popular?venue=' + VENUE, { cache: 'no-store' }); PRICES = (await r.json()).prices || {} } catch (e) {}
+  Object.keys(NAMES).forEach(id => { NAMES[id][3] = +PRICES[id] >= 1000 ? +PRICES[id] : BASE[id] });   /* new / added dishes use current prices */
+}
+loadPrices(); setInterval(loadPrices, 300000);
+$('prBtn').onclick = async () => {
+  await loadPrices();
+  $('prRows').innerHTML = Object.entries(NAMES).map(([id, n]) => `<div class="prrow${PRICES[id] ? ' chg' : ''}"><div><b>[${id}] ${esc(lang === 'vi' ? n[2] : n[lang === 'en' ? 0 : 1])}</b>${lang !== 'vi' ? `<small>${esc(n[2])}</small>` : ''}</div>
+    <input inputmode="numeric" data-pid="${id}" value="${PRICES[id] || ''}" placeholder="${BASE[id]}">${PRICES[id] ? `<span class="was">${t('prWas')}: ${money(BASE[id])}</span>` : ''}</div>`).join('');
+  $('prBg').hidden = false;
+};
+$('prRows').addEventListener('input', ev => { const i = ev.target.closest('[data-pid]'); if (i) i.closest('.prrow').classList.toggle('chg', !!i.value.trim()) });
+$('prCancel').onclick = () => { $('prBg').hidden = true };
+$('prBg').addEventListener('click', ev => { if (ev.target === $('prBg')) $('prBg').hidden = true });
+$('prSave').onclick = async () => {
+  const prices = {}; let bad = false;
+  $('prRows').querySelectorAll('[data-pid]').forEach(i => { const v = i.value.replace(/[^\d]/g, ''); if (!v) return;
+    if (+v < 1000) bad = true; else if (+v !== BASE[i.dataset.pid]) prices[i.dataset.pid] = +v });
+  if (bad) return alert(t('prBad'));
+  const b = $('prSave'); b.disabled = true;
+  try { await api('/staff/prices', { prices }); PRICES = prices; Object.keys(NAMES).forEach(id => { NAMES[id][3] = prices[id] || BASE[id] }); $('prBg').hidden = true; alert(t('prSaved')) }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) }
+  b.disabled = false;
+};
+
+/* ---------- announcement in the guest menu ---------- */
+/* ---------- dish photos: the staff replace a photo of the guest menu ---------- */
+let PHOTOS = {}, phFor = '';
+const phSrc = id => PHOTOS[id] ? `${API}/photo?venue=${VENUE}&id=${id}&v=${PHOTOS[id]}` : IMGS[id] ? `../img/${IMGS[id]}` : '';
+function renderPh() {
+  $('phList').innerHTML = Object.entries(NAMES).map(([id, n]) => `<div class="phrow" id="ph-${id}">${phSrc(id) ? `<img src="${phSrc(id)}" alt="" loading="lazy">` : '<div class="noimg"></div>'}
+    <div class="pn">[${id}] ${esc(lang === 'vi' ? n[2] : n[lang === 'en' ? 0 : 1])}${lang !== 'vi' ? `<small>${esc(n[2])}</small>` : ''}${PHOTOS[id] ? `<em>✓ ${t('phNew')}</em>` : ''}</div>
+    <div class="pb"><button data-phc="${id}">${t('phChange')}</button>${PHOTOS[id] ? `<button data-phr="${id}">${t('phReset')}</button>` : ''}</div></div>`).join('');
+}
+$('phBtn').onclick = async () => {
+  try { const r = await fetch(API + '/popular?venue=' + VENUE, { cache: 'no-store' }); PHOTOS = (await r.json()).photos || {} } catch (e) {}
+  renderPh(); $('phBg').hidden = false;
+};
+$('phClose').onclick = () => { $('phBg').hidden = true };
+$('phBg').addEventListener('click', ev => { if (ev.target === $('phBg')) $('phBg').hidden = true });
+$('phList').addEventListener('click', async ev => {
+  const c = ev.target.closest('[data-phc]'); if (c) { phFor = c.dataset.phc; $('phFile').value = ''; $('phFile').click(); return }
+  const r = ev.target.closest('[data-phr]'); if (!r || !confirm(t('phResetQ'))) return;
+  r.disabled = true;
+  try { await api('/staff/photo', { id: r.dataset.phr, data: null }); delete PHOTOS[r.dataset.phr]; renderPh() }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')); r.disabled = false }
+});
+function squareImage(file, size, q) {          /* centre-cropped square, compressed on the phone */
+  return new Promise((ok, bad) => { const img = new Image(), url = URL.createObjectURL(file);
+    img.onload = () => { const side = Math.min(img.naturalWidth, img.naturalHeight), cv = document.createElement('canvas'); cv.width = cv.height = size;
+      const g = cv.getContext('2d'); g.imageSmoothingQuality = 'high';
+      g.drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, size, size); URL.revokeObjectURL(url);
+      let d = cv.toDataURL('image/webp', q); if (!d.startsWith('data:image/webp')) d = cv.toDataURL('image/jpeg', q); ok(d) };
+    img.onerror = () => { URL.revokeObjectURL(url); bad(new Error('img')) }; img.src = url });
+}
+$('phFile').addEventListener('change', async () => {
+  const f = $('phFile').files[0], id = phFor; if (!f || !id) return;
+  const btn = document.querySelector(`[data-phc="${id}"]`); if (btn) { btn.disabled = true; btn.textContent = t('phSaving') }
+  try {
+    let d = await squareImage(f, 800, 0.8); if (d.length > 450000) d = await squareImage(f, 640, 0.7); if (d.length > 450000) d = await squareImage(f, 480, 0.6);
+    const r = await api('/staff/photo', { id, data: d }); PHOTOS[id] = r.v; renderPh(); alert(t('phSaved'));
+  } catch (err) { alert(err.message === 'img' ? t('phBad') : err.message === 'code' ? t('wrongCode') : t('editFail')); renderPh() }
+});
+
+/* ---------- «📝 Menu»: add a dish, edit its texts, hide / show it in the guest menu ---------- */
+let MENU_OVR = { edits: {}, added: [], hidden: [] }, mnEdit = null;
+const catName = c => { const x = MENU_FULL.c.find(r => r[0] === c); return x ? x[{ vi: 1, en: 2, ru: 3 }[lang]] : c };
+function dishData(id) {          /* current texts of a dish: base + saved changes, or an added dish */
+  const a = MENU_OVR.added.find(x => x.id === id);
+  if (a) return { id, cat: a.cat, vi: a.vi, vd: a.vd, en: [...a.en], ru: [...a.ru], price: a.price, added: true };
+  const b = MENU_FULL.m[id]; if (!b) return null;
+  const d = { id, cat: b[0], vi: b[1], vd: b[2], en: [b[3], b[4]], ru: [b[5], b[6]], price: b[7], added: false }, e = MENU_OVR.edits[id];
+  if (e) { if (e.vi) d.vi = e.vi; if (e.vd) d.vd = e.vd; ['en', 'ru'].forEach(l => { if (e[l]) { if (e[l][0]) d[l][0] = e[l][0]; if (e[l][1]) d[l][1] = e[l][1] } }); if (e.cat) d.cat = e.cat; if (+e.price >= 1000) d.price = +e.price }
+  return d;
+}
+function applyStaffMenu(o) {     /* dish names for search, new orders, prices, photos */
+  MENU_OVR = { edits: (o && o.edits) || {}, added: (o && o.added) || [], hidden: (o && o.hidden) || [] };
+  const hid = new Set(MENU_OVR.hidden);
+  Object.keys(NAMES).forEach(id => { if (!MENU_FULL.m[id] && !MENU_OVR.added.some(a => a.id === id)) delete NAMES[id] });
+  [...Object.keys(MENU_FULL.m), ...MENU_OVR.added.map(a => a.id)].forEach(id => {
+    const d = dishData(id); if (!d) return;
+    if (hid.has(id)) { delete NAMES[id]; return }
+    BASE[id] = d.price; NAMES[id] = [d.en[0] || d.vi, d.ru[0] || d.vi, d.vi, +PRICES[id] >= 1000 ? +PRICES[id] : d.price];
+  });
+}
+function renderMn() {
+  const q = norm($('mnFind').value.trim()), hid = new Set(MENU_OVR.hidden);
+  const ids = [...Object.keys(MENU_FULL.m), ...MENU_OVR.added.map(a => a.id)].filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => +a - +b);
+  $('mnList').innerHTML = ids.map(id => dishData(id)).filter(d => d && (!q || d.id.startsWith(q) || norm([d.vi, d.en[0], d.ru[0]].join(' ')).includes(q))).map(d => {
+    const off = hid.has(d.id), nm = lang === 'vi' ? d.vi : d[lang][0] || d.vi;
+    return `<div class="mnrow${off ? ' off' : ''}"><div class="pn">[${d.id}] ${esc(nm)}<small>${esc(catName(d.cat))} · ${money(+PRICES[d.id] >= 1000 ? +PRICES[d.id] : d.price)}${d.added ? ' · ' + t('mnNew') : ''}${MENU_OVR.edits[d.id] ? ' · ✏️' : ''}${off ? ' · <b>' + t('mnHidden') + '</b>' : ''}</small></div>
+      <div class="pb"><button data-me="${d.id}">${t('mnEditBtn')}</button><button data-mh="${d.id}">${off ? t('mnShow') : t('mnHide')}</button></div></div>` }).join('') || `<div class="cempty">${t('searchNone')}</div>`;
+}
+async function loadMenuOvr() { try { const r = await fetch(API + '/popular?venue=' + VENUE, { cache: 'no-store' }); const d = await r.json(); PRICES = d.prices || PRICES; applyStaffMenu(d.menu) } catch (e) {} }
+async function saveMenuOvr(msg) {
+  try { const r = await api('/staff/menu', { menu: MENU_OVR }); applyStaffMenu(r.menu); renderMn(); if (msg) alert(t(msg)); return true }
+  catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')); return false }
+}
+$('mnBtn').onclick = async () => { await loadMenuOvr(); $('mnFind').value = ''; renderMn(); $('mnBg').hidden = false };
+$('mnFind').addEventListener('input', renderMn);
+$('mnClose').onclick = () => { $('mnBg').hidden = true };
+$('mnBg').addEventListener('click', ev => { if (ev.target === $('mnBg')) $('mnBg').hidden = true });
+$('mnList').addEventListener('click', async ev => {
+  const h = ev.target.closest('[data-mh]');
+  if (h) { const id = h.dataset.mh, hid = new Set(MENU_OVR.hidden), off = hid.has(id);
+    if (!off && !confirm(t('mnHideQ'))) return;
+    if (off) hid.delete(id); else hid.add(id); MENU_OVR.hidden = [...hid]; h.disabled = true; await saveMenuOvr(off ? 'mnShown' : 'mnHiddenOk'); return }
+  const e = ev.target.closest('[data-me]'); if (e) openMe(e.dataset.me);
+});
+const ME_F = ['meVi', 'meVd', 'meEn', 'meEnD', 'meRu', 'meRuD'];
+function openMe(id) {
+  const d = id ? dishData(id) : { id: '', cat: MENU_FULL.c[0][0], vi: '', vd: '', en: ['', ''], ru: ['', ''], price: '', added: true };
+  mnEdit = { id, added: d.added };
+  $('meTitle').textContent = id ? t('mnEditT') + ' ' + id : t('mnAddT');
+  $('meId').value = d.id; $('meId').readOnly = !!id;
+  $('meCat').innerHTML = MENU_FULL.c.map(c => `<option value="${c[0]}"${c[0] === d.cat ? ' selected' : ''}>${esc(catName(c[0]))}</option>`).join('');
+  [d.vi, d.vd, d.en[0], d.en[1], d.ru[0], d.ru[1]].forEach((v, i) => { $(ME_F[i]).value = v || '' });
+  $('mePrice').value = id ? (+PRICES[id] >= 1000 ? +PRICES[id] : d.price) : '';
+  $('meDel').hidden = !(id && d.added);
+  $('meBg').hidden = false;
+}
+$('meCancel').onclick = () => { $('meBg').hidden = true };
+$('meBg').addEventListener('click', ev => { if (ev.target === $('meBg')) $('meBg').hidden = true });
+async function meFill() {        /* fill the empty languages from a filled one */
+  const pairs = { vi: ['meVi', 'meVd'], en: ['meEn', 'meEnD'], ru: ['meRu', 'meRuD'] };
+  for (const k of [0, 1]) {
+    const src = ['vi', 'ru', 'en'].find(l => $(pairs[l][k]).value.trim()); if (!src) continue;
+    for (const l of ['vi', 'en', 'ru']) if (!$(pairs[l][k]).value.trim()) { try { $(pairs[l][k]).value = await trBold($(pairs[src][k]).value.trim(), src, l) } catch (e) {} }
+  }
+}
+$('meTr').onclick = async () => { const b = $('meTr'); b.disabled = true; await meFill(); b.disabled = false };
+$('meSave').onclick = async () => {
+  if (mnEdit.added && $('meVi').value.trim()) await meFill();
+  const id = $('meId').value.replace(/\D/g, ''), v = ME_F.map(f => $(f).value.replace(/\s+/g, ' ').trim()), price = +$('mePrice').value.replace(/\D/g, '');
+  if (!id) return alert(t('mnNeedId'));
+  if (!mnEdit.id && (MENU_FULL.m[id] || MENU_OVR.added.some(a => a.id === id))) return alert(t('mnIdTaken'));
+  if (!v[0]) return alert(t('mnNeedName'));
+  if (price < 1000) return alert(t('prBad'));
+  const dish = { cat: $('meCat').value, vi: v[0], vd: v[1], en: [v[2], v[3]], ru: [v[4], v[5]], price };
+  if (mnEdit.added) { const i = MENU_OVR.added.findIndex(a => a.id === id); const a = { id, ...dish }; if (i >= 0) MENU_OVR.added[i] = a; else MENU_OVR.added.push(a) }
+  else {
+    const b = MENU_FULL.m[id], e = {};
+    if (dish.vi !== b[1]) e.vi = dish.vi; if (dish.vd !== b[2]) e.vd = dish.vd; if (dish.cat !== b[0]) e.cat = dish.cat;
+    if (dish.en[0] !== b[3] || dish.en[1] !== b[4]) e.en = dish.en; if (dish.ru[0] !== b[5] || dish.ru[1] !== b[6]) e.ru = dish.ru;
+    if (Object.keys(e).length) MENU_OVR.edits[id] = e; else delete MENU_OVR.edits[id];
+    const cur = +PRICES[id] >= 1000 ? +PRICES[id] : b[7];
+    if (price !== cur) { const p = Object.assign({}, PRICES); if (price === b[7]) delete p[id]; else p[id] = price; try { await api('/staff/prices', { prices: p }); PRICES = p } catch (err) {} }
+  }
+  const btn = $('meSave'); btn.disabled = true;
+  if (await saveMenuOvr('mnSaved')) $('meBg').hidden = true;
+  btn.disabled = false;
+};
+$('meDel').onclick = async () => {
+  if (!confirm(t('mnDelQ'))) return;
+  MENU_OVR.added = MENU_OVR.added.filter(a => a.id !== mnEdit.id); MENU_OVR.hidden = MENU_OVR.hidden.filter(x => x !== mnEdit.id);
+  if (await saveMenuOvr('mnDeleted')) $('meBg').hidden = true;
+};
+loadMenuOvr(); setInterval(loadMenuOvr, 300000);
+
+$('mnAdd').onclick = () => openMe('');
+$('ntBtn').onclick = async () => {
+  let n = {}; try { const r = await fetch(API + '/popular?venue=' + VENUE, { cache: 'no-store' }); n = (await r.json()).notice || {} } catch (e) {}
+  $('ntVi').value = n.vi || ''; $('ntEn').value = n.en || ''; $('ntRu').value = n.ru || ''; $('ntBg').hidden = false;
+};
+async function saveNotice(notice, msg) { try { await api('/staff/notice', { notice }); $('ntBg').hidden = true; alert(t(msg)) } catch (err) { alert(err.message === 'code' ? t('wrongCode') : t('editFail')) } }
+let ntLast = null;
+['ntVi', 'ntEn', 'ntRu'].forEach(id => $(id).addEventListener('focus', () => { ntLast = $(id) }));
+$('ntBold').addEventListener('mousedown', ev => ev.preventDefault());   /* keep the text selection */
+$('ntBold').onclick = () => { const a = ntLast || $('ntVi'), s = a.selectionStart, e = a.selectionEnd, v = a.value;
+  const raw = v.slice(s, e), lead = raw.match(/^\s*/)[0], tail = raw.match(/\s*$/)[0], sel = raw.trim();
+  a.value = v.slice(0, s) + lead + '**' + sel + '**' + (raw.trim() ? tail : '') + v.slice(e); a.focus();
+  a.selectionStart = s + lead.length + 2; a.selectionEnd = a.selectionStart + sel.length };
+/* empty languages are filled with an automatic translation (bold parts stay bold) */
+async function trBold(text, src, tl) {
+  const parts = text.split(/(\*\*[^*\n]+?\*\*)/);
+  const out = await Promise.all(parts.map(async p => { const m = p.match(/^\*\*([^*]+)\*\*$/), core = m ? m[1] : p; if (!core.trim()) return p;
+    const lead = core.match(/^\s*/)[0], tail = core.match(/\s*$/)[0];
+    const r = await fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(core.trim().slice(0, 450)) + '&langpair=' + src + '|' + tl), d = await r.json();
+    const x = unent(String((d && d.responseData && d.responseData.translatedText) || '')).trim(); if (+d.responseStatus !== 200 || !x) throw new Error('tr');
+    return m ? '**' + x + '**' : lead + x + tail }));
+  return out.join('');
+}
+async function ntFill() {
+  const f = { vi: $('ntVi'), en: $('ntEn'), ru: $('ntRu') }, src = ['vi', 'ru', 'en'].find(l => f[l].value.trim()); if (!src) return false;
+  let done = false;
+  for (const l of ['vi', 'en', 'ru']) if (!f[l].value.trim()) { try { f[l].value = await trBold(f[src].value.trim(), src, l); done = true } catch (e) {} }
+  return done;
+}
+$('ntTr').onclick = async () => { const b = $('ntTr'); b.disabled = true; await ntFill(); b.disabled = false };
+$('ntSave').onclick = async () => { const b = $('ntSave'); b.disabled = true; const tr = await ntFill(); b.disabled = false;
+  saveNotice({ vi: $('ntVi').value, en: $('ntEn').value, ru: $('ntRu').value }, tr ? 'ntSavedTr' : 'ntSaved') };
+$('ntClear').onclick = () => saveNotice({}, 'ntCleared');
+$('ntCancel').onclick = () => { $('ntBg').hidden = true };
+$('ntBg').addEventListener('click', ev => { if (ev.target === $('ntBg')) $('ntBg').hidden = true });
+
 setLang(lang);
-if (code) { show('start'); saveSwConfig() } else show('login');
+if (code) { show('start'); saveSwConfig(); if (appRole() === 'printer') { setTimeout(() => $('startBtn').click(), 500); setInterval(() => { printQueue.then(() => location.reload()) }, 20 * 60e3) } }   /* the hidden printer copy picks up site updates by itself */ else { show('login'); if (appRole() === 'printer') setTimeout(() => location.reload(), 30000); else stopPush() }
 setInterval(() => { if (timer) render() }, 30000);
 </script>
 </body>
