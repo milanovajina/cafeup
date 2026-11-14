@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}.qrbox{display:flex;align-items:center;gap:14px;margin-top:16px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-xl);background:var(--surface);max-width:380px;font-size:14px;color:var(--muted)}
+.qrbox .qrimg{width:96px;height:96px;flex:none}.qrbox .qrimg svg{width:100%;height:100%;display:block}
+@media (max-width:760px),(hover:none){.qrbox{display:none!important}}
+</style>
 <title>CafeUp</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -589,6 +592,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
         <p class="note now" data-pane="now" data-t="m2_now"></p>
         <p class="note with" data-pane="with" data-t="m2_with" hidden></p>
         <a class="btn primary" style="margin-top:16px" data-pane="with" hidden href="index.html#menu" target="_blank" rel="noopener" data-t="live_demo2"></a>
+        <div class="qrbox" data-pane="with" hidden><div class="qrimg" data-qr="https://milanovajina.github.io/cafeup/#table-1"></div><span data-t="qr_menu"></span></div>
       </div>
       <div class="stage">
         <div data-pane="now" style="width:100%;display:flex;justify-content:center">
@@ -671,6 +675,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
         <div class="note with" data-pane="with" hidden><span data-t="m4_with"></span>
           <ul class="m4list"><li data-t="m4_1"></li><li data-t="m4_2"></li><li data-t="m4_3"></li><li data-t="m4_4"></li><li data-t="m4_5"></li><li data-t="m4_6"></li></ul></div>
         <a class="btn primary" style="margin-top:16px" data-pane="with" hidden href="staff/" target="_blank" rel="noopener" data-t="m4_try"></a>
+        <div class="qrbox" data-pane="with" hidden><div class="qrimg" data-qr="https://milanovajina.github.io/cafeup/staff/"></div><span data-t="qr_staff"></span></div>
       </div>
       <div class="stage">
         <div class="scene" data-pane="now">
@@ -990,6 +995,8 @@ month:["/ tháng","/ month","/ мес."],
 pk_time:["Xong trong 3–5 ngày","Done in 3–5 days","Готово за 3–5 дней"],
 pk_1:["Thực đơn QR tiếng Việt, Anh, Nga, tối đa 50 món","QR menu in Vietnamese, English and Russian, up to 50 items","QR-меню на вьетнамском, английском и русском, до 50 позиций"],
 pk_2:["Đơn đến màn hình nhân viên bằng tiếng Việt, có âm thanh", "Orders reach the staff screen in Vietnamese, with a sound alert", "Заказы приходят на экран персонала на вьетнамском, со звуком"],
+qr_menu:["Quét bằng điện thoại để mở thực đơn như khách", "Scan with your phone to open the menu as a guest", "Отсканируйте телефоном, чтобы открыть меню как гость"],
+qr_staff:["Quét để mở màn hình nhân viên trên điện thoại (mã 0000)", "Scan to open the staff screen on your phone (code 0000)", "Отсканируйте, чтобы открыть экран персонала на телефоне (код 0000)"],
 ch_menu:["Thực đơn QR","QR menu","QR-меню"],
 ch_screen:["Màn hình nhân viên","Staff screen","Экран персонала"],
 pk_3:["Khách chọn thanh toán VietQR hoặc tiền mặt","Guests choose VietQR or cash","Оплата по VietQR или наличными — на выбор гостя"],
@@ -2030,5 +2037,6 @@ window.addEventListener('hashchange',()=>{const m=(location.hash||'').match(/^#t
 })();
 </script>
 
+<script>document.querySelectorAll('[data-qr]').forEach(el=>{try{const q=qrcode(0,'M');q.addData(el.dataset.qr);q.make();el.innerHTML=q.createSvgTag({cellSize:4,margin:1,scalable:true})}catch(e){}});</script>
 </body>
 </html>

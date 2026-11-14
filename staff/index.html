@@ -175,6 +175,14 @@ button{font:inherit;cursor:pointer}
 .empty{color:var(--muted);text-align:center;padding:40px 10px}
 .hint{font-size:13px;color:var(--muted);text-align:center;margin-top:18px;line-height:1.5}
 @media (max-width:520px){.o{grid-template-columns:1fr}.o .ok{width:100%}}
+/* features by package: menu < service < restaurant */
+body.plan-menu :is(#pushBtn,#pushBtn2,#newBtn,#tblBillBtn,#popBtn,#soBtn,#prBtn,#ntBtn,#phBtn,#mnBtn,#autoPrintBtn,#rawbtBtn,#testPrintBtn,[data-edit],[data-print],.ib,.iadd){display:none!important}
+body.plan-service :is(#tblBillBtn,#phBtn,#mnBtn){display:none!important}
+.demobar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 12px;padding:10px 12px;border:1px dashed var(--line);border-radius:14px;background:var(--surface);font-size:14px}
+.demobar b{margin-right:4px}.demobar .sp{flex:1}
+.demobar button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;color:var(--ink)}
+.demobar button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.demobar .ex{background:var(--pink);color:#fff;border-color:var(--pink)}
 </style>
 </head>
 <body>
@@ -206,6 +214,7 @@ button{font:inherit;cursor:pointer}
   </section>
 
   <section id="board" hidden>
+    <div class="demobar" id="demoBar" hidden></div>
     <div class="newbar"><button class="newb" id="newBtn" data-t="newOrder"></button><button class="billb" id="tblBillBtn" data-t="tableBill"></button><button class="billb" id="popBtn" data-t="popBtn"></button><button class="billb" id="soBtn" data-t="soBtn"></button><button class="billb" id="prBtn" data-t="prBtn"></button><button class="billb" id="ntBtn" data-t="ntBtn"></button><button class="billb" id="phBtn" data-t="phBtn"></button><button class="billb" id="mnBtn" data-t="mnBtn"></button></div>
     <div class="bar"><h2 id="countH"></h2><span class="sp"></span>
       <button class="chip" data-f="new" aria-pressed="true" data-t="filterNew"></button><button class="chip" data-f="all" aria-pressed="false" data-t="filterAll"></button></div>
@@ -327,6 +336,10 @@ function vqSvg(vq, amount, info) { const q = qrcode(0, 'M'); q.addData(vqPayload
 <script>
 const API = new URLSearchParams(location.search).get('api') || 'https://cafeupnhatrang.nhatrang.workers.dev';
 const VENUE = 'demo';
+/* package of this venue: 'menu' | 'service' | 'restaurant' (the demo lets visitors switch) */
+const PLAN_DEFAULT = 'restaurant';
+const PLAN = (() => { if (VENUE !== 'demo') return PLAN_DEFAULT; try { const p = localStorage.getItem('cu_plan'); return ['menu', 'service', 'restaurant'].includes(p) ? p : PLAN_DEFAULT } catch (e) { return PLAN_DEFAULT } })();
+document.addEventListener('DOMContentLoaded', () => document.body.classList.add('plan-' + PLAN));
 const POLL_MS = 6000;
 /* dish names by menu number (filled from menu-data.js by tools/build_staff.py) */
 const IMGS = {"1": "bk.webp", "2": "gct.webp", "3": "bcc.webp", "4": "ht.webp", "5": "nhum.webp", "6": "mn.webp", "7": "gh.webp", "8": "cchs.webp", "9": "cpsd.webp", "10": "bx.webp", "11": "cpm.webp", "12": "stb.webp", "13": "dua.webp", "14": "ckb.webp", "15": "kd.webp"};
@@ -480,7 +493,7 @@ function render(freshIds = []) {
 }
 
 async function poll() {
-  if (appRole() === 'printer') { autoPrint = store.get('autoprint') === '1'; rawbt = store.get('rawbt') === '1' }   /* settings changed in the visible screen */
+  if (appRole() === 'printer') { autoPrint = store.get('autoprint') === '1' && PLAN !== 'menu'; rawbt = store.get('rawbt') === '1' }   /* settings changed in the visible screen */
   try {
     const d = await api(`/staff/orders?since=${maxId}&changed=${lastNow}`);
     const fresh = []; let added = 0;
@@ -574,7 +587,7 @@ async function enablePush() {
 $('pushBtn').onclick = enablePush; $('pushBtn2').onclick = enablePush;
 
 /* ---------- printing (80 mm receipt through the device's print system) ---------- */
-let autoPrint = store.get('autoprint') === '1';
+let autoPrint = store.get('autoprint') === '1' && PLAN !== 'menu';
 const printed = new Set(JSON.parse(store.get('printed') || '[]'));
 const money = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' ₫';
 const guestOf = o => ((o.text.split('\n')[0].match(/ · Bàn [^ ]+ · (.+)$/) || [])[1] || '');
@@ -1173,6 +1186,30 @@ $('ntBg').addEventListener('click', ev => { if (ev.target === $('ntBg')) $('ntBg
 setLang(lang);
 if (code) { show('start'); saveSwConfig(); if (appRole() === 'printer') { setTimeout(() => $('startBtn').click(), 500); setInterval(() => { printQueue.then(() => location.reload()) }, 20 * 60e3) } }   /* the hidden printer copy picks up site updates by itself */ else { show('login'); if (appRole() === 'printer') setTimeout(() => location.reload(), 30000); else stopPush() }
 setInterval(() => { if (timer) render() }, 30000);
+
+/* ---- demo only: switch package, add example orders ---- */
+if (VENUE === 'demo') (() => {
+  const DT = {
+    vi: { plan: 'Gói:', menu: 'Thực đơn', service: 'Thực đơn + Phục vụ', restaurant: 'Nhà hàng', ex: '＋ Thêm đơn mẫu', wait: 'Đang thêm…', fail: 'Không thêm được đơn mẫu.' },
+    en: { plan: 'Package:', menu: 'Menu', service: 'Menu + Service', restaurant: 'Restaurant', ex: '＋ Add example orders', wait: 'Adding…', fail: 'Could not add the example orders.' },
+    ru: { plan: 'Пакет:', menu: 'Меню', service: 'Меню + Обслуживание', restaurant: 'Ресторан', ex: '＋ Добавить пример заказов', wait: 'Добавляем…', fail: 'Не получилось добавить пример.' } };
+  const bar = $('demoBar'), d = k => (DT[lang] || DT.en)[k];
+  const draw = () => { bar.innerHTML = `<b>${d('plan')}</b>` + ['menu', 'service', 'restaurant'].map(p => `<button data-plan="${p}" aria-pressed="${p === PLAN}">${d(p)}</button>`).join('') + `<span class="sp"></span><button class="ex" id="exBtn">${d('ex')}</button>`; bar.hidden = false };
+  const N = '\u00a0', tb = () => 2 + Math.floor(Math.random() * 9);
+  const samples = () => [
+    `ĐƠN MỚI · Bàn ${tb()}\n2 × [1] Bún kèn — 100.000${N}₫\n1 × [2] Gỏi cá trích — 120.000${N}₫\n2 × [9] Cà phê sữa đá · Yêu cầu: ít đá — 50.000${N}₫\nTổng: 270.000${N}₫\nKhách nói tiếng Anh`,
+    `ĐƠN MỚI · Bàn ${tb()} · Anna\n1 × [6] Mực nướng sa tế · Yêu cầu: không cay — 150.000${N}₫\n2 × [12] Sinh tố bơ — 90.000${N}₫\n1 × [14] Chè khúc bạch — 40.000${N}₫\nTổng: 280.000${N}₫\nGhi chú: một ghế trẻ em\nKhách nói tiếng Nga`,
+    `ĐƠN MỚI · Bàn ${tb()}\n1 × [7] Ghẹ Hàm Ninh hấp (2 con) — 220.000${N}₫\n1 × [8] Cơm chiên hải sản — 85.000${N}₫\n2 × [13] Dừa tươi — 60.000${N}₫\nTổng: 365.000${N}₫\nKhách nói tiếng Anh`];
+  bar.addEventListener('click', async e => {
+    const p = e.target.closest('[data-plan]');
+    if (p) { try { localStorage.setItem('cu_plan', p.dataset.plan) } catch (er) {} location.reload(); return }
+    const x = e.target.closest('#exBtn'); if (!x || x.disabled) return;
+    x.disabled = true; x.textContent = d('wait');
+    try { for (const text of samples()) await api('/staff/create', { text }); await poll() } catch (er) { alert(d('fail')) }
+    x.disabled = false; x.textContent = d('ex');
+  });
+  draw(); document.addEventListener('click', e => { if (e.target.closest('[data-lang]')) setTimeout(draw, 0) });
+})();
 </script>
 </body>
 </html>
