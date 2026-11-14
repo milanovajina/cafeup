@@ -669,7 +669,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
         </div>
         <p class="note now" data-pane="now" data-t="m4_now"></p>
         <div class="note with" data-pane="with" hidden><span data-t="m4_with"></span>
-          <ul class="m4list"><li data-t="m4_1"></li><li data-t="m4_2"></li><li data-t="m4_3"></li><li data-t="m4_4"></li></ul></div>
+          <ul class="m4list"><li data-t="m4_1"></li><li data-t="m4_2"></li><li data-t="m4_3"></li><li data-t="m4_4"></li><li data-t="m4_5"></li><li data-t="m4_6"></li></ul></div>
         <a class="btn primary" style="margin-top:16px" data-pane="with" hidden href="staff/" target="_blank" rel="noopener" data-t="m4_try"></a>
       </div>
       <div class="stage">
@@ -680,7 +680,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
           <div class="outcome"><span class="verdict now" data-t="lost"></span><div data-t="m4_result"></div></div>
         </div>
         <div class="staffshot" data-pane="with" hidden>
-          <img data-staff src="img/staff_vi.webp" alt="" width="570" height="615" loading="lazy">
+          <img data-staff src="img/staff_vi.webp?v=2" alt="" width="570" height="615" loading="lazy">
           <img class="rcpt" src="img/receipt.webp" alt="" width="301" loading="lazy">
         </div>
       </div>
@@ -733,7 +733,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
         <div class="pr"><b class="money" data-v="5500000" data-coffee="4500000"></b><span data-t="once"></span></div>
         <span class="time" data-t="pk_time"></span>
         <ul>
-          <li data-t="ps_0"></li><li data-t="ps_1"></li><li data-t="ps_2"></li><li data-t="ps_3"></li><li data-t="ps_4"></li><li data-t="ps_5"></li>
+          <li data-t="ps_0"></li><li data-t="ps_1"></li><li data-t="ps_2"></li><li data-t="ps_3"></li><li data-t="ps_4"></li><li data-t="ps_6"></li><li data-t="ps_5"></li>
         </ul>
       </div>
     </div>
@@ -860,11 +860,13 @@ m4_tag:["Thời điểm 4 · Nhân viên", "Moment 4 · Staff", "Момент 4 
 m4_h:["Đơn đến đúng người, đúng lúc", "Every order reaches the right person on time", "Заказ доходит до нужного человека вовремя"],
 m4_p:["Giờ cao điểm: nhân viên chạy giữa các bàn, đơn ghi tay, tin nhắn lẫn với chat riêng, hóa đơn tính bằng máy tính.", "Rush hour: staff run between tables, orders are on paper, messages get lost among private chats, the bill is added up on a calculator.", "Час пик: официанты бегают между столами, заказы на бумажке, сообщения теряются в личных чатах, счёт считают на калькуляторе."],
 m4_now:["Khách gọi hai lần mà không ai đến. Món ra nhầm bàn. Đánh giá: «phục vụ chậm».", "The guest calls twice and nobody comes. A dish goes to the wrong table. Review: “slow service”.", "Гость зовёт дважды — никто не подходит. Блюдо уносят не на тот стол. Отзыв: «медленное обслуживание»."],
-m4_with:["Màn hình đơn hàng trên máy tính bảng ở quầy:", "An order screen on a tablet at the counter:", "Экран заказов на планшете у кассы:"],
-m4_1:["Đơn mới có âm thanh, màu theo loại: món mới, gọi thêm, gọi phục vụ, nước, tính tiền", "New orders beep and are colour-coded: new order, add-on, waiter, water, bill", "Новые заказы со звуком и цветом: заказ, дозаказ, официант, вода, счёт"],
+m4_with:["Màn hình đơn hàng trên máy tính bảng hoặc điện thoại:", "An order screen on a tablet or phone:", "Экран заказов на планшете или телефоне:"],
+m4_1:["Đơn mới có âm thanh và màu theo loại; sửa đơn, thêm món hoặc tự tạo đơn cho khách gọi tại bàn", "New orders beep and are colour-coded; edit an order, add a dish or enter one taken at the table", "Новые заказы со звуком и цветом; можно изменить заказ, добавить блюдо или создать заказ, принятый у стола"],
 m4_2:["Thông báo trên điện thoại nhân viên, kể cả khi khóa màn hình", "Notifications on staff phones, even when the screen is locked", "Уведомления на телефоны официантов, даже при заблокированном экране"],
-m4_3:["Tự động in hóa đơn trên máy in 80 mm khi khách tính tiền", "Bill prints automatically on an 80 mm printer when the guest asks for it", "Счёт сам печатается на принтере 80 мм, когда гость просит счёт"],
-m4_4:["Màn hình bằng tiếng Việt, Anh hoặc Nga: chủ quán xem cùng đơn bằng ngôn ngữ của mình", "Screen in Vietnamese, English or Russian: the owner sees the same orders in their language", "Экран на вьетнамском, английском или русском: владелец видит те же заказы на своём языке"],
+m4_3:["Bàn đang mở: tổng tiền, giảm giá, thuế, thanh toán tiền mặt / VietQR / thẻ, in hóa đơn và đóng bàn", "Open tables: total, discount, tax, cash / VietQR / card, print the bill and close the table", "Открытые столы: сумма, скидка, налог, оплата наличными / VietQR / картой, печать счёта и закрытие стола"],
+m4_4:["Phiếu bếp và hóa đơn 80 mm, ghi chú của khách được dịch sang tiếng Việt", "80 mm kitchen tickets and bills, guest comments translated into Vietnamese", "Кухонный тикет и счёт на 80 мм, комментарии гостей переводятся на вьетнамский"],
+m4_5:["Tự quản lý thực đơn ngay trên màn hình: hết món, giá, món phổ biến, thông báo, ảnh, thêm món mới", "Run the menu from the screen: sold out, prices, popular dishes, announcement, photos, new dishes", "Меню прямо с экрана: стоп-лист, цены, популярное, объявление, фото, новые блюда"],
+m4_6:["Màn hình bằng tiếng Việt, Anh hoặc Nga: chủ quán xem cùng đơn bằng ngôn ngữ của mình", "Screen in Vietnamese, English or Russian: the owner sees the same orders in their language", "Экран на вьетнамском, английском или русском: владелец видит те же заказы на своём языке"],
 m4_try:["Mở màn hình nhân viên demo (mã 0000)", "Open the demo staff screen (code 0000)", "Открыть демо-экран персонала (код 0000)"],
 m4_b1:["Bàn mấy gọi vậy? Ai ghi đơn bàn 4?", "Which table called? Who took table 4's order?", "Какой стол звал? Кто принимал заказ четвёртого?"],
 m4_b2:["Excuse me! Bill please! …Hello?", "Excuse me! Bill please! …Hello?", "Excuse me! Bill please! …Hello?"],
@@ -873,10 +875,11 @@ m4_result:["Khách chờ 15 phút để trả tiền và không quay lại.", "T
 ps_tag:["Phổ biến", "Most popular", "Популярный"],
 ps_name:["Thực đơn + Phục vụ", "Menu + Service", "Меню + Обслуживание"],
 ps_0:["Tất cả trong gói chính", "Everything in the main package", "Всё из основного пакета"],
-ps_1:["Màn hình đơn hàng cho nhân viên: âm thanh, màu theo loại đơn, nút «Đã nhận»", "Order screen for staff: sound, colour by order type, a “Taken” button", "Экран заказов для персонала: звук, цвет по типу заказа, кнопка «Принято»"],
+ps_1:["Màn hình đơn hàng: âm thanh, màu theo loại đơn, sửa đơn, tự tạo đơn", "Order screen: sound, colour by order type, edit orders, enter orders by hand", "Экран заказов: звук, цвет по типу заказа, изменение и создание заказов"],
 ps_2:["Thông báo trên điện thoại nhân viên, kể cả khi khóa màn hình", "Notifications on staff phones, even when locked", "Уведомления на телефоны официантов, даже при заблокированном экране"],
-ps_3:["Tự động in hóa đơn trên máy in 80 mm của quán", "Automatic bill printing on your 80 mm printer", "Автопечать счёта на вашем принтере 80 мм"],
+ps_3:["Bàn đang mở: giảm giá, thuế, tiền mặt / VietQR / thẻ, in phiếu bếp và hóa đơn 80 mm", "Open tables: discount, tax, cash / VietQR / card, 80 mm kitchen tickets and bills", "Открытые столы: скидка, налог, наличные / VietQR / карта, кухонный тикет и счёт на 80 мм"],
 ps_4:["Màn hình bằng tiếng Việt, Anh, Nga: chủ quán xem đơn bằng ngôn ngữ của mình", "Screen in Vietnamese, English, Russian: owners read orders in their language", "Экран на вьетнамском, английском, русском: владелец читает заказы на своём языке"],
+ps_6:["Tự quản lý thực đơn trên màn hình: hết món, giá, món phổ biến, thông báo, ảnh, món mới", "Run the menu yourself: sold out, prices, popular, announcement, photos, new dishes", "Меню сами: стоп-лист, цены, популярное, объявление, фото, новые блюда"],
 ps_5:["Sách hướng dẫn có hình cho nhân viên", "Illustrated guide for staff", "Иллюстрированная инструкция для персонала"],
 sp_basic:["Cơ bản", "Basic", "Базовая"],
 sp_basic_d:["Cho gói chính", "For the main package", "К основному пакету"],
@@ -889,7 +892,7 @@ ad_13:["Cài đặt in hóa đơn tự động tại quán", "On-site setup of a
 ad_14:["Thêm ngôn ngữ: Trung, Hàn…", "Extra language: Chinese, Korean…", "Ещё язык: китайский, корейский…"],
 ad_14v:["từ 700.000 ₫", "from 700,000 ₫", "от 700 000 ₫"],
 q6:["Có in được hóa đơn không?", "Can it print bills?", "Можно печатать счета?"],
-a6:["Có, trong gói «Thực đơn + Phục vụ»: khi khách bấm «Tính tiền», hóa đơn tạm tính với đủ các món, tip và cách thanh toán tự in trên máy in 80 mm của quán (USB hoặc LAN). Hóa đơn GTGT vẫn xuất từ phần mềm thu ngân của bạn.", "Yes, with “Menu + Service”: when the guest taps “Bring the bill”, a provisional bill with all dishes, tip and payment method prints on your 80 mm printer (USB or LAN). VAT invoices still come from your POS software.", "Да, в пакете «Меню + Обслуживание»: когда гость нажимает «Принести счёт», предварительный счёт со всеми блюдами, чаевыми и способом оплаты печатается на вашем принтере 80 мм (USB или LAN). Налоговые счета по-прежнему — в вашей кассовой программе."],
+a6:["Có, trong gói «Thực đơn + Phục vụ»: phiếu bếp khi có đơn mới và hóa đơn tạm tính khi đóng bàn (món, giảm giá, thuế, tip, cách thanh toán, mã VietQR có số tiền) tự in trên máy in 80 mm của quán. Hóa đơn GTGT vẫn xuất từ phần mềm thu ngân của bạn.", "Yes, with “Menu + Service”: a kitchen ticket for each new order and a provisional bill when the table closes (dishes, discount, tax, tip, payment method, VietQR code with the amount) print on your 80 mm printer. VAT invoices still come from your POS software.", "Да, в пакете «Меню + Обслуживание»: кухонный тикет на каждый новый заказ и предварительный счёт при закрытии стола (блюда, скидка, налог, чаевые, способ оплаты, VietQR с суммой) печатаются на вашем принтере 80 мм. Налоговые счета по-прежнему — в вашей кассовой программе."],
 nav_demo:["Ví dụ","Examples","Примеры"],
 nav_calc:["Tính toán","Calculator","Калькулятор"],
 nav_price:["Bảng giá","Pricing","Цены"],
@@ -898,7 +901,7 @@ about_h:["Tôi là Jane","I'm Jane","Я — Jane"],
 about_role:["Marketing cho quán cà phê và nhà hàng ở Nha Trang và Phú Quốc","Marketer for cafés and restaurants in Nha Trang and Phu Quoc","Маркетолог для кафе и ресторанов в Нячанге и на Фукуоке"],
 about_p:["Tôi giúp quán có thêm khách: khách du lịch tìm thấy quán trên bản đồ, hiểu thực đơn, gọi món dễ dàng và để lại đánh giá tốt sau bữa ăn.","I help places get more guests: tourists find you on the map, understand your menu, order easily and leave a good review after their meal.","Помогаю заведениям получать больше гостей. Турист находит вас на карте, понимает меню, легко делает заказ, а после ужина оставляет хороший отзыв."],
 about_1:["<b>Google Maps.</b> Hoàn thiện hồ sơ quán: ảnh, mô tả, giờ mở cửa, danh mục. Đặt mã QR trên bàn để khách để lại đánh giá.","<b>Google Maps.</b> I set up your profile with photos, description, hours and categories, and put review QR codes on your tables.","<b>Google Maps.</b> Оформляю карточку: фото, описание, часы, категории. Ставлю на столы QR, по которому гости оставляют отзывы."],
-about_2:["<b>Thực đơn và gọi món.</b> Thực đơn 3 ngôn ngữ, đơn hàng về Zalo hoặc Telegram bằng tiếng Việt cho nhân viên.","<b>Menu and orders.</b> A menu in three languages, with orders reaching your staff in Vietnamese on Zalo or Telegram.","<b>Меню и заказы.</b> Меню на трёх языках, заказы приходят персоналу в Zalo или Telegram на вьетнамском."],
+about_2:["<b>Thực đơn và gọi món.</b> Thực đơn 3 ngôn ngữ, đơn hàng đến màn hình nhân viên bằng tiếng Việt, kèm thông báo và in hóa đơn.", "<b>Menu and orders.</b> A menu in three languages, with orders reaching your staff screen in Vietnamese, with phone alerts and printed bills.", "<b>Меню и заказы.</b> Меню на трёх языках, заказы приходят на экран персонала на вьетнамском, с уведомлениями и печатью счёта."],
 about_cta:["Nhắn cho Jane →","Message Jane →","Написать Jane →"],
 v_coffee:["Quán cà phê","Coffee shop","Кофейня"],
 v_cafe:["Quán ăn / nhà hàng","Café / restaurant","Кафе / ресторан"],
@@ -1266,7 +1269,7 @@ function setLang(l){
   applyVariant();
   document.querySelectorAll('img[data-cover]').forEach(i=>{i.src='img/deck_'+i.dataset.cover+'_'+(l==='ru'?'ru':'vi')+'.jpg'});
   menuLang=l==='vi'?'en':l;
-  document.querySelectorAll('img[data-staff]').forEach(i=>{i.src='img/staff_'+l+'.webp'});
+  document.querySelectorAll('img[data-staff]').forEach(i=>{i.src='img/staff_'+l+'.webp?v=2'});
   renderPaper(); renderMenu(); [1,2,3,4].forEach(applyMoment); calc();
 }
 document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(b)setLang(b.dataset.lang)});
