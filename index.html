@@ -6,6 +6,9 @@
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}.qrbox{display:flex;align-items:center;gap:14px;margin-top:16px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-xl);background:var(--surface);max-width:380px;font-size:14px;color:var(--muted)}
 .qrbox .qrimg{width:96px;height:96px;flex:none}.qrbox .qrimg svg{width:100%;height:100%;display:block}
 @media (max-width:760px),(hover:none){.qrbox{display:none!important}}
+.vidsec{padding:40px 0}.vidwrap{display:flex;align-items:center;gap:48px;justify-content:center}.vidtxt{max-width:420px}.vidtxt h2{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1.1;margin:0 0 12px}.vidtxt p{color:var(--muted);font-size:17px;margin:0}
+.vidsec video{width:340px;max-width:100%;height:auto;aspect-ratio:9/16;border-radius:24px;background:#000;box-shadow:var(--shadow)}
+@media (max-width:760px){.vidwrap{flex-direction:column;gap:20px;text-align:center}.vidsec video{width:min(100%,360px)}}
 </style>
 <title>CafeUp</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -552,6 +555,12 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
     </aside>
   </section>
 
+  <section id="video" class="vidsec">
+    <div class="wrap vidwrap">
+      <div class="vidtxt"><h2 data-t="vid_h"></h2><p data-t="vid_p"></p></div>
+      <video data-vid controls playsinline preload="none" poster="video/poster-ru.jpg" src="video/CafeUp-RU.mp4" width="1080" height="1920"></video>
+    </div>
+  </section>
   <section id="demo">
     <div class="sec-head">
       <h2 data-t="demo_h"></h2>
@@ -995,6 +1004,8 @@ month:["/ tháng","/ month","/ мес."],
 pk_time:["Xong trong 3–5 ngày","Done in 3–5 days","Готово за 3–5 дней"],
 pk_1:["Thực đơn QR tiếng Việt, Anh, Nga, tối đa 50 món","QR menu in Vietnamese, English and Russian, up to 50 items","QR-меню на вьетнамском, английском и русском, до 50 позиций"],
 pk_2:["Đơn đến màn hình nhân viên bằng tiếng Việt, có âm thanh", "Orders reach the staff screen in Vietnamese, with a sound alert", "Заказы приходят на экран персонала на вьетнамском, со звуком"],
+vid_h:["CafeUp hoạt động thế nào — trong 1 phút", "How CafeUp works — in one minute", "Как работает CafeUp — за минуту"],
+vid_p:["Từ lúc khách quét QR đến khi nhân viên nhận đơn, và chủ quán được gì.", "From the guest scanning the QR to the staff taking the order, and what the owner gets.", "От QR на столе до заказа на экране персонала — и что получает владелец."],
 qr_menu:["Quét bằng điện thoại để mở thực đơn như khách", "Scan with your phone to open the menu as a guest", "Отсканируйте телефоном, чтобы открыть меню как гость"],
 qr_staff:["Quét để mở màn hình nhân viên trên điện thoại (mã 0000)", "Scan to open the staff screen on your phone (code 0000)", "Отсканируйте, чтобы открыть экран персонала на телефоне (код 0000)"],
 ch_menu:["Thực đơn QR","QR menu","QR-меню"],
@@ -1278,6 +1289,7 @@ function setLang(l){
   applyVariant();
   document.querySelectorAll('img[data-cover]').forEach(i=>{i.src='img/deck_'+i.dataset.cover+'_'+(l==='ru'?'ru':'vi')+'.jpg'});
   menuLang=l==='vi'?'en':l;
+  document.querySelectorAll('video[data-vid]').forEach(v=>{const src='video/CafeUp-'+l.toUpperCase()+'.mp4';if(!v.getAttribute('src').endsWith(src)){v.pause();v.poster='video/poster-'+l+'.jpg';v.src=src}});
   document.querySelectorAll('img[data-staff]').forEach(i=>{i.src='img/staff_'+l+'.webp?v=2'});
   renderPaper(); renderMenu(); [1,2,3,4].forEach(applyMoment); calc();
 }
