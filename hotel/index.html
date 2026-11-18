@@ -449,7 +449,6 @@ async function loadCfg() {
   // a new stay in this room (another guest) → forget the previous guest's requests and code on this phone
   if (d.stay && ls.get('stay') && ls.get('stay') !== String(d.stay)) { ['ids', 'code'].forEach(ls.del); myIds = []; code = ''; MY = [] }
   if (d.stay) ls.set('stay', String(d.stay));
-  if (d.code) { code = d.code; ls.set('code', code) }     // the hotel shows the stay code right after the QR scan
   occupied = d.occupied; if (occupied) { ls.set('wasIn', '1'); wasIn = true }
 }
 function showThanks() {
@@ -462,6 +461,8 @@ function showThanks() {
   applyLang();
   try { await loadCfg(); $('offline').hidden = true } catch (e) { $('offline').hidden = !(!e.status || e.status >= 500); if (e.status === 404) $('tiles').innerHTML = '<p class="banner">Unknown room.</p>' }
   applyLang(); pollMy();
+  // checked-in room and no code on this phone yet → ask for the stay code right after the QR scan
+  if (occupied && CFG && CFG.protect === 'code' && !code) askCode(() => applyLang());
   setInterval(async () => { if (!view) { try { const was = occupied; await loadCfg(); if (was !== occupied) applyLang() } catch (e) {} } }, 60000);
 })();
 })();
