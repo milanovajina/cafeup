@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E2A2D">
+<title>Hotel Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Lora:wght@600&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+:root{--ink:#1E2A2D;--sand:#F5F0E6;--sand2:#EBE3D3;--card:#FFFDF8;--teal:#2C6B66;--teal-soft:#E1ECEA;--saffron:#E3A23A;--muted:#5E6B6D;--line:#DCD2C0;--red:#B23A48}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--sand);color:var(--ink);font:16px/1.45 "Be Vietnam Pro",system-ui,sans-serif;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+:lang(ru) body{font-family:"Manrope",system-ui,sans-serif}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+header{background:var(--ink);color:var(--sand);padding:18px 0 22px;border-radius:0 0 24px 24px}
+.top{display:flex;align-items:center;gap:12px}
+.brand{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron)}
+h1{font-family:"Lora",Georgia,serif;font-weight:600;font-size:26px;line-height:1.15;margin:4px 0 2px}
+.sub{color:#B9C5C3;font-size:14px}
+.lang{margin-left:auto;display:flex;background:rgba(245,240,230,.12);border-radius:999px;padding:3px;align-self:flex-start}
+.lang button{border:0;background:none;color:#C9D3D1;font-weight:700;font-size:13px;padding:6px 10px;border-radius:999px}
+.lang button[aria-pressed="true"]{background:var(--sand);color:var(--ink)}
+.roomchip{display:inline-block;margin-top:12px;background:var(--saffron);color:var(--ink);font-weight:800;border-radius:999px;padding:6px 14px;font-size:15px}
+.notice{margin:14px 0 0;background:var(--teal-soft);border-radius:14px;padding:12px 14px;font-size:15px;white-space:pre-line}
+.banner{margin:16px 0 0;background:#FBE9D2;border:1px solid #EBC99A;border-radius:14px;padding:12px 14px;font-size:15px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 14px;text-align:left;display:flex;flex-direction:column;gap:8px;min-height:112px}
+.tile .ic{width:40px;height:40px;border-radius:12px;background:var(--teal);color:var(--sand);display:flex;align-items:center;justify-content:center}
+.tile .ic svg{width:22px;height:22px}
+.tile b{font-size:16px;line-height:1.2}
+.tile small{color:var(--muted);font-size:13px;line-height:1.3}
+.tile.wide{grid-column:span 2;flex-direction:row;align-items:center;min-height:0}
+.tile:disabled{opacity:.45}
+.badge{background:var(--saffron);color:var(--ink);border-radius:999px;font-size:12px;font-weight:800;padding:1px 8px;margin-left:6px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));z-index:5}
+.bar .wrap{display:flex;gap:10px;padding:0}
+.btn{border:0;border-radius:14px;padding:14px 16px;font-weight:700;font-size:16px;background:var(--teal);color:#fff;flex:1;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn.ghost{background:var(--sand2);color:var(--ink)}
+.btn.warn{background:var(--red)}
+.btn:disabled{opacity:.45}
+/* panels */
+.panel{position:fixed;inset:0;background:var(--sand);z-index:10;overflow:auto;padding-bottom:calc(100px + env(safe-area-inset-bottom))}
+.phead{position:sticky;top:0;background:var(--sand);padding:14px 0 10px;z-index:2;border-bottom:1px solid var(--line)}
+.phead .wrap{display:flex;align-items:center;gap:10px}
+.back{border:0;background:var(--sand2);border-radius:12px;width:40px;height:40px;font-size:22px;line-height:1}
+.phead h2{margin:0;font-family:"Lora",Georgia,serif;font-weight:600;font-size:22px}
+.pfoot{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));z-index:3}
+.pfoot .wrap{padding:0;display:flex;gap:10px;align-items:center}
+.lbl{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px}
+.hint{color:var(--muted);font-size:14px;margin:6px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:10px 14px;font-weight:600;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.chip:disabled{opacity:.4;text-decoration:line-through}
+textarea,input[type=text],input[type=date],input[type=time],input[type=tel]{width:100%;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 14px;font-size:16px}
+textarea{min-height:96px;resize:vertical}
+.cats{display:flex;gap:8px;overflow:auto;padding:10px 0 4px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px;margin:10px 0}
+.item .t{flex:1;min-width:0}
+.item b{display:block;font-size:16px}
+.item .o{color:var(--muted);font-size:13px}
+.price{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.step{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--sand)}
+.step button{width:34px;height:34px;border-radius:50%;border:0;background:var(--card);color:var(--teal);font-size:20px;font-weight:700;line-height:1}
+.step span{min-width:26px;text-align:center;font-weight:800}
+.add{width:38px;height:38px;border-radius:50%;border:0;background:var(--teal);color:#fff;font-size:22px;font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0}
+.req{display:flex;gap:12px;align-items:flex-start}
+.req .t{flex:1}
+.req b{display:block}
+.req small{color:var(--muted)}
+.st{font-size:12px;font-weight:800;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.st.new{background:var(--sand2)}.st.accepted{background:#FBE9D2}.st.working{background:#FBE9D2}.st.done{background:var(--teal-soft);color:var(--teal)}.st.rejected{background:#F6DCDF;color:var(--red)}
+.prog{display:flex;gap:4px;margin-top:8px}
+.prog i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.prog i.on{background:var(--teal)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding:12px 0 0}
+.info h3{margin:0 0 4px;font-size:16px}
+.info p{margin:0;color:var(--muted)}
+.copy{border:0;background:var(--teal-soft);color:var(--teal);border-radius:10px;padding:6px 10px;font-weight:700;font-size:13px;margin-top:8px}
+.modal{position:fixed;inset:0;background:rgba(30,42,45,.55);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.mbox{background:var(--sand);width:100%;max-width:560px;border-radius:22px 22px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom))}
+.mbox h3{margin:0 0 6px;font-family:"Lora",Georgia,serif;font-size:22px}
+.codein{letter-spacing:.5em;text-align:center;font-size:28px!important;font-weight:800}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--sand);padding:12px 18px;border-radius:14px;font-weight:600;z-index:30;max-width:90vw;text-align:center}
+.thanks{text-align:center;padding:40px 0}
+.thanks h2{font-family:"Lora",Georgia,serif;font-size:28px;margin:0 0 8px}
+.err{color:var(--red);font-size:14px;margin-top:8px;min-height:1em}
+.svc{display:flex;gap:12px;align-items:center}
+.svc .t{flex:1}
+.trn{display:block;color:var(--teal);font-size:13px;margin-top:4px}
+footer{text-align:center;color:var(--muted);font-size:12px;margin:24px 0 8px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><div><div class="brand">Hotel Up</div><h1 id="hName">…</h1><div class="sub" id="hSub"></div></div>
+  <div class="lang" role="group" aria-label="Language"><button data-l="vi">VI</button><button data-l="en">EN</button><button data-l="ru">RU</button></div></div>
+  <span class="roomchip" id="roomChip"></span>
+</div></header>
+<main class="wrap">
+  <div class="notice" id="notice" hidden></div>
+  <div class="banner" id="notIn" hidden></div>
+  <div class="banner" id="offline" hidden></div>
+  <div class="tiles" id="tiles"></div>
+  <footer>Hotel Up · <span id="ver"></span></footer>
+</main>
+<div class="bar"><div class="wrap"><a class="btn ghost" id="callBtn" href="#"></a><button class="btn" id="msgBtn"></button></div></div>
+
+<section class="panel" id="panel" hidden>
+  <div class="phead"><div class="wrap"><button class="back" id="back" aria-label="Back">‹</button><h2 id="pTitle"></h2></div></div>
+  <div class="wrap" id="pBody"></div>
+  <div class="pfoot" id="pFoot" hidden><div class="wrap" id="pFootIn"></div></div>
+</section>
+
+<div class="modal" id="codeModal" hidden><div class="mbox">
+  <h3 id="cmT"></h3><p class="hint" id="cmP"></p>
+  <input type="tel" inputmode="numeric" maxlength="4" class="codein" id="codeIn" autocomplete="one-time-code">
+  <div class="err" id="codeErr"></div>
+  <div style="display:flex;gap:10px;margin-top:12px"><button class="btn ghost" id="cmCancel"></button><button class="btn" id="cmOk"></button></div>
+</div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+const API = new URLSearchParams(location.search).get('api') || 'https://hotelup.nhatrang.workers.dev';
+const HOTEL = (new URLSearchParams(location.search).get('h') || 'demo').replace(/[^a-z0-9_]/g, '');
+const ROOM = (location.hash.match(/room-(\w{1,6})/) || [])[1] || '';
+const LS = 'hu_' + HOTEL + '_' + ROOM + '_';
+const ls = { get: k => { try { return localStorage.getItem(LS + k) } catch (e) { return null } }, set: (k, v) => { try { localStorage.setItem(LS + k, v) } catch (e) {} }, del: k => { try { localStorage.removeItem(LS + k) } catch (e) {} } };
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const T = {
+ vi: { room: 'Phòng', call: 'Gọi lễ tân', msg: 'Nhắn lễ tân', callS: 'Gọi', msgS: 'Nhắn tin', food: 'Đồ ăn lên phòng', foodS: 'Thực đơn, giá, giao tận phòng', clean: 'Dọn phòng', cleanS: 'Chọn khung giờ thuận tiện', bring: 'Mang đồ lên phòng', bringS: 'Nước, gối, chăn… một dòng', laundry: 'Giặt ủi', laundryS: 'Thường hoặc gấp', wake: 'Báo thức', wakeS: 'Gọi bạn dậy đúng giờ', broken: 'Báo hỏng', brokenS: 'Máy lạnh, nước, điện…', services: 'Xe và tour', servicesS: 'Sân bay, xe máy, tham quan', info: 'Thông tin', infoS: 'Wi-Fi, ăn sáng, quy định', my: 'Yêu cầu của tôi', myS: 'Trạng thái theo thời gian thực', bill: 'Hóa đơn của tôi', billS: 'Chi phí và trả phòng',
+  notIn: 'Phòng này chưa được nhận phòng trong hệ thống. Bạn vẫn xem được thông tin; để gửi yêu cầu, hãy liên hệ lễ tân.', offline: 'Không kết nối được máy chủ. Vui lòng gọi lễ tân.',
+  send: 'Gửi yêu cầu', sent: 'Đã gửi! Nhân viên sẽ nhận ngay.', today: 'Hôm nay', tomorrow: 'Ngày mai', day: 'Ngày', slot: 'Khung giờ', full: 'đã kín', skip: 'Không dọn hôm nay', note: 'Ghi chú (không bắt buộc)', notePh: 'Ví dụ: dọn khi tôi ra ngoài',
+  bringL: 'Bạn cần gì?', bringPh: 'Ví dụ: 2 chai nước, thêm gối và chăn', bringH: 'Viết bằng bất kỳ ngôn ngữ nào — nhân viên đọc bản tự dịch.', tapAdd: 'Chạm để thêm:',
+  type: 'Loại', normal: 'Thường', express: 'Gấp', pickup: 'Lấy đồ lúc', qty: 'Số lượng (ước tính)', qtyPh: 'Ví dụ: 1 túi, ~3 kg', perKg: '/kg', expressH: 'Gấp: +%s%, trả trong ngày.', laundryH: 'Nhân viên cân đồ và báo số tiền, cộng vào hóa đơn phòng.',
+  wakeTime: 'Giờ báo thức', how: 'Cách báo', callRoom: 'Gọi điện phòng', knock: 'Gõ cửa', coffee: 'Mang cà phê lên lúc đó (tính phí)',
+  what: 'Cái gì bị hỏng?', bAc: 'Máy lạnh', bWater: 'Nước', bPower: 'Điện, đèn', bTv: 'TV', bWifi: 'Wi-Fi', bLock: 'Khóa cửa', bOther: 'Khác', brokenPh: 'Mô tả ngắn',
+  cart: 'Đơn của bạn', total: 'Tổng', when: 'Khi nào?', now: 'Càng sớm càng tốt', atTime: 'Vào lúc', pay: 'Thanh toán', payRoom: 'Tính vào phòng', payDel: 'Trả khi nhận', orderNote: 'Ghi chú cho bếp', orderNotePh: 'Ví dụ: không cay', kitchenClosed: 'Bếp mở %s–%s. Bạn vẫn có thể đặt trước theo giờ.', empty: 'Chọn món để đặt',
+  per_once: '', per_day: '/ngày', per_person: '/người', date: 'Ngày', time: 'Giờ', people: 'Số người', days: 'Số ngày', flight: 'Số chuyến bay (nếu có)', svcH: 'Lễ tân sẽ xác nhận hoặc đề xuất giờ khác.',
+  stNew: 'Đã gửi', stAccepted: 'Đã nhận', stWorking: 'Đang làm', stDone: 'Xong', stRejected: 'Không thực hiện được', noReq: 'Bạn chưa gửi yêu cầu nào.', cancelInfo: 'Muốn hủy? Nhắn lễ tân.',
+  codeT: 'Nhập mã lưu trú', codeP: 'Mã 4 số lễ tân đưa khi nhận phòng (trên thẻ phòng). Chỉ cần nhập một lần.', ok: 'Xác nhận', cancel: 'Hủy', wrongCode: 'Mã không đúng', billEmpty: 'Chưa có chi phí nào.', checkout: 'Tôi chuẩn bị trả phòng', checkoutSent: 'Lễ tân đang chuẩn bị hóa đơn.', checkoutH: 'Thanh toán khi trả phòng: tiền mặt, VietQR hoặc thẻ.',
+  thanks: 'Cảm ơn bạn đã ở cùng chúng tôi!', thanksP: 'Chúc bạn thượng lộ bình an. Một đánh giá ngắn sẽ giúp khách sạn rất nhiều.', rate: '★ Đánh giá trên Google Maps', msgPh: 'Bạn cần gì? Viết bằng ngôn ngữ của bạn.', slotFull: 'Khung giờ này vừa kín, chọn khung khác.', fail: 'Không gửi được. Thử lại hoặc gọi lễ tân.', copied: 'Đã sao chép', copy: 'Sao chép', items: 'món' },
+ en: { room: 'Room', call: 'Call reception', msg: 'Message reception', callS: 'Call', msgS: 'Message', food: 'In-room dining', foodS: 'Menu, prices, delivered to you', clean: 'Housekeeping', cleanS: 'Pick a time that suits you', bring: 'Bring to my room', bringS: 'Water, pillow, blanket… one line', laundry: 'Laundry', laundryS: 'Regular or express', wake: 'Wake-up call', wakeS: 'We wake you on time', broken: 'Something broken', brokenS: 'AC, water, power…', services: 'Transfers & tours', servicesS: 'Airport, motorbike, trips', info: 'Hotel info', infoS: 'Wi-Fi, breakfast, rules', my: 'My requests', myS: 'Live status', bill: 'My bill', billS: 'Charges and check-out',
+  notIn: 'This room is not checked in in the system yet. You can read the hotel info; to send requests, please contact the reception.', offline: 'Can’t reach the server. Please call the reception.',
+  send: 'Send request', sent: 'Sent! The staff got it.', today: 'Today', tomorrow: 'Tomorrow', day: 'Day', slot: 'Time slot', full: 'full', skip: 'No cleaning today', note: 'Note (optional)', notePh: 'e.g. clean while I’m out',
+  bringL: 'What do you need?', bringPh: 'e.g. 2 bottles of water, one more pillow and a blanket', bringH: 'Write in any language — the staff read an automatic translation.', tapAdd: 'Tap to add:',
+  type: 'Service', normal: 'Regular', express: 'Express', pickup: 'Pick up at', qty: 'Amount (rough)', qtyPh: 'e.g. 1 bag, ~3 kg', perKg: '/kg', expressH: 'Express: +%s%, same day.', laundryH: 'The staff weigh it and add the amount to your room bill.',
+  wakeTime: 'Wake-up time', how: 'How', callRoom: 'Call the room phone', knock: 'Knock on the door', coffee: 'Bring coffee at that time (charged)',
+  what: 'What is broken?', bAc: 'Air conditioner', bWater: 'Water', bPower: 'Power, lights', bTv: 'TV', bWifi: 'Wi-Fi', bLock: 'Door lock', bOther: 'Other', brokenPh: 'Short description',
+  cart: 'Your order', total: 'Total', when: 'When?', now: 'As soon as possible', atTime: 'At', pay: 'Payment', payRoom: 'Charge to room', payDel: 'Pay on delivery', orderNote: 'Note for the kitchen', orderNotePh: 'e.g. not spicy', kitchenClosed: 'The kitchen is open %s–%s. You can still order for later.', empty: 'Pick dishes to order',
+  per_once: '', per_day: '/day', per_person: '/person', date: 'Date', time: 'Time', people: 'People', days: 'Days', flight: 'Flight number (if any)', svcH: 'The reception confirms or suggests another time.',
+  stNew: 'Sent', stAccepted: 'Accepted', stWorking: 'In progress', stDone: 'Done', stRejected: 'Can’t be done', noReq: 'No requests yet.', cancelInfo: 'Need to cancel? Message the reception.',
+  codeT: 'Enter your stay code', codeP: 'The 4-digit code from the reception (on your key card). You only enter it once.', ok: 'Confirm', cancel: 'Cancel', wrongCode: 'Wrong code', billEmpty: 'No charges yet.', checkout: 'I’m getting ready to check out', checkoutSent: 'The reception is preparing your bill.', checkoutH: 'Pay at check-out: cash, VietQR or card.',
+  thanks: 'Thank you for staying with us!', thanksP: 'Have a safe trip. A short review helps the hotel a lot.', rate: '★ Rate us on Google Maps', msgPh: 'What do you need? Write in your language.', slotFull: 'This slot just filled up, please pick another.', fail: 'Couldn’t send. Try again or call the reception.', copied: 'Copied', copy: 'Copy', items: 'items' },
+ ru: { room: 'Номер', call: 'Позвонить на ресепшн', msg: 'Написать на ресепшн', callS: 'Позвонить', msgS: 'Написать', food: 'Еда в номер', foodS: 'Меню, цены, доставка в номер', clean: 'Уборка', cleanS: 'В удобное для вас время', bring: 'Принести в номер', bringS: 'Вода, подушка, одеяло… одной строкой', laundry: 'Стирка', laundryS: 'Обычная или срочная', wake: 'Разбудить', wakeS: 'Разбудим точно вовремя', broken: 'Что-то сломалось', brokenS: 'Кондиционер, вода, свет…', services: 'Трансфер и туры', servicesS: 'Аэропорт, байк, экскурсии', info: 'Информация', infoS: 'Wi-Fi, завтрак, правила', my: 'Мои запросы', myS: 'Статус в реальном времени', bill: 'Мой счёт', billS: 'Расходы и выезд',
+  notIn: 'Номер ещё не заселён в системе. Информацию об отеле можно посмотреть; чтобы отправить запрос, обратитесь на ресепшн.', offline: 'Нет связи с сервером. Позвоните на ресепшн.',
+  send: 'Отправить', sent: 'Отправлено! Персонал уже получил.', today: 'Сегодня', tomorrow: 'Завтра', day: 'День', slot: 'Интервал', full: 'занято', skip: 'Не убирать сегодня', note: 'Комментарий (по желанию)', notePh: 'Например: уберите, пока меня нет',
+  bringL: 'Что принести?', bringPh: 'Например: 2 бутылки воды, ещё подушку и одеяло', bringH: 'Пишите на любом языке — персонал увидит перевод.', tapAdd: 'Нажмите, чтобы добавить:',
+  type: 'Тип', normal: 'Обычная', express: 'Срочная', pickup: 'Забрать вещи', qty: 'Количество (примерно)', qtyPh: 'Например: 1 пакет, ~3 кг', perKg: '/кг', expressH: 'Срочная: +%s%, в тот же день.', laundryH: 'Персонал взвесит вещи и добавит сумму в счёт номера.',
+  wakeTime: 'Во сколько разбудить', how: 'Как разбудить', callRoom: 'Звонок в номер', knock: 'Стук в дверь', coffee: 'Принести кофе к этому времени (платно)',
+  what: 'Что сломалось?', bAc: 'Кондиционер', bWater: 'Вода', bPower: 'Свет, розетки', bTv: 'Телевизор', bWifi: 'Wi-Fi', bLock: 'Замок', bOther: 'Другое', brokenPh: 'Коротко опишите',
+  cart: 'Ваш заказ', total: 'Итого', when: 'Когда?', now: 'Как можно скорее', atTime: 'К', pay: 'Оплата', payRoom: 'На счёт номера', payDel: 'При доставке', orderNote: 'Комментарий для кухни', orderNotePh: 'Например: не остро', kitchenClosed: 'Кухня работает %s–%s. Можно заказать заранее ко времени.', empty: 'Выберите блюда',
+  per_once: '', per_day: '/день', per_person: '/чел.', date: 'Дата', time: 'Время', people: 'Человек', days: 'Дней', flight: 'Номер рейса (если есть)', svcH: 'Ресепшн подтвердит или предложит другое время.',
+  stNew: 'Отправлено', stAccepted: 'Принято', stWorking: 'В работе', stDone: 'Готово', stRejected: 'Не получится', noReq: 'Запросов пока нет.', cancelInfo: 'Нужно отменить? Напишите на ресепшн.',
+  codeT: 'Введите код проживания', codeP: '4 цифры, которые дали на ресепшн при заселении (на ключ-карте). Вводится один раз.', ok: 'Подтвердить', cancel: 'Отмена', wrongCode: 'Неверный код', billEmpty: 'Расходов пока нет.', checkout: 'Готовлюсь к выезду', checkoutSent: 'Ресепшн готовит ваш счёт.', checkoutH: 'Оплата при выезде: наличные, VietQR или карта.',
+  thanks: 'Спасибо, что были у нас!', thanksP: 'Хорошей дороги. Короткий отзыв очень поможет отелю.', rate: '★ Оценить в Google Maps', msgPh: 'Что нужно? Пишите на своём языке.', slotFull: 'Этот интервал только что заняли, выберите другой.', fail: 'Не получилось отправить. Попробуйте ещё раз или позвоните на ресепшн.', copied: 'Скопировано', copy: 'Скопировать', items: 'поз.' },
+};
+let lang = ls.get('lang') || ((navigator.language || 'en').slice(0, 2) === 'ru' ? 'ru' : (navigator.language || '').slice(0, 2) === 'vi' ? 'vi' : 'en');
+const t = k => (T[lang] || T.en)[k] || T.en[k] || k;
+const L = o => o ? (o[lang] || o.en || o.vi || '') : '';
+const fmt = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'vi' ? '.' : lang === 'ru' ? ' ' : ',') + ' ₫';
+const ICON = {
+ food: '<path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8M5 3v8M17 21V3c-2 0-3 3-3 6s1 4 3 4"/>',
+ clean: '<path d="M4 21h16M6 21l1.5-7h9L18 21M9 14V5a3 3 0 0 1 6 0v9"/>',
+ bring: '<path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/>',
+ laundry: '<rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M7 6h2"/>',
+ wake: '<circle cx="12" cy="13" r="7"/><path d="M12 9v4l2 2M5 4L2 7M19 4l3 3"/>',
+ broken: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5z"/>',
+ services: '<path d="M3 16l1.5-5h15L21 16M5 16v3M19 16v3M3 16h18M7 11l1.5-4h7L17 11"/>',
+ info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+ my: '<path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',
+ bill: '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>',
+};
+const svg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
+
+let CFG = null, occupied = false, taken = {}, myIds = JSON.parse(ls.get('ids') || '[]'), code = ls.get('code') || '', wasIn = ls.get('wasIn') === '1';
+let cart = {}, view = null;
+
+async function api(path, body) {
+  const sep = path.includes('?') ? '&' : '?';
+  const r = await fetch(API + path + sep + 'hotel=' + HOTEL + '&room=' + encodeURIComponent(ROOM), body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ hotel: HOTEL, room: ROOM, lang }, body)) } : { cache: 'no-store' });
+  const txt = await r.text(); let d = null; try { d = JSON.parse(txt) } catch (e) {}
+  if (!r.ok) { const e = new Error(txt); e.status = r.status; throw e }
+  return d;
+}
+let tt; function toast(s) { const el = $('toast'); el.textContent = s; el.hidden = false; clearTimeout(tt); tt = setTimeout(() => el.hidden = true, 2800) }
+
+/* ---------- auto-translation of staff notes (free MyMemory service) ---------- */
+const TR = JSON.parse(ls.get('tr') || '{}');
+function tr(text, done) {
+  if (!text || lang === 'vi') return '';
+  const k = lang + '|' + text; if (TR[k]) return TR[k];
+  fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text.slice(0, 400)) + '&langpair=vi|' + lang).then(r => r.json()).then(d => { const x = d && d.responseData && d.responseData.translatedText; if (x && x !== text) { TR[k] = x; ls.set('tr', JSON.stringify(TR)); done && done() } }).catch(() => {});
+  return '';
+}
+
+/* ---------- home ---------- */
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === lang));
+  $('roomChip').textContent = t('room') + ' ' + ROOM;
+  $('callBtn').textContent = '📞 ' + t('callS'); $('msgBtn').textContent = '💬 ' + t('msgS');
+  if (CFG) { $('hName').textContent = CFG.name; $('hSub').textContent = L(CFG.sub); $('callBtn').href = 'tel:' + (CFG.phone || '').replace(/[^\d+]/g, '');
+    const n = L(CFG.notice); $('notice').hidden = !n; $('notice').textContent = n }
+  $('notIn').textContent = t('notIn'); $('offline').textContent = t('offline');
+  renderTiles(); if (view) openView(view, true);
+}
+function renderTiles() {
+  const free = CFG && CFG.protect !== 'code';
+  const can = !!CFG && (occupied || free);
+  const live = myIds.length ? `<span class="badge">${myIds.length}</span>` : '';
+  const list = ['food', 'clean', 'bring', 'laundry', 'wake', 'broken', 'services', 'info', 'bill', 'my'];
+  $('tiles').innerHTML = list.map(k => {
+    const dis = !CFG || (!can && !['info', 'my'].includes(k)) || (k === 'bill' && (!occupied || free));
+    const wide = k === 'info' || k === 'my' || k === 'bill';
+    return `<button class="tile${wide && k === 'my' ? ' wide' : ''}" data-v="${k}" ${dis ? 'disabled' : ''}><span class="ic">${svg(k)}</span><span><b>${t(k)}${k === 'my' ? live : ''}</b><br><small>${t(k + 'S')}</small></span></button>`;
+  }).join('');
+  $('notIn').hidden = !CFG || can;
+}
+document.querySelector('.lang').onclick = e => { const b = e.target.closest('[data-l]'); if (!b) return; lang = b.dataset.l; ls.set('lang', lang); applyLang() };
+$('tiles').onclick = e => { const b = e.target.closest('[data-v]'); if (b && !b.disabled) openView(b.dataset.v) };
+$('msgBtn').onclick = () => openView('call');
+$('back').onclick = () => closeView();
+window.addEventListener('popstate', () => { if (view) { view = null; $('panel').hidden = true } });
+
+/* ---------- panels ---------- */
+const days = () => { const d = new Date(), d2 = new Date(Date.now() + 864e5), f = x => x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); return [[f(d), t('today')], [f(d2), t('tomorrow')]] };
+const sel = {};
+function chips(name, items, cur, disabledFn) { return `<div class="chips" data-chips="${name}">${items.map(([v, label]) => { const dis = disabledFn && disabledFn(v); return `<button class="chip" data-c="${esc(v)}" aria-pressed="${v === cur}" ${dis ? 'disabled' : ''}>${esc(label)}${dis ? ' · ' + t('full') : ''}</button>` }).join('')}</div>` }
+function foot(html) { $('pFoot').hidden = !html; $('pFootIn').innerHTML = html || '' }
+function openView(v, refresh) {
+  if (!refresh) { if (!view) history.pushState({ v }, ''); view = v; Object.keys(sel).forEach(k => delete sel[k]) }
+  $('panel').hidden = false; $('pTitle').textContent = v === 'call' ? t('msg') : t(v);
+  const B = $('pBody'); foot('');
+  if (!refresh) $('panel').scrollTop = 0;
+  const R = VIEWS[v]; if (R) R(B);
+}
+function closeView() { if (view) { view = null; $('panel').hidden = true; history.back() } renderTiles() }
+
+const sendBtn = (label, id) => `<button class="btn" id="${id || 'go'}">${label || t('send')}</button>`;
+async function submit(type, data, extra) {
+  const b = $('go'); if (b) b.disabled = true;
+  try {
+    const r = await api('/req', Object.assign({ type, data }, extra || {}));
+    myIds.unshift(r.id); myIds = myIds.slice(0, 50); ls.set('ids', JSON.stringify(myIds));
+    toast(t('sent')); if (type === 'food') cart = {};
+    view = 'my'; openView('my', true); pollMy();
+  } catch (e) {
+    if (b) b.disabled = false;
+    if (e.status === 403) { ls.del('code'); code = ''; askCode(() => submit(type, data, extra)); return }
+    if (e.status === 409 && /slot/.test(e.message)) { toast(t('slotFull')); await loadCfg(); openView(view, true); return }
+    if (e.status === 409) { occupied = false; renderTiles(); closeView(); return }
+    toast(t('fail'));
+  }
+}
+function needCode(pay, go) { if (pay === 'room' && CFG.protect === 'code' && !code) askCode(go); else go() }
+function askCode(go) {
+  $('cmT').textContent = t('codeT'); $('cmP').textContent = t('codeP'); $('cmOk').textContent = t('ok'); $('cmCancel').textContent = t('cancel');
+  $('codeErr').textContent = ''; $('codeIn').value = ''; $('codeModal').hidden = false; setTimeout(() => $('codeIn').focus(), 50);
+  $('cmCancel').onclick = () => { $('codeModal').hidden = true };
+  $('cmOk').onclick = async () => {
+    const c = $('codeIn').value.trim();
+    try { await api('/bill?code=' + encodeURIComponent(c)); code = c; ls.set('code', c); $('codeModal').hidden = true; go && go() }
+    catch (e) { $('codeErr').textContent = t('wrongCode') }
+  };
+}
+
+const VIEWS = {
+ food(B) {
+  const open = (() => { const n = new Date(), m = n.getHours() * 60 + n.getMinutes(), p = s => +s.slice(0, 2) * 60 + +s.slice(3, 5); return m >= p(CFG.kitchen.from) && m < p(CFG.kitchen.to) })();
+  const pay = sel.pay || (CFG.protect === 'code' ? 'room' : 'delivery');
+  B.innerHTML = (open ? '' : `<p class="banner">${esc(t('kitchenClosed').replace('%s', CFG.kitchen.from).replace('%s', CFG.kitchen.to))}</p>`) +
+   `<div class="cats">${CFG.cats.map((c, i) => `<button class="chip" data-cat="${c.id}" aria-pressed="${i === 0}">${esc(L(c))}</button>`).join('')}</div>` +
+   CFG.cats.map(c => `<div class="lbl" id="cat-${c.id}">${esc(L(c))}</div>` + CFG.menu.filter(m => m.cat === c.id).map(m => {
+     const q = cart[m.id] || 0;
+     return `<div class="item"><div class="t"><b>${esc(L(m))}</b>${lang !== 'vi' ? `<span class="o">${esc(m.vi)}</span>` : ''}</div><span class="price">${fmt(m.price)}</span>${q ? `<span class="step"><button data-q="${m.id}" data-d="-1">−</button><span>${q}</span><button data-q="${m.id}" data-d="1">+</button></span>` : `<button class="add" data-q="${m.id}" data-d="1" aria-label="+">+</button>`}</div>`
+   }).join('')).join('') +
+   `<div class="lbl">${t('when')}</div>${chips('when', [['now', t('now')], ['at', t('atTime') + '…']], sel.when || 'now')}${(sel.when === 'at') ? `<input type="time" id="whenT" style="margin-top:8px" value="${esc(sel.whenT || '')}">` : ''}
+    <div class="lbl">${t('pay')}</div>${chips('pay', CFG.protect === 'code' ? [['room', t('payRoom')], ['delivery', t('payDel')]] : [['delivery', t('payDel')]], pay)}
+    <div class="lbl">${t('orderNote')}</div><input type="text" id="fNote" maxlength="200" placeholder="${esc(t('orderNotePh'))}" value="${esc(sel.fNote || '')}">`;
+  const n = Object.values(cart).reduce((a, b) => a + b, 0), sum = Object.entries(cart).reduce((s, [id, q]) => s + q * ((CFG.menu.find(m => m.id === id) || {}).price || 0), 0);
+  foot(n ? `<div style="flex:1"><b>${fmt(sum)}</b><br><small class="hint">${n} ${t('items')}</small></div>${sendBtn()}` : `<span class="hint" style="flex:1;text-align:center">${t('empty')}</span>`);
+  B.onclick = e => {
+    const q = e.target.closest('[data-q]'); if (q) { keep(); const id = q.dataset.q; cart[id] = Math.max(0, (cart[id] || 0) + +q.dataset.d); if (!cart[id]) delete cart[id]; VIEWS.food(B); return }
+    const c = e.target.closest('[data-cat]'); if (c) { $('cat-' + c.dataset.cat).scrollIntoView({ behavior: 'smooth', block: 'start' }); return }
+    const ch = e.target.closest('[data-chips] .chip'); if (ch) { keep(); sel[ch.parentNode.dataset.chips] = ch.dataset.c; VIEWS.food(B) }
+  };
+  function keep() { if ($('fNote')) sel.fNote = $('fNote').value; if ($('whenT')) sel.whenT = $('whenT').value }
+  const go = $('go'); if (go) go.onclick = () => { keep(); const p = sel.pay || pay; needCode(p, () => submit('food', { items: Object.entries(cart).map(([id, q]) => ({ id, q })), when: sel.when === 'at' && sel.whenT ? sel.whenT : '', text: sel.fNote || '' }, { pay: p, code })) };
+ },
+ clean(B) {
+  const d = sel.date || days()[0][0];
+  B.innerHTML = `<div class="lbl">${t('day')}</div>${chips('date', days(), d)}
+   <div class="lbl">${t('slot')}</div>${chips('slot', CFG.slots.map(s => [s, s]), sel.slot, s => (taken[d + ' ' + s] || 0) >= (CFG.slotCap || 99) || (d === days()[0][0] && +s.slice(6, 8) <= new Date().getHours()))}
+   <div class="lbl">${t('note')}</div><input type="text" id="cNote" maxlength="200" placeholder="${esc(t('notePh'))}" value="${esc(sel.cNote || '')}">
+   <button class="btn ghost" id="skip" style="width:100%;margin-top:20px">${t('skip')}</button>`;
+  foot(sendBtn());
+  $('go').disabled = !sel.slot;
+  B.onclick = e => { const ch = e.target.closest('[data-chips] .chip'); if (ch && !ch.disabled) { sel.cNote = $('cNote').value; sel[ch.parentNode.dataset.chips] = ch.dataset.c; if (ch.parentNode.dataset.chips === 'date') delete sel.slot; VIEWS.clean(B) } };
+  $('skip').onclick = () => submit('clean', { skip: true, date: days()[0][0] });
+  $('go').onclick = () => submit('clean', { date: d, slot: sel.slot, text: $('cNote').value });
+ },
+ bring(B) {
+  const hints = L(CFG.bringHints) ? CFG.bringHints[lang] || CFG.bringHints.en : [];
+  B.innerHTML = `<div class="lbl">${t('bringL')}</div><textarea id="bText" maxlength="300" placeholder="${esc(t('bringPh'))}">${esc(sel.bText || '')}</textarea><p class="hint">${t('bringH')}</p>
+   <div class="lbl">${t('tapAdd')}</div><div class="chips">${hints.map(h => `<button class="chip" data-h="${esc(h)}">+ ${esc(h)}</button>`).join('')}</div>`;
+  foot(sendBtn());
+  B.onclick = e => { const h = e.target.closest('[data-h]'); if (!h) return; const ta = $('bText'); ta.value = (ta.value.trim() ? ta.value.trim().replace(/[,.]$/, '') + ', ' : '') + h.dataset.h; ta.focus() };
+  $('go').onclick = () => { const v = $('bText').value.trim(); if (!v) { $('bText').focus(); return } submit('bring', { text: v }) };
+ },
+ laundry(B) {
+  const d = sel.date || days()[0][0];
+  B.innerHTML = `<div class="card"><b>${fmt(CFG.laundry.perKg)}${t('perKg')}</b><p class="hint">${t('laundryH')}</p></div>
+   <div class="lbl">${t('type')}</div>${chips('kind', [['n', t('normal')], ['x', t('express')]], sel.kind || 'n')}${(sel.kind === 'x') ? `<p class="hint">${t('expressH').replace('%s', CFG.laundry.express)}</p>` : ''}
+   <div class="lbl">${t('pickup')}</div>${chips('date', days(), d)}<div style="height:8px"></div>${chips('slot', CFG.slots.map(s => [s, s]), sel.slot, s => (taken[d + ' ' + s] || 0) >= (CFG.slotCap || 99) || (d === days()[0][0] && +s.slice(6, 8) <= new Date().getHours()))}
+   <div class="lbl">${t('qty')}</div><input type="text" id="lQty" maxlength="40" placeholder="${esc(t('qtyPh'))}" value="${esc(sel.lQty || '')}">
+   <div class="lbl">${t('note')}</div><input type="text" id="lNote" maxlength="200" value="${esc(sel.lNote || '')}">`;
+  foot(sendBtn()); $('go').disabled = !sel.slot;
+  B.onclick = e => { const ch = e.target.closest('[data-chips] .chip'); if (ch && !ch.disabled) { sel.lQty = $('lQty').value; sel.lNote = $('lNote').value; sel[ch.parentNode.dataset.chips] = ch.dataset.c; if (ch.parentNode.dataset.chips === 'date') delete sel.slot; VIEWS.laundry(B) } };
+  $('go').onclick = () => submit('laundry', { express: sel.kind === 'x', date: d, slot: sel.slot, qty: $('lQty').value, text: $('lNote').value });
+ },
+ wake(B) {
+  const d = sel.date || days()[1][0];
+  B.innerHTML = `<div class="lbl">${t('day')}</div>${chips('date', days(), d)}
+   <div class="lbl">${t('wakeTime')}</div><input type="time" id="wT" value="${esc(sel.wT || '07:00')}">
+   <div class="lbl">${t('how')}</div>${chips('how', [['call', t('callRoom')], ['knock', t('knock')]], sel.how || 'call')}
+   <label class="card" style="display:flex;gap:10px;align-items:center;margin-top:20px"><input type="checkbox" id="wC" ${sel.wC ? 'checked' : ''} style="width:22px;height:22px">${t('coffee')}</label>`;
+  foot(sendBtn());
+  B.onclick = e => { const ch = e.target.closest('[data-chips] .chip'); if (ch) { sel.wT = $('wT').value; sel.wC = $('wC').checked; sel[ch.parentNode.dataset.chips] = ch.dataset.c; VIEWS.wake(B) } };
+  $('go').onclick = () => { const tm = $('wT').value; if (!tm) return; submit('wake', { date: d, time: tm, how: sel.how || 'call', coffee: $('wC').checked }) };
+ },
+ broken(B) {
+  const items = [['ac', t('bAc')], ['water', t('bWater')], ['power', t('bPower')], ['tv', t('bTv')], ['wifi', t('bWifi')], ['lock', t('bLock')], ['other', t('bOther')]];
+  B.innerHTML = `<div class="lbl">${t('what')}</div>${chips('what', items, sel.what)}<div class="lbl">${t('note')}</div><textarea id="kText" maxlength="300" placeholder="${esc(t('brokenPh'))}">${esc(sel.kText || '')}</textarea><p class="hint">${t('bringH')}</p>`;
+  foot(sendBtn()); $('go').disabled = !sel.what;
+  B.onclick = e => { const ch = e.target.closest('[data-chips] .chip'); if (ch) { sel.kText = $('kText').value; sel.what = ch.dataset.c; VIEWS.broken(B) } };
+  const VI = { ac: 'Máy lạnh', water: 'Nước', power: 'Điện, đèn', tv: 'TV', wifi: 'Wi-Fi', lock: 'Khóa cửa', other: 'Khác' };
+  $('go').onclick = () => submit('broken', { what: VI[sel.what], text: $('kText').value });
+ },
+ services(B) {
+  if (!sel.svc) {
+   B.innerHTML = CFG.services.map(s => `<button class="card svc" data-s="${s.id}" style="width:100%;text-align:left"><span class="t"><b>${esc(L(s))}</b>${lang !== 'vi' ? `<span class="hint" style="display:block">${esc(s.vi)}</span>` : ''}</span><span class="price">${fmt(s.price)}${t('per_' + (s.per || 'once'))}</span></button>`).join('') + `<p class="hint">${t('svcH')}</p>`;
+   B.onclick = e => { const b = e.target.closest('[data-s]'); if (b) { sel.svc = b.dataset.s; VIEWS.services(B) } };
+   return;
+  }
+  const s = CFG.services.find(x => x.id === sel.svc), ask = s.ask || [];
+  const f = { date: `<div class="lbl">${t('date')}</div><input type="date" id="sDate" value="${esc(sel.sDate || days()[1][0])}" min="${days()[0][0]}">`, time: `<div class="lbl">${t('time')}</div><input type="time" id="sTime" value="${esc(sel.sTime || '')}">`,
+   people: `<div class="lbl">${t('people')}</div><span class="step"><button data-n="people" data-d="-1">−</button><span>${sel.people || 1}</span><button data-n="people" data-d="1">+</button></span>`,
+   days: `<div class="lbl">${t('days')}</div><span class="step"><button data-n="days" data-d="-1">−</button><span>${sel.days || 1}</span><button data-n="days" data-d="1">+</button></span>`,
+   flight: `<div class="lbl">${t('flight')}</div><input type="text" id="sFlight" maxlength="20" value="${esc(sel.sFlight || '')}">` };
+  const mult = s.per === 'person' ? (sel.people || 1) : s.per === 'day' ? (sel.days || 1) : 1, pay = sel.pay || (CFG.protect === 'code' ? 'room' : 'delivery');
+  B.innerHTML = `<div class="card"><b>${esc(L(s))}</b><br><span class="price">${fmt(s.price)}${t('per_' + (s.per || 'once'))}</span></div>` + ask.map(k => f[k] || '').join('') +
+   `<div class="lbl">${t('pay')}</div>${chips('pay', CFG.protect === 'code' ? [['room', t('payRoom')], ['delivery', t('payDel')]] : [['delivery', t('payDel')]], pay)}<div class="lbl">${t('note')}</div><input type="text" id="sNote" maxlength="200" value="${esc(sel.sNote || '')}"><p class="hint">${t('svcH')}</p>`;
+  foot(`<div style="flex:1"><b>${fmt(s.price * mult)}</b></div>${sendBtn()}`);
+  const keep = () => { ['sDate', 'sTime', 'sFlight', 'sNote'].forEach(k => { if ($(k)) sel[k] = $(k).value }) };
+  B.onclick = e => { const n = e.target.closest('[data-n]'); if (n) { keep(); sel[n.dataset.n] = Math.max(1, Math.min(30, (sel[n.dataset.n] || 1) + +n.dataset.d)); VIEWS.services(B); return }
+   const ch = e.target.closest('[data-chips] .chip'); if (ch) { keep(); sel.pay = ch.dataset.c; VIEWS.services(B) } };
+  $('go').onclick = () => { keep(); const p = sel.pay || pay; needCode(p, () => submit('service', { id: s.id, date: ask.includes('date') ? sel.sDate || days()[1][0] : '', time: sel.sTime || '', people: ask.includes('people') ? sel.people || 1 : '', days: ask.includes('days') ? sel.days || 1 : '', flight: sel.sFlight || '', text: sel.sNote || '' }, { pay: p, code })) };
+ },
+ info(B) {
+  B.innerHTML = CFG.info.map(i => `<div class="card info"><h3>${esc(L(i.t))}</h3><p>${esc(L(i.d))}</p>${i.copy ? `<button class="copy" data-copy="${esc(i.copy)}">${t('copy')}: ${esc(i.copy)}</button>` : ''}</div>`).join('');
+  B.onclick = e => { const c = e.target.closest('[data-copy]'); if (c) { try { navigator.clipboard.writeText(c.dataset.copy).then(() => toast(t('copied'))) } catch (er) {} } };
+ },
+ call(B) {
+  B.innerHTML = `<div class="lbl">${t('msg')}</div><textarea id="mText" maxlength="300" placeholder="${esc(t('msgPh'))}"></textarea><p class="hint">${t('bringH')}</p>`;
+  foot(sendBtn());
+  $('go').onclick = () => { const v = $('mText').value.trim(); if (!v) { $('mText').focus(); return } submit('call', { text: v }) };
+ },
+ my(B) { renderMy(B) },
+ async bill(B) {
+  if (CFG.protect === 'code' && !code) { B.innerHTML = ''; askCode(() => VIEWS.bill(B)); return }
+  B.innerHTML = '<p class="hint">…</p>';
+  try {
+   const d = await api('/bill?code=' + encodeURIComponent(code)), sum = d.lines.reduce((s, l) => s + l.amount, 0);
+   B.innerHTML = `<div class="card">${d.lines.length ? d.lines.map(l => `<div class="row"><span>${esc(l.title)}<br><small class="hint">${new Date(l.created).toLocaleDateString()}</small></span><span class="price">${fmt(l.amount)}</span></div>`).join('') + `<div class="total"><span>${t('total')}</span><span>${fmt(sum)}</span></div>` : `<p class="hint">${t('billEmpty')}</p>`}</div><p class="hint">${t('checkoutH')}</p>`;
+   foot(`<button class="btn" id="go">${t('checkout')}</button>`);
+   $('go').onclick = () => submit('checkout', { text: '' });
+  } catch (e) { if (e.status === 403) { ls.del('code'); code = ''; askCode(() => VIEWS.bill(B)) } else B.innerHTML = `<p class="banner">${t('offline')}</p>` }
+ },
+};
+
+/* ---------- my requests with live status ---------- */
+let MY = [];
+const TITLE = r => r.type === 'service' ? L((CFG.services.find(s => s.id === r.data.id) || {})) || t('services') : r.type === 'call' ? t('msg') : r.type === 'checkout' ? t('checkout') : t(r.type);
+function detail(r) {
+  const d = r.data || {};
+  if (r.type === 'food') return (d.items || []).map(i => `${i.q}× ${L(CFG.menu.find(m => m.id === i.id))}`).join(', ');
+  if (r.type === 'clean') return d.skip ? t('skip') : `${d.date === days()[0][0] ? t('today') : d.date === days()[1][0] ? t('tomorrow') : d.date} · ${d.slot}`;
+  if (r.type === 'laundry') return `${d.express ? t('express') : t('normal')} · ${d.slot}`;
+  if (r.type === 'wake') return `${d.date === days()[0][0] ? t('today') : d.date === days()[1][0] ? t('tomorrow') : d.date} · ${d.time}`;
+  const day = d.date === days()[0][0] ? t('today') : d.date === days()[1][0] ? t('tomorrow') : (d.date ? new Date(d.date + 'T00:00').toLocaleDateString(lang) : '');
+  return [d.what, day, d.time, d.people ? d.people + ' ' + t('people').toLowerCase() : '', d.text].filter(Boolean).join(' · ');
+}
+function renderMy(B) {
+  B = B || (view === 'my' && $('pBody')); if (!B) return;
+  if (!myIds.length) { B.innerHTML = `<p class="hint" style="margin-top:20px">${t('noReq')}</p>`; return }
+  const order = ['new', 'accepted', 'working', 'done'];
+  B.innerHTML = MY.slice().sort((a, b) => b.id - a.id).map(r => {
+    const i = order.indexOf(r.status), note = r.note ? (tr(r.note, () => renderMy()) || r.note) : '';
+    return `<div class="card req"><div class="t"><b>${esc(TITLE(r))}</b><small>${esc(detail(r))}</small>${r.amount ? `<br><small>${fmt(r.amount)}</small>` : ''}${note ? `<span class="trn">💬 ${esc(note)}</span>` : ''}
+      ${r.status !== 'rejected' ? `<div class="prog">${order.map((s, k) => `<i class="${k <= i ? 'on' : ''}"></i>`).join('')}</div>` : ''}</div>
+      <span class="st ${r.status}">${t('st' + r.status[0].toUpperCase() + r.status.slice(1))}</span></div>`;
+  }).join('') + `<p class="hint">${t('cancelInfo')}</p>`;
+}
+let pollT;
+async function pollMy() {
+  clearTimeout(pollT);
+  if (myIds.length) { try { const d = await api('/my?ids=' + myIds.join(',')); const before = JSON.stringify(MY.map(r => r.status)); MY = d.items; if (JSON.stringify(MY.map(r => r.status)) !== before) renderMy(); $('offline').hidden = true } catch (e) {} }
+  pollT = setTimeout(pollMy, document.hidden ? 30000 : 6000);
+}
+
+/* ---------- start ---------- */
+async function loadCfg() {
+  const d = await api('/cfg'); CFG = d.cfg; taken = d.taken || {};
+  if (d.occupied && !ls.get('lang') && d.lang && T[d.lang]) lang = d.lang;
+  // the stay ended since the last visit → thank-you screen and a fresh start for the next guest
+  if (wasIn && !d.occupied && CFG.protect === 'code') { showThanks(); ['ids', 'code', 'wasIn'].forEach(ls.del); myIds = []; code = ''; wasIn = false }
+  occupied = d.occupied; if (occupied) { ls.set('wasIn', '1'); wasIn = true }
+}
+function showThanks() {
+  view = 'thanks'; $('panel').hidden = false; $('pTitle').textContent = CFG.name; foot('');
+  $('pBody').innerHTML = `<div class="thanks"><h2>${t('thanks')}</h2><p class="hint">${t('thanksP')}</p>${CFG.review ? `<a class="btn" style="margin-top:20px" href="${esc(CFG.review)}" target="_blank" rel="noopener">${t('rate')}</a>` : ''}</div>`;
+}
+(async () => {
+  $('ver').textContent = HOTEL;
+  if (!ROOM) { $('hName').textContent = 'Hotel Up'; $('tiles').innerHTML = '<p class="banner">Scan the QR code in your room.</p>'; return }
+  applyLang();
+  try { await loadCfg(); $('offline').hidden = true } catch (e) { $('offline').hidden = !(!e.status || e.status >= 500); if (e.status === 404) $('tiles').innerHTML = '<p class="banner">Unknown room.</p>' }
+  applyLang(); pollMy();
+  setInterval(async () => { if (!view) { try { const was = occupied; await loadCfg(); if (was !== occupied) applyLang() } catch (e) {} } }, 60000);
+})();
+})();
+</script>
+</body>
+</html>

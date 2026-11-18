@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E2A2D">
+<title>Hotel Up · Nhân viên</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+:root{--ink:#1E2A2D;--sand:#F5F0E6;--sand2:#EBE3D3;--card:#FFFDF8;--teal:#2C6B66;--teal-soft:#E1ECEA;--saffron:#E3A23A;--amber-soft:#FBE9D2;--muted:#5E6B6D;--line:#DCD2C0;--red:#B23A48;--red-soft:#F6DCDF;--blue:#3A5BA0;--blue-soft:#E2E8F4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sand);color:var(--ink);font:15px/1.45 "Be Vietnam Pro",system-ui,sans-serif}
+:lang(ru) body{font-family:"Manrope",system-ui,sans-serif}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{background:var(--ink);color:var(--sand);position:sticky;top:0;z-index:5}
+.hb{display:flex;align-items:center;gap:10px;padding:10px 0;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.06em}
+.brand small{display:block;font-weight:500;letter-spacing:0;color:#B9C5C3;font-size:12px}
+.dot{width:10px;height:10px;border-radius:50%;background:#7a8;display:inline-block;margin-right:6px}
+.dot.off{background:var(--red)}
+.st{font-size:13px;color:#C9D3D1}
+.sp{flex:1}
+.hbtn{border:0;background:rgba(245,240,230,.12);color:var(--sand);border-radius:10px;padding:8px 12px;font-weight:600;font-size:14px}
+.hbtn[aria-pressed="true"]{background:var(--sand);color:var(--ink)}
+.tabs{display:flex;gap:6px;padding:0 0 10px}
+.tab{border:0;background:none;color:#C9D3D1;padding:8px 14px;border-radius:10px;font-weight:700}
+.tab[aria-pressed="true"]{background:var(--sand);color:var(--ink)}
+.tab .n{background:var(--saffron);color:var(--ink);border-radius:999px;padding:0 7px;font-size:12px;margin-left:6px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600}
+.chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;margin-bottom:40px}
+.rq{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.rq.d-kitchen{border-left-color:var(--saffron)}.rq.d-house{border-left-color:var(--teal)}.rq.d-desk{border-left-color:var(--blue)}
+.rq.late{box-shadow:0 0 0 2px var(--red)}
+.rq.fresh{animation:fl 1s ease 3}
+@keyframes fl{50%{background:var(--amber-soft)}}
+.rh{display:flex;align-items:center;gap:10px}
+.room{font-size:26px;font-weight:800;line-height:1}
+.ty{font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.ago{margin-left:auto;color:var(--muted);font-size:13px;white-space:nowrap}
+.late .ago{color:var(--red);font-weight:700}
+.det{font-size:16px}
+.note{background:var(--sand);border-radius:10px;padding:8px 10px;font-size:15px}
+.note .trn{display:block;color:var(--teal);font-size:14px;margin-top:4px}
+.meta{color:var(--muted);font-size:13px}
+.acts{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.b{border:0;border-radius:10px;padding:10px 14px;font-weight:700;background:var(--sand2)}
+.b.p{background:var(--teal);color:#fff}
+.b.r{background:var(--red-soft);color:var(--red)}
+.b.s{background:var(--amber-soft)}
+.badge{font-size:12px;font-weight:800;border-radius:999px;padding:3px 9px}
+.badge.new{background:var(--amber-soft)}.badge.accepted,.badge.working{background:var(--blue-soft);color:var(--blue)}.badge.done{background:var(--teal-soft);color:var(--teal)}.badge.rejected{background:var(--red-soft);color:var(--red)}
+.empty{color:var(--muted);text-align:center;padding:60px 0}
+.rooms{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:14px 0 40px}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;display:flex;flex-direction:column;gap:4px;min-height:120px}
+.rc .rn{font-size:24px;font-weight:800}
+.rc.occ{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal)}
+.rc .s{font-size:13px;font-weight:700;color:var(--muted)}
+.rc.occ .s{color:var(--teal)}
+.rc .g{font-size:14px}
+.rc .sum{margin-top:auto;font-weight:700}
+.rc .open{font-size:12px;background:var(--amber-soft);border-radius:999px;padding:2px 8px;align-self:flex-start}
+.modal{position:fixed;inset:0;background:rgba(30,42,45,.55);z-index:20;display:flex;align-items:center;justify-content:center;padding:16px}
+.mbox{background:var(--sand);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:18px;padding:18px}
+.mbox h3{margin:0 0 10px;font-size:20px}
+.lbl{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+input[type=text],input[type=number],input[type=password],input[type=tel],input[type=date],input[type=time],textarea,select{width:100%;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 12px;font-size:15px}
+textarea{min-height:70px}
+.mact{display:flex;gap:8px;margin-top:16px;justify-content:flex-end;flex-wrap:wrap}
+.bigcode{font-size:56px;font-weight:800;letter-spacing:.2em;text-align:center;background:var(--card);border-radius:14px;padding:12px;margin:10px 0}
+.line{display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.line .t{flex:1}
+.line .a{font-weight:700;white-space:nowrap}
+.x{border:0;background:var(--red-soft);color:var(--red);border-radius:8px;width:30px;height:30px;font-weight:800}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding-top:10px}
+.sub{display:flex;justify-content:space-between;color:var(--muted);padding-top:6px}
+.grid3{display:grid;grid-template-columns:2fr 1fr 70px auto;gap:6px;align-items:center}
+.set{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.set h3{margin:0 0 6px;font-size:17px}
+.erow{display:grid;gap:6px;grid-template-columns:repeat(var(--c),minmax(0,1fr)) 36px;align-items:center;margin:6px 0}
+.erow input,.erow select{padding:8px}
+.login{max-width:380px;margin:12vh auto;background:var(--card);border-radius:18px;padding:24px;border:1px solid var(--line)}
+.login h1{margin:0 0 4px;font-size:24px}
+.err{color:var(--red);min-height:1.2em;margin-top:8px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--sand);padding:12px 18px;border-radius:12px;font-weight:600;z-index:30}
+.hint{color:var(--muted);font-size:13px}
+#printArea{display:none}
+@media print{body>*:not(#printArea){display:none!important}#printArea{display:block!important}@page{size:80mm auto;margin:3mm}}
+.rcpt{width:74mm;font:13px/1.35 system-ui,sans-serif;color:#000}
+.rcpt h2{text-align:center;margin:0;font-size:17px}
+.rcpt .c{text-align:center}
+.rcpt .r{display:flex;justify-content:space-between;gap:6px}
+.rcpt hr{border:0;border-top:1px dashed #000}
+.rcpt .big{font-weight:800;font-size:16px}
+.rcpt svg{width:44mm;height:44mm}
+</style>
+</head>
+<body>
+<div id="loginBox" class="login" hidden>
+  <div class="brand" style="color:var(--teal)">HOTEL UP</div>
+  <h1 data-t="loginH"></h1><p class="hint" data-t="loginP"></p>
+  <input type="password" id="code" inputmode="numeric" autocomplete="current-password">
+  <div class="err" id="loginErr"></div>
+  <button class="b p" id="loginBtn" style="width:100%;margin-top:6px" data-t="loginBtn"></button>
+  <div class="bar" style="justify-content:center"><button class="chip" data-l="vi">VI</button><button class="chip" data-l="en">EN</button><button class="chip" data-l="ru">RU</button></div>
+</div>
+
+<div id="app" hidden>
+<header><div class="wrap">
+  <div class="hb">
+    <div class="brand">HOTEL UP <small id="hName"></small></div>
+    <span class="st"><span class="dot" id="dot"></span><span id="stText"></span></span>
+    <span class="sp"></span>
+    <button class="hbtn" id="soundBtn"></button>
+    <button class="hbtn" id="pushBtn"></button>
+    <span class="hb" style="padding:0;gap:4px"><button class="hbtn" data-l="vi">VI</button><button class="hbtn" data-l="en">EN</button><button class="hbtn" data-l="ru">RU</button></span>
+    <button class="hbtn" id="logoutBtn" data-t="logout"></button>
+  </div>
+  <div class="tabs"><button class="tab" data-tab="feed"></button><button class="tab" data-tab="rooms"></button><button class="tab" data-tab="settings"></button></div>
+</div></header>
+<main class="wrap">
+  <section id="feedTab">
+    <div class="bar" id="deptBar"></div>
+    <div class="bar" id="stBar"></div>
+    <div class="feed" id="feed"></div>
+  </section>
+  <section id="roomsTab" hidden><div class="rooms" id="rooms"></div></section>
+  <section id="settingsTab" hidden></section>
+</main>
+</div>
+
+<div class="modal" id="modal" hidden><div class="mbox" id="mbox"></div></div>
+<div class="toast" id="toast" hidden></div>
+<div id="printArea"></div>
+
+<script src="qr.js"></script>
+<script>
+(function(){
+const API = new URLSearchParams(location.search).get('api') || 'https://hotelup.nhatrang.workers.dev';
+const HOTEL = (new URLSearchParams(location.search).get('h') || 'demo').replace(/[^a-z0-9_]/g, '');
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const store = { get: k => { try { return localStorage.getItem('hus_' + HOTEL + '_' + k) } catch (e) { return null } }, set: (k, v) => { try { localStorage.setItem('hus_' + HOTEL + '_' + k, v) } catch (e) {} }, del: k => { try { localStorage.removeItem('hus_' + HOTEL + '_' + k) } catch (e) {} } };
+
+const T = {
+ vi: { loginH: 'Màn hình nhân viên', loginP: 'Nhập mã nhân viên của khách sạn.', loginBtn: 'Vào', logout: 'Thoát', wrongCode: 'Sai mã', live: 'Đang nhận yêu cầu', off: 'Mất kết nối, đang thử lại…', soundOn: '🔔 Âm thanh', soundOff: '🔕 Tắt tiếng', push: '📲 Thông báo', pushOn: '📲 Đã bật', pushOk: 'Đã bật thông báo trên điện thoại này.', pushNo: 'Trình duyệt này không hỗ trợ thông báo. Trên iPhone: Chia sẻ → Thêm vào MH chính, mở từ biểu tượng.',
+  feed: 'Yêu cầu', rooms: 'Phòng', settings: 'Cài đặt', all: 'Tất cả', desk: 'Lễ tân', house: 'Buồng phòng', kitchen: 'Bếp / Bar', open: 'Đang mở', closed: 'Đã xong', none: 'Không có yêu cầu.',
+  food: 'Đồ ăn lên phòng', clean: 'Dọn phòng', bring: 'Mang đồ lên phòng', laundry: 'Giặt ủi', wake: 'Báo thức', broken: 'Báo hỏng', service: 'Dịch vụ', checkout: 'Chuẩn bị trả phòng', call: 'Tin nhắn',
+  new: 'Mới', accepted: 'Đã nhận', working: 'Đang làm', done: 'Xong', rejected: 'Từ chối', accept: 'Nhận', work: 'Đang làm', finish: 'Xong', reject: 'Từ chối', min: 'phút', justNow: 'vừa xong', room: 'Phòng',
+  payRoom: 'tính vào phòng', payDel: 'trả khi giao', skip: 'Không dọn hôm nay', normal: 'Thường', express: 'GẤP', call_: 'gọi điện phòng', knock: 'gõ cửa', coffee: 'kèm cà phê', people: 'người', days: 'ngày', staffMade: 'nhân viên tạo', checkoutClean: 'Phòng vừa trả — dọn cho khách mới',
+  reason: 'Lý do (khách sẽ thấy, tự dịch)', reasonPh: 'Ví dụ: hết chỗ ngày 20/11', amount: 'Số tiền (₫)', laundryAmt: 'Số kg × giá/kg', save: 'Lưu', cancel: 'Hủy', close: 'Đóng',
+  free: 'Trống', occ: 'Có khách', checkin: 'Nhận phòng', guest: 'Tên khách (không bắt buộc)', lang: 'Ngôn ngữ của khách', until: 'Ngày trả phòng', codeFor: 'Mã lưu trú của phòng', codeHint: 'Ghi mã lên thẻ phòng hoặc đưa khách. Khách nhập mã một lần khi tính tiền vào phòng.',
+  bill: 'Hóa đơn phòng', addLine: 'Thêm dòng', title: 'Nội dung', qty: 'SL', add: 'Thêm', subtotal: 'Tạm tính', disc: 'Giảm giá %', tax: 'Thuế %', total: 'Tổng', payBy: 'Thanh toán', cash: 'Tiền mặt', qr: 'VietQR', card: 'Thẻ', print: '🖨 In hóa đơn', checkoutBtn: 'Trả phòng', confirmOut: 'Trả phòng và đóng hóa đơn?', openReq: 'yêu cầu mở', newReq: 'Tạo yêu cầu',
+  sHotel: 'Khách sạn', name: 'Tên', phone: 'Điện thoại lễ tân', review: 'Link đánh giá Google Maps', notice: 'Thông báo trong ngày (VI / EN / RU)', protect: 'Bảo vệ', pCode: 'Mã lưu trú khi nhận phòng', pDel: 'Không nhận phòng, chỉ trả khi giao', sRooms: 'Danh sách phòng (cách nhau bởi dấu phẩy)', sSlots: 'Khung giờ dọn phòng / giặt ủi', slotCap: 'Số phòng tối đa mỗi khung', kitchen: 'Giờ bếp', perKg: 'Giặt ủi: giá/kg', expressPct: 'Gấp: + %', sMenu: 'Thực đơn', sSvc: 'Dịch vụ và tour', sInfo: 'Thông tin cho khách', vqTitle: 'VietQR trên hóa đơn', vqBin: 'Mã BIN ngân hàng', vqAcc: 'Số tài khoản', vqBank: 'Tên ngân hàng', saved: 'Đã lưu', addRow: '+ Thêm', printQr: '🖨 In mã QR cho tất cả phòng', perOnce: 'một lần', perDay: '/ngày', perPerson: '/người', cat: 'Nhóm', price: 'Giá', infoT: 'Tiêu đề', infoD: 'Nội dung', guestLink: 'Trang của khách', saveAll: 'Lưu cài đặt', viPh: 'tiếng Việt', enPh: 'English', ruPh: 'Русский', thanks: 'Cảm ơn quý khách!', provisional: 'Hóa đơn tạm tính — không phải hóa đơn GTGT', scan: 'Quét mã để thanh toán', autoTr: 'Ô trống sẽ được tự dịch từ tiếng Việt.' },
+ en: { loginH: 'Staff screen', loginP: 'Enter the hotel’s staff code.', loginBtn: 'Sign in', logout: 'Sign out', wrongCode: 'Wrong code', live: 'Receiving requests', off: 'Connection lost, retrying…', soundOn: '🔔 Sound', soundOff: '🔕 Muted', push: '📲 Notifications', pushOn: '📲 On', pushOk: 'Notifications are on for this phone.', pushNo: 'This browser can’t show notifications. On iPhone: Share → Add to Home Screen, open from the icon.',
+  feed: 'Requests', rooms: 'Rooms', settings: 'Settings', all: 'All', desk: 'Reception', house: 'Housekeeping', kitchen: 'Kitchen / Bar', open: 'Open', closed: 'Finished', none: 'No requests.',
+  food: 'In-room dining', clean: 'Housekeeping', bring: 'Bring to room', laundry: 'Laundry', wake: 'Wake-up call', broken: 'Something broken', service: 'Service', checkout: 'Getting ready to check out', call: 'Message',
+  new: 'New', accepted: 'Accepted', working: 'In progress', done: 'Done', rejected: 'Rejected', accept: 'Accept', work: 'In progress', finish: 'Done', reject: 'Reject', min: 'min', justNow: 'just now', room: 'Room',
+  payRoom: 'charge to room', payDel: 'pay on delivery', skip: 'No cleaning today', normal: 'Regular', express: 'EXPRESS', call_: 'call the room', knock: 'knock', coffee: 'with coffee', people: 'people', days: 'days', staffMade: 'by staff', checkoutClean: 'Just checked out — clean for the next guest',
+  reason: 'Reason (the guest sees it, translated)', reasonPh: 'e.g. fully booked on 20.11', amount: 'Amount (₫)', laundryAmt: 'kg × price per kg', save: 'Save', cancel: 'Cancel', close: 'Close',
+  free: 'Free', occ: 'Occupied', checkin: 'Check in', guest: 'Guest name (optional)', lang: 'Guest’s language', until: 'Check-out date', codeFor: 'Stay code for room', codeHint: 'Write it on the key card or tell the guest. They enter it once to charge to the room.',
+  bill: 'Room bill', addLine: 'Add a line', title: 'Item', qty: 'Qty', add: 'Add', subtotal: 'Subtotal', disc: 'Discount %', tax: 'Tax %', total: 'Total', payBy: 'Payment', cash: 'Cash', qr: 'VietQR', card: 'Card', print: '🖨 Print bill', checkoutBtn: 'Check out', confirmOut: 'Check out and close the bill?', openReq: 'open requests', newReq: 'New request',
+  sHotel: 'Hotel', name: 'Name', phone: 'Reception phone', review: 'Google Maps review link', notice: 'Notice of the day (VI / EN / RU)', protect: 'Protection', pCode: 'Stay code at check-in', pDel: 'No check-in, pay on delivery only', sRooms: 'Rooms (comma-separated)', sSlots: 'Cleaning / laundry time slots', slotCap: 'Max rooms per slot', kitchen: 'Kitchen hours', perKg: 'Laundry: price per kg', expressPct: 'Express: + %', sMenu: 'Menu', sSvc: 'Services and tours', sInfo: 'Guest information', vqTitle: 'VietQR on the bill', vqBin: 'Bank BIN', vqAcc: 'Account number', vqBank: 'Bank name', saved: 'Saved', addRow: '+ Add', printQr: '🖨 Print QR codes for all rooms', perOnce: 'once', perDay: '/day', perPerson: '/person', cat: 'Group', price: 'Price', infoT: 'Title', infoD: 'Text', guestLink: 'Guest page', saveAll: 'Save settings', viPh: 'Vietnamese', enPh: 'English', ruPh: 'Russian', thanks: 'Thank you!', provisional: 'Provisional bill — not a VAT invoice', scan: 'Scan to pay', autoTr: 'Empty fields are translated automatically from Vietnamese.' },
+ ru: { loginH: 'Экран персонала', loginP: 'Введите код персонала отеля.', loginBtn: 'Войти', logout: 'Выход', wrongCode: 'Неверный код', live: 'Принимаем запросы', off: 'Нет связи, пробуем снова…', soundOn: '🔔 Звук', soundOff: '🔕 Без звука', push: '📲 Уведомления', pushOn: '📲 Включены', pushOk: 'Уведомления на этом телефоне включены.', pushNo: 'Этот браузер не показывает уведомления. На iPhone: Поделиться → На экран «Домой», открывать с иконки.',
+  feed: 'Запросы', rooms: 'Номера', settings: 'Настройки', all: 'Все', desk: 'Ресепшн', house: 'Горничные', kitchen: 'Кухня / бар', open: 'Открытые', closed: 'Выполненные', none: 'Запросов нет.',
+  food: 'Еда в номер', clean: 'Уборка', bring: 'Принести в номер', laundry: 'Стирка', wake: 'Разбудить', broken: 'Что-то сломалось', service: 'Услуга', checkout: 'Готовится к выезду', call: 'Сообщение',
+  new: 'Новый', accepted: 'Принят', working: 'В работе', done: 'Готово', rejected: 'Отклонён', accept: 'Принять', work: 'В работу', finish: 'Готово', reject: 'Отклонить', min: 'мин', justNow: 'только что', room: 'Номер',
+  payRoom: 'на счёт номера', payDel: 'оплата при доставке', skip: 'Не убирать сегодня', normal: 'Обычная', express: 'СРОЧНО', call_: 'звонок в номер', knock: 'стук в дверь', coffee: 'с кофе', people: 'чел.', days: 'дн.', staffMade: 'внёс персонал', checkoutClean: 'Выезд — уборка для следующего гостя',
+  reason: 'Причина (гость увидит перевод)', reasonPh: 'Например: нет мест на 20.11', amount: 'Сумма (₫)', laundryAmt: 'кг × цена за кг', save: 'Сохранить', cancel: 'Отмена', close: 'Закрыть',
+  free: 'Свободен', occ: 'Занят', checkin: 'Заселить', guest: 'Имя гостя (необязательно)', lang: 'Язык гостя', until: 'Дата выезда', codeFor: 'Код проживания номера', codeHint: 'Напишите код на ключ-карте или скажите гостю. Он вводит его один раз для оплаты на счёт номера.',
+  bill: 'Счёт номера', addLine: 'Добавить строку', title: 'Что', qty: 'Кол.', add: 'Добавить', subtotal: 'Сумма', disc: 'Скидка %', tax: 'Налог %', total: 'Итого', payBy: 'Оплата', cash: 'Наличные', qr: 'VietQR', card: 'Карта', print: '🖨 Печать счёта', checkoutBtn: 'Выселить', confirmOut: 'Выселить и закрыть счёт?', openReq: 'открытых запросов', newReq: 'Создать запрос',
+  sHotel: 'Отель', name: 'Название', phone: 'Телефон ресепшн', review: 'Ссылка на отзыв в Google Maps', notice: 'Объявление дня (VI / EN / RU)', protect: 'Защита', pCode: 'Код проживания при заселении', pDel: 'Без заселения, только оплата при доставке', sRooms: 'Номера (через запятую)', sSlots: 'Интервалы уборки / стирки', slotCap: 'Макс. номеров на интервал', kitchen: 'Часы кухни', perKg: 'Стирка: цена за кг', expressPct: 'Срочно: + %', sMenu: 'Меню', sSvc: 'Услуги и туры', sInfo: 'Информация для гостей', vqTitle: 'VietQR на счёте', vqBin: 'BIN банка', vqAcc: 'Номер счёта', vqBank: 'Название банка', saved: 'Сохранено', addRow: '+ Добавить', printQr: '🖨 Печать QR для всех номеров', perOnce: 'разово', perDay: '/день', perPerson: '/чел.', cat: 'Группа', price: 'Цена', infoT: 'Заголовок', infoD: 'Текст', guestLink: 'Страница гостя', saveAll: 'Сохранить настройки', viPh: 'вьетнамский', enPh: 'английский', ruPh: 'русский', thanks: 'Спасибо!', provisional: 'Предварительный счёт — не налоговая накладная', scan: 'Отсканируйте для оплаты', autoTr: 'Пустые поля переводятся автоматически с вьетнамского.' },
+};
+let lang = store.get('lang') || 'vi', code = store.get('code') || '';
+const t = k => (T[lang] || T.vi)[k] || T.vi[k] || k;
+const money = n => Math.round(n || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' ₫';
+let toastT; function toast(s) { const e = $('toast'); e.textContent = s; e.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => e.hidden = true, 2600) }
+
+async function api(path, body) {
+  const r = await fetch(API + path + (path.includes('?') ? '&' : '?') + 'hotel=' + HOTEL, { method: body ? 'POST' : 'GET', headers: Object.assign({ 'X-Staff-Key': code }, body ? { 'Content-Type': 'application/json' } : {}), body: body ? JSON.stringify(Object.assign({ hotel: HOTEL }, body)) : undefined, cache: 'no-store' });
+  if (r.status === 401) { const e = new Error('code'); e.code = 401; throw e }
+  const txt = await r.text(); if (!r.ok) throw new Error(txt);
+  try { return JSON.parse(txt) } catch (e) { return txt }
+}
+
+/* ---------- auto-translation of guest texts into the screen language ---------- */
+const TR = new Map(JSON.parse(store.get('tr') || '[]'));
+function tr(text, from, done) {
+  if (!text || !from || from === lang) return '';
+  const k = from + '|' + lang + '|' + text; if (TR.has(k)) return TR.get(k);
+  if (!tr.wait) tr.wait = new Set(); if (tr.wait.has(k)) return ''; tr.wait.add(k);
+  fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text.slice(0, 400)) + '&langpair=' + from + '|' + lang).then(r => r.json()).then(d => { const x = d && d.responseData && d.responseData.translatedText; if (x && x.toLowerCase() !== text.toLowerCase()) { TR.set(k, x); store.set('tr', JSON.stringify([...TR].slice(-300))); done && done() } }).catch(() => {});
+  return '';
+}
+const guessLang = s => /[а-яё]/i.test(s) ? 'ru' : /[ăâđêôơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]/i.test(s) ? 'vi' : 'en';
+
+/* ---------- state ---------- */
+let CFG = null, REQ = new Map(), STAYS = [], since = 0, first = true, tab = store.get('tab') || 'feed', dept = store.get('dept') || 'all', stf = 'open';
+let sound = store.get('sound') !== '0';
+const L = o => o ? (o[lang] || o.vi || o.en || '') : '';
+const nameOf = (list, id) => { const x = (list || []).find(m => m.id === id); return x ? (x[lang] || x.vi) : id };
+
+/* ---------- login ---------- */
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(e => e.textContent = t(e.dataset.t));
+  document.querySelectorAll('[data-l]').forEach(b => b.setAttribute('aria-pressed', b.dataset.l === lang));
+  document.querySelectorAll('[data-tab]').forEach(b => b.innerHTML = t(b.dataset.tab) + (b.dataset.tab === 'feed' ? `<span class="n" id="nNew" hidden></span>` : ''));
+  $('soundBtn').textContent = sound ? t('soundOn') : t('soundOff');
+  $('pushBtn').textContent = store.get('push') === '1' ? t('pushOn') : t('push');
+  if (CFG) render();
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-l]'); if (!b) return; lang = b.dataset.l; store.set('lang', lang); applyLang() });
+async function login() {
+  code = $('code').value.trim(); $('loginErr').textContent = '';
+  try { await poll(true); store.set('code', code); start() } catch (e) { $('loginErr').textContent = e.code === 401 ? t('wrongCode') : e.message }
+}
+$('loginBtn').onclick = login; $('code').onkeydown = e => { if (e.key === 'Enter') login() };
+$('logoutBtn').onclick = async () => { store.del('code'); store.del('push'); try { const c = await caches.open('hu-config'); await c.delete('/hu-config') } catch (e) {} location.reload() };
+function start() { $('loginBox').hidden = true; $('app').hidden = false; applyLang(); setTab(tab); loop() }
+
+/* ---------- polling ---------- */
+let audioCtx;
+function beep() {
+  if (!sound) return;
+  try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); [0, .25, .5].forEach(d => { const o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.frequency.value = 880; o.connect(g); g.connect(audioCtx.destination); g.gain.setValueAtTime(.25, audioCtx.currentTime + d); g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + d + .2); o.start(audioCtx.currentTime + d); o.stop(audioCtx.currentTime + d + .22) }) } catch (e) {}
+}
+document.addEventListener('pointerdown', () => { try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); audioCtx.resume() } catch (e) {} }, { once: true });
+const fresh = new Set();
+async function poll(throwIt) {
+  try {
+    const d = await api('/staff/feed?since=' + since);
+    let gotNew = false;
+    d.reqs.forEach(r => { const old = REQ.get(r.id); if (!old && r.status === 'new' && !first) { gotNew = true; fresh.add(r.id) } REQ.set(r.id, r) });
+    since = Math.max(since, ...d.reqs.map(r => r.updated), 0);
+    STAYS = d.stays; CFG = d.cfg; first = false;
+    $('dot').className = 'dot'; $('stText').textContent = t('live'); $('hName').textContent = CFG.name;
+    if (gotNew) beep();
+    render();
+  } catch (e) {
+    if (throwIt) throw e;
+    if (e.code === 401) { store.del('code'); location.reload(); return }
+    $('dot').className = 'dot off'; $('stText').textContent = t('off');
+  }
+}
+function loop() { poll().finally(() => setTimeout(loop, document.hidden ? 15000 : 5000)) }
+setInterval(() => { if (tab === 'feed') renderFeed() }, 30000);   // "minutes ago" and the overdue mark
+
+/* ---------- tabs ---------- */
+function setTab(x) { tab = x; store.set('tab', x); document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === x)); ['feed', 'rooms', 'settings'].forEach(k => $(k + 'Tab').hidden = k !== x); render() }
+document.querySelector('.tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (b) setTab(b.dataset.tab) };
+function render() { if (!CFG) return; const n = [...REQ.values()].filter(r => r.status === 'new').length, el = $('nNew'); if (el) { el.hidden = !n; el.textContent = n } if (tab === 'feed') renderFeed(); else if (tab === 'rooms') renderRooms(); else if (tab === 'settings' && !$('settingsTab').dataset.built) renderSettings() }
+
+/* ---------- requests ---------- */
+function details(r) {
+  const d = r.data || {}, out = [];
+  if (r.type === 'food') { out.push((d.items || []).map(i => `<b>${i.q} ×</b> ${esc(nameOf(CFG.menu, i.id))}`).join('<br>')); if (d.when) out.push('⏰ ' + esc(d.when)) }
+  else if (r.type === 'clean') out.push(d.checkout ? '🧳 ' + t('checkoutClean') : d.skip ? '🚫 ' + t('skip') : `🗓 ${esc(day(d.date))} · <b>${esc(d.slot)}</b>`);
+  else if (r.type === 'laundry') out.push(`${d.express ? '<b style="color:var(--red)">' + t('express') + '</b>' : t('normal')} · 🗓 ${esc(day(d.date))} <b>${esc(d.slot)}</b>${d.qty ? ' · ' + esc(d.qty) : ''}`);
+  else if (r.type === 'wake') out.push(`⏰ <b>${esc(day(d.date))} ${esc(d.time)}</b> · ${d.how === 'knock' ? t('knock') : t('call_')}${d.coffee ? ' · ☕ ' + t('coffee') : ''}`);
+  else if (r.type === 'service') out.push(`<b>${esc(nameOf(CFG.services, d.id))}</b><br>${[d.date && day(d.date), d.time, d.people && d.people + ' ' + t('people'), d.days && d.days + ' ' + t('days'), d.flight && '✈ ' + d.flight].filter(Boolean).map(esc).join(' · ')}`);
+  else if (r.type === 'broken') out.push('🔧 <b>' + esc(d.what || '') + '</b>');
+  return out.join('<br>');
+}
+const day = s => { if (!s) return ''; const d = new Date(s + 'T00:00'), n = new Date(); n.setHours(0, 0, 0, 0); const diff = Math.round((d - n) / 864e5); return diff === 0 ? (lang === 'ru' ? 'сегодня' : lang === 'en' ? 'today' : 'hôm nay') : diff === 1 ? (lang === 'ru' ? 'завтра' : lang === 'en' ? 'tomorrow' : 'ngày mai') : d.toLocaleDateString(lang) };
+const ago = ms => { const m = Math.floor((Date.now() - ms) / 60000); return m < 1 ? t('justNow') : m < 60 ? m + ' ' + t('min') : new Date(ms).toLocaleTimeString(lang, { hour: '2-digit', minute: '2-digit' }) };
+function renderFeed() {
+  $('deptBar').innerHTML = ['all', 'desk', 'house', 'kitchen'].map(k => `<button class="chip" data-dept="${k}" aria-pressed="${dept === k}">${t(k)}${k !== 'all' ? ' · ' + [...REQ.values()].filter(r => r.dept === k && ['new', 'accepted', 'working'].includes(r.status)).length : ''}</button>`).join('') +
+    `<span class="sp" style="flex:1"></span><button class="chip" id="newReqBtn">+ ${t('newReq')}</button>`;
+  $('stBar').innerHTML = ['open', 'closed'].map(k => `<button class="chip" data-stf="${k}" aria-pressed="${stf === k}">${t(k)}</button>`).join('');
+  const list = [...REQ.values()].filter(r => (dept === 'all' || r.dept === dept) && (stf === 'open' ? ['new', 'accepted', 'working'].includes(r.status) : ['done', 'rejected'].includes(r.status)))
+    .sort((a, b) => stf === 'open' ? (a.status === 'new') !== (b.status === 'new') ? (a.status === 'new' ? -1 : 1) : a.created - b.created : b.updated - a.updated);
+  $('feed').innerHTML = list.length ? list.map(card).join('') : `<div class="empty">${t('none')}</div>`;
+}
+function card(r) {
+  const d = r.data || {}, late = r.status === 'new' && Date.now() - r.created > 5 * 60000;
+  const from = r.lang || (d.text ? guessLang(d.text) : ''), trn = d.text ? tr(d.text, from === 'vi' && lang === 'vi' ? '' : from, renderFeed) : '';
+  const acts = r.status === 'new' ? `<button class="b p" data-act="accepted" data-id="${r.id}">${t('accept')}</button><button class="b r" data-act="rejected" data-id="${r.id}">${t('reject')}</button>`
+    : r.status === 'accepted' ? `<button class="b s" data-act="working" data-id="${r.id}">${t('work')}</button><button class="b p" data-act="done" data-id="${r.id}">${t('finish')}</button>`
+    : r.status === 'working' ? `<button class="b p" data-act="done" data-id="${r.id}">${t('finish')}</button>` : '';
+  return `<div class="rq d-${r.dept}${late ? ' late' : ''}${fresh.has(r.id) ? ' fresh' : ''}">
+    <div class="rh"><span class="room">${esc(r.room)}</span><span class="ty">${t(r.type)}</span><span class="badge ${r.status}">${t(r.status)}</span><span class="ago">${ago(r.created)}</span></div>
+    <div class="det">${details(r)}</div>
+    ${d.text ? `<div class="note">✏️ ${esc(d.text)}${trn ? `<span class="trn">🌐 ${esc(trn)}</span>` : ''}</div>` : ''}
+    <div class="meta">${r.amount ? '<b>' + money(r.amount) + '</b> · ' : ''}${r.pay === 'room' ? t('payRoom') : r.pay === 'delivery' ? t('payDel') : ''}${r.by_staff ? ' · ' + t('staffMade') : ''}${r.note ? ' · 💬 ' + esc(r.note) : ''}</div>
+    ${acts ? `<div class="acts">${acts}</div>` : ''}</div>`;
+}
+$('feedTab').addEventListener('click', async e => {
+  const dp = e.target.closest('[data-dept]'); if (dp) { dept = dp.dataset.dept; store.set('dept', dept); renderFeed(); return }
+  const sf = e.target.closest('[data-stf]'); if (sf) { stf = sf.dataset.stf; renderFeed(); return }
+  if (e.target.closest('#newReqBtn')) { newRequest(); return }
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const r = REQ.get(+b.dataset.id), st = b.dataset.act;
+  if (st === 'rejected') return modal(`<h3>${t('reject')} · ${t('room')} ${esc(r.room)}</h3><div class="lbl">${t('reason')}</div><input type="text" id="mNote" maxlength="200" placeholder="${esc(t('reasonPh'))}"><div class="mact"><button class="b" data-close>${t('cancel')}</button><button class="b r" id="mOk">${t('reject')}</button></div>`,
+    () => $('mOk').onclick = () => setStatus(r, st, { note: $('mNote').value }));
+  if (st === 'done' && r.type === 'laundry') return modal(`<h3>${t('laundry')} · ${t('room')} ${esc(r.room)}</h3><div class="lbl">${t('laundryAmt')} (${money(CFG.laundry.perKg)}${r.data.express ? ' +' + CFG.laundry.express + '%' : ''})</div>
+    <div style="display:flex;gap:8px"><input type="number" id="mKg" step="0.1" min="0" placeholder="kg"><input type="number" id="mAmt" min="0" placeholder="₫"></div><div class="mact"><button class="b" data-close>${t('cancel')}</button><button class="b p" id="mOk">${t('finish')}</button></div>`,
+    () => { $('mKg').oninput = () => { $('mAmt').value = Math.round(+$('mKg').value * CFG.laundry.perKg * (r.data.express ? 1 + CFG.laundry.express / 100 : 1) / 1000) * 1000 }; $('mOk').onclick = () => setStatus(r, st, { amount: $('mAmt').value }) });
+  setStatus(r, st, {});
+});
+async function setStatus(r, st, extra) {
+  try { await api('/staff/status', Object.assign({ id: r.id, status: st }, extra)); closeModal(); fresh.delete(r.id); await poll() } catch (e) { toast(e.message) }
+}
+function newRequest() {
+  const types = ['food', 'clean', 'bring', 'laundry', 'wake', 'broken', 'call'];
+  modal(`<h3>${t('newReq')}</h3><div class="lbl">${t('room')}</div><select id="nRoom">${CFG.rooms.map(r => `<option>${esc(r)}</option>`).join('')}</select>
+    <div class="lbl">&nbsp;</div><select id="nType">${['bring', 'call', 'broken'].map(k => `<option value="${k}">${t(k)}</option>`).join('')}</select>
+    <div class="lbl">✏️</div><textarea id="nText" maxlength="300"></textarea><div class="mact"><button class="b" data-close>${t('cancel')}</button><button class="b p" id="mOk">${t('save')}</button></div>`,
+    () => $('mOk').onclick = async () => { const ty = $('nType').value, tx = $('nText').value.trim(); if (!tx) return; try { await api('/staff/req', { room: $('nRoom').value, type: ty, data: ty === 'broken' ? { what: tx } : { text: tx } }); closeModal(); poll() } catch (e) { toast(e.message) } });
+}
+
+/* ---------- rooms ---------- */
+function renderRooms() {
+  $('rooms').innerHTML = CFG.rooms.map(rm => {
+    const s = STAYS.find(x => x.room === rm), open = [...REQ.values()].filter(r => r.room === rm && ['new', 'accepted', 'working'].includes(r.status)).length;
+    return `<button class="rc${s ? ' occ' : ''}" data-room="${esc(rm)}"><span class="rn">${esc(rm)}</span><span class="s">${s ? t('occ') : t('free')}</span>${s ? `<span class="g">${esc(s.guest || '')}${s.lang ? ' · ' + s.lang.toUpperCase() : ''}</span><span class="g">🔑 ${esc(s.code)}${s.until ? ' · → ' + esc(day(s.until)) : ''}</span>` : ''}${open ? `<span class="open">${open} ${t('openReq')}</span>` : ''}${s ? `<span class="sum">${money(s.sum)}</span>` : ''}</button>`;
+  }).join('');
+}
+$('rooms').onclick = e => { const b = e.target.closest('[data-room]'); if (!b) return; const rm = b.dataset.room, s = STAYS.find(x => x.room === rm); s ? openBill(s) : checkin(rm) };
+function checkin(rm) {
+  const tm = new Date(Date.now() + 864e5).toISOString().slice(0, 10);
+  modal(`<h3>${t('checkin')} · ${t('room')} ${esc(rm)}</h3><div class="lbl">${t('guest')}</div><input type="text" id="cGuest" maxlength="60">
+    <div class="lbl">${t('lang')}</div><select id="cLang"><option value="en">English</option><option value="ru">Русский</option><option value="vi">Tiếng Việt</option><option value="ko">한국어</option><option value="zh">中文</option></select>
+    <div class="lbl">${t('until')}</div><input type="date" id="cUntil" value="${tm}"><div class="mact"><button class="b" data-close>${t('cancel')}</button><button class="b p" id="mOk">${t('checkin')}</button></div>`,
+    () => $('mOk').onclick = async () => {
+      try { const d = await api('/staff/checkin', { room: rm, guest: $('cGuest').value, lang: $('cLang').value, until: $('cUntil').value }); await poll();
+        modal(`<h3>${t('codeFor')} ${esc(rm)}</h3><div class="bigcode">${esc(d.code)}</div><p class="hint">${t('codeHint')}</p><div class="mact"><button class="b p" data-close>${t('close')}</button></div>`) } catch (e) { toast(e.message) } });
+}
+let BILL = null, billOpt = {};
+async function openBill(s) {
+  try { const d = await api('/staff/bill?stay=' + s.id); BILL = d; billOpt = { disc: 0, tax: 0, pay: 'cash' }; drawBill() } catch (e) { toast(e.message) }
+}
+function calc() { const sub = BILL.lines.reduce((a, l) => a + l.amount, 0), disc = Math.round(sub * (billOpt.disc || 0) / 100 / 1000) * 1000, after = sub - disc, tax = Math.round(after * (billOpt.tax || 0) / 100 / 1000) * 1000; return { sub, disc, tax, total: after + tax } }
+function drawBill() {
+  const s = BILL.stay, c = calc();
+  modal(`<h3>${t('bill')} · ${t('room')} ${esc(s.room)}${s.guest ? ' · ' + esc(s.guest) : ''}</h3>
+    <div class="hint">🔑 ${esc(s.code)} · ${new Date(s.opened).toLocaleDateString(lang)}${s.until ? ' → ' + esc(day(s.until)) : ''}</div>
+    <div style="margin-top:8px">${BILL.lines.map(l => `<div class="line"><span class="t">${esc(l.title)}<br><small class="hint">${new Date(l.created).toLocaleString(lang, { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}</small></span><span class="a">${money(l.amount)}</span><button class="x" data-del="${l.id}">×</button></div>`).join('') || `<p class="hint">—</p>`}</div>
+    <div class="lbl">${t('addLine')}</div><div class="grid3"><input type="text" id="aT" placeholder="${esc(t('title'))}" maxlength="120"><input type="number" id="aA" placeholder="₫"><input type="number" id="aQ" value="1" min="1"><button class="b" id="aBtn">${t('add')}</button></div>
+    <div style="display:flex;gap:8px;margin-top:10px"><label style="flex:1"><span class="lbl" style="display:block">${t('disc')}</span><input type="number" id="bD" value="${billOpt.disc || ''}" min="0" max="100"></label><label style="flex:1"><span class="lbl" style="display:block">${t('tax')}</span><input type="number" id="bT" value="${billOpt.tax || ''}" min="0" max="30"></label></div>
+    <div class="lbl">${t('payBy')}</div><div class="bar" style="margin:0">${['cash', 'qr', 'card'].map(p => `<button class="chip" data-pay="${p}" aria-pressed="${billOpt.pay === p}">${t(p)}</button>`).join('')}</div>
+    <div class="sub"><span>${t('subtotal')}</span><span>${money(c.sub)}</span></div>${c.disc ? `<div class="sub"><span>${t('disc')}</span><span>−${money(c.disc)}</span></div>` : ''}${c.tax ? `<div class="sub"><span>${t('tax')}</span><span>+${money(c.tax)}</span></div>` : ''}
+    <div class="tot"><span>${t('total')}</span><span>${money(c.total)}</span></div>
+    <div class="mact"><button class="b" data-close>${t('close')}</button><button class="b" id="bPrint">${t('print')}</button><button class="b r" id="bOut">${t('checkoutBtn')}</button></div>`,
+    () => {
+      $('bD').oninput = () => { billOpt.disc = +$('bD').value || 0; redrawTotals() }; $('bT').oninput = () => { billOpt.tax = +$('bT').value || 0; redrawTotals() };
+      $('mbox').onclick = async e => {
+        const p = e.target.closest('[data-pay]'); if (p) { billOpt.pay = p.dataset.pay; drawBill(); return }
+        const del = e.target.closest('[data-del]'); if (del) { await api('/staff/charge', { del: del.dataset.del }); return openBill(BILL.stay) }
+        if (e.target.closest('#aBtn')) { const tt = $('aT').value.trim(), a = +$('aA').value; if (!tt || !a) return; try { await api('/staff/charge', { stay: BILL.stay.id, title: tt, amount: a, qty: +$('aQ').value || 1 }); openBill(BILL.stay); poll() } catch (er) { toast(er.message) } return }
+        if (e.target.closest('#bPrint')) { printBill(); return }
+        if (e.target.closest('#bOut')) { if (!confirm(t('confirmOut'))) return; try { await api('/staff/checkout', { stay: BILL.stay.id, pay: billOpt.pay, total: calc().total }); closeModal(); poll() } catch (er) { toast(er.message) } }
+      };
+    });
+  function redrawTotals() { const keep = [document.activeElement && document.activeElement.id]; drawBill(); if (keep[0] && $(keep[0])) { const el = $(keep[0]); el.focus(); const v = el.value; el.value = ''; el.value = v } }
+}
+function printBill() {
+  const s = BILL.stay, c = calc(), vq = CFG.vietqr || {};
+  const qr = billOpt.pay === 'qr' && vq.bin && vq.account && typeof vqSvg === 'function' ? `<hr><div class="c">${vqSvg(vq, c.total, 'Phong ' + s.room)}<div>VietQR · ${money(c.total)}<br>${esc(vq.bank || '')}<br>${t('scan')}</div></div>` : '';
+  $('printArea').innerHTML = `<div class="rcpt"><h2>${esc(CFG.name)}</h2><div class="c">${esc(L(CFG.sub))}${CFG.phone ? '<br>' + esc(CFG.phone) : ''}</div><hr>
+    <div class="r"><b>${t('room')} ${esc(s.room)}</b><span>${new Date().toLocaleString('vi', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span></div>${s.guest ? `<div>${esc(s.guest)}</div>` : ''}<hr>
+    ${BILL.lines.map(l => `<div class="r"><span>${esc(l.title)}</span><span>${money(l.amount)}</span></div>`).join('')}<hr>
+    <div class="r"><span>Tạm tính</span><span>${money(c.sub)}</span></div>${c.disc ? `<div class="r"><span>Giảm giá (${billOpt.disc}%)</span><span>−${money(c.disc)}</span></div>` : ''}${c.tax ? `<div class="r"><span>Thuế (${billOpt.tax}%)</span><span>+${money(c.tax)}</span></div>` : ''}
+    <div class="r big"><span>Tổng</span><span>${money(c.total)}</span></div><div>Thanh toán: ${({ cash: 'Tiền mặt', qr: 'Chuyển khoản VietQR', card: 'Thẻ ngân hàng' })[billOpt.pay]}</div>${qr}
+    <hr><div class="c" style="font-size:11px">Phiếu tạm tính — không phải hóa đơn GTGT${lang !== 'vi' ? '<br>' + t('provisional') : ''}<br><b>Cảm ơn quý khách!${lang !== 'vi' ? ' · ' + t('thanks') : ''}</b></div></div>`;
+  setTimeout(() => window.print(), 50);
+}
+
+/* ---------- settings (owner) ---------- */
+function renderSettings() {
+  const C = JSON.parse(JSON.stringify(CFG)); const S = $('settingsTab'); S.dataset.built = '1';
+  const tri = (key, obj) => ['vi', 'en', 'ru'].map(l => `<input type="text" data-tri="${key}" data-l3="${l}" placeholder="${t(l + 'Ph')}" value="${esc((obj || {})[l] || '')}">`).join('');
+  const guest = location.href.replace(/staff\/.*$/, '') + (HOTEL !== 'demo' ? '?h=' + HOTEL : '') + '#room-' + (CFG.rooms[0] || '101');
+  S.innerHTML = `
+  <div class="set"><h3>${t('sHotel')}</h3>
+    <div class="lbl">${t('name')}</div><input type="text" id="sName" value="${esc(C.name)}">
+    <div class="lbl">${t('phone')}</div><input type="text" id="sPhone" value="${esc(C.phone || '')}">
+    <div class="lbl">${t('review')}</div><input type="text" id="sReview" value="${esc(C.review || '')}">
+    <div class="lbl">${t('notice')}</div><div style="display:grid;gap:6px">${tri('notice', C.notice)}</div><p class="hint">${t('autoTr')}</p>
+    <div class="lbl">${t('protect')}</div><select id="sProtect"><option value="code" ${C.protect === 'code' ? 'selected' : ''}>${t('pCode')}</option><option value="delivery" ${C.protect !== 'code' ? 'selected' : ''}>${t('pDel')}</option></select>
+    <div class="lbl">${t('sRooms')}</div><input type="text" id="sRooms" value="${esc(C.rooms.join(', '))}">
+    <p class="hint">${t('guestLink')}: <a href="${esc(guest)}" target="_blank">${esc(guest)}</a></p>
+    <button class="b" id="qrBtn">${t('printQr')}</button></div>
+  <div class="set"><h3>${t('clean')} · ${t('laundry')}</h3>
+    <div class="lbl">${t('sSlots')}</div><input type="text" id="sSlots" value="${esc(C.slots.join(', '))}">
+    <div style="display:flex;gap:8px"><label style="flex:1"><span class="lbl" style="display:block">${t('slotCap')}</span><input type="number" id="sCap" value="${C.slotCap}"></label><label style="flex:1"><span class="lbl" style="display:block">${t('perKg')}</span><input type="number" id="sKg" value="${C.laundry.perKg}"></label><label style="flex:1"><span class="lbl" style="display:block">${t('expressPct')}</span><input type="number" id="sExp" value="${C.laundry.express}"></label></div></div>
+  <div class="set"><h3>${t('sMenu')}</h3><div style="display:flex;gap:8px"><label style="flex:1"><span class="lbl" style="display:block">${t('kitchen')}</span><input type="time" id="sKf" value="${C.kitchen.from}"></label><label style="flex:1"><span class="lbl" style="display:block">&nbsp;</span><input type="time" id="sKt" value="${C.kitchen.to}"></label></div>
+    <div id="menuRows"></div><button class="b" id="addMenu">${t('addRow')}</button></div>
+  <div class="set"><h3>${t('sSvc')}</h3><div id="svcRows"></div><button class="b" id="addSvc">${t('addRow')}</button></div>
+  <div class="set"><h3>${t('sInfo')}</h3><div id="infoRows"></div><button class="b" id="addInfo">${t('addRow')}</button></div>
+  <div class="set"><h3>${t('vqTitle')}</h3><div style="display:flex;gap:8px"><input type="text" id="vqBank" placeholder="${t('vqBank')}" value="${esc((C.vietqr || {}).bank || '')}"><input type="text" id="vqBin" placeholder="${t('vqBin')}" value="${esc((C.vietqr || {}).bin || '')}"><input type="text" id="vqAcc" placeholder="${t('vqAcc')}" value="${esc((C.vietqr || {}).account || '')}"></div></div>
+  <div style="position:sticky;bottom:0;background:var(--sand);padding:12px 0 20px"><button class="b p" id="saveCfg" style="width:100%;padding:14px">${t('saveAll')}</button></div>`;
+  const catOpts = v => C.cats.map(c => `<option value="${c.id}" ${c.id === v ? 'selected' : ''}>${esc(c[lang] || c.vi)}</option>`).join('');
+  const menuRow = m => `<div class="erow" style="--c:5" data-mid="${esc(m.id)}"><input type="text" data-f="vi" value="${esc(m.vi)}" placeholder="${t('viPh')}"><input type="text" data-f="en" value="${esc(m.en || '')}" placeholder="${t('enPh')}"><input type="text" data-f="ru" value="${esc(m.ru || '')}" placeholder="${t('ruPh')}"><input type="number" data-f="price" value="${m.price}" placeholder="${t('price')}"><select data-f="cat">${catOpts(m.cat)}</select><button class="x" data-rm>×</button></div>`;
+  const svcRow = s => `<div class="erow" style="--c:5" data-sid="${esc(s.id)}" data-ask="${esc((s.ask || ['date', 'time']).join(','))}"><input type="text" data-f="vi" value="${esc(s.vi)}"><input type="text" data-f="en" value="${esc(s.en || '')}"><input type="text" data-f="ru" value="${esc(s.ru || '')}"><input type="number" data-f="price" value="${s.price}"><select data-f="per">${['once', 'day', 'person'].map(p => `<option value="${p}" ${s.per === p ? 'selected' : ''}>${t('per' + p[0].toUpperCase() + p.slice(1))}</option>`).join('')}</select><button class="x" data-rm>×</button></div>`;
+  const infoRow = i => `<div class="set" style="margin:8px 0;padding:10px" data-info="1" data-copy="${esc(i.copy || '')}"><div class="erow" style="--c:3">${['vi', 'en', 'ru'].map(l => `<input type="text" data-it="${l}" placeholder="${t('infoT')} · ${t(l + 'Ph')}" value="${esc((i.t || {})[l] || '')}">`).join('')}<button class="x" data-rm>×</button></div><div class="erow" style="--c:3">${['vi', 'en', 'ru'].map(l => `<textarea data-id="${l}" placeholder="${t('infoD')} · ${t(l + 'Ph')}">${esc((i.d || {})[l] || '')}</textarea>`).join('')}<span></span></div></div>`;
+  $('menuRows').innerHTML = C.menu.map(menuRow).join(''); $('svcRows').innerHTML = C.services.map(svcRow).join(''); $('infoRows').innerHTML = C.info.map(infoRow).join('');
+  S.onclick = async e => {
+    const rm = e.target.closest('[data-rm]'); if (rm) { (rm.closest('[data-info]') || rm.closest('.erow')).remove(); return }
+    if (e.target.closest('#addMenu')) { $('menuRows').insertAdjacentHTML('beforeend', menuRow({ id: 'm' + Date.now().toString(36), vi: '', price: 0, cat: C.cats[0].id })); return }
+    if (e.target.closest('#addSvc')) { $('svcRows').insertAdjacentHTML('beforeend', svcRow({ id: 's' + Date.now().toString(36), vi: '', price: 0, per: 'once', ask: ['date', 'time'] })); return }
+    if (e.target.closest('#addInfo')) { $('infoRows').insertAdjacentHTML('beforeend', infoRow({})); return }
+    if (e.target.closest('#qrBtn')) { printQr(); return }
+    if (e.target.closest('#saveCfg')) saveCfg();
+  };
+  async function saveCfg() {
+    const n = Object.assign({}, CFG);
+    n.name = $('sName').value.trim() || CFG.name; n.phone = $('sPhone').value.trim(); n.review = $('sReview').value.trim(); n.protect = $('sProtect').value;
+    n.notice = {}; S.querySelectorAll('[data-tri="notice"]').forEach(i => n.notice[i.dataset.l3] = i.value.trim());
+    n.rooms = $('sRooms').value.split(/[,\s]+/).map(s => s.trim()).filter(Boolean);
+    n.slots = $('sSlots').value.split(',').map(s => s.trim()).filter(Boolean); n.slotCap = +$('sCap').value || 4;
+    n.laundry = Object.assign({}, CFG.laundry, { perKg: +$('sKg').value || 0, express: +$('sExp').value || 0 }); n.kitchen = { from: $('sKf').value, to: $('sKt').value };
+    n.menu = [...$('menuRows').children].map(r => { const g = f => r.querySelector(`[data-f="${f}"]`).value.trim(); return { id: r.dataset.mid, vi: g('vi'), en: g('en'), ru: g('ru'), price: +g('price') || 0, cat: g('cat') } }).filter(m => m.vi);
+    n.services = [...$('svcRows').children].map(r => { const g = f => r.querySelector(`[data-f="${f}"]`).value.trim(); return { id: r.dataset.sid, vi: g('vi'), en: g('en'), ru: g('ru'), price: +g('price') || 0, per: g('per'), ask: r.dataset.ask.split(',') } }).filter(s => s.vi);
+    n.info = [...$('infoRows').children].map(r => { const o = { t: {}, d: {} }; ['vi', 'en', 'ru'].forEach(l => { o.t[l] = r.querySelector(`[data-it="${l}"]`).value.trim(); o.d[l] = r.querySelector(`[data-id="${l}"]`).value.trim() }); if (r.dataset.copy) o.copy = r.dataset.copy; return o }).filter(i => i.t.vi || i.t.en);
+    n.vietqr = { bank: $('vqBank').value.trim(), bin: $('vqBin').value.trim(), account: $('vqAcc').value.trim() };
+    // empty English / Russian fields are filled by automatic translation from Vietnamese
+    const jobs = [];
+    const fill = (o, a, b) => { ['en', 'ru'].forEach(l => { if (!o[b || l] && o[a || 'vi']) jobs.push(fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(o[a || 'vi']) + '&langpair=vi|' + l).then(r => r.json()).then(d => { const x = d && d.responseData && d.responseData.translatedText; if (x) o[b || l] = x }).catch(() => {})) }) };
+    n.menu.forEach(m => fill(m)); n.services.forEach(s => fill(s)); n.info.forEach(i => { fill(i.t); fill(i.d) }); fill(n.notice);
+    $('saveCfg').disabled = true;
+    try { await Promise.all(jobs); await api('/staff/cfg', { cfg: n }); CFG = n; toast(t('saved')); delete S.dataset.built; renderSettings() } catch (er) { toast(er.message) } finally { if ($('saveCfg')) $('saveCfg').disabled = false }
+  }
+}
+function printQr() {
+  const base = location.href.replace(/staff\/.*$/, '');
+  $('printArea').innerHTML = CFG.rooms.map(rm => { const q = qrcode(0, 'M'); q.addData(base + (HOTEL !== 'demo' ? '?h=' + HOTEL : '') + '#room-' + rm); q.make();
+    return `<div style="page-break-after:always;text-align:center;font-family:system-ui;padding:6mm 0"><div style="font-weight:800;font-size:18px">${esc(CFG.name)}</div><div style="width:58mm;margin:4mm auto">${q.createSvgTag({ cellSize: 4, margin: 0, scalable: true })}</div><div style="font-size:13px">Quét để gọi dịch vụ · Scan for room service · Сервис в номер по QR</div><div style="font-size:26px;font-weight:800;margin-top:3mm">Phòng / Room / Номер ${esc(rm)}</div></div>` }).join('');
+  setTimeout(() => window.print(), 50);
+}
+
+/* ---------- modal ---------- */
+function modal(html, after) { $('mbox').innerHTML = html; $('mbox').onclick = null; $('modal').hidden = false; after && after() }
+function closeModal() { $('modal').hidden = true }
+$('modal').addEventListener('click', e => { if (e.target === $('modal') || e.target.closest('[data-close]')) closeModal() });
+
+/* ---------- sound and push ---------- */
+$('soundBtn').onclick = () => { sound = !sound; store.set('sound', sound ? '1' : '0'); applyLang(); if (sound) beep() };
+$('pushBtn').onclick = async () => {
+  try {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) throw new Error(t('pushNo'));
+    if (await Notification.requestPermission() !== 'granted') throw new Error(t('pushNo'));
+    try { const c = await caches.open('hu-config'); await c.put('/hu-config', new Response(JSON.stringify({ api: API, hotel: HOTEL, code }))) } catch (e) {}
+    const reg = await navigator.serviceWorker.register('sw.js'); await navigator.serviceWorker.ready;
+    const { key } = await api('/staff/vapid');
+    const raw = Uint8Array.from(atob(key.replace(/-/g, '+').replace(/_/g, '/') + '=='.slice(0, (4 - key.length % 4) % 4)), c => c.charCodeAt(0));
+    const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: raw });
+    await api('/staff/subscribe', { sub: sub.toJSON() }); store.set('push', '1'); applyLang(); toast(t('pushOk'));
+  } catch (e) { alert(e.message) }
+};
+
+applyLang();
+if (code) { poll(true).then(start).catch(() => { $('loginBox').hidden = false }) } else $('loginBox').hidden = false;
+})();
+</script>
+</body>
+</html>
