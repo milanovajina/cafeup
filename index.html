@@ -55,6 +55,8 @@ nav.links a:hover{color:var(--coral)}
 .hero .sub{font-size:clamp(17px,1.6vw,19px);color:#C9DED3;margin-top:20px;max-width:56ch}
 .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .chat{display:flex;flex-direction:column;gap:12px}
+.chat .cup{align-self:center;margin-bottom:-6px}
+@media (max-width:860px){.chat .cup{width:150px;height:150px}}
 .bub{border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
 .bub small{font-size:12px;font-weight:800;letter-spacing:.06em}
 .bub b{font-size:17px;line-height:1.35}
@@ -108,10 +110,21 @@ nav.links a:hover{color:var(--coral)}
 @media (max-width:860px){.final{grid-template-columns:1fr;padding:28px;border-radius:28px}}
 footer{padding-block:12px 40px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </style>
+<style id="bu-motion">
+@keyframes bu-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes bu-steam{0%{transform:translateY(10px);opacity:0}30%{opacity:.9}100%{transform:translateY(-34px);opacity:0}}
+@keyframes bu-rise{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.bu-arrow{display:inline-block;color:#E8573A;margin-left:2px;animation:bu-hop 1.8s ease-in-out infinite}
+.bu-steam{animation:bu-steam 2.6s ease-out infinite}.bu-steam.s2{animation-delay:.6s}.bu-steam.s3{animation-delay:1.2s}
+.bu-rise{animation:bu-rise .8s cubic-bezier(.2,.7,.2,1) both}.bu-rise.d1{animation-delay:.15s}.bu-rise.d2{animation-delay:.3s}.bu-rise.d3{animation-delay:.45s}
+.bu-rv{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.bu-rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.bu-arrow,.bu-steam,.bu-rise{animation:none}.bu-rv{opacity:1;transform:none;transition:none}}
+</style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="logo" href="./" aria-label="Business Up">business<b>up</b></a>
+  <a class="logo" href="./" aria-label="Business Up">business<b>up</b><span class="bu-arrow" aria-hidden="true">↑</span></a>
   <nav class="links">
     <a href="cafe/">CafeUp</a>
     <a href="hotelup/">Hotel Up</a>
@@ -126,7 +139,7 @@ footer{padding-block:12px 40px;color:var(--muted);font-size:14px;display:flex;ju
 
 <main class="wrap">
   <section class="hero">
-    <div>
+    <div class="bu-rise">
       <div class="eyebrow" data-t="eyebrow"></div>
       <h1 data-t="h1"></h1>
       <p class="sub" data-t="sub"></p>
@@ -135,7 +148,16 @@ footer{padding-block:12px 40px;color:var(--muted);font-size:14px;display:flex;ju
         <a class="btn line" href="#contact" data-t="cta2"></a>
       </div>
     </div>
-    <div class="chat" aria-hidden="true">
+    <div class="chat bu-rise d2" aria-hidden="true">
+      <svg class="cup" width="200" height="200" viewBox="0 0 220 230" aria-hidden="true">
+<path class="bu-steam" d="M88 92c-10-14 10-22 0-38s8-24 2-34" fill="none" stroke="#9FD8B9" stroke-width="6" stroke-linecap="round"/>
+<path class="bu-steam s2" d="M112 92c-10-14 10-22 0-38s8-24 2-34" fill="none" stroke="#FFD66B" stroke-width="6" stroke-linecap="round"/>
+<path class="bu-steam s3" d="M136 92c-10-14 10-22 0-38s8-24 2-34" fill="none" stroke="#9FD8B9" stroke-width="6" stroke-linecap="round"/>
+<path d="M44 112h132l-12 78a24 24 0 0 1-24 20H80a24 24 0 0 1-24-20z" fill="#F6F6F1"/>
+<path d="M176 128h10a22 22 0 0 1 0 44h-14" fill="none" stroke="#F6F6F1" stroke-width="10" stroke-linecap="round"/>
+<rect x="28" y="214" width="164" height="10" rx="5" fill="#E8573A"/>
+<text x="110" y="168" text-anchor="middle" font-family="Unbounded, sans-serif" font-weight="800" font-size="30" fill="#0E3B2E">UP</text>
+</svg>
       <div class="bub g"><small data-t="b1k"></small><b data-t="b1"></b></div>
       <div class="arrow">↓</div>
       <div class="bub s"><small>PHA CHẾ · VI</small><b>«Cà phê không đường»</b></div>
@@ -182,7 +204,7 @@ footer{padding-block:12px 40px;color:var(--muted);font-size:14px;display:flex;ju
     <div><h2 data-t="fin_h"></h2><p data-t="fin_p"></p></div>
     <div class="contacts">
       <a class="ct" href="https://zalo.me/0799808594" target="_blank" rel="noopener"><span><span class="l">Zalo</span><br><span class="v">0799 808 594</span></span><span class="b" data-t="write"></span></a>
-      <a class="ct" href="https://t.me/e_milanova" target="_blank" rel="noopener"><span><span class="l">Telegram</span><br><span class="v">@e_milanova</span></span><span class="b" data-t="write"></span></a>
+      <a class="ct" href="https://www.facebook.com/people/Jane-Cafeup/pfbid0G2iQqTPr9tD7r1dxpj5DpsFE6vdyLrjCtxK6Qgr3AiUSLjEQQUT4Xua1RRc4xK36l/" target="_blank" rel="noopener"><span><span class="l">Facebook</span><br><span class="v">Jane Cafeup</span></span><span class="b" data-t="write"></span></a>
     </div>
   </section>
   <footer><span>business up · Jane</span><span data-t="foot"></span></footer>
@@ -238,6 +260,12 @@ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',
 (()=>{let l=null;try{l=localStorage.getItem('qm_lang')}catch(e){}
   if(!LI.hasOwnProperty(l)){const n=(navigator.language||'').slice(0,2);l=n==='vi'?'vi':n==='en'?'en':'ru'}
   setLang(l)})();
+</script>
+<script>
+/* "up" motion: blocks rise into view while scrolling (off when the visitor prefers less motion) */
+(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.card,.custom,.sec-head,.step,.why>div,.final').forEach((el,i)=>{el.classList.add('bu-rv');el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)})})();
 </script>
 </body>
 </html>

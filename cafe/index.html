@@ -566,12 +566,23 @@ nav.links a.other{color:var(--muted)}
 .calc{border-radius:28px}
 #menuApp .bar button{background:var(--ink)}
 </style>
+<style id="bu-motion">
+@keyframes bu-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes bu-steam{0%{transform:translateY(10px);opacity:0}30%{opacity:.9}100%{transform:translateY(-34px);opacity:0}}
+@keyframes bu-rise{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.bu-arrow{display:inline-block;color:#E8573A;margin-left:2px;animation:bu-hop 1.8s ease-in-out infinite}
+.bu-steam{animation:bu-steam 2.6s ease-out infinite}.bu-steam.s2{animation-delay:.6s}.bu-steam.s3{animation-delay:1.2s}
+.bu-rise{animation:bu-rise .8s cubic-bezier(.2,.7,.2,1) both}.bu-rise.d1{animation-delay:.15s}.bu-rise.d2{animation-delay:.3s}.bu-rise.d3{animation-delay:.45s}
+.bu-rv{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.bu-rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.bu-arrow,.bu-steam,.bu-rise{animation:none}.bu-rv{opacity:1;transform:none;transition:none}}
+</style>
 </head>
 <body>
 
 
 <header class="top"><div class="wrap">
-  <a class="brand" href="../" aria-label="Business Up"><span class="bu">business<b>up</b></span></a><a class="brand" href="#top" style="margin-left:-4px"><span class="prod">CafeUp</span></a>
+  <a class="brand" href="../" aria-label="Business Up"><span class="bu">business<b>up</b><span class="bu-arrow" aria-hidden="true">↑</span></span></a><a class="brand" href="#top" style="margin-left:-4px"><span class="prod">CafeUp</span></a>
   <nav class="links">
     <a href="#demo" data-t="nav_demo"></a>
     <a href="#calc" data-t="nav_calc"></a>
@@ -588,7 +599,7 @@ nav.links a.other{color:var(--muted)}
 
 <main class="wrap" id="top">
   <section class="hero">
-    <div>
+    <div class="bu-rise">
       <div class="eyebrow" data-t="hero_eyebrow"></div>
       <h1><span data-t="hero_h1a"></span> <span class="lose" data-t="hero_h1b"></span></h1>
       <p class="sub" data-t="hero_sub"></p>
@@ -598,7 +609,7 @@ nav.links a.other{color:var(--muted)}
         <a class="btn ghost" href="index.html#menu" target="_blank" rel="noopener" data-t="live_demo"></a>
       </div>
     </div>
-    <aside class="path" aria-label="">
+    <aside class="path bu-rise d2" aria-label="">
       <h3 data-t="path_title"></h3>
       <ol>
         <li><span data-t="path_1"></span><span class="st" data-t="path_1s"></span></li>
@@ -914,7 +925,7 @@ nav.links a.other{color:var(--muted)}
     </div>
     <div class="contacts">
       <div class="ct"><div><div class="l">Zalo</div><div class="val" id="v_zalo">0799 808 594</div></div><div class="ctb"><a href="https://zalo.me/0799808594" target="_blank" rel="noopener" data-t="write"></a><button data-copy="v_zalo" data-t="copy"></button></div></div>
-      <div class="ct"><div><div class="l">Telegram</div><div class="val" id="v_tg">@e_milanova</div></div><div class="ctb"><a href="https://t.me/e_milanova" target="_blank" rel="noopener" data-t="write"></a><button data-copy="v_tg" data-t="copy"></button></div></div>
+      <div class="ct"><div><div class="l">Facebook</div><div class="val">Jane Cafeup</div></div><div class="ctb"><a href="https://www.facebook.com/people/Jane-Cafeup/pfbid0G2iQqTPr9tD7r1dxpj5DpsFE6vdyLrjCtxK6Qgr3AiUSLjEQQUT4Xua1RRc4xK36l/" target="_blank" rel="noopener" data-t="write"></a></div></div>
     </div>
   </section>
 
@@ -2109,5 +2120,11 @@ window.addEventListener('hashchange',()=>{const m=(location.hash||'').match(/^#t
 </script>
 
 <script>document.querySelectorAll('[data-qr]').forEach(el=>{try{const q=qrcode(0,'M');q.addData(el.dataset.qr);q.make();el.innerHTML=q.createSvgTag({cellSize:4,margin:1,scalable:true})}catch(e){}});</script>
+<script>
+/* "up" motion: blocks rise into view while scrolling (off when the visitor prefers less motion) */
+(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('main .sec-head,.moment,.plan,.calc,.days li,.faq,.final').forEach((el,i)=>{el.classList.add('bu-rv');el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)})})();
+</script>
 </body>
 </html>
