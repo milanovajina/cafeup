@@ -738,7 +738,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
         <span class="time" data-t="pk_time"></span>
         <ul>
           <li data-t="pk_1" data-tc="pk_1_c"></li><li data-t="pk_2"></li><li data-t="pk_3"></li>
-          <li data-t="pk_4"></li><li data-t="pk_5"></li><li data-t="pk_6"></li><li data-t="pk_7"></li><li data-t="pk_8"></li>
+          <li data-t="pk_4"></li><li data-t="pk_5"></li><li data-t="pk_6"></li><li data-t="pk_7"></li><li data-t="pk_8"></li><li data-t="pk_9" data-tc="pk_9_c"></li>
         </ul>
       </div>
       <div class="plan main best">
@@ -747,7 +747,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
         <div class="pr"><b class="money" data-v="5500000" data-coffee="4500000"></b><span data-t="once"></span></div>
         <span class="time" data-t="pk_time"></span>
         <ul>
-          <li data-t="ps_0"></li><li data-t="ps_1"></li><li data-t="ps_2"></li><li data-t="ps_3"></li><li data-t="ps_4"></li><li data-t="ps_6"></li><li data-t="ps_5"></li>
+          <li data-t="ps_0"></li><li data-t="ps_1"></li><li data-t="ps_2"></li><li data-t="ps_3"></li><li data-t="ps_6"></li><li data-t="ps_5"></li>
         </ul>
       </div>
     </div>
@@ -834,6 +834,7 @@ body.view-only #menuApp .qty,body.view-only #menuApp .bar,body.view-only #menuAp
       <details><summary data-t="q4"></summary><p data-t="a4"></p></details>
       <details><summary data-t="q5"></summary><p data-t="a5"></p></details>
       <details><summary data-t="q6"></summary><p data-t="a6"></p></details>
+      <details><summary data-t="q7"></summary><p data-t="a7"></p></details>
     </div>
   </section>
 
@@ -885,11 +886,11 @@ m4_try:["Mở màn hình nhân viên demo (mã 0000)", "Open the demo staff scre
 m4_b1:["Bàn mấy gọi vậy? Ai ghi đơn bàn 4?", "Which table called? Who took table 4's order?", "Какой стол звал? Кто принимал заказ четвёртого?"],
 m4_b2:["Excuse me! Bill please! …Hello?", "Excuse me! Bill please! …Hello?", "Excuse me! Bill please! …Hello?"],
 m4_b3:["Dạ chờ chút, em tính tiền bằng máy tính…", "One moment, I'm adding it up on the calculator…", "Секунду, считаю на калькуляторе…"],
-m4_result:["Khách chờ 15 phút để trả tiền và không quay lại.", "The guest waits 15 minutes to pay and never comes back.", "Гость ждёт счёт 15 минут и больше не приходит."],
+m4_result:["Khách chờ trả tiền và không quay lại.", "The guest waits to pay and never comes back.", "Гость ждёт счёт и больше не приходит."],
 ps_tag:["Phổ biến", "Most popular", "Популярный"],
 ps_name:["Thực đơn + Phục vụ", "Menu + Service", "Меню + Обслуживание"],
 ps_0:["Tất cả trong gói chính", "Everything in the main package", "Всё из основного пакета"],
-ps_1:["Màn hình đơn hàng đầy đủ: sửa đơn, tự tạo đơn, bàn đang mở", "Full order screen: edit orders, enter orders by hand, open tables", "Полный экран заказов: изменение и создание заказов, открытые столы"],
+ps_1:["Màn hình đơn hàng: mọi thứ ở «Thời điểm 4» phía trên", "Order screen: everything in “Moment 4” above", "Экран заказов: всё из «Момента 4» выше"],
 ps_2:["Thông báo trên điện thoại nhân viên, kể cả khi khóa màn hình", "Notifications on staff phones, even when locked", "Уведомления на телефоны официантов, даже при заблокированном экране"],
 ps_3:["Bàn đang mở: giảm giá, thuế, tiền mặt / VietQR / thẻ, in phiếu bếp và hóa đơn 80 mm", "Open tables: discount, tax, cash / VietQR / card, 80 mm kitchen tickets and bills", "Открытые столы: скидка, налог, наличные / VietQR / карта, кухонный тикет и счёт на 80 мм"],
 ps_4:["Màn hình bằng tiếng Việt, Anh, Nga: chủ quán xem đơn bằng ngôn ngữ của mình", "Screen in Vietnamese, English, Russian: owners read orders in their language", "Экран на вьетнамском, английском, русском: владелец читает заказы на своём языке"],
@@ -907,13 +908,15 @@ ad_14:["Thêm ngôn ngữ: Trung, Hàn…", "Extra language: Chinese, Korean…"
 ad_14v:["từ 700.000 ₫", "from 700,000 ₫", "от 700 000 ₫"],
 q6:["Có in được hóa đơn không?", "Can it print bills?", "Можно печатать счета?"],
 a6:["Có, trong gói «Thực đơn + Phục vụ»: phiếu bếp khi có đơn mới và hóa đơn tạm tính khi đóng bàn (món, giảm giá, thuế, tip, cách thanh toán, mã VietQR có số tiền) tự in trên máy in 80 mm của quán. Hóa đơn GTGT vẫn xuất từ phần mềm thu ngân của bạn.", "Yes, with “Menu + Service”: a kitchen ticket for each new order and a provisional bill when the table closes (dishes, discount, tax, tip, payment method, VietQR code with the amount) print on your 80 mm printer. VAT invoices still come from your POS software.", "Да, в пакете «Меню + Обслуживание»: кухонный тикет на каждый новый заказ и предварительный счёт при закрытии стола (блюда, скидка, налог, чаевые, способ оплаты, VietQR с суммой) печатаются на вашем принтере 80 мм. Налоговые счета по-прежнему — в вашей кассовой программе."],
+q7:["Nếu tôi tắt gói duy trì thì sao?", "What if I stop the care plan?", "Что будет, если отключить поддержку?"],
+a7:["Trang Google Maps và thực đơn vẫn là của quán, kể cả khi không có gói duy trì.", "Your Google Maps listing and your menu stay with you, even without the care plan.", "Карточка и меню остаются у заведения, даже без поддержки."],
 nav_demo:["Ví dụ","Examples","Примеры"],
 nav_calc:["Tính toán","Calculator","Калькулятор"],
 nav_price:["Bảng giá","Pricing","Цены"],
 nav_about:["Về tôi","About me","Обо мне"],
 about_h:["Tôi là Jane","I'm Jane","Я — Jane"],
 about_role:["Marketing cho quán cà phê và nhà hàng ở Nha Trang và Phú Quốc","Marketer for cafés and restaurants in Nha Trang and Phu Quoc","Маркетолог для кафе и ресторанов в Нячанге и на Фукуоке"],
-about_p:["Tôi giúp quán có thêm khách: khách du lịch tìm thấy quán trên bản đồ, hiểu thực đơn, gọi món dễ dàng và để lại đánh giá tốt sau bữa ăn.","I help places get more guests: tourists find you on the map, understand your menu, order easily and leave a good review after their meal.","Помогаю заведениям получать больше гостей. Турист находит вас на карте, понимает меню, легко делает заказ, а после ужина оставляет хороший отзыв."],
+about_p:["Tôi làm trọn gói cho quán ở Nha Trang và Phú Quốc: trang Google Maps, thực đơn 3 ngôn ngữ và gọi món tại bàn. Bạn chỉ làm việc với một người — từ buổi gặp đầu tiên đến khi hướng dẫn nhân viên.", "I do it all for cafés in Nha Trang and Phu Quoc: your Google Maps listing, a menu in three languages and ordering from the table. You deal with one person — from the first meeting to staff training.", "Делаю для кафе в Нячанге и на Фукуоке всё в одном: карточку Google Maps, меню на трёх языках и заказы со стола. Вы общаетесь с одним человеком — от первой встречи до обучения персонала."],
 about_1:["<b>Google Maps.</b> Hoàn thiện hồ sơ quán: ảnh, mô tả, giờ mở cửa, danh mục. Đặt mã QR trên bàn để khách để lại đánh giá.","<b>Google Maps.</b> I set up your profile with photos, description, hours and categories, and put review QR codes on your tables.","<b>Google Maps.</b> Оформляю карточку: фото, описание, часы, категории. Ставлю на столы QR, по которому гости оставляют отзывы."],
 about_2:["<b>Thực đơn và gọi món.</b> Thực đơn 3 ngôn ngữ, đơn hàng đến màn hình nhân viên bằng tiếng Việt, kèm thông báo và in hóa đơn.", "<b>Menu and orders.</b> A menu in three languages, with orders reaching your staff screen in Vietnamese, with phone alerts and printed bills.", "<b>Меню и заказы.</b> Меню на трёх языках, заказы приходят на экран персонала на вьетнамском, с уведомлениями и печатью счёта."],
 about_cta:["Nhắn cho Jane →","Message Jane →","Написать Jane →"],
@@ -921,7 +924,7 @@ v_coffee:["Quán cà phê","Coffee shop","Кофейня"],
 v_cafe:["Quán ăn / nhà hàng","Café / restaurant","Кафе / ресторан"],
 pk_name_c:["Quán cà phê trọn gói","Coffee Shop Ready","Кофейня под ключ"],
 pk_1_c:["Thực đơn QR tiếng Việt, Anh, Nga, tối đa 30 món","QR menu in Vietnamese, English and Russian, up to 30 items","QR-меню на вьетнамском, английском и русском, до 30 позиций"],
-sp_1_c:["<span><b>Đã gồm:</b> tự đổi giá và đánh dấu «hết món» trên điện thoại, một phút sau khách đã thấy (mua riêng 290.000 ₫)</span>","<span><b>Included:</b> change prices and mark dishes “sold out” yourself from your phone, guests see it within a minute (290,000 ₫ on its own)</span>","<span><b>Включено:</b> стоп-лист и цены — сами, с телефона, через минуту изменения видят все гости (отдельно 290 000 ₫)</span>"],
+sp_1_c:["<span><b>Đã gồm:</b> tự đổi giá và đánh dấu «hết món» trên điện thoại, một phút sau khách đã thấy</span>", "<span><b>Included:</b> change prices and mark dishes “sold out” yourself from your phone, guests see it within a minute</span>", "<span><b>Включено:</b> стоп-лист и цены — сами, с телефона, через минуту изменения видят все гости</span>"],
 nav_decks:["Thuyết trình","Presentations","Презентации"],
 dk_h:["Bài thuyết trình CafeUp","CafeUp presentations","Презентации CafeUp"],
 dk_p:["Chọn loại quán: mọi thứ về CafeUp trong 13 trang, với giá dành riêng cho bạn. Mở trên điện thoại hoặc gửi cho đối tác.", "Pick your type of place: everything about CafeUp in 13 slides, with prices for you. Open it on your phone or send it to a partner.", "Выберите тип заведения: всё о CafeUp на 13 слайдах, с ценами для вас. Откройте на телефоне или отправьте партнёру."],
@@ -932,9 +935,9 @@ dk_coffee_p:["Thực đơn 2.900.000 ₫ · Thực đơn + Phục vụ 4.500.000
 dk_size:["PDF · khoảng 5 MB mỗi tệp", "PDF · about 5 MB each", "PDF · около 5 МБ каждый"],
 nav_contact:["Liên hệ","Contact","Связаться"],
 hero_eyebrow:["Cho quán ở Nha Trang và Phú Quốc","For cafés in Nha Trang and Phu Quoc","Для кафе в Нячанге и на Фукуоке"],
-hero_h1a:["Khách du lịch đứng trước cửa quán bạn.","A tourist stops at your door.","Турист стоит у вашей двери."],
-hero_h1b:["Rồi đi sang quán bên cạnh.","Then walks to the café next door.","И уходит к соседу."],
-hero_sub:["Không phải vì món không ngon. Họ không thấy quán trên bản đồ, không hiểu thực đơn và không biết gọi món thế nào. Trong 3–5 ngày chúng tôi sẽ thay đổi điều đó: khách sẽ tìm thấy quán, hiểu thực đơn và gọi món dễ dàng.","Not because your food is bad. They couldn't find you on the map, couldn't read the menu and didn't know how to order. In 3–5 days we'll fix that: guests will find you, understand you and be able to order.","Не потому что у вас невкусно. Он не нашёл вас на карте, не понял меню и не знал, как заказать. За 3–5 дней мы это исправим: вас найдут, поймут и смогут у вас заказать."],
+hero_h1a:["Khách du lịch đi ngang qua cửa quán bạn.", "A tourist walks past your door.", "Турист проходит мимо вашей двери."],
+hero_h1b:["Rồi bước vào quán bên cạnh.", "And walks into the café next door.", "И заходит к соседу."],
+hero_sub:["Không phải vì món không ngon. Họ không thấy quán trên bản đồ, không hiểu thực đơn và không biết gọi món thế nào. Trong 3–5 ngày chúng tôi chạy thực đơn 3 ngôn ngữ và gọi món tại bàn. Trang Google Maps cũng làm trong những ngày đó, nhưng Google có thể xác minh lâu hơn — chúng tôi theo đến khi xong.", "Not because your food is bad. They couldn't find you on the map, couldn't read the menu and didn't know how to order. In 3–5 days we launch your menu in three languages and ordering from the table. We set up your Google Maps listing in the same days; Google's verification can take longer, and we see it through.", "Не потому что у вас невкусно. Он не нашёл вас на карте, не понял меню и не знал, как заказать. За 3–5 дней запускаем меню на трёх языках и заказы со стола. Карточку в Google Maps оформляем в те же дни, подтверждение Google может занять дольше — мы ведём его до конца."],
 hero_cta1:["Xem bằng mắt khách du lịch","See it as a tourist","Посмотреть глазами туриста"],
 live_demo:["Thực đơn demo thật →","Live demo menu →","Живое демо-меню →"],
 live_demo2:["Mở thực đơn trên điện thoại →","Open the menu on your phone →","Открыть меню на телефоне →"],
@@ -961,7 +964,7 @@ m1_tag:["Thời điểm 1 · Tìm kiếm","Moment 1 · Search","Момент 1 �
 m1_h:["Khách gõ «coffee near me»","A tourist searches “coffee near me”","Турист ищет «coffee near me»"],
 m1_p:["Khách không biết khu phố của bạn. Họ mở Google Maps và chọn trong vài kết quả đầu tiên, theo ảnh, điểm và số đánh giá.","Tourists don't know your street. They open Google Maps and pick from the first few results by photos, rating and number of reviews.","Турист не знает ваш район. Он открывает Google Maps и выбирает из первых карточек — по фото, рейтингу и числу отзывов."],
 m1_now:["Không ảnh, không giờ mở cửa, sai danh mục, 7 đánh giá. Quán đứng thứ 6, không ai lướt tới đó.","No photos, no hours, wrong category, 7 reviews. You're #6, and nobody scrolls that far.","Нет фото, нет часов работы, не та категория, 7 отзывов. Вы на 6-м месте — туда не долистывают."],
-m1_with:["Ảnh món, đúng danh mục, giờ mở cửa, mô tả tiếng Anh và mã QR trên bàn mời khách đánh giá. Đánh giá tăng mỗi tuần, quán lên đầu danh sách.","Food photos, the right category, hours, an English description and a table QR that asks for a review. Reviews grow every week and you move up.","Фото блюд, правильная категория, часы, описание на английском и QR на столе, который просит оставить отзыв. Отзывы растут каждую неделю, вы поднимаетесь в выдаче."],
+m1_with:["Ảnh món, đúng danh mục, giờ mở cửa, mô tả tiếng Anh và mã QR trên bàn mời khách hài lòng để lại đánh giá. Đánh giá nhiều hơn, cơ hội lên cao trong danh sách cũng lớn hơn.", "Food photos, the right category, hours, an English description and a table QR that asks happy guests for a review. More reviews mean a better chance to move up.", "Фото блюд, правильная категория, часы, описание на английском и QR на столе, который просит довольных гостей оставить отзыв. Отзывов становится больше, а с ними растёт шанс подняться в выдаче."],
 m2_tag:["Thời điểm 2 · Thực đơn","Moment 2 · Menu","Момент 2 · Меню"],
 m2_h:["Khách ngồi xuống và mở thực đơn","The tourist sits down and opens the menu","Турист садится и открывает меню"],
 m2_p:["Thực đơn chỉ có tiếng Việt. Khách dùng camera dịch và thấy thế này.","The menu is only in Vietnamese. The tourist points a translator camera at it and sees this.","Меню только на вьетнамском. Турист наводит камеру переводчика и видит вот это."],
@@ -986,7 +989,7 @@ pay:["Thanh toán","Payment","Оплата"],
 pay_note:["Khách quét bằng app ngân hàng, tiền về tài khoản quán. (Ảnh minh họa)","The guest scans with a banking app, money goes to the café's account. (Illustration)","Гость сканирует банковским приложением, деньги приходят на счёт кафе. (Иллюстрация)"],
 order_hint:["Thêm món ở thực đơn phía trên, đơn sẽ thay đổi theo.","Add dishes in the menu above and this order updates.","Добавьте блюда в меню выше — заказ обновится."],
 calc_h:["Bao nhiêu khách đi ngang qua quán?","How many guests walk past?","Сколько гостей проходит мимо"],
-calc_p:["Nhập số của bạn. Chỉ cần thêm 2 trong mỗi 100 khách du lịch đi ngang qua bước vào quán.","Use your own numbers. It only takes 2 more out of every 100 passing tourists walking in.","Подставьте свои цифры. Достаточно, чтобы из каждых 100 туристов, проходящих мимо, заходили ещё двое."],
+calc_p:["Nhập số của bạn. Giả sử cứ 100 khách du lịch đi ngang qua thì có thêm 2 người bước vào quán.", "Use your own numbers. Say 2 more out of every 100 passing tourists walk in.", "Подставьте свои цифры. Допустим, из каждых 100 туристов, проходящих мимо, заходят ещё двое."],
 l_walk:["Khách du lịch đi qua mỗi ngày","Tourists passing per day","Туристов проходит мимо за день"],
 l_conv:["Sẽ vào quán nếu tìm thấy và hiểu","Would come in if they find and understand you","Зайдут, если найдут и поймут вас"],
 l_check:["Hóa đơn trung bình","Average bill","Средний чек"],
@@ -1002,6 +1005,8 @@ pk_name:["Quán trọn gói","Café Ready","Кафе под ключ"],
 once:["một lần","one-time","один раз"],
 month:["/ tháng","/ month","/ мес."],
 pk_time:["Xong trong 3–5 ngày","Done in 3–5 days","Готово за 3–5 дней"],
+pk_9:["Tự đổi giá và «hết món» trên điện thoại: miễn phí khi có gói duy trì, hoặc trả một lần 390.000 ₫", "Prices and sold-out list from your phone: free with the care plan, or 390,000 ₫ once", "Цены и стоп-лист с телефона: бесплатно с поддержкой или разово 390 000 ₫"],
+pk_9_c:["Tự đổi giá và «hết món» trên điện thoại: miễn phí khi có gói duy trì, hoặc trả một lần 290.000 ₫", "Prices and sold-out list from your phone: free with the care plan, or 290,000 ₫ once", "Цены и стоп-лист с телефона: бесплатно с поддержкой или разово 290 000 ₫"],
 pk_1:["Thực đơn QR tiếng Việt, Anh, Nga, tối đa 50 món","QR menu in Vietnamese, English and Russian, up to 50 items","QR-меню на вьетнамском, английском и русском, до 50 позиций"],
 pk_2:["Đơn đến màn hình nhân viên bằng tiếng Việt, có âm thanh", "Orders reach the staff screen in Vietnamese, with a sound alert", "Заказы приходят на экран персонала на вьетнамском, со звуком"],
 vid_h:["CafeUp hoạt động thế nào — trong 1 phút", "How CafeUp works — in one minute", "Как работает CafeUp — за минуту"],
@@ -1016,10 +1021,10 @@ pk_4:["Google Maps: hồ sơ, danh mục, mô tả, ảnh, mã QR xin đánh gi�
 pk_5:["2 bài đăng và 1 video Reels","2 posts and 1 Reel","2 поста и 1 рилс"],
 pk_8:["Thực đơn theo một trong các phong cách, ví dụ: quán cà phê, biển, phố đêm, karaoke, động vật. Chúng tôi cũng có thể làm phong cách riêng cho quán của bạn","Menu in one of our styles, e.g. coffee house, beach, night street, karaoke, animals. We can also create a custom style for your place","Меню в одном из стилей, например: кофейня, пляж, ночной, караоке, животные. Можем сделать и индивидуальный стиль под ваше заведение"],
 pk_6:["Mẫu bảng QR để bàn, sẵn sàng in","Table QR stand design, ready to print","Макет QR-табличек на столы, готовый к печати"],
-compare:["Thực đơn QR thông thường giá 99–199 nghìn ₫ mỗi tháng và chỉ là thực đơn. Chúng tôi làm để khách tìm thấy quán, hiểu món và gọi được.","A typical QR menu costs 99–199k ₫ a month and is only a menu. We make sure guests find you, understand you and can order.","Обычное QR-меню стоит 99–199 тыс. ₫ в месяц и даёт только меню. Мы делаем так, чтобы гость вас нашёл, понял и смог заказать."],
+compare:["Chúng tôi không bán gói thuê bao thực đơn. Chúng tôi làm trang Google Maps, thực đơn và gọi món tại bàn — trả một lần.", "We don't sell a menu subscription. We set up your Google Maps listing, your menu and ordering from the table — paid once.", "Мы не продаём подписку на меню. Мы делаем карточку на картах, меню и заказы со стола — оплата один раз."],
 sp_tag:["2 tuần đầu miễn phí","First 2 weeks free","Первые 2 недели — в подарок"],
 sp_name:["Duy trì","Care plan","Поддержка"],
-sp_1:["<span><b>Đã gồm:</b> tự đổi giá và đánh dấu «hết món» trên điện thoại, một phút sau khách đã thấy (mua riêng 390.000 ₫)</span>","<span><b>Included:</b> change prices and mark dishes “sold out” yourself from your phone, guests see it within a minute (390,000 ₫ on its own)</span>","<span><b>Включено:</b> стоп-лист и цены — сами, с телефона, через минуту изменения видят все гости (отдельно 390 000 ₫)</span>"],
+sp_1:["<span><b>Đã gồm:</b> tự đổi giá và đánh dấu «hết món» trên điện thoại, một phút sau khách đã thấy</span>", "<span><b>Included:</b> change prices and mark dishes “sold out” yourself from your phone, guests see it within a minute</span>", "<span><b>Включено:</b> стоп-лист и цены — сами, с телефона, через минуту изменения видят все гости</span>"],
 sp_5:["Món mới và ảnh mới: chúng tôi thêm trong ngày","New dishes and photos: we add them the same day","Новые блюда и фото добавляем в тот же день"],
 sp_2:["Trả lời đánh giá bằng 3 ngôn ngữ","Replies to reviews in 3 languages","Отвечаем на отзывы на трёх языках"],
 sp_3:["2 bài đăng mỗi tháng","2 posts a month","2 поста в месяц"],
