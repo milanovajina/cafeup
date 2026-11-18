@@ -483,6 +483,7 @@ body.has-ostrip #menuApp .toast{bottom:calc(150px + env(safe-area-inset-bottom,0
 #menuApp .stick .cats{position:static;box-shadow:none;margin-inline:0;padding-inline:0;padding-top:8px}
 #menuApp .cq{display:inline-flex;gap:6px;margin-top:6px;align-items:center}
 #menuApp .cq button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font:inherit;font-size:17px;font-weight:700;line-height:1;color:var(--ink);padding:0}
+#menuApp .cq{display:flex;flex-wrap:wrap;gap:8px}#menuApp .cqs{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:999px;background:var(--bg);padding:3px}#menuApp .cqs button{width:34px;height:34px;border:0;background:var(--surface);color:var(--primary);font-size:20px;box-shadow:0 1px 2px rgba(0,0,0,.06)}#menuApp .cqn{min-width:30px;text-align:center;font-size:17px;font-weight:800}
 #menuApp .cq button.del{width:auto;padding:0 10px;border-radius:999px;font-size:13px;color:#B23A48}
 #menuApp .lines li.dnh{display:block;font-size:12px;color:var(--muted)}
 #menuApp .dnote input::placeholder{font-size:13px;color:var(--muted);opacity:.8}
@@ -1198,7 +1199,7 @@ function renderSheet(){
   document.getElementById('newPart').hidden=!n;
   document.getElementById('newH').hidden=!sent.length;
   document.getElementById('emptyNew').hidden=!!n;
-  document.getElementById('lines').innerHTML=rows(cart).map(r=>`<li><span>${r.q} × ${rowName(r)}${noteRow(r)}<span class="cq"><button data-cq="${escH(r.k)}" data-d="-1" aria-label="-1">−</button><button data-cq="${escH(r.k)}" data-d="1" aria-label="+1">+</button><button class="del" data-cq="${escH(r.k)}" data-d="-99">🗑 ${({vi:'Xóa',en:'Remove',ru:'Удалить'})[lang]||'Remove'}</button></span></span><span class="mono">${fmt(r.q*unitOf(r))}</span></li>`).join('')+(rows(cart).length?`<li class="dnh">${ntl(2)}</li>`:'');
+  document.getElementById('lines').innerHTML=rows(cart).map(r=>`<li><span>${rowName(r)}${noteRow(r)}<span class="cq"><span class="cqs"><button data-cq="${escH(r.k)}" data-d="-1" aria-label="-1">−</button><b class="cqn mono">${r.q}</b><button data-cq="${escH(r.k)}" data-d="1" aria-label="+1">+</button></span><button class="del" data-cq="${escH(r.k)}" data-d="-99">🗑 ${({vi:'Xóa',en:'Remove',ru:'Удалить'})[lang]||'Remove'}</button></span></span><span class="mono">${fmt(r.q*unitOf(r))}</span></li>`).join('')+(rows(cart).length?`<li class="dnh">${ntl(2)}</li>`:'');
   document.getElementById('sum').textContent=fmt(total());
   document.getElementById('kitchenText').textContent=kitchenText();
   const txt=encodeURIComponent(kitchenText());
