@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hotel Up — QR-сервис в каждом номере · Business Up</title>
+<meta name="description" content="Hotel Up: QR в каждом номере. Еда, уборка, стирка, трансфер и счёт номера на языке гостя. Персонал получает запросы на вьетнамском.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#F6F6F1;--surface:#FFFFFF;--ink:#0E3B2E;--muted:#4A6459;--line:#DCE3DA;--coral:#E8573A;--coral-d:#D44A2E;--sun:#FFD66B;--sun-soft:#FFF3CF;--mint:#BFE3D0;--mint-soft:#E5F4EC;--bad:#B23A26;--bad-soft:#FBE3DC;
+  --f-display:"Unbounded","Manrope",ui-sans-serif,system-ui,sans-serif;--f-body:"Manrope",ui-sans-serif,system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1200px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.025em;line-height:1.12;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:10px}
+section{scroll-margin-top:80px}
+
+header.top{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:0 max(16px,env(safe-area-inset-left,0px))}
+header.top .wrap{display:flex;align-items:center;gap:16px;padding-block:16px}
+.logo{font-family:var(--f-display);font-weight:800;font-size:21px;letter-spacing:-.03em;text-decoration:none}
+.logo b{color:var(--coral);font-weight:800}
+.prod{font-size:13px;font-weight:800;background:var(--mint);padding:5px 11px;border-radius:999px;text-decoration:none;white-space:nowrap}
+nav.links{display:flex;gap:22px;margin-left:auto;font-weight:700;font-size:15px}
+nav.links a{text-decoration:none}
+nav.links a:hover{color:var(--coral)}
+nav.links a.other{color:var(--muted)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.lang button{border:0;background:none;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.06em;color:var(--muted);min-width:36px}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:15px 22px;font-weight:800;text-decoration:none;font-size:15px;border:2px solid transparent;min-height:48px}
+.btn.coral{background:var(--coral);color:#fff}
+.btn.coral:hover{background:var(--coral-d)}
+.btn.line{border-color:rgba(246,246,241,.4);color:#F6F6F1}
+.btn.line:hover{background:rgba(246,246,241,.08)}
+@media (max-width:980px){nav.links{display:none}.lang{margin-left:auto}}
+@media (max-width:440px){header.top .wrap{gap:10px}.logo{font-size:18px}.prod{font-size:12px;padding:4px 9px}.lang button{min-width:30px;padding:6px 7px}}
+
+.hero{background:var(--ink);color:#F6F6F1;border-radius:36px;padding:64px 56px;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center;margin-top:8px}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9FD8B9}
+.hero h1{font-size:clamp(32px,4.4vw,54px);margin-top:18px}
+.hero .sub{font-size:clamp(17px,1.6vw,19px);color:#C9DED3;margin-top:20px;max-width:56ch}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.reqs{display:flex;flex-direction:column;gap:12px}
+.req{background:#F6F6F1;color:var(--ink);border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.req .h{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:800;letter-spacing:.06em}
+.req .h span:last-child{color:var(--coral)}
+.req b{font-size:16px;line-height:1.35}
+.req small{color:var(--muted);font-size:13px}
+.req.done .h span:last-child{color:#1F7A55}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding:36px 24px;border-radius:28px;gap:32px}}
+
+.sec-head{padding:72px 0 8px;max-width:780px}
+.sec-head .k{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--coral)}
+.sec-head h2{font-size:clamp(26px,3vw,38px);margin-top:10px}
+.sec-head p{color:var(--muted);margin-top:12px;font-size:17px}
+
+.pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.pain{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px}
+.pain b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.pain span{color:var(--muted)}
+@media (max-width:900px){.pains{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.pains{grid-template-columns:1fr}}
+
+.rows{display:grid;gap:12px;margin-top:28px}
+.rhead,.row{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:16px}
+.rhead{padding:0 22px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:20px 22px;align-items:start}
+.row .was{color:var(--bad);font-weight:700}
+.row .now{font-weight:600}
+.row .win{background:var(--mint-soft);border-radius:14px;padding:10px 12px;font-weight:700;font-size:15px}
+.row .lbl{display:none;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+@media (max-width:760px){.rhead{display:none}.row{grid-template-columns:1fr;gap:10px}.row .lbl{display:block}}
+
+.money{margin-top:72px;background:var(--sun);border-radius:36px;padding:48px;display:grid;grid-template-columns:1fr 1.1fr;gap:40px}
+.money h2{font-size:clamp(26px,3vw,38px)}
+.money p{margin-top:14px;font-size:17px;color:#2F4A40}
+.money ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.money li{background:rgba(255,255,255,.6);border-radius:18px;padding:16px 18px}
+.money li b{display:block;margin-bottom:4px}
+.money .calc{margin-top:18px;font-weight:700;background:var(--ink);color:#F6F6F1;border-radius:18px;padding:16px 18px}
+@media (max-width:860px){.money{grid-template-columns:1fr;padding:28px;border-radius:28px}}
+
+.gets{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.get{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:28px}
+.get h3{font-size:20px}
+.get ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.get li{display:grid;grid-template-columns:22px 1fr;gap:10px}
+.get li::before{content:"";width:20px;height:20px;margin-top:2px;border-radius:50%;background:var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%230E3B2E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+@media (max-width:760px){.gets{grid-template-columns:1fr}}
+
+.price{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;margin-top:28px;align-items:stretch}
+.plan{background:var(--surface);border:2px solid var(--ink);border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:14px}
+.plan .pt{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.plan .pr{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.plan .pr b{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,4vw,42px);letter-spacing:-.03em}
+.plan .pr span{color:var(--muted);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--mint);font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px}
+.plan.sup{background:var(--mint-soft);border-color:var(--mint)}
+.note{font-size:15px;color:var(--muted)}
+.note b{color:var(--ink)}
+@media (max-width:860px){.price{grid-template-columns:1fr}}
+
+.days{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.days li{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px}
+.days .d{font-family:var(--f-display);font-weight:800;color:var(--coral);font-size:30px;line-height:1}
+.days p{margin-top:10px;font-weight:600}
+@media (max-width:760px){.days{grid-template-columns:1fr}}
+
+.faq{margin-top:24px;display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:4px 20px}
+.faq summary{cursor:pointer;font-weight:800;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--coral);font-weight:800}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 16px;color:var(--muted)}
+
+.final{margin-block:72px 24px;background:var(--ink);color:#F6F6F1;border-radius:36px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.final h2{font-size:clamp(26px,3.2vw,40px)}
+.final p{margin-top:14px;color:#C9DED3;font-size:17px;max-width:46ch}
+.final .ctas .btn.line{margin-top:0}
+.contacts{display:grid;gap:12px}
+.ct{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(246,246,241,.06);border:1px solid rgba(246,246,241,.18);border-radius:18px;padding:14px 16px;flex-wrap:wrap;text-decoration:none}
+.ct .l{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9FD8B9}
+.ct .v{font-size:17px;font-weight:700}
+.ct .b{background:var(--coral);color:#fff;font-weight:800;font-size:14px;border-radius:12px;padding:10px 14px}
+@media (max-width:860px){.final{grid-template-columns:1fr;padding:28px;border-radius:28px}}
+footer{padding-block:12px 40px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="../" aria-label="Business Up">business<b>up</b></a>
+  <a class="prod" href="#top">Hotel Up</a>
+  <nav class="links">
+    <a href="#how" data-t="nav_how"></a>
+    <a href="#money" data-t="nav_money"></a>
+    <a href="#price" data-t="nav_price"></a>
+    <a href="#faq" data-t="nav_faq"></a>
+    <a href="#contact" data-t="nav_contact"></a>
+    <a class="other" href="../cafe/">CafeUp →</a>
+  </nav>
+  <div class="lang" role="group" aria-label="Language">
+    <button data-lang="vi">VI</button><button data-lang="en">EN</button><button data-lang="ru">RU</button>
+  </div>
+</div></header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div>
+      <div class="eyebrow" data-t="eyebrow"></div>
+      <h1 data-t="h1"></h1>
+      <p class="sub" data-t="sub"></p>
+      <div class="ctas">
+        <a class="btn coral" href="../hotel/#room-101" target="_blank" rel="noopener" data-t="cta_demo"></a>
+        <a class="btn line" href="#contact" data-t="cta_contact"></a>
+      </div>
+    </div>
+    <div class="reqs" aria-hidden="true">
+      <div class="req"><div class="h"><span data-t="r1h"></span><span data-t="st_new"></span></div><b data-t="r1"></b><small data-t="r1s"></small></div>
+      <div class="req"><div class="h"><span data-t="r2h"></span><span data-t="st_work"></span></div><b data-t="r2"></b><small data-t="r2s"></small></div>
+      <div class="req done"><div class="h"><span data-t="r3h"></span><span data-t="st_done"></span></div><b data-t="r3"></b><small data-t="r3s"></small></div>
+    </div>
+  </section>
+
+  <section id="pains">
+    <div class="sec-head"><div class="k" data-t="p_k"></div><h2 data-t="p_h"></h2></div>
+    <div class="pains">
+      <div class="pain"><b data-t="p1"></b><span data-t="p1p"></span></div>
+      <div class="pain"><b data-t="p2"></b><span data-t="p2p"></span></div>
+      <div class="pain"><b data-t="p3"></b><span data-t="p3p"></span></div>
+      <div class="pain"><b data-t="p4"></b><span data-t="p4p"></span></div>
+      <div class="pain"><b data-t="p5"></b><span data-t="p5p"></span></div>
+      <div class="pain"><b data-t="p6"></b><span data-t="p6p"></span></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="sec-head"><div class="k" data-t="h_k"></div><h2 data-t="h_h"></h2><p data-t="h_p"></p></div>
+    <div class="rows">
+      <div class="rhead"><span data-t="c_was"></span><span data-t="c_now"></span><span data-t="c_win"></span></div>
+      <div class="row"><div><div class="lbl" data-t="c_was"></div><div class="was" data-t="x1a"></div></div><div><div class="lbl" data-t="c_now"></div><div class="now" data-t="x1b"></div></div><div><div class="lbl" data-t="c_win"></div><div class="win" data-t="x1c"></div></div></div>
+      <div class="row"><div><div class="lbl" data-t="c_was"></div><div class="was" data-t="x2a"></div></div><div><div class="lbl" data-t="c_now"></div><div class="now" data-t="x2b"></div></div><div><div class="lbl" data-t="c_win"></div><div class="win" data-t="x2c"></div></div></div>
+      <div class="row"><div><div class="lbl" data-t="c_was"></div><div class="was" data-t="x3a"></div></div><div><div class="lbl" data-t="c_now"></div><div class="now" data-t="x3b"></div></div><div><div class="lbl" data-t="c_win"></div><div class="win" data-t="x3c"></div></div></div>
+      <div class="row"><div><div class="lbl" data-t="c_was"></div><div class="was" data-t="x4a"></div></div><div><div class="lbl" data-t="c_now"></div><div class="now" data-t="x4b"></div></div><div><div class="lbl" data-t="c_win"></div><div class="win" data-t="x4c"></div></div></div>
+      <div class="row"><div><div class="lbl" data-t="c_was"></div><div class="was" data-t="x5a"></div></div><div><div class="lbl" data-t="c_now"></div><div class="now" data-t="x5b"></div></div><div><div class="lbl" data-t="c_win"></div><div class="win" data-t="x5c"></div></div></div>
+      <div class="row"><div><div class="lbl" data-t="c_was"></div><div class="was" data-t="x6a"></div></div><div><div class="lbl" data-t="c_now"></div><div class="now" data-t="x6b"></div></div><div><div class="lbl" data-t="c_win"></div><div class="win" data-t="x6c"></div></div></div>
+    </div>
+  </section>
+
+  <section class="money" id="money">
+    <div><h2 data-t="m_h"></h2><p data-t="m_p"></p></div>
+    <div>
+      <ul>
+        <li><b data-t="m1"></b><span data-t="m1p"></span></li>
+        <li><b data-t="m2"></b><span data-t="m2p"></span></li>
+        <li><b data-t="m3"></b><span data-t="m3p"></span></li>
+      </ul>
+      <div class="calc" data-t="m_calc"></div>
+    </div>
+  </section>
+
+  <section id="get">
+    <div class="sec-head"><div class="k" data-t="g_k"></div><h2 data-t="g_h"></h2></div>
+    <div class="gets">
+      <div class="get"><h3 data-t="g1h"></h3><ul><li data-t="g1a"></li><li data-t="g1b"></li><li data-t="g1c"></li><li data-t="g1d"></li><li data-t="g1e"></li></ul></div>
+      <div class="get"><h3 data-t="g2h"></h3><ul><li data-t="g2a"></li><li data-t="g2b"></li><li data-t="g2c"></li><li data-t="g2d"></li><li data-t="g2e"></li></ul></div>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="sec-head"><div class="k" data-t="pr_k"></div><h2 data-t="pr_h"></h2></div>
+    <div class="price">
+      <div class="plan">
+        <div class="pt" data-t="pr_t1"></div>
+        <div class="pr"><b>5 000 000 ₫</b><span data-t="once"></span></div>
+        <div class="chips"><span data-t="ch1"></span><span data-t="ch2"></span><span data-t="ch3"></span></div>
+        <p data-t="pr_in"></p>
+        <p class="note" data-t="pr_ex"></p>
+      </div>
+      <div class="plan sup">
+        <div class="pt" data-t="pr_t2"></div>
+        <div class="pr"><b>490 000 ₫</b><span data-t="month"></span></div>
+        <p data-t="sup_in"></p>
+        <p class="note" data-t="sup_note"></p>
+        <p class="note"><b data-t="big_h"></b> <span data-t="big_p"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="steps">
+    <div class="sec-head"><div class="k" data-t="st_k"></div><h2 data-t="st_h"></h2></div>
+    <ol class="days">
+      <li><span class="d">1</span><p data-t="d1"></p></li>
+      <li><span class="d">2</span><p data-t="d2"></p></li>
+      <li><span class="d">3</span><p data-t="d3"></p></li>
+    </ol>
+  </section>
+
+  <section id="faq">
+    <div class="sec-head"><h2 data-t="faq_h"></h2></div>
+    <div class="faq">
+      <details><summary data-t="q1"></summary><p data-t="a1"></p></details>
+      <details><summary data-t="q2"></summary><p data-t="a2"></p></details>
+      <details><summary data-t="q3"></summary><p data-t="a3"></p></details>
+      <details><summary data-t="q4"></summary><p data-t="a4"></p></details>
+      <details><summary data-t="q5"></summary><p data-t="a5"></p></details>
+      <details><summary data-t="q6"></summary><p data-t="a6"></p></details>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <div><h2 data-t="fin_h"></h2><p data-t="fin_p"></p><div class="ctas"><a class="btn line" href="../hotel/#room-101" target="_blank" rel="noopener" data-t="cta_demo"></a></div></div>
+    <div class="contacts">
+      <a class="ct" href="https://zalo.me/0799808594" target="_blank" rel="noopener"><span><span class="l">Zalo</span><br><span class="v">0799 808 594</span></span><span class="b" data-t="write"></span></a>
+      <a class="ct" href="https://t.me/e_milanova" target="_blank" rel="noopener"><span><span class="l">Telegram</span><br><span class="v">@e_milanova</span></span><span class="b" data-t="write"></span></a>
+    </div>
+  </section>
+  <footer><span>business up · Hotel Up · Jane</span><a href="../" data-t="foot"></a></footer>
+</main>
+
+<script>
+const D={
+nav_how:["Cách hoạt động","How it works","Как работает"],
+nav_money:["Doanh thu thêm","Extra revenue","Допвыручка"],
+nav_price:["Giá","Pricing","Цена"],
+nav_faq:["Câu hỏi","FAQ","Вопросы"],
+nav_contact:["Liên hệ","Contact","Связаться"],
+eyebrow:["Cho khách sạn ở Nha Trang và Phú Quốc","For hotels in Nha Trang and Phu Quoc","Для отелей Нячанга и Фукуока"],
+h1:["Dịch vụ QR trong mỗi phòng","A QR service in every room","QR-сервис в каждом номере"],
+sub:["Khách quét mã và yêu cầu mọi thứ bằng ngôn ngữ của mình: đồ ăn, dọn phòng, nước, gối, giặt ủi, báo thức, xe đưa đón. Nhân viên nhận yêu cầu bằng tiếng Việt, dịch vụ tính phí tự cộng vào hóa đơn phòng.","Guests scan the code and ask for anything in their own language: food, housekeeping, water, a pillow, laundry, a wake-up call, a transfer. Staff get the request in Vietnamese, and paid services add themselves to the room bill.","Гость сканирует код и просит что угодно на своём языке: еду, уборку, воду и подушку, стирку, будильник, трансфер. Персонал получает запрос на вьетнамском, а платные услуги сами попадают в счёт номера."],
+cta_demo:["Mở phòng demo","Open the demo room","Открыть демо-номер"],
+cta_contact:["Nhắn cho tôi","Get in touch","Написать мне"],
+r1h:["PHÒNG 203 · MANG ĐỒ LÊN","ROOM 203 · BRING TO ROOM","НОМЕР 203 · ПРИНЕСТИ"],
+r1:["2 chai nước, thêm gối","2 bottles of water, one more pillow","2 бутылки воды, ещё подушку"],
+r1s:["Khách viết tiếng Nga · tự dịch","Guest wrote in Russian · auto-translated","Гость написал по-русски · автоперевод"],
+r2h:["PHÒNG 105 · DỌN PHÒNG","ROOM 105 · HOUSEKEEPING","НОМЕР 105 · УБОРКА"],
+r2:["Hôm nay, 14:00–15:00","Today, 14:00–15:00","Сегодня, 14:00–15:00"],
+r2s:["Buồng phòng","Housekeeping","Горничные"],
+r3h:["PHÒNG 301 · ĐỒ ĂN","ROOM 301 · FOOD","НОМЕР 301 · ЕДА"],
+r3:["Tính vào hóa đơn phòng","Charged to the room","На счёт номера"],
+r3s:["Bếp / Bar","Kitchen / Bar","Кухня / бар"],
+st_new:["MỚI","NEW","НОВЫЙ"],st_work:["ĐANG LÀM","IN PROGRESS","В РАБОТЕ"],st_done:["XONG","DONE","ГОТОВО"],
+p_k:["Quen không?","Sound familiar?","Знакомо?"],
+p_h:["Những điều khách không nói, nhưng viết trong đánh giá","What guests don't say, but write in reviews","То, что гости не говорят, но пишут в отзывах"],
+p1:["Hoa hồng Booking và Agoda ăn vào lợi nhuận","Booking and Agoda fees eat your margin","Комиссии Booking и Agoda съедают маржу"],p1p:["Còn giá phòng thì bị căn hộ cho thuê ép xuống.","And apartments push your room rate down.","А цену номера давят апартаменты."],
+p2:["Dịch vụ thêm bán không chạy","Extra services don't sell","Допуслуги продаются плохо"],p2p:["Khách ngại gọi lễ tân, không biết bạn có giặt ủi hay cho thuê xe máy, nên mua tour ở chỗ khác.","Guests are shy to call the desk, don't know you have laundry or bikes, and buy tours next door.","Гость стесняется звонить на ресепшн, не знает про стирку и байки и берёт тур у соседей."],
+p3:["Nhân viên thay đổi, không phải ai cũng biết tiếng Anh","Staff change, not everyone speaks English","Персонал меняется, английский знают не все"],p3p:["Yêu cầu bị hiểu sai hoặc quên chuyển cho buồng phòng và bếp.","Requests get misunderstood or never reach housekeeping and the kitchen.","Запросы понимают неверно или забывают передать горничным и на кухню."],
+p4:["Biết hỏng hóc qua đánh giá xấu","You learn about breakdowns from bad reviews","О поломках узнаёте из отзыва"],p4p:["Máy lạnh hỏng, nước yếu — khách im lặng và viết khi đã trả phòng.","Broken AC, weak water — the guest stays quiet and writes after check-out.","Сломался кондиционер, слабая вода — гость молчит и пишет уже после выезда."],
+p5:["Tranh cãi khi trả phòng","Arguments at check-out","Споры при выезде"],p5p:["Khách không biết đã dùng bao nhiêu, hoặc cho rằng phí bồi thường là bịa ra.","The guest didn't know what they'd spent, or thinks the damage fee is made up.","Гость не знал, сколько набрал, или считает компенсацию за ущерб придуманной."],
+p6:["Lễ tân trả lời mãi một câu hỏi","Reception answers the same questions","Ресепшн отвечает на одни и те же вопросы"],p6p:["Mật khẩu Wi-Fi, nội quy, cách thuê xe máy.","The Wi-Fi password, house rules, how to rent a bike.","Пароль Wi-Fi, правила, как взять байк."],
+h_k:["Hotel Up giải quyết thế nào","How Hotel Up helps","Как Hotel Up снимает проблемы"],
+h_h:["Mỗi yêu cầu có người nhận và có trạng thái","Every request has an owner and a status","У каждого запроса есть исполнитель и статус"],
+h_p:["Khách không cần cài ứng dụng: quét mã QR trong phòng và nhập mã lưu trú một lần.","Guests install nothing: they scan the QR in the room and enter the stay code once.","Гостю ничего не нужно устанавливать: он сканирует QR в номере и один раз вводит код проживания."],
+c_was:["Trước đây","Before","Было"],c_now:["Với Hotel Up","With Hotel Up","С Hotel Up"],c_win:["Bạn được gì","What you gain","Ваш выигрыш"],
+x1a:["Khách ngại gọi điện và không biết bạn có dịch vụ gì","Guests are shy to call and don't know your services","Гость стесняется звонить и не знает о ваших услугах"],x1b:["Mọi dịch vụ và giá có trên điện thoại khách, đặt chỉ vài lần chạm, không cần nói chuyện","Every service and price is on the guest's phone, ordered in a few taps, no conversation","Все услуги с ценами в телефоне гостя, заказ в пару нажатий, без разговора"],x1c:["Khách thường mua tour, xe máy, giặt ủi và đồ ăn ở bạn hơn","Guests more often buy tours, bikes, laundry and food from you","Тур, байк, стирку и еду гость чаще берёт у вас"],
+x2a:["Nhân viên không hiểu khách","Staff don't understand the guest","Персонал не понимает гостя"],x2b:["Khách viết bằng ngôn ngữ của mình, nhân viên đọc bản tự dịch tiếng Việt","The guest writes in their language, staff read an automatic Vietnamese translation","Гость пишет на своём языке, сотрудник читает автоперевод на вьетнамский"],x2c:["Nhân viên không biết tiếng Anh vẫn hiểu yêu cầu","Staff without English still understand the request","Сотрудник без английского понимает запрос"],
+x3a:["Yêu cầu bị lạc giữa lễ tân và các bộ phận","Requests get lost between reception and the teams","Запрос теряется между ресепшн и отделами"],x3b:["Yêu cầu đến ngay đúng bộ phận (lễ tân, buồng phòng, bếp) kèm âm thanh và thông báo đẩy. Khách thấy trạng thái","It goes straight to the right team (reception, housekeeping, kitchen) with a sound and a push notification. The guest sees the status","Запрос сразу уходит нужному отделу (ресепшн, горничные, кухня) со звуком и push-уведомлением. Гость видит статус"],x3c:["Không gì bị quên, thấy rõ việc nào xong, việc nào đang làm","Nothing is forgotten; you see what's done and what's in progress","Ничего не забывается, видно, что сделано, а что в работе"],
+x4a:["Biết hỏng hóc qua đánh giá","You learn about breakdowns from reviews","О поломке узнаёте из отзыва"],x4b:["Nút «Báo hỏng»: máy lạnh, nước, điện, Wi-Fi, khóa cửa","A “Something broken” button: AC, water, power, Wi-Fi, door lock","Кнопка «Что-то сломалось»: кондиционер, вода, свет, Wi-Fi, замок"],x4c:["Sửa trước khi khách đi, không phải sau đánh giá xấu","Fixed before the guest leaves, not after a bad review","Исправляете до отъезда гостя, а не после плохого отзыва"],
+x5a:["Tranh cãi về hóa đơn và bồi thường","Disputes over the bill and damage","Споры о счёте и ущербе"],x5b:["Khách luôn thấy «Hóa đơn của tôi», nội quy và bảng giá bồi thường bằng ngôn ngữ của mình. Khi trả phòng có hóa đơn in với VietQR đúng số tiền","The guest always sees “My bill”, the house rules and the damage price list in their language. At check-out: a printed bill with VietQR for the exact amount","Гость всегда видит «Мой счёт», правила и таблицу компенсаций на своём языке. При выезде — печатный счёт с VietQR на точную сумму"],x5c:["Trả phòng nhanh và êm, thu bồi thường dễ hơn","A quick, calm check-out; damage fees are easier to collect","Быстрый и спокойный выезд, компенсацию взять проще"],
+x6a:["Lễ tân nhắc lại mật khẩu Wi-Fi và nội quy","Reception repeats the Wi-Fi password and rules","Ресепшн повторяет пароль Wi-Fi и правила"],x6b:["Mục «Thông tin»: Wi-Fi tầng của khách với nút sao chép mật khẩu, số điện thoại, nội quy","An “Info” section: the guest's floor Wi-Fi with a copy-password button, phone numbers, rules","Раздел «Информация»: Wi-Fi этажа гостя с кнопкой копирования пароля, телефоны, правила"],x6c:["Lễ tân lo cho khách, không phải trả lời câu hỏi lặp lại","Reception looks after guests, not repeat questions","Ресепшн занимается гостями, а не справками"],
+m_h:["Doanh thu thêm, không mất hoa hồng Booking","Extra revenue with no Booking fee","Допвыручка без комиссии Booking"],
+m_p:["Giá phòng bị đặt bởi cạnh tranh và nền tảng đặt phòng. Còn tiền dịch vụ của khách đang ở chỗ bạn thì thuộc về khách sạn trọn vẹn. Hotel Up làm việc chính ở đây.","Your room rate is set by competition and booking sites. Money from services for a guest already staying with you belongs entirely to the hotel. That's where Hotel Up works.","Цену номера диктуют конкуренты и сайты бронирования. А деньги за услуги гостя, который уже живёт у вас, целиком остаются отелю. Именно здесь работает Hotel Up."],
+m1:["Quầy hàng trong mỗi phòng","A shop window in every room","Витрина в каждом номере"],m1p:["Đồ ăn, giặt ủi, xe sân bay, xe máy, tour, cà phê lúc báo thức — có giá, bằng ngôn ngữ của khách.","Food, laundry, airport transfer, bikes, tours, coffee with the wake-up call — with prices, in the guest's language.","Еда, стирка, трансфер в аэропорт, байки, экскурсии, кофе к будильнику — с ценами, на языке гостя."],
+m2:["Đặt không ngại ngùng","Ordering without awkwardness","Заказ без неловкости"],m2p:["Không cần gọi điện và giải thích — chính điều đó khiến nhiều khách không đặt.","No call, no explaining — exactly what stops many guests.","Не нужно звонить и объясняться — именно это останавливает многих гостей."],
+m3:["Không gì bị quên trong hóa đơn","Nothing lost from the bill","В счёте ничего не теряется"],m3p:["Đồ ăn và dịch vụ «tính vào phòng» tự cộng khi nhân viên bấm «Xong». Giặt ủi tính theo kg.","Food and services “charged to the room” add themselves when staff press “Done”. Laundry is charged by the kg.","Еда и услуги «на счёт номера» добавляются сами, когда персонал нажимает «Готово». Стирка считается по кг."],
+m_calc:["Hãy tính cho khách sạn của bạn: mỗi tháng bao nhiêu khách đang thuê xe, đi tour hay giặt ủi ở chỗ bạn — và bao nhiêu người sẽ làm vậy nếu biết ngay khi nhận phòng.","Work it out for your hotel: how many guests a month rent a bike, book a tour or use laundry with you now — and how many would if they knew on arrival.","Посчитайте для своего отеля: сколько гостей в месяц сейчас берут у вас байк, тур или стирку — и сколько могли бы, если бы узнали об этом сразу при заселении."],
+g_k:["Bạn nhận được","What you get","Что вы получаете"],
+g_h:["Trang cho khách và màn hình cho nhân viên","A guest page and a staff screen","Страница гостя и экран персонала"],
+g1h:["Cho khách · VI / EN / RU","For guests · VI / EN / RU","Гостю · VI / EN / RU"],
+g1a:["Đồ ăn lên phòng, dọn phòng theo khung giờ hoặc «Không dọn hôm nay»","Room service, housekeeping by time slot or “No cleaning today”","Еда в номер, уборка по интервалам или «Не убирать сегодня»"],
+g1b:["«Mang đồ lên phòng» một dòng, giặt ủi thường hoặc gấp, báo thức","“Bring to my room” in one line, regular or express laundry, wake-up call","«Принести в номер» одной строкой, стирка обычная или срочная, будильник"],
+g1c:["«Báo hỏng», xe và tour","“Something broken”, transfers and tours","«Что-то сломалось», трансфер и туры"],
+g1d:["Thông tin: Wi-Fi tầng, điện thoại, nội quy, bảng giá bồi thường","Info: floor Wi-Fi, phones, rules, damage price list","Информация: Wi-Fi этажа, телефоны, правила, компенсации за ущерб"],
+g1e:["«Yêu cầu của tôi» với trạng thái và «Hóa đơn của tôi»","“My requests” with status and “My bill”","«Мои запросы» со статусом и «Мой счёт»"],
+g2h:["Cho nhân viên và cho bạn","For staff and for you","Персоналу и вам"],
+g2a:["Yêu cầu theo bộ phận, âm thanh và thông báo đẩy, tự dịch","Requests by team, sound and push notifications, auto-translation","Запросы по отделам, звук и push-уведомления, автоперевод"],
+g2b:["Nhận phòng với mã lưu trú 4 số — mỗi khách mới có mã mới","Check-in with a 4-digit stay code — a new code for every guest","Заселение с кодом проживания из 4 цифр — у каждого нового гостя новый код"],
+g2c:["Hóa đơn phòng: bồi thường, giảm giá, thuế, in 80 mm với VietQR","Room bill: damage, discount, tax, 80 mm print with VietQR","Счёт номера: компенсации, скидка, налог, печать 80 мм с VietQR"],
+g2d:["Trả phòng tự tạo việc dọn phòng cho khách mới","Check-out creates a cleaning task for the next guest","Выселение само создаёт задачу на уборку"],
+g2e:["Tự đổi thực đơn, dịch vụ, giá, nội quy — chỉ cần viết tiếng Việt, EN và RU tự dịch","Change menus, services, prices and rules yourself — write in Vietnamese, EN and RU translate automatically","Меню, услуги, цены и правила меняете сами — достаточно вьетнамского, EN и RU переведутся сами"],
+pr_k:["Giá","Pricing","Цена"],
+pr_h:["Một lần cho khởi chạy, và hỗ trợ hằng tháng","Once for the launch, plus monthly support","Один раз за запуск и поддержка в месяц"],
+pr_t1:["Khởi chạy trọn gói · đến 20 phòng","Turnkey launch · up to 20 rooms","Запуск под ключ · до 20 номеров"],
+once:["một lần","once","один раз"],month:["/ tháng","/ month","/ мес."],
+ch1:["3–5 ngày","3–5 days","3–5 дней"],ch2:["Máy tính hoặc điện thoại","Computer or phone","Компьютер или смартфон"],ch3:["Máy in tùy chọn","Printer optional","Принтер по желанию"],
+pr_in:["Gồm: cài đặt cho khách sạn của bạn, mã QR cho mọi phòng, hướng dẫn nhân viên và tài liệu tiếng Việt.","Includes: setup for your hotel, a QR for every room, staff training and a guide in Vietnamese.","Входит: настройка под ваш отель, QR для всех номеров, обучение персонала и инструкция на вьетнамском."],
+pr_ex:["Không gồm in bảng QR và thiết bị (máy in, máy tính bảng).","Printing the QR cards and equipment (printer, tablet) are not included.","Не входят печать табличек и оборудование (принтер, планшет)."],
+pr_t2:["Hỗ trợ · đến 20 phòng","Support · up to 20 rooms","Поддержка · до 20 номеров"],
+sup_in:["Gồm máy chủ xử lý yêu cầu, mã và hóa đơn, cập nhật và hỗ trợ khi có vấn đề.","Includes the server that carries requests, codes and bills, updates, and help when something goes wrong.","Входят сервер, через который идут запросы, коды и счета, обновления и помощь, если что-то не так."],
+sup_note:["Hệ thống chạy trên máy chủ này: nếu ngừng hỗ trợ, trang phòng sẽ không nhận yêu cầu nữa.","The system runs on this server: without support, the room page stops accepting requests.","Система работает на этом сервере: без поддержки страница номера перестанет принимать запросы."],
+big_h:["Hơn 20 phòng?","More than 20 rooms?","Больше 20 номеров?"],big_p:["Giá khởi chạy và hỗ trợ theo thỏa thuận.","Launch and support priced by agreement.","Запуск и поддержка — по договорённости."],
+st_k:["Khởi chạy","Launch","Запуск"],
+st_h:["3–5 ngày từ khi đồng ý đến khi chạy","3–5 days from yes to live","3–5 дней от согласия до запуска"],
+d1:["Bạn gửi danh sách phòng, dịch vụ và giá, nội quy, Wi-Fi, thông tin VietQR","You send the room list, services and prices, rules, Wi-Fi and VietQR details","Вы даёте список номеров, услуги и цены, правила, Wi-Fi, данные VietQR"],
+d2:["Chúng tôi nhập mọi thứ, kết nối máy chủ và làm mã QR cho từng phòng","We enter everything, connect the server and make a QR for every room","Мы всё заносим, подключаем сервер и готовим QR для каждого номера"],
+d3:["Hướng dẫn nhân viên và chạy thử: nhận phòng → QR → yêu cầu → hóa đơn → trả phòng","We train staff and run a live test: check-in → QR → request → bill → check-out","Обучаем персонал и проводим живой тест: заселение → QR → запрос → счёт → выезд"],
+faq_h:["Câu hỏi thường gặp","Common questions","Частые вопросы"],
+q1:["Khách có cần cài ứng dụng không?","Do guests need to install an app?","Гостю нужно устанавливать приложение?"],a1:["Không. Khách quét mã QR trong phòng, trang mở trên trình duyệt điện thoại.","No. The guest scans the QR in the room and the page opens in the phone's browser.","Нет. Гость сканирует QR в номере, страница открывается в браузере телефона."],
+q2:["Khách cũ có thể đặt vào hóa đơn của khách mới không?","Can a previous guest order on the new guest's bill?","Может ли прошлый гость заказать на счёт нового?"],a2:["Không. Khi nhận phòng, khách nhận mã lưu trú 4 số và nhập một lần. Mỗi lần nhận phòng có mã mới, khách cũ mất quyền truy cập.","No. At check-in the guest gets a 4-digit stay code and enters it once. Every check-in gets a new code, and the previous guest loses access.","Нет. При заселении гость получает код проживания из 4 цифр и вводит его один раз. При каждом заселении код новый, прошлый гость теряет доступ."],
+q3:["Bản dịch có chính xác không?","Is the translation accurate?","Насколько точен перевод?"],a3:["Thực đơn, dịch vụ và nội quy được lưu bằng 3 ngôn ngữ, bạn có thể sửa bản dịch trong cài đặt. Tin nhắn tự do của khách được dịch bằng máy, nên đôi khi chưa chính xác.","Menus, services and rules are stored in three languages, and you can correct any translation in settings. Guests' free-text messages are machine-translated, so they can sometimes be imperfect.","Меню, услуги и правила хранятся на трёх языках, любой перевод можно поправить в настройках. Свободный текст гостя переводится машиной, поэтому иногда неточно."],
+q4:["Cần thiết bị gì?","What equipment do we need?","Какое оборудование нужно?"],a4:["Chỉ cần máy tính hoặc điện thoại ở lễ tân. Máy in 80 mm để in hóa đơn là tùy chọn.","Just a computer or phone at reception. An 80 mm printer for bills is optional.","Только компьютер или смартфон на ресепшн. Принтер 80 мм для счетов — по желанию."],
+q5:["Có thêm chức năng riêng được không?","Can you add a feature of our own?","Можно добавить свою функцию?"],a5:["Có. Chúng tôi thêm chức năng theo yêu cầu của khách sạn.","Yes. We add features at the hotel's request.","Да. Добавляем функции по запросу отеля."],
+q6:["Hóa đơn có phải hóa đơn GTGT không?","Is the bill a VAT invoice?","Счёт — это налоговая накладная?"],a6:["Không. Đây là hóa đơn tạm tính. Hóa đơn GTGT vẫn xuất trong phần mềm kế toán của bạn.","No. It's a provisional bill. VAT invoices still come from your accounting software.","Нет. Это предварительный счёт. Налоговые счета по-прежнему выписываются в вашей бухгалтерской программе."],
+fin_h:["Xem Hotel Up bằng mắt của khách","See Hotel Up through a guest's eyes","Посмотрите Hotel Up глазами гостя"],
+fin_p:["Mở phòng demo, rồi nhắn cho tôi trên Zalo — tôi sẽ đến khách sạn, cho xem màn hình nhân viên và gợi ý những dịch vụ nên đưa lên.","Open the demo room, then message me on Zalo — I'll come to the hotel, show the staff screen and suggest which services to put in the window.","Откройте демо-номер, а потом напишите мне в Zalo — приду в отель, покажу экран персонала и подскажу, какие услуги стоит поставить на витрину."],
+write:["Nhắn tin","Message","Написать"],
+foot:["← Trang chủ Business Up","← Business Up home","← Главная Business Up"]
+};
+const LI={vi:0,en:1,ru:2};
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-t]').forEach(e=>{const v=D[e.dataset.t];if(v)e.textContent=v[LI[l]]});
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===l)));
+  document.title=['Hotel Up — dịch vụ QR trong mỗi phòng · Business Up','Hotel Up — a QR service in every room · Business Up','Hotel Up — QR-сервис в каждом номере · Business Up'][LI[l]];
+  try{localStorage.setItem('qm_lang',l)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+(()=>{let l=null;try{l=localStorage.getItem('qm_lang')}catch(e){}
+  if(!LI.hasOwnProperty(l)){const n=(navigator.language||'').slice(0,2);l=n==='vi'?'vi':n==='en'?'en':'ru'}
+  setLang(l)})();
+</script>
+</body>
+</html>
