@@ -123,6 +123,7 @@ section{scroll-margin-top:72px}
 .seg button .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
 .seg button[data-state="now"][aria-pressed="true"]{background:var(--chili-soft);color:var(--chili)}
 .seg button[data-state="with"][aria-pressed="true"]{background:var(--jade-soft);color:var(--jade)}
+.pos-fit{margin:28px 0 10px;padding:20px 24px;border-radius:var(--r-lg);background:var(--jade-soft);border-left:4px solid var(--jade)}.pos-fit h3{margin:0 0 6px;font-size:19px;line-height:1.3}.pos-fit p{margin:0;max-width:75ch;font-size:15.5px;line-height:1.55}
 .note{margin-top:18px;padding:14px 16px;border-radius:var(--r-lg);font-size:15px;max-width:52ch}
 .note.now{background:var(--chili-soft);color:var(--ink);border-left:3px solid var(--chili)}
 .note.with{background:var(--jade-soft);color:var(--ink);border-left:3px solid var(--jade)}
@@ -816,6 +817,7 @@ nav.links a.other{color:var(--muted)}
         </ul>
       </div>
     </div>
+    <div class="pos-fit"><h3 data-t="pos_h"></h3><p data-t="pos_p"></p></div>
     <div class="prices2">
       <div class="plan">
         <div class="pt" data-t="sp_tag"></div>
@@ -1063,6 +1065,8 @@ o_month:["Doanh thu thêm mỗi tháng","Extra revenue per month","Дополн�
 o_payback:["Gói dịch vụ hoàn vốn sau","The package pays for itself in","Пакет окупается за"],
 days:["ngày","days","дн."],
 calc_disc:["Đây là ước tính theo số liệu của bạn, không phải cam kết.","This is an estimate on your numbers, not a promise.","Это оценка на ваших цифрах, а не обещание."],
+pos_h:["Quán đã dùng Sapo, KiotViet hay phần mềm bán hàng khác? Cứ giữ nguyên.", "Already using Sapo, KiotViet or another POS? Keep it.", "Уже работаете в Sapo, KiotViet или другой кассовой программе? Оставьте её."],
+pos_p:["CafeUp không thay phần mềm của quán, mà thêm phần dành cho khách du lịch: quán dễ tìm hơn trên Google Maps, thực đơn bằng tiếng Việt, Anh và Nga. Đơn gọi qua QR đến màn hình nhân viên bằng tiếng Việt, thu ngân tính tiền trên phần mềm như mọi ngày. Nếu muốn đơn giản hơn, có thể tắt gọi món qua QR và chỉ giữ thực đơn để khách xem.", "CafeUp doesn’t replace your software. It adds the part made for tourists: easier to find on Google Maps and a menu in Vietnamese, English and Russian. QR orders reach the staff screen in Vietnamese, and the cashier rings them up in your POS as usual. Prefer it simpler? QR ordering can be switched off, keeping just the menu for guests to browse.", "CafeUp не заменяет вашу программу, а добавляет то, что нужно туристам: вас проще найти в Google Maps, а меню есть на вьетнамском, английском и русском. Заказы через QR приходят на экран персонала на вьетнамском, а кассир пробивает их в своей программе как обычно. Хотите проще — заказ через QR можно отключить и оставить только меню для просмотра."],
 price_h:["Bảng giá","Pricing","Цены"],
 price_p:["Trả một lần cho gói chính. Gói duy trì tùy chọn, hủy bất cứ lúc nào.","Pay once for the main package. The care plan is optional and you can cancel any time.","Основной пакет оплачивается один раз. Поддержка — по желанию, отключается в любой момент."],
 pk_tag:["Gói chính","Main package","Основной пакет"],
@@ -2124,7 +2128,7 @@ window.addEventListener('hashchange',()=>{const m=(location.hash||'').match(/^#t
 /* "up" motion: blocks rise into view while scrolling (off when the visitor prefers less motion) */
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('main .sec-head,.moment,.plan,.calc,.days li,.faq,.final').forEach((el,i)=>{el.classList.add('bu-rv');el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)})})();
+document.querySelectorAll('main .sec-head,.moment,.plan,.calc,.pos-fit,.days li,.faq,.final').forEach((el,i)=>{el.classList.add('bu-rv');el.style.transitionDelay=(i%3)*80+'ms';io.observe(el)})})();
 </script>
 </body>
 </html>
